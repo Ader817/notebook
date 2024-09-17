@@ -1,4 +1,30 @@
-site_name: My Docs
-theme:
-  name: material
-  
+site_name: Ader's notebook
+site_url: https://ader817.github.io/notebook
+repo_name: Ader817/notebook
+repo_url: https://github.com/Ader817/notebook/
+edit_uri: tree/master/docs
+site_description: Ader的笔记本
+copyright: Copyright &copy; 2022-2024 <a href="https://github.com/Ader817" target="_blank" rel="noopener">Ader817</a>
+
+theme: 
+  name: 'material'
+  language: 'zh'
+  features:
+    - content.code.annotate
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.indexes
+    - navigation.top
+  font: false
+  palette:
+    - scheme: default
+
+nav:
+  - Home:
+    - home/index.md
+  - Computer Science:
+    - cs/index.md
+  - Writeups:
+    - writeups/index.md
+    - "2024":
+      - BaseCTF 2024: writeups/basectf/basectf2024.md
