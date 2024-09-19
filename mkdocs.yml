@@ -25,7 +25,7 @@ nav:
   - Computer Science:
     - cs/index.md
     - "概率论与数理统计":
-      - cs/pas/index.md
+      - 简介: cs/pas/index.md
   - Writeups:
     - writeups/index.md
     - "2024":
