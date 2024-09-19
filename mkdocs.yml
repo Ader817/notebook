@@ -24,6 +24,12 @@ nav:
     - home/index.md
   - Computer Science:
     - cs/index.md
+    - 概率论与数理统计:
+      - cs/pas/index.md
+    - 高级数据结构与算法分析:
+
+    - 计算机组成:
+
   - Writeups:
     - writeups/index.md
     - "2024":
