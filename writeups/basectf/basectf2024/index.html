@@ -1402,7 +1402,7 @@ Base32?         X
 </li>
 </ol>
 <p>对于本题目，发现图片不能通过 xdg-open 正常显示，但可以直接使用 Windows 系统下的图片查看器打开。并且 pngcheck 后显示有 crc 校验错误，于是我们怀疑篡改了 IHDR 块的宽高数据</p>
-<p><img alt="🔥" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f525.svg" title=":fire:" />文件头数据块 IHDR (header chunk): 包含了 PNG 文件中储存的图像数据的基本信息，并作为第一个数据块出现在 PNG 数据流中</p>
+<p><img alt="🔥" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/72x72/1f525.png" title=":fire:" />文件头数据块 IHDR (header chunk): 包含了 PNG 文件中储存的图像数据的基本信息，并作为第一个数据块出现在 PNG 数据流中</p>
 <p>紧跟 IHDR 后的 8 个字节表示了图像的宽度和高度，例如</p>
 <p><code>49 48 44 52 00 00 02 25 00 00 03</code></p>
 <p>因此我们直接适当增大图像的宽度和高度，在 Windows 自带的图片查看器中查看图片便可以看到因高度截取后而隐藏的 flag 信息（貌似主要是Windows 自带的图片查看器对 png 图像的要求并不是很严格，即使出现校验和错误也会忽视力图能将图像显示出来</p>
@@ -1411,7 +1411,7 @@ Base32?         X
 <p>不推荐直接肉眼读取flag, 出题人预期方法是编程遍历像素的<code>alpha</code>（透明度）通道, 重新用黑白写在新的图片上 --- 摘自官方 writeup</p>
 <p>先用 zsteg 自动识别隐写发现没有什么成效，然后就直接利用 Cyberchef 的 View Bit Plane 功能，在最低位上对 red blue green alpha 做尝试便能找到 flag</p>
 <h2 id="week2-海上又遇到了鲨鱼">[Week2] 海上又遇到了鲨鱼<a class="headerlink" href="#week2-海上又遇到了鲨鱼" title="Permanent link">&para;</a></h2>
-<p><strong>--- 照搬了官方的 writeup</strong> <img alt="😄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/svg/1f604.svg" title=":smile:" /></p>
+<p><strong>--- 照搬了官方的 writeup</strong> <img alt="😄" class="twemoji" src="https://cdn.jsdelivr.net/gh/jdecked/twemoji@15.0.3/assets/72x72/1f604.png" title=":smile:" /></p>
 <p>Wireshark 是强大的网络数据捕获与分析工具</p>
 <p>打开附件，看到协议为 TCP 与 FTP 的分组，可以一个个点击看看是什么 FTP协议，ftp-data 过滤流量包 发现 文件传输了 flag</p>
 <p>追踪数据流</p>
