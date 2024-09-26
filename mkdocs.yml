@@ -26,6 +26,7 @@ nav:
     - cs/index.md
     - "概率论与数理统计":
       - 简介: cs/pas/index.md
+      - chapter1: cs/pas/ch1.md
   - Writeups:
     - writeups/index.md
     - "2024":
