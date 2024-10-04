@@ -2,34 +2,38 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://ader817.github.io/notebook/</loc>
-         <lastmod>2024-09-27</lastmod>
+         <lastmod>2024-10-04</lastmod>
     </url>
     <url>
          <loc>https://ader817.github.io/notebook/cs/</loc>
-         <lastmod>2024-09-27</lastmod>
+         <lastmod>2024-10-04</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/cs/ads/ch2/</loc>
+         <lastmod>2024-10-04</lastmod>
     </url>
     <url>
          <loc>https://ader817.github.io/notebook/cs/dip/ch1/</loc>
-         <lastmod>2024-09-27</lastmod>
+         <lastmod>2024-10-04</lastmod>
     </url>
     <url>
          <loc>https://ader817.github.io/notebook/cs/pas/</loc>
-         <lastmod>2024-09-27</lastmod>
+         <lastmod>2024-10-04</lastmod>
     </url>
     <url>
          <loc>https://ader817.github.io/notebook/cs/pas/ch1/</loc>
-         <lastmod>2024-09-27</lastmod>
+         <lastmod>2024-10-04</lastmod>
     </url>
     <url>
          <loc>https://ader817.github.io/notebook/home/</loc>
-         <lastmod>2024-09-27</lastmod>
+         <lastmod>2024-10-04</lastmod>
     </url>
     <url>
          <loc>https://ader817.github.io/notebook/writeups/</loc>
-         <lastmod>2024-09-27</lastmod>
+         <lastmod>2024-10-04</lastmod>
     </url>
     <url>
          <loc>https://ader817.github.io/notebook/writeups/basectf/basectf2024/</loc>
-         <lastmod>2024-09-27</lastmod>
+         <lastmod>2024-10-04</lastmod>
     </url>
 </urlset>
