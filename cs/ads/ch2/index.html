@@ -1470,7 +1470,7 @@
 <h3 id="红黑树的定义">红黑树的定义<a class="headerlink" href="#红黑树的定义" title="Permanent link">&para;</a></h3>
 <div class="admonition definition red black tree">
 <p class="admonition-title">Definition</p>
-<p><img alt="" src="../image.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.0.png" /></p>
 <p>红黑树是满足如下性质的一种二叉搜索树：</p>
 <div class="admonition info">
 <p class="admonition-title">Properties</p>
@@ -1512,12 +1512,12 @@
 </details>
 <p>2.由于红黑树中黑高相同，所以很显然一条路径中，红色节点越多该路径长度也越大。那么最短路径一定是全黑的路径，最长路径一定是一黑一红的路径。</p>
 <p>那么我们就有红黑树中<strong>最长路径不超过最短路径两倍</strong>的结论，把结论推广到任一节点，那么就能得到<strong>任一节点左右子树的高度比不超过两倍</strong>
-<img alt="" src="../image-1.png" /></p>
+<img alt="" src="../assets/ch2/ch2.1.png" /></p>
 <details class="info">
 <summary>AVL树 vs 红黑树</summary>
 <p>在这里我们将AVL树和红黑树对高度的要求做对比，会发现AVL树对此更严格，因此在时间复杂度同为O(logn)下，<strong>AVL树的查询操作更加高效</strong></p>
 <p>但同时，由于AVL树在每次进行插入和删除时都相较会进行更多的<strong>旋转</strong>操作（这会在下面对插入删除的介绍中体现），因此<strong>红黑树的插入和删除操作更加高效</strong></p>
-<p><img alt="alt text" src="../image-3.png" /></p>
+<p><img alt="alt text" src="../assets/ch2/ch2.3.png" /></p>
 </details>
 <p>3.<strong>一个有 <span class="arithmatex">\(N\)</span> 个内部节点（不包括叶子结点）的红黑树，其高度最大为 <span class="arithmatex">\(2log⁡2(N+1)\)</span></strong></p>
 <details class="tip">
@@ -1564,17 +1564,17 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="1:3"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Frame 1</label><label for="__tabbed_1_2">Frame 2</label><label for="__tabbed_1_3">Frame 3</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-2.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.2.png" /></p>
 <p>在这一情况下，cur节点插入默认为红，father/uncle均为红</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-4.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.4.png" /></p>
 <p><strong>将 father,uncle,grandfather 均变色</strong>
 目的在于：不改变 grandfather 子树中各子树黑高的同时，修复了"不红红"
 但是将 grandfather 变为红色时，若 grandfather 存在红色父亲节点，便又破坏了"不红红"。而这就需要 <strong>grandfather 成为插入节点</strong> cur，<strong>递归向上</strong>地进行维护，直至根节点</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-5.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.5.png" /></p>
 <p>grandfather 此时作为 cur，恰好是根节点
 那么根据"插入节点是根节点"的操作方式，直接将 cur 变为黑色即可</p>
 </div>
@@ -1589,15 +1589,15 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="2:3"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><input id="__tabbed_2_3" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Frame 1</label><label for="__tabbed_2_2">Frame 2</label><label for="__tabbed_2_3">Frame 3</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-6.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.6.png" /></p>
 <p>注意这里的叶子节点 <code>NIL</code> 也应当作 uncle</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-7.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.7.png" /></p>
 <p>做 LL 旋转</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-8.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.8.png" /></p>
 <p>对旋转点和旋转中心点变色</p>
 </div>
 </div>
@@ -1608,15 +1608,15 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="3:3"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio" /><input id="__tabbed_3_2" name="__tabbed_3" type="radio" /><input id="__tabbed_3_3" name="__tabbed_3" type="radio" /><div class="tabbed-labels"><label for="__tabbed_3_1">Frame 1</label><label for="__tabbed_3_2">Frame 2</label><label for="__tabbed_3_3">Frame 3</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-9.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.9.png" /></p>
 <p>同理 LL</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-10.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.10.png" /></p>
 <p>同理 LL</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-11.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.11.png" /></p>
 <p>同理 LL</p>
 </div>
 </div>
@@ -1627,17 +1627,17 @@
 <div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio" /><input id="__tabbed_4_2" name="__tabbed_4" type="radio" /><input id="__tabbed_4_3" name="__tabbed_4" type="radio" /><div class="tabbed-labels"><label for="__tabbed_4_1">Frame 1</label><label for="__tabbed_4_2">Frame 2</label><label for="__tabbed_4_3">Frame 3</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-12.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.12.png" /></p>
 <p>与 AVL 树的 LR 旋转相同，只不过多了变色操作</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-13.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.13.png" /></p>
 <p>可以把 double rotation 理解为连续两次的 simple rotation
 LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右旋
 （也就达到了将最中间的数作为 root，它的左子树给左，右子树给右的效果）</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-14.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.14.png" /></p>
 <p>最后将<strong>最后一次</strong>旋转的旋转点和中心点变色
 事实上 LL 与 RR 情况的变色也可以记为"将最后一次旋转的旋转点和中心点变色"
 （只不过 LL 与 RR 由于是 simple rotation 只有一次旋转）</p>
@@ -1650,15 +1650,15 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="tabbed-set tabbed-alternate" data-tabs="5:3"><input checked="checked" id="__tabbed_5_1" name="__tabbed_5" type="radio" /><input id="__tabbed_5_2" name="__tabbed_5" type="radio" /><input id="__tabbed_5_3" name="__tabbed_5" type="radio" /><div class="tabbed-labels"><label for="__tabbed_5_1">Frame 1</label><label for="__tabbed_5_2">Frame 2</label><label for="__tabbed_5_3">Frame 3</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-15.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.15.png" /></p>
 <p>同LR</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-16.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.16.png" /></p>
 <p>同LR</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-17.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.17.png" /></p>
 <p>同LR</p>
 </div>
 </div>
@@ -1666,7 +1666,7 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 </div>
 </div>
 <p><strong>归纳总结如下图</strong></p>
-<p><img alt="" src="../image-18.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.18.png" /></p>
 <h4 id="top-down-思路">*Top-Down 思路<a class="headerlink" href="#top-down-思路" title="Permanent link">&para;</a></h4>
 <div class="admonition note">
 <p class="admonition-title">@《Data Structures and Algorithm Analysis in C 》</p>
@@ -1714,10 +1714,10 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="tabbed-set tabbed-alternate" data-tabs="6:2"><input checked="checked" id="__tabbed_6_1" name="__tabbed_6" type="radio" /><input id="__tabbed_6_2" name="__tabbed_6" type="radio" /><div class="tabbed-labels"><label for="__tabbed_6_1">case 1</label><label for="__tabbed_6_2">case 2</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-19.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.19.png" /></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-20.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.20.png" /></p>
 </div>
 </div>
 </div>
@@ -1744,19 +1744,19 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="tabbed-set tabbed-alternate" data-tabs="8:4"><input checked="checked" id="__tabbed_8_1" name="__tabbed_8" type="radio" /><input id="__tabbed_8_2" name="__tabbed_8" type="radio" /><input id="__tabbed_8_3" name="__tabbed_8" type="radio" /><input id="__tabbed_8_4" name="__tabbed_8" type="radio" /><div class="tabbed-labels"><label for="__tabbed_8_1">Frame 1</label><label for="__tabbed_8_2">Frame 2</label><label for="__tabbed_8_3">Frame 3</label><label for="__tabbed_8_4">Frame 4</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-21.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.21.png" /></p>
 <p>只要 s 有红色左孩子那么就属于 LL 型，即使是图中有两个红色孩子的情况也算数</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-22.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.22.png" /></p>
 <p>首先进行变色:<strong>r变s，s变p，p变黑</strong></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-23.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.23.png" /></p>
 <p>然后执行 LL 型的<strong>左旋</strong>操作</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-25.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.25.png" /></p>
 <p>最后将<strong>双黑变为单黑</strong>，实际已经恢复了黑路同，双黑<code>NULL</code>变为单黑<code>NULL</code></p>
 </div>
 </div>
@@ -1769,19 +1769,19 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="tabbed-set tabbed-alternate" data-tabs="9:4"><input checked="checked" id="__tabbed_9_1" name="__tabbed_9" type="radio" /><input id="__tabbed_9_2" name="__tabbed_9" type="radio" /><input id="__tabbed_9_3" name="__tabbed_9" type="radio" /><input id="__tabbed_9_4" name="__tabbed_9" type="radio" /><div class="tabbed-labels"><label for="__tabbed_9_1">Frame 1</label><label for="__tabbed_9_2">Frame 2</label><label for="__tabbed_9_3">Frame 3</label><label for="__tabbed_9_4">Frame 4</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-26.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.26.png" /></p>
 <p>LR型我们只关注r,p的颜色</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-27.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.27.png" /></p>
 <p>首先进行变色:<strong>r变p，p变黑</strong></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-28.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.28.png" /></p>
 <p>然后执行 LR 型 <strong>double rotation</strong>,也就是先左旋再右旋</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-29.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.29.png" /></p>
 <p>最后将<strong>双黑变为单黑</strong>，实际已经恢复了黑路同，双黑<code>NULL</code>变为单黑<code>NULL</code></p>
 </div>
 </div>
@@ -1802,22 +1802,22 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="tabbed-set tabbed-alternate" data-tabs="11:4"><input checked="checked" id="__tabbed_11_1" name="__tabbed_11" type="radio" /><input id="__tabbed_11_2" name="__tabbed_11" type="radio" /><input id="__tabbed_11_3" name="__tabbed_11" type="radio" /><input id="__tabbed_11_4" name="__tabbed_11" type="radio" /><div class="tabbed-labels"><label for="__tabbed_11_1">Frame 1</label><label for="__tabbed_11_2">Frame 2</label><label for="__tabbed_11_3">Frame 3</label><label for="__tabbed_11_4">Frame 4</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-30.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.30.png" /></p>
 <p>被删除的节点被标记为双黑节点，其兄弟为黑且无红孩</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-31.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.31.png" /></p>
 <p>由于右边经过双黑黑高少1，所以<strong>将兄弟变为红色</strong>以
 使得左右子树的黑高平衡</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-32.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.32.png" /></p>
 <p>由于左右子树的黑高都少1，我们可以将<strong>双黑上移</strong>，标记经过 8 节点的黑高都少1</p>
 <p>然后需要继续调整 8 和 18 子树的黑高，即<strong>继续处理双黑</strong></p>
 <p>发现属于兄弟为黑且有一个红孩的情况</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-33.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.33.png" /></p>
 <p>RR 型，左旋后<strong>取消双黑标记</strong>，将双黑变为单黑</p>
 </div>
 </div>
@@ -1827,17 +1827,17 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="tabbed-set tabbed-alternate" data-tabs="12:3"><input checked="checked" id="__tabbed_12_1" name="__tabbed_12" type="radio" /><input id="__tabbed_12_2" name="__tabbed_12" type="radio" /><input id="__tabbed_12_3" name="__tabbed_12" type="radio" /><div class="tabbed-labels"><label for="__tabbed_12_1">Frame 1</label><label for="__tabbed_12_2">Frame 2</label><label for="__tabbed_12_3">Frame 3</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-34.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.34.png" /></p>
 <p>被删除的节点被标记为双黑节点，其兄弟为黑且无红孩</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-35.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.35.png" /></p>
 <p>由于右边经过双黑黑高少1，所以<strong>将兄弟变为红色</strong></p>
 <p>使得左右子树的黑高平衡</p>
 <p>同时将<strong>双黑标记</strong>上移</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-36.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.36.png" /></p>
 <p>上移后25处的双黑标记表明经过25节点的黑高都少1</p>
 <p>那么将红节点变为黑色来弥补黑高</p>
 <p>即<strong>双黑遇到红色变单黑</strong></p>
@@ -1849,15 +1849,15 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="tabbed-set tabbed-alternate" data-tabs="13:3"><input checked="checked" id="__tabbed_13_1" name="__tabbed_13" type="radio" /><input id="__tabbed_13_2" name="__tabbed_13" type="radio" /><input id="__tabbed_13_3" name="__tabbed_13" type="radio" /><div class="tabbed-labels"><label for="__tabbed_13_1">Frame 1</label><label for="__tabbed_13_2">Frame 2</label><label for="__tabbed_13_3">Frame 3</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-37.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.37.png" /></p>
 <p>被删除的节点被标记为双黑节点，其兄弟为黑且无红孩</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-38.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.38.png" /></p>
 <p>同理<strong>兄弟变红，双黑上移</strong></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-39.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.39.png" /></p>
 <p>根节点黑高少了也没事，<strong>双黑遇根变单黑</strong></p>
 </div>
 </div>
@@ -1872,21 +1872,21 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="tabbed-set tabbed-alternate" data-tabs="14:4"><input checked="checked" id="__tabbed_14_1" name="__tabbed_14" type="radio" /><input id="__tabbed_14_2" name="__tabbed_14" type="radio" /><input id="__tabbed_14_3" name="__tabbed_14" type="radio" /><input id="__tabbed_14_4" name="__tabbed_14" type="radio" /><div class="tabbed-labels"><label for="__tabbed_14_1">Frame 1</label><label for="__tabbed_14_2">Frame 2</label><label for="__tabbed_14_3">Frame 3</label><label for="__tabbed_14_4">Frame 4</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-40.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.40.png" /></p>
 <p>被删除的节点被标记为双黑节点，其兄弟为红</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-41.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.41.png" /></p>
 <p>兄弟为黑，父亲必定为红</p>
 <p>先执行<strong>兄父变色</strong></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-42.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.42.png" /></p>
 <p>然后<strong>父亲朝着双黑旋转</strong>
 （这里双黑在父亲右边，所以是右旋）</p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-43.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.43.png" /></p>
 <p>继续消除双黑：属于兄弟为黑且无红孩</p>
 <p><strong>兄弟变红，双黑上移，遇红变单黑</strong></p>
 </div>
@@ -1894,7 +1894,7 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 </div>
 </div>
 <h4 id="总结">总结<a class="headerlink" href="#总结" title="Permanent link">&para;</a></h4>
-<p><img alt="" src="../image-44.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.44.png" /></p>
 <p>可以参照这个删除案例的动画做复习巩固
 👉<strong><a href="https://www.bilibili.com/video/BV16m421u7Tb">红黑树删除-案例 自视频20:41</a></strong></p>
 <hr />
@@ -1909,6 +1909,7 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <p>硬盘读取物理地址连续的多个字节和读取单个字节的耗时几乎没有区别</p>
 </div>
 <p>所以简单来说就是通过降低树高来减少硬盘读取次数，从而提高访问效率</p>
+<hr />
 <h3 id="性质">性质<a class="headerlink" href="#性质" title="Permanent link">&para;</a></h3>
 <p>在 B 树中，有两种节点：</p>
 <ol>
@@ -1931,7 +1932,8 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 </li>
 </ul>
 <p>一个简单的5阶B树的图例如下:</p>
-<p><img alt="" src="../image-45.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.45.png" /></p>
+<hr />
 <h3 id="插入_1">插入<a class="headerlink" href="#插入_1" title="Permanent link">&para;</a></h3>
 <p>针对m阶高度h的B树，插入一个元素时，首先判断在B树中是否存在，如果不存在，即在叶子结点处结束，然后在叶子结点中插入该新的元素。</p>
 <ol>
@@ -1941,6 +1943,7 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 </ol>
 <p>详细过程可以参照这个视频
 👉<strong><a href="https://www.bilibili.com/video/BV1tJ4m1w7yR">B树(B-树) - 来由, 定义, 插入, 构建</a></strong></p>
+<hr />
 <h3 id="删除_1">删除<a class="headerlink" href="#删除_1" title="Permanent link">&para;</a></h3>
 <p>删除非叶节点元素类似于二叉搜索树，找到它的直接前驱或直接后继替代它，再删除直接前驱或直接后驱</p>
 <p>因此删除非叶节点元素最终都转换成<strong>删除叶节点元素</strong></p>
@@ -1975,9 +1978,9 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <p>dyx:说明一下，ads课默认只教b+树，我们上课讲b树只是为了帮助大家理解红黑树。所以之后无论做题还是考试，出现2-3树或者2-3-4树，都应该默认看成b+树。</p>
 </div>
 <p>而其中,2-3-4树和红黑树是<strong>同构</strong>，任意一棵红黑树都唯一对应一棵 2-3-4 树。在 2-3-4 树上的插入和删除操作导致节点的扩展、分裂和合并，相当于红黑树中的变色和旋转。下图是 2-3-4 树的 2 节点、3 节点和 4 节点对应的红黑树节点。注意到 2-3-4 树的 3 节点对应红黑树中红色节点左偏和右偏两种情况，所以一棵红黑树可能对应多棵 2-3-4 树。</p>
-<p><img alt="" src="../image-47.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.47.png" /></p>
 <p>下图是一棵红黑树和与之对应的 2-3-4 树。将红黑树中的红色节点上移到父节点的左右两侧，形成一个 B 树节点，就可以得到与之对应的 2-3-4 树。可以发现，红黑树的节点数等于 2-3-4 树的节点个数</p>
-<p><img alt="" src="../image-48.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.48.png" /></p>
 <hr />
 <h2 id="b-tree_1">B+ Tree<a class="headerlink" href="#b-tree_1" title="Permanent link">&para;</a></h2>
 <h3 id="概述_2">概述<a class="headerlink" href="#概述_2" title="Permanent link">&para;</a></h3>
@@ -1987,6 +1990,7 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <p>将B树和B+树做对比我们发现：</p>
 <p>B树<strong>所有结点</strong>的关键字<strong>都有直接指向对应记录的指针</strong>；B+树<strong>叶结点</strong>包含<strong>全部关键字</strong>及<strong>指向相应记录的指针</strong>，非叶节点只作索引</p>
 <p>B树顺序查找或范围查找<strong>只能中序遍历</strong>，效率低；B+树兼顾<strong>顺序查找和随机查找</strong>，还可以方便地进行<strong>范围查找</strong></p>
+<hr />
 <h3 id="性质_1">性质<a class="headerlink" href="#性质_1" title="Permanent link">&para;</a></h3>
 <p>从名字上来看，B+ 树和 B 树非常相似，而一般地来说，B+ 树满足如下性质：(实际就是上面提到的 B 树的"多路性"--稍有不同)</p>
 <div class="admonition note">
@@ -2013,7 +2017,7 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <p>而cyll这里的定义又奇怪一点，似乎在这一基础上让leafnode特殊地最多拥有<span class="arithmatex">\(M\)</span>个键值(sb</p>
 </div>
 <p>例如下图就是一棵 M = 4 的 B+ 树
-<img alt="" src="../image-49.png" /></p>
+<img alt="" src="../assets/ch2/ch2.49.png" /></p>
 <p>所有真实的数据都被存储在叶子结点中，形成一个有序的数列。而非叶子结点中<strong>第 i 个键值等于其第 i+1 棵子树的最小值</strong>（在上图中表现为颜色相同的一对上下结点），因此非叶结点最多存 M−1 个值。</p>
 <div class="admonition info">
 <p class="admonition-title">key</p>
@@ -2025,8 +2029,10 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <p>证明很简单，对于任意一个非叶子结点，它存储的值必定不会被它的子节点存储（如果它的子节点不是叶子），因为它存的是它的子节点的第一个子树的最小值，而它的子节点存的是第二个子树开始的最小值。</p>
 <p>以及另一个性质：由于它在空间最浪费的情况下是一棵<span class="arithmatex">\(\lceil{\frac{M}{2}}\rceil\)</span>叉树，所以<strong>B+树的深度</strong>是 <span class="arithmatex">\(O(log\lceil{\frac{M}{2}}\rceil N)\)</span></p>
 </details>
+<hr />
 <h3 id="查找">查找<a class="headerlink" href="#查找" title="Permanent link">&para;</a></h3>
 <p>类似于二叉搜索树的查找，比较简单，不赘述</p>
+<hr />
 <h3 id="插入_2">插入<a class="headerlink" href="#插入_2" title="Permanent link">&para;</a></h3>
 <p>B+ 树的插入算法与 B 树的相近：</p>
 <ul>
@@ -2046,28 +2052,30 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="tabbed-set tabbed-alternate" data-tabs="15:6"><input checked="checked" id="__tabbed_15_1" name="__tabbed_15" type="radio" /><input id="__tabbed_15_2" name="__tabbed_15" type="radio" /><input id="__tabbed_15_3" name="__tabbed_15" type="radio" /><input id="__tabbed_15_4" name="__tabbed_15" type="radio" /><input id="__tabbed_15_5" name="__tabbed_15" type="radio" /><input id="__tabbed_15_6" name="__tabbed_15" type="radio" /><div class="tabbed-labels"><label for="__tabbed_15_1">Frame 1</label><label for="__tabbed_15_2">Frame 2</label><label for="__tabbed_15_3">Frame 3</label><label for="__tabbed_15_4">Frame 4</label><label for="__tabbed_15_5">Frame 5</label><label for="__tabbed_15_6">Frame 6</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
-<p><img alt="" src="../image-50.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.50.png" /></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-51.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.51.png" /></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-52.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.52.png" /></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-53.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.53.png" /></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-54.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.54.png" /></p>
 </div>
 <div class="tabbed-block">
-<p><img alt="" src="../image-55.png" /></p>
+<p><img alt="" src="../assets/ch2/ch2.55.png" /></p>
 </div>
 </div>
 </div>
 </div>
+<hr />
 <h3 id="删除待完善">*删除（待完善）<a class="headerlink" href="#删除待完善" title="Permanent link">&para;</a></h3>
-<p>B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关键字被删除时，其在非叶子节点中的值可以作为一个分界关键字存在。若因删除而使节点中关键字的个数少于<span class="arithmatex">\(\lceil \dfrac{m}{2} \rceil\)</span> 时，其和兄弟节点的合并过程亦和 B 树类似。</p>
+<p>B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关键字被删除时，其在非叶子节点中的值可以作为一个分界关键字存在。若因删除而使节点中关键字的个数少于
+<span class="arithmatex">\(\lceil \dfrac{m}{2} \rceil\)</span> 时，其和兄弟节点的合并过程亦和 B 树类似。</p>
 <p>具体步骤如下：</p>
 <p>首先查询到键值所在的叶子节点，删除该叶子节点的数据。</p>
 <p>如果删除叶子节点之后的数据数量，满足 B+ 树的平衡条件，则直接返回。</p>
