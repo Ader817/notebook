@@ -27,8 +27,13 @@ nav:
     - "概率论与数理统计":
       - 简介: cs/pas/index.md
       - chapter1: cs/pas/ch1.md
+      - chapter2: cs/pas/ch2.md
     - "高级数据结构与算法分析":
-      - chapter2: cs/ads/ch2.md
+      - Chapter 2 | Red Black Tree & B+ Tree: cs/ads/ch2.md
+      - Chapter 3 | Inverted File Index: cs/ads/ch3.md
+      - Chapter 4 | Leftist Heap & Skew Heap: cs/ads/ch4.md
+      - Chapter 5 | Binomial Queue & Fibonacci Heap: cs/ads/ch5.md
+      - Chapter 6 | Backtracing: cs/ads/ch6.md
   - Writeups:
     - writeups/index.md
     - "2024":
