@@ -13,10 +13,10 @@
         <link rel="canonical" href="https://ader817.github.io/notebook/cs/ads/ch2/">
       
       
-        <link rel="prev" href="../../pas/ch1/">
+        <link rel="prev" href="../../pas/ch2/">
       
       
-        <link rel="next" href="../../../writeups/">
+        <link rel="next" href="../ch3/">
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
@@ -24,7 +24,7 @@
     
     
       
-        <title>chapter2 - Ader's notebook</title>
+        <title>Chapter 2 | Red Black Tree & B+ Tree - Ader's notebook</title>
       
     
     
@@ -70,7 +70,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#chapter2--red-black-tree--b-tree" class="md-skip">
+        <a href="#chapter-2--red-black-tree--b-tree" class="md-skip">
           跳转至
         </a>
       
@@ -104,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              chapter2
+              Chapter 2 | Red Black Tree & B+ Tree
             
           </span>
         </div>
@@ -433,6 +433,8 @@
       
         
       
+        
+      
     
     
       
@@ -495,6 +497,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pas/ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    chapter2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -513,6 +536,14 @@
   
     
     
+      
+        
+      
+        
+      
+        
+      
+        
       
         
       
@@ -567,7 +598,7 @@
           
   
   <span class="md-ellipsis">
-    chapter2
+    Chapter 2 | Red Black Tree & B+ Tree
   </span>
   
 
@@ -578,7 +609,7 @@
         
   
   <span class="md-ellipsis">
-    chapter2
+    Chapter 2 | Red Black Tree & B+ Tree
   </span>
   
 
@@ -916,9 +947,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#删除待完善" class="md-nav__link">
+  <a href="#删除_2" class="md-nav__link">
     <span class="md-ellipsis">
-      *删除（待完善）
+      *删除
     </span>
   </a>
   
@@ -933,6 +964,90 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3 | Inverted File Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4 | Leftist Heap & Skew Heap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5 | Binomial Queue & Fibonacci Heap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6 | Backtracing
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1430,9 +1545,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#删除待完善" class="md-nav__link">
+  <a href="#删除_2" class="md-nav__link">
     <span class="md-ellipsis">
-      *删除（待完善）
+      *删除
     </span>
   </a>
   
@@ -1461,7 +1576,7 @@
   
 
 
-<h1 id="chapter2--red-black-tree--b-tree">Chapter2 | Red Black Tree &amp; B+ Tree<a class="headerlink" href="#chapter2--red-black-tree--b-tree" title="Permanent link">&para;</a></h1>
+<h1 id="chapter-2--red-black-tree--b-tree">Chapter 2 | Red Black Tree &amp; B+ Tree<a class="headerlink" href="#chapter-2--red-black-tree--b-tree" title="Permanent link">&para;</a></h1>
 <h2 id="red-black-tree">Red Black Tree<a class="headerlink" href="#red-black-tree" title="Permanent link">&para;</a></h2>
 <h3 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">&para;</a></h3>
 <p>我们知道AVL树在每次操作都对原树进行平衡化操作，从而使得二叉搜索树保持一个相对平衡的状态，避免了链式结构造成的O(n)的复杂度。而同样的，红黑树也是一种平衡二叉搜索树，只不过与AVL树相比，它们对于“平衡”的定义以及为达到“平衡”采取的策略不同而已。</p>
@@ -2014,7 +2129,7 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <div class="admonition warning">
 <p class="admonition-title">B+树的定义</p>
 <p>各种资料上B+树的定义各有不同，一种定义方式是关键字个数和孩子结点个数相同。而另一种方式是维基百科上所定义的方式，即关键字个数比孩子结点个数小1，这种方式是和B树基本等价的</p>
-<p>而cyll这里的定义又奇怪一点，似乎在这一基础上让leafnode特殊地最多拥有<span class="arithmatex">\(M\)</span>个键值(sb</p>
+<p>而cyll这里的定义又奇怪一点，似乎在这一基础上让leafnode特殊地最多拥有<span class="arithmatex">\(M\)</span>个键值</p>
 </div>
 <p>例如下图就是一棵 M = 4 的 B+ 树
 <img alt="" src="../assets/ch2/ch2.49.png" /></p>
@@ -2040,10 +2155,10 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 <p>若为空树，创建一个叶子节点，然后将记录插入其中，此时这个叶子节点也是根节点，插入操作结束。</p>
 </li>
 <li>
-<p>针对叶子类型节点：根据关键字找到叶子节点，向这个叶子节点插入记录。插入后，若当前节点关键字的个数小于 m ，则插入结束。否则发生了上溢出，执行分裂操作：将这个叶子节点分裂成左右两个叶子节点，左叶子节点包含中位数（<span class="arithmatex">\(\lceil \frac m 2 \rceil\)</span>）个记录，右节点包含剩下的记录，将中位数（<span class="arithmatex">\(\lceil \frac m 2 \rceil\)</span>）个记录的关键字进位到父节点中（父节点一定是索引类型节点），进位到父节点的关键字左孩子指针向左节点，右孩子指针向右节点。将当前节点的指针指向父节点，然后执行第 3 步。</p>
+<p>针对叶子类型节点：根据关键字找到叶子节点，向这个叶子节点插入记录。插入后，若当前节点关键字的个数小于等于 m ，则插入结束。否则发生了上溢出，执行分裂操作：将这个叶子节点分裂成左右两个叶子节点，左叶子节点包含（<span class="arithmatex">\(\lceil \frac {m+1} 2 \rceil\)</span>）个记录，右节点包含剩下的记录，将第（<span class="arithmatex">\(\lceil \frac {m+1} 2 \rceil + 1\)</span>）个记录的关键字进位到父节点中（父节点一定是索引类型节点），进位到父节点的关键字左孩子指针向左节点，右孩子指针向右节点。将当前节点的指针指向父节点，然后执行第 3 步。</p>
 </li>
 <li>
-<p>针对索引类型节点（内部节点）：若当前节点关键字的个数小于等于 m-1 ，则插入结束。否则发生了上溢出，执行分裂操作：将这个索引类型节点分裂成两个索引节点，左索引节点包含<span class="arithmatex">\(\lceil \frac {m-1} 2 \rceil\)</span>key，右节点包含除中间（<span class="arithmatex">\(\lceil \frac {m-1} 2 \rceil\)</span>）右边的数外剩下的key，将中位数右边的关键字进位到父节点中，进位到父节点的关键字左孩子指向左节点，进位到父节点的关键字右孩子指向右节点。将当前节点的指针指向父节点，然后重复这一步。</p>
+<p>针对索引类型节点（内部节点）：若当前节点关键字的个数小于等于 m-1 ，则插入结束。否则发生了上溢出，执行分裂操作：将这个索引类型节点分裂成两个索引节点，左索引节点包含<span class="arithmatex">\(\lceil \frac {m} 2 \rceil\)</span>key，右节点包含除中间位置（<span class="arithmatex">\(\lceil \frac {m} 2 \rceil + 1\)</span>）外剩下的key，将中间位置的关键字进位到父节点中，进位到父节点的关键字左孩子指向左节点，进位到父节点的关键字右孩子指向右节点。将当前节点的指针指向父节点，然后重复这一步。</p>
 </li>
 </ul>
 <p>可以参考下面的案例加深理解</p>
@@ -2073,15 +2188,94 @@ LR 旋转即是先对 father-cur 左旋，再对 grandfather-father-cur 做右�
 </div>
 </div>
 <hr />
-<h3 id="删除待完善">*删除（待完善）<a class="headerlink" href="#删除待完善" title="Permanent link">&para;</a></h3>
+<h3 id="删除_2">*删除<a class="headerlink" href="#删除_2" title="Permanent link">&para;</a></h3>
 <p>B+ 树的删除也仅在叶子节点中进行，当叶子节点中的最大关键字被删除时，其在非叶子节点中的值可以作为一个分界关键字存在。若因删除而使节点中关键字的个数少于
 <span class="arithmatex">\(\lceil \dfrac{m}{2} \rceil\)</span> 时，其和兄弟节点的合并过程亦和 B 树类似。</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>由于cy's ppt 没有涉及B+树的删除内容，所以不太清楚这里定义的叶子节点和节点键数是否都是在少于 <span class="arithmatex">\(\lceil \dfrac{m}{2} \rceil\)</span> 时发生下溢出。个人认为能将具体步骤和案例理解个大概即可，并且一般而言本课程涉及的B+树都是2-3树或2-3-4树，直接记节点键数等于1时发生溢出就可。而且考试大概率不会出，出的话请狠狠 blame cy</p>
+</div>
 <p>具体步骤如下：</p>
 <p>首先查询到键值所在的叶子节点，删除该叶子节点的数据。</p>
-<p>如果删除叶子节点之后的数据数量，满足 B+ 树的平衡条件，则直接返回。</p>
+<p>如果删除叶子节点之后的数据数量，满足 B+ 树的平衡条件，则不做平衡操作。但是如果删除的叶子节点数据是最小数，则要更新父节点中对应的值。</p>
 <p>否则，就需要做平衡操作：如果该叶子节点的左右兄弟节点的数据量可以借用，就借用过来满足平衡条件。否则，就与相邻的兄弟节点合并成一个新的子节点了。</p>
 <p>在上面平衡操作中，如果是进行了合并操作，就需要向上修正父节点的指针：删除被合并节点的键值以及指针。</p>
 <p>由于做了删除操作，可能父节点也会不平衡，那么就按照前面的步骤也对父节点进行重新平衡操作，这样一直到某个节点平衡为止。</p>
+<p>结合具体案例说明会更清晰一些</p>
+<div class="admonition note">
+<p class="admonition-title">Deletion of B+ Tree</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="16:5"><input checked="checked" id="__tabbed_16_1" name="__tabbed_16" type="radio" /><input id="__tabbed_16_2" name="__tabbed_16" type="radio" /><input id="__tabbed_16_3" name="__tabbed_16" type="radio" /><input id="__tabbed_16_4" name="__tabbed_16" type="radio" /><input id="__tabbed_16_5" name="__tabbed_16" type="radio" /><div class="tabbed-labels"><label for="__tabbed_16_1">Delete(46)</label><label for="__tabbed_16_2">Delete(41)</label><label for="__tabbed_16_3">Delete(36)</label><label for="__tabbed_16_4">Delete(48)</label><label for="__tabbed_16_5">Delete(33)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="17:2"><input checked="checked" id="__tabbed_17_1" name="__tabbed_17" type="radio" /><input id="__tabbed_17_2" name="__tabbed_17" type="radio" /><div class="tabbed-labels"><label for="__tabbed_17_1">Frame 1</label><label for="__tabbed_17_2">Frame 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.56.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.57.png" /></p>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="18:2"><input checked="checked" id="__tabbed_18_1" name="__tabbed_18" type="radio" /><input id="__tabbed_18_2" name="__tabbed_18" type="radio" /><div class="tabbed-labels"><label for="__tabbed_18_1">Frame 1</label><label for="__tabbed_18_2">Frame 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.58.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.59.png" /></p>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="19:3"><input checked="checked" id="__tabbed_19_1" name="__tabbed_19" type="radio" /><input id="__tabbed_19_2" name="__tabbed_19" type="radio" /><input id="__tabbed_19_3" name="__tabbed_19" type="radio" /><div class="tabbed-labels"><label for="__tabbed_19_1">Frame 1</label><label for="__tabbed_19_2">Frame 2</label><label for="__tabbed_19_3">Frmae 3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.60.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.61.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.62.png" /></p>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="20:2"><input checked="checked" id="__tabbed_20_1" name="__tabbed_20" type="radio" /><input id="__tabbed_20_2" name="__tabbed_20" type="radio" /><div class="tabbed-labels"><label for="__tabbed_20_1">Frame 1</label><label for="__tabbed_20_2">Frame 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.63.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.64.png" /></p>
+</div>
+</div>
+</div>
+</div>
+<div class="tabbed-block">
+<div class="tabbed-set tabbed-alternate" data-tabs="21:3"><input checked="checked" id="__tabbed_21_1" name="__tabbed_21" type="radio" /><input id="__tabbed_21_2" name="__tabbed_21" type="radio" /><input id="__tabbed_21_3" name="__tabbed_21" type="radio" /><div class="tabbed-labels"><label for="__tabbed_21_1">Frame 1</label><label for="__tabbed_21_2">Frame 2</label><label for="__tabbed_21_3">Frame 3</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.65.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.66.png" /></p>
+</div>
+<div class="tabbed-block">
+<p><img alt="" src="../assets/ch2/ch2.67.png" /></p>
+<p>注:这里图中的43应该为46</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 
 
 

@@ -1,0 +1,1910 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Ader的笔记本">
+      
+      
+      
+        <link rel="canonical" href="https://ader817.github.io/notebook/cs/ads/ch5/">
+      
+      
+        <link rel="prev" href="../ch4/">
+      
+      
+        <link rel="next" href="../ch6/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Chapter 5 | Binomial Queue & Fibonacci Heap - Ader's notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-5--binomial-queue--fibonacci-heap" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Ader&#39;s notebook" class="md-header__button md-logo" aria-label="Ader's notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ader's notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 5 | Binomial Queue & Fibonacci Heap
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Ader817/notebook/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../home/" class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  Computer Science
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../writeups/" class="md-tabs__link">
+          
+  
+    
+  
+  Writeups
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Ader&#39;s notebook" class="md-nav__button md-logo" aria-label="Ader's notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Ader's notebook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Ader817/notebook/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../home/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            Home
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Computer Science
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Science
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../pas/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    概率论与数理统计
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            概率论与数理统计
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pas/ch1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    chapter1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../pas/ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    chapter2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2 | Red Black Tree & B+ Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3 | Inverted File Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4 | Leftist Heap & Skew Heap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 5 | Binomial Queue & Fibonacci Heap
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5 | Binomial Queue & Fibonacci Heap
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#binomial-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binomial Queue
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Binomial Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      概述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#实现" class="md-nav__link">
+    <span class="md-ellipsis">
+      实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      FindMin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletemin" class="md-nav__link">
+    <span class="md-ellipsis">
+      DeleteMin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decreasekey" class="md-nav__link">
+    <span class="md-ellipsis">
+      *DecreaseKey
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggregate Proof
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#potential-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      Potential Proof
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fibonacci-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fibonacci Heap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fibonacci Heap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#概述_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#左偏树的decrease" class="md-nav__link">
+    <span class="md-ellipsis">
+      左偏树的Decrease
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#二项队列的懒合并" class="md-nav__link">
+    <span class="md-ellipsis">
+      二项队列的懒合并
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#定义_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decreasekey_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DecreaseKey
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteminfindmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      DeleteMin/FindMin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#摊还分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      摊还分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="摊还分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decreasekey-分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      DecreaseKey 分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletemin-分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      DeleteMin 分析
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6 | Backtracing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../writeups/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Writeups
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Writeups
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    2024
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            2024
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../writeups/basectf/basectf2024/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BaseCTF 2024
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#binomial-queue" class="md-nav__link">
+    <span class="md-ellipsis">
+      Binomial Queue
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Binomial Queue">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#概述" class="md-nav__link">
+    <span class="md-ellipsis">
+      概述
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#定义" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#实现" class="md-nav__link">
+    <span class="md-ellipsis">
+      实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      Build
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#findmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      FindMin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletemin" class="md-nav__link">
+    <span class="md-ellipsis">
+      DeleteMin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decreasekey" class="md-nav__link">
+    <span class="md-ellipsis">
+      *DecreaseKey
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aggregate-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aggregate Proof
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#potential-proof" class="md-nav__link">
+    <span class="md-ellipsis">
+      Potential Proof
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fibonacci-heap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fibonacci Heap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fibonacci Heap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#概述_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      概述
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="概述">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#左偏树的decrease" class="md-nav__link">
+    <span class="md-ellipsis">
+      左偏树的Decrease
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#二项队列的懒合并" class="md-nav__link">
+    <span class="md-ellipsis">
+      二项队列的懒合并
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#定义_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      定义
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#操作_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      操作
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="操作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#merge_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Merge
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#insert_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Insert
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decreasekey_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DecreaseKey
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deleteminfindmin" class="md-nav__link">
+    <span class="md-ellipsis">
+      DeleteMin/FindMin
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#摊还分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      摊还分析
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="摊还分析">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#decreasekey-分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      DecreaseKey 分析
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deletemin-分析" class="md-nav__link">
+    <span class="md-ellipsis">
+      DeleteMin 分析
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="chapter-5--binomial-queue--fibonacci-heap">Chapter 5 | Binomial Queue &amp; Fibonacci Heap<a class="headerlink" href="#chapter-5--binomial-queue--fibonacci-heap" title="Permanent link">&para;</a></h1>
+<h2 id="binomial-queue">Binomial Queue<a class="headerlink" href="#binomial-queue" title="Permanent link">&para;</a></h2>
+<p>堆的其中一个应用就是优先队列。本节要介绍的二项队列(Binomial Queue)也是优先队列的一种实现，只不过不同于之前我们用一个堆维护优先队列，二项队列同时维护了具有不同特征的若干个。</p>
+<div class="admonition quote">
+<p class="admonition-title">link</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Binomial_heap">https://en.wikipedia.org/wiki/Binomial_heap</a></p>
+<p>YouTube: <a href="https://www.youtube.com/watch?v=6JxvKfSV9Ns">https://www.youtube.com/watch?v=6JxvKfSV9Ns</a></p>
+<p>Halifuda's Blog: <a href="https://www.cnblogs.com/halifuda/p/14380013.html">https://www.cnblogs.com/halifuda/p/14380013.html</a></p>
+<p>isshikih's notebook:<a href="https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/Lec05/">https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/Lec05/</a></p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Instruction</p>
+<p>在学习 Binomial Queue 时，可以带着二进制的眼光进行学习</p>
+</div>
+<hr />
+<h3 id="概述">概述<a class="headerlink" href="#概述" title="Permanent link">&para;</a></h3>
+<p>二项队列是一种优先队列的实现方式。二叉堆作为基本的堆已经足够好，只是合并操作的复杂度不太能接受（单次<span class="arithmatex">\(O(N)\)</span>）。为了支持高效的合并操作，左偏树和斜堆出现。<strong>但左偏树和斜堆由于不再是完全二叉树，因此实现时必须用到指针式结构，从而它们的建堆反而不能像二叉堆一样以<span class="arithmatex">\(O(N)\)</span>完成</strong>。二项队列则可以兼顾，既以<span class="arithmatex">\(O(N)\)</span>完成建堆，又以<span class="arithmatex">\(O(log \ N)\)</span>完成合并，同时其它操作的复杂度不降低。因此，二项队列是十分重要的。</p>
+<details class="question">
+<summary>贴一道 PTA 的题目</summary>
+<p>We can perform BuildHeap for leftist heaps by considering each element as a one-node leftist heap, placing all these heaps on a queue, and performing the following step: Until only one heap is on the queue, dequeue two heaps, merge them, and enqueue the result.  Which one of the following statements is FALSE?</p>
+<p>A.in the k-th run, <span class="arithmatex">\(\lceil N/2k \rceil\)</span> leftist heaps are formed, each contains <span class="arithmatex">\(2k\)</span> nodes</p>
+<p>B.the worst case is when <span class="arithmatex">\(N=2K\)</span> for some integer <span class="arithmatex">\(K\)</span></p>
+<p>C.the time complexity <span class="arithmatex">\(T(N)=O(\frac{N}{2}​log{2^0}+\frac{N}{2^2}​log2^1+\frac{N}{2^3}​log2^2+⋯+\frac{N}{2K}log2^{K−1})\)</span> for some integer <span class="arithmatex">\(K\)</span> so that <span class="arithmatex">\(N=2K\)</span></p>
+<p>D.the worst case time complexity of this algorithm is <span class="arithmatex">\(Θ(NlogN)\)</span></p>
+</details>
+<hr />
+<h3 id="定义">定义<a class="headerlink" href="#定义" title="Permanent link">&para;</a></h3>
+<p><strong>二项队列(Binomial Queue)</strong>本质上是一系列<strong>二项树(Binomial Tree)</strong>的集合。所以我们首先给定<strong>二项树(Binomial Tree)</strong>的定义：</p>
+<div class="admonition definition">
+<p class="admonition-title">Binomial Tree</p>
+<p>1、一个单结点可以作为二项树<span class="arithmatex">\(B_0\)</span>，其秩为0；</p>
+<p>2、二项树<span class="arithmatex">\(B_k\)</span>的秩是<span class="arithmatex">\(k\)</span>，且是由两棵<span class="arithmatex">\(B_{k−1}\)</span>合并而成的，其中一棵作为子树连接在另一棵的根上。</p>
+<p>这样解释不太清楚，我们画出图来：</p>
+<p><center><img alt="" src="../assets/ch5/image.png" /></center></p>
+<p>显然能够得到，<strong>二项树并非二叉树</strong>,而二项树作为一种树，它的限制比较强，因此也有非常多十分好的性质。对于我们建构二项队列来说主要有以下几点：</p>
+<p>1、二项树<span class="arithmatex">\(B_k\)</span>由两棵<span class="arithmatex">\(B_{k−1}\)</span>合并即可得来；</p>
+<p>2、二项树<span class="arithmatex">\(B_k\)</span>总共拥有<span class="arithmatex">\(2k\)</span>个结点；</p>
+<p>3、二项树<span class="arithmatex">\(B_k\)</span>的树根总共拥有<span class="arithmatex">\(k\)</span>个子树，并且它们分别是二项树<span class="arithmatex">\(B_0\)</span>,<span class="arithmatex">\(B_1\)</span>,...,<span class="arithmatex">\(B_{k−1}\)</span>；</p>
+<p>4、二项树<span class="arithmatex">\(B_k\)</span>树根的高度是<span class="arithmatex">\(k\)</span></p>
+<p>这4条性质的证明就不赘述了，从图上可以轻易看出。另外二项树还有一个更有意思的性质：二项树<span class="arithmatex">\(B_k\)</span>中，高度为<span class="arithmatex">\(h\)</span>的结点共有<span class="arithmatex">\(C_k^h = \binom{k}{d}\)</span>个。这个性质容易用数学归纳法证明</p>
+</div>
+<p>有了二项树的定义，我们就可以介绍二项队列了。</p>
+<div class="admonition definiton">
+<p class="admonition-title">Binomial Queue</p>
+<p><strong>二项队列(Binomial Queue)</strong>是一系列满足堆序的<strong>二项树(Binomial Tree)</strong>的集合，其中每个二项树的阶数 <span class="arithmatex">\(k\)</span> 都是不同的，反过来讲这句话，集合中 <span class="arithmatex">\(k\)</span> 阶的二项树要么只有一个，要么没有。</p>
+<p>譬如二项队列<span class="arithmatex">\(Q\)</span>拥有19个结点，由于19=(10011)2，从而Q就拥有（而且必然是）<span class="arithmatex">\(B_0\)</span>、<span class="arithmatex">\(B_1\)</span>和<span class="arithmatex">\(B_4\)</span>三棵二项树。<strong>如果不考虑树的顺序，那么只要结点数给定，二项队列的结构就已经被决定了</strong>。
+进而，<strong>进而，一个有<span class="arithmatex">\(N\)</span>个结点的二项队列，它的二项树的棵数就是<span class="arithmatex">\(O(log \ N)\)</span>的。</strong></p>
+<div class="admonition eg">
+<p class="admonition-title">🌰</p>
+<p><center> <img alt="" src="https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/img/43.svg" width="75%" /> </center></p>
+<blockquote>
+<p>题目实现的二项队列不一定有 min 指针！注意面向题面和选项判断实现。</p>
+</blockquote>
+</div>
+</div>
+<h3 id="实现">实现<a class="headerlink" href="#实现" title="Permanent link">&para;</a></h3>
+<p>由于这种性质，我们可以用一个数组来存储二项队列的诸多二项树。由于这个数据结构不能太庞大，从而数组的大小也很小。用数组来存比链表要优越得多，因为数组可以明确地保存某棵二项树的秩，并且可以让我们立刻找到二项队列里的秩为r的二项树。用链表的唯一好处就是省略了之间不存在二项树的位置，但是对数组来讲，这只是一个<span class="arithmatex">\(O(1)\)</span>的损耗。</p>
+<p>刚刚已经提到，一棵二项树<span class="arithmatex">\(B_k\)</span>树根的子树分别是二项树<span class="arithmatex">\(B_0\)</span>到<span class="arithmatex">\(B_{k−1}\)</span>，这也明确地告诉我们，它的诸子树也算一个二项队列。不过，这个二项队列我们不需要快速找到每棵子树，而只需要在树根被删除时提取出来（下面会介绍到），同时它的每个位置又都有二项树，从而用一个链表是更合适的选择</p>
+<p>并且由于每个二项树是一个多叉树，所以我们通常用"Left child Next Sibling"(左儿子右兄弟)的方式来实现</p>
+<p>下面是 C 语言版本的二项树和二项队列的声明</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// C Implementation from cy&#39;s ppt</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">BinNode</span><span class="w"> </span><span class="o">*</span><span class="n">Position</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">Collection</span><span class="w"> </span><span class="o">*</span><span class="n">BinQueue</span><span class="p">;</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">BinNode</span><span class="w"> </span><span class="o">*</span><span class="n">BinTree</span><span class="p">;</span><span class="w"> </span><span class="cm">/* missing from p.176 */</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">BinNode</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">ElementType</span><span class="w"> </span><span class="n">Element</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Position</span>
+<span class="w">    </span><span class="n">LeftChild</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Position</span>
+<span class="w">    </span><span class="n">NextSibling</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="k">struct</span><span class="w"> </span><span class="nc">Collection</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">CurrentSize</span><span class="p">;</span><span class="w"> </span><span class="cm">/* total number of nodes */</span>
+<span class="w">    </span><span class="n">BinTree</span><span class="w"> </span><span class="n">TheTrees</span><span class="p">[</span><span class="w"> </span><span class="n">MaxTrees</span><span class="w"> </span><span class="p">];</span>
+<span class="p">};</span>
+</code></pre></div>
+<hr />
+<h3 id="操作">操作<a class="headerlink" href="#操作" title="Permanent link">&para;</a></h3>
+<h4 id="merge">Merge<a class="headerlink" href="#merge" title="Permanent link">&para;</a></h4>
+<p>合并二项队列（Merge）：二项队列的核心算法。合并两个二项队列类似于二进制加法，甚至有进位这种情况。新的二项队列必须满足条件，每种二项树都至多只有一棵，所以合并的时候是如此操作的：</p>
+<p>将<span class="arithmatex">\(Q1\)</span>和<span class="arithmatex">\(Q2\)</span>合并成新队列。从新队列的第0棵二项树开始逐位考虑。对于第i棵二项树的临时数量来分类讨论，可能是两个队列都没有，而且也没有进位，这样新队列也没有这种二项树；也有可能是只有<span class="arithmatex">\(Q1\)</span>拥有这种二项树，或者是只有<span class="arithmatex">\(Q2\)</span>有，或者只是进位，总之只有一棵，则新队列只要继承这棵二项树即可；可能是有两棵，这样新队列没有这种二项树，而向下一位进位一棵合并后的二项树；可能是有三棵，这样任选其中一棵放在新队列里即可，剩余的两棵合并后进位。</p>
+<p>可以看出，一次合并操作的时间复杂度是<span class="arithmatex">\(O(logN_1+logN_2)=O(logN)\)</span>的。</p>
+<p>为了保证这一点，两棵二项树的合并必须是<span class="arithmatex">\(O(1)\)</span>的。由于刚刚提到，二项树是用链表存储的。一棵二项树只能并到另一棵同秩的二项树上，而且合并后，它必然是新树根的最大的子树（因为树根原本的子树都是更小的）。从而告诉我们，二项树的“左儿子右兄弟”中，最左侧的表头是最大的树。这样，合并时只要把作为子树的树放在表头即可，自然是O(1)的。二项树的合并、二项队列的合并的一种实现如下</p>
+<details class="node">
+<summary>merge</summary>
+<div class="highlight"><pre><span></span><code><span class="n">BinQueue</span><span class="w"> </span><span class="nf">Merge</span><span class="p">(</span><span class="n">BinQueue</span><span class="w"> </span><span class="n">H1</span><span class="p">,</span><span class="w"> </span><span class="n">BinQueue</span><span class="w"> </span><span class="n">H2</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">BinTree</span><span class="w"> </span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="n">T2</span><span class="p">,</span><span class="w"> </span><span class="n">Carry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">H1</span><span class="o">-&gt;</span><span class="n">CurrentSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">H2</span><span class="o">-&gt;</span><span class="n">CurrentSize</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">Capacity</span><span class="p">)</span>
+<span class="w">        </span><span class="n">ErrorMessage</span><span class="p">();</span>
+<span class="w">    </span><span class="n">H1</span><span class="o">-&gt;</span><span class="n">CurrentSize</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">H2</span><span class="o">-&gt;</span><span class="n">CurrentSize</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">H1</span><span class="o">-&gt;</span><span class="n">CurrentSize</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">T1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">H1</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="n">T2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">H2</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">];</span><span class="w"> </span><span class="cm">/*current trees */</span>
+<span class="w">        </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">!!</span><span class="n">Carry</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">!!</span><span class="n">T2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="o">!!</span><span class="n">T1</span><span class="p">)</span><span class="cm">/* assign each digit to a tree*/</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">0</span><span class="p">:</span><span class="w"> </span><span class="cm">/* 000 */</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="w"> </span><span class="cm">/* 001 */</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="w"> </span><span class="cm">/* 010 */</span>
+<span class="w">            </span><span class="n">H1</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">T2</span><span class="p">;</span>
+<span class="w">            </span><span class="n">H2</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">4</span><span class="p">:</span><span class="w"> </span><span class="cm">/* 100 */</span>
+<span class="w">            </span><span class="n">H1</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Carry</span><span class="p">;</span>
+<span class="w">            </span><span class="n">Carry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">3</span><span class="p">:</span><span class="w"> </span><span class="cm">/* 011 */</span>
+<span class="w">            </span><span class="n">Carry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CombineTrees</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="n">T2</span><span class="p">);</span>
+<span class="w">            </span><span class="n">H1</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">H2</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">5</span><span class="p">:</span><span class="w"> </span><span class="cm">/* 101 */</span>
+<span class="w">            </span><span class="n">Carry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CombineTrees</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="n">Carry</span><span class="p">);</span>
+<span class="w">            </span><span class="n">H1</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">6</span><span class="p">:</span><span class="w"> </span><span class="cm">/* 110 */</span>
+<span class="w">            </span><span class="n">Carry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CombineTrees</span><span class="p">(</span><span class="n">T2</span><span class="p">,</span><span class="w"> </span><span class="n">Carry</span><span class="p">);</span>
+<span class="w">            </span><span class="n">H2</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="k">case</span><span class="w"> </span><span class="mi">7</span><span class="p">:</span><span class="w"> </span><span class="cm">/* 111 */</span>
+<span class="w">            </span><span class="n">H1</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Carry</span><span class="p">;</span>
+<span class="w">            </span><span class="n">Carry</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CombineTrees</span><span class="p">(</span><span class="n">T1</span><span class="p">,</span><span class="w"> </span><span class="n">T2</span><span class="p">);</span>
+<span class="w">            </span><span class="n">H2</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="cm">/* end switch */</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="cm">/* end for-loop */</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">H1</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<hr />
+<h4 id="insert">Insert<a class="headerlink" href="#insert" title="Permanent link">&para;</a></h4>
+<p>插入（Insert）：既然合并是<span class="arithmatex">\(O(logN)\)</span>的，插入则以一次合并完成即可。后面会介绍到，插入的摊还时间复杂度可以达到<span class="arithmatex">\(O(1)\)</span>。</p>
+<hr />
+<h4 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h4>
+<p>建立二项队列（Build）：建立二项堆列其实可以看作是插入的摊还分析，因为从一个数组开始建立二项队列的方法就是N次插入或者N次合并。之后会分析到，这样操作的时间复杂度是<span class="arithmatex">\(O(N)\)</span>。</p>
+<hr />
+<h4 id="findmin">FindMin<a class="headerlink" href="#findmin" title="Permanent link">&para;</a></h4>
+<p>找到堆顶（Find Min）：二项树是满足堆序的，但二项队列不记录整体的堆序，从而找到堆顶需要遍历二项树的堆顶，时间复杂度是<span class="arithmatex">\(O(logN)\)</span>，当然我们也可以在对堆中增加指向最小节点的 Min 指针，并在插入中维护 Min 指针，从而让查询的时间复杂度降为<span class="arithmatex">\(O(1)\)</span>。</p>
+<hr />
+<h4 id="deletemin">DeleteMin<a class="headerlink" href="#deletemin" title="Permanent link">&para;</a></h4>
+<p>删除最小值（DeleteMin）：删除最值只是删除一个结点，它的诸子树并不应该从结构里删除，从而这些子树应该并入二项队列。刚刚介绍到，某棵二项树树根的诸子树也是一个二项队列，从而这一操作也可以看作是合并。由于二项树<span class="arithmatex">\(B_k\)</span>有<span class="arithmatex">\(k−1\)</span>棵子树，这样的合并也是<span class="arithmatex">\(O(logN)\)</span>的，从而整体的操作也是<span class="arithmatex">\(O(logN)\)</span>的</p>
+<details class="note">
+<summary>DeleteMin</summary>
+<div class="highlight"><pre><span></span><code><span class="n">ElementType</span>
+<span class="nf">DeleteMin</span><span class="p">(</span><span class="n">BinQueue</span><span class="w"> </span><span class="n">H</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">MinTree</span><span class="p">;</span><span class="w"> </span><span class="cm">/* The tree with the minimum item */</span>
+<span class="w">    </span><span class="n">BinQueue</span><span class="w"> </span><span class="n">DeletedQUeue</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Position</span><span class="w"> </span><span class="n">DeletedTree</span><span class="p">,</span><span class="w"> </span><span class="n">OldRoot</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ElementType</span><span class="w"> </span><span class="n">MinItem</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="p">(</span><span class="n">IsEmpty</span><span class="p">(</span><span class="n">H</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">Error</span><span class="p">(</span><span class="s">&quot;Empty binomial queue&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="o">-</span><span class="n">Infinity</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">MinItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Infinity</span><span class="p">;</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MaxTrees</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">H</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+<span class="w">            </span><span class="n">H</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">Element</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">MinItem</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">                </span><span class="cm">/* Update minimum */</span>
+<span class="w">                </span><span class="n">MinItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">H</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">Element</span><span class="p">;</span>
+<span class="w">                </span><span class="n">MinTree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">DeletedTree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">H</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">Mintree</span><span class="p">];</span>
+<span class="w">    </span><span class="n">OldRoot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DEletedTree</span><span class="p">;</span>
+<span class="w">    </span><span class="n">DeletedTree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeletedTree</span><span class="o">-&gt;</span><span class="n">LeftChild</span><span class="p">;</span>
+<span class="w">    </span><span class="n">free</span><span class="p">(</span><span class="n">OldRoot</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">DeletedQueue</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Initialize</span><span class="p">();</span>
+<span class="w">    </span><span class="n">DeletedQueue</span><span class="o">-&gt;</span><span class="n">CurrentSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">MinTree</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MinTree</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">j</span><span class="o">--</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">DeletedQueue</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeletedTree</span><span class="p">;</span>
+<span class="w">        </span><span class="n">DeletedTree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DeletedTree</span><span class="o">-&gt;</span><span class="n">NextSibling</span><span class="p">;</span>
+<span class="w">        </span><span class="n">DeletedQueue</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">-&gt;</span><span class="n">NextSibling</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="o">:</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">H</span><span class="o">-&gt;</span><span class="n">TheTrees</span><span class="p">[</span><span class="n">MinTree</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">NULL</span><span class="p">;</span>
+<span class="w">    </span><span class="n">H</span><span class="o">-&gt;</span><span class="n">CurrentSize</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">DeletedQueue</span><span class="o">-&gt;</span><span class="n">CurrentSize</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">Merge</span><span class="p">(</span><span class="n">H</span><span class="p">,</span><span class="n">DeletedQueue</span><span class="p">);</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">MinItem</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+</details>
+<h4 id="decreasekey">*DecreaseKey<a class="headerlink" href="#decreasekey" title="Permanent link">&para;</a></h4>
+<p>对于Binomial Queue而言，如果给定了节点的位置，DecreaseKey的时间复杂度是<span class="arithmatex">\(O(logn)\)</span>。但是我好像并没有找到相关的操作方法</p>
+<hr />
+<h3 id="分析">分析<a class="headerlink" href="#分析" title="Permanent link">&para;</a></h3>
+<p>这里我们解决前面提到的<strong>插入的摊还时间复杂度分析</strong>（或者说通过连续插入的方式建队的时间复杂度分析）</p>
+<p>我们得出的结论如下：</p>
+<p><strong>A binomial queue of N elements can be built by N
+successive insertions in O(N) time.</strong></p>
+<hr />
+<h4 id="aggregate-proof">Aggregate Proof<a class="headerlink" href="#aggregate-proof" title="Permanent link">&para;</a></h4>
+<p>为了方便书写，我们用二进制的方式表示二项队列的建立过程(假设这里只引入<span class="arithmatex">\(B_0 \sim B_3\)</span>)</p>
+<p>建立的过程如下：</p>
+<p>0000 -&gt; 0001 -&gt; 0010 -&gt; 0011 -&gt; 0100 -&gt; 0101 -&gt; 0110 -&gt;0111 -&gt; </p>
+<p>我们如果只考虑“进位”，对应了小树合并成大树的“指针连接”步骤，会发现建立大小为N的二项队列共N次插入中，导致第0位进位的概率是1/2，第1位是1/4，第2位是1/8，......以此类推</p>
+<p>可以计算<span class="arithmatex">\(\text{Total Link} = N \cdot (1/2 + 1/4 + 1/8 +...) = O(N)\)</span></p>
+<p>此外我们也可以在这个过程中发现，开销较大的插入会消除一些树，而开销较小的插入会增加一些树。而这就有一些摊还分析中势能法的感觉了，所以接下来我们也可以通过势能法来证明</p>
+<hr />
+<h4 id="potential-proof">Potential Proof<a class="headerlink" href="#potential-proof" title="Permanent link">&para;</a></h4>
+<p>我们考虑用<span class="arithmatex">\(Q\)</span>中二项树的棵数做位势函数<span class="arithmatex">\(\Phi\)</span>,假设单次插入花费的时间<span class="arithmatex">\(T=k\)</span>，<span class="arithmatex">\(k\)</span>也即进位的次数</p>
+<p>显然任意时刻<span class="arithmatex">\(\Phi\)</span>&gt;0，而二项队列未建立时<span class="arithmatex">\(\Phi_0=0\)</span>，从而这个位势函数的确指示了时间复杂度的一个上界</p>
+<p>而若<span class="arithmatex">\(T=k\)</span>,则<span class="arithmatex">\(\Delta\Phi = 1 - k\)</span>，进而任一次插入的均摊时间<span class="arithmatex">\(T^* = T + \Delta\Phi = k + (1-k) = 1\)</span></p>
+<p>所以我们就证明了单次插入在均摊意义上的时间复杂度是<span class="arithmatex">\(O(1)\)</span></p>
+<p>建堆执行N次插入（也就是N次合并），它的均摊时间复杂度自然是：</p>
+<div class="arithmatex">\[
+T_1^*=T_1+(\Phi_1−\Phi_0)
+\]</div>
+<div class="arithmatex">\[
+T_2^*=T_2+(\Phi_2−\Phi_1)
+\]</div>
+<p><center>...</center></p>
+<div class="arithmatex">\[
+T_N^*=T_N+(\Phi_N−\Phi_{N−1})
+\]</div>
+<p>加上前面得到的单次公式</p>
+<div class="arithmatex">\[
+T^∗=T+\Delta\Phi=1
+\]</div>
+<p>得到：</p>
+<div class="arithmatex">\[
+\Sigma{T^∗}=N
+\]</div>
+<p>进而建堆的均摊复杂度就是<span class="arithmatex">\(O(N)\)</span></p>
+<hr />
+<h2 id="fibonacci-heap">Fibonacci Heap<a class="headerlink" href="#fibonacci-heap" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">link</p>
+<p>halifuda's blog:<a href="https://www.cnblogs.com/halifuda/p/14389799.html">https://www.cnblogs.com/halifuda/p/14389799.html</a></p>
+<p>Youtube:<a href="https://www.youtube.com/watch?v=6JxvKfSV9Ns">https://www.youtube.com/watch?v=6JxvKfSV9Ns</a></p>
+</div>
+<hr />
+<h3 id="概述_1">概述<a class="headerlink" href="#概述_1" title="Permanent link">&para;</a></h3>
+<details class="info">
+<summary>mergeable heap</summary>
+<p><a class="magiclink magiclink-github magiclink-mention" href="https://github.com/Introduction_to_Algorithms" title="GitHub User: Introduction_to_Algorithms">@Introduction_to_Algorithms</a></p>
+<p>A mergeable heap is any data structure that supports the following five operations,in which each element has a key:</p>
+<p><strong>MAKE-HEAP()</strong>:creates and returns a new heap containing no elements.</p>
+<p><strong>INSERT(H,x)</strong>:inserts element x, whose key has already been filled in, into heap H.</p>
+<p><strong>MINIMUM(H)</strong>:returns a pointer to the element in heap H whose key is minimum.</p>
+<p><strong>EXTRACT-MIN(H)</strong>:deletes the element from heap H whose key is minimum, returning a pointer to the element.</p>
+<p><strong>UNION(H1,H2)</strong>:creates and returns a new heap that contains all the elements of heaps H1 and H2. Heaps H1 and H2 are “destroyed” by this operation.</p>
+<p>In addition to the mergeable-heap operations above, Fibonacci heaps also support the following two operations:</p>
+<p><strong>DECREASE-KEY(H,x,k)</strong>:assigns to element x within heap H the new key value k, which we assume to be no greater than its current key value.1</p>
+<p><strong>DELETE(H,x)</strong>:deletes element x from heap H.</p>
+</details>
+<p><img alt="" src="../assets/ch5/image-1.png" /></p>
+<p>如上图可见，虽然 Fibonacci Heap 的实现很复杂，但是它在 Insert，Union，DecreaseKey 方面都有优势，当然这里对 Fibonacci heap 的时间复杂度分析都是摊还意义上的，并不是最坏情况的时间复杂度</p>
+<p>我们已经知道，二叉堆和二项队列的 Decrease 操作都是<span class="arithmatex">\(O(logN)\)</span>的，但某些时候我们会频繁地需要 Decrease，这就使我们期待一个更好的时间复杂度。斐波那契堆就是解决这个问题的一个经典办法。不过在介绍斐波那契堆之前，我们先来介绍两个操作，它们是斐波那契堆的灵感来源</p>
+<hr />
+<h4 id="左偏树的decrease">左偏树的Decrease<a class="headerlink" href="#左偏树的decrease" title="Permanent link">&para;</a></h4>
+<p>二叉堆和二项队列都可以用向上过滤来进行Decrease，但左偏树不可以。因为左偏树只保证右路径的长度，它的左路径可以任意长，从而如果对一个左路径上的结点向上过滤，最坏的复杂度将是O(N)。为了维持一个好的复杂度，左偏树用切除（Cut）来解决Decrease操作：</p>
+<p>当Decrease操作应用于结点<span class="arithmatex">\(X\)</span>时，如果它是树根则不需理会，否则将它从它的父亲F上切除，原树成为了两个树<span class="arithmatex">\(T_X\)</span>和<span class="arithmatex">\(T_F\)</span>。显然，<span class="arithmatex">\(T_X\)</span>是一个左偏树，但是<span class="arithmatex">\(T_F\)</span>已经不是了，我们需要对它做一些调整。我们知道，如果一个树的左右子树都是左偏树但它本身不是左偏树，那么它只需要交换左右子树，就可以成为左偏树。从而对<span class="arithmatex">\(T_F\)</span>，我们从<span class="arithmatex">\(F\)</span>开始向上改造，只要祖先结点<span class="arithmatex">\(A\)</span>不满足左偏树的性质，就交换它的左右子树。</p>
+<p>这个向上改造显然不能一直改造到根，否则与向上过滤没有区别。实际上，我们只需要向上改造至多<span class="arithmatex">\(logN\)</span>个结点即可。因为（即使经过了切除）<span class="arithmatex">\(T_F\)</span>的右路径总是不长于<span class="arithmatex">\(logN\)</span>的,并且不难知道向上改造不合格结点的过程中，一遇到合格的结点就表明改造完成；当我们向上改造了<span class="arithmatex">\(logN\)</span>个结点，最近的结点的dist就必然大于右路径长度，即整棵树最大的dist,于是我们就只需要改造至多<span class="arithmatex">\(logN\)</span>个结点。</p>
+<p>这样改造完之后，将<span class="arithmatex">\(T_X\)</span>和<span class="arithmatex">\(T_F\)</span> Merge即可。可见这一操作的复杂度是<span class="arithmatex">\(O(logN)\)</span>。</p>
+<hr />
+<h4 id="二项队列的懒合并">二项队列的懒合并<a class="headerlink" href="#二项队列的懒合并" title="Permanent link">&para;</a></h4>
+<p>二项队列的合并是<span class="arithmatex">\(O(logN)\)</span>的。实际上我们可以将它改造成<span class="arithmatex">\(O(1)\)</span>，只需要执行懒惰合并（Lazy Merge）。具体方法就是：合并二项队列<span class="arithmatex">\(Q_1\)</span>和<span class="arithmatex">\(Q_2\)</span>，只需要将它们的二项树列表连接在一起。这明显是<span class="arithmatex">\(O(1)\)</span>的。</p>
+<p>可见，这样做有两个后果：
+1、新队列不再满足二项队列的性质，这是懒惰合并的必然代价，我们称用上了懒惰合并的二项队列为懒惰二项队列。
+2、多次合并之后，FindMin和DeleteMin的复杂度将不再是<span class="arithmatex">\(O(logN)\)</span>。</p>
+<p>对于第二个后果，我们没有直接的解决办法，但我们可以改造FindMin及DeleteMin的操作，使得它们的摊还复杂度还是能保持普通二项队列的<span class="arithmatex">\(O(logN)\)</span>。改进方法如下：</p>
+<p>遍历所有二项树，找到最小元素将其删除。随后我们需要将懒惰二项队列转变为标准的二项队列，即通过合并二项树，使得集合中不存在高度相同的两棵二项树（这里的时间复杂度证明比较复杂，主要是我有点看不懂，暂略）</p>
+<p>所以，简单来说，懒惰合并的主要思想是只有当两个二项队列真正需要合并时 (即删除最小元素后) 才进行合并</p>
+<hr />
+<p>有了前面两个操作为基础，我们就来介绍斐波那契堆。对于堆的经典操作，除了FindMin 和 ExtractMin 是<span class="arithmatex">\(O(logN)\)</span>的，其余的操作斐波那契堆都以<span class="arithmatex">\(O(1)\)</span>完成。</p>
+<h3 id="定义_1">定义<a class="headerlink" href="#定义_1" title="Permanent link">&para;</a></h3>
+<p>从设计的思维来讲，斐波那契堆就是“懒惰二项队列+左偏树切除”</p>
+<div class="admonition definition">
+<p class="admonition-title">Fibonachi Heap</p>
+<p>1、它是一些满足堆序的树的森林；</p>
+<p>2、森林里的树并不是二项树，但是它们的合并还遵循二项树的法则：将键值更大的树作为键值更小的树的子树，而且只有秩相同时，两棵树才能合并。我们不妨叫这种树为“斐波那契树”，后面会看到这种命名的意义；</p>
+<p>3、斐波那契堆通过级联切除(Cascading Cut)和懒惰合并(Lazy Merge)维持均摊复杂度</p>
+</div>
+<p>这里给出两幅图片方便理解斐波那契堆的结构</p>
+<p><img alt="" src="../assets/ch5/image-2.png" /></p>
+<p><img alt="" src="../assets/ch5/image-3.png" /></p>
+<hr />
+<h3 id="操作_1">操作<a class="headerlink" href="#操作_1" title="Permanent link">&para;</a></h3>
+<h4 id="merge_1">Merge<a class="headerlink" href="#merge_1" title="Permanent link">&para;</a></h4>
+<p>斐波那契堆的合并也是懒惰合并，时间复杂度自然是<span class="arithmatex">\(O(1)\)</span></p>
+<hr />
+<h4 id="insert_1">Insert<a class="headerlink" href="#insert_1" title="Permanent link">&para;</a></h4>
+<p>直接看作是特殊的Merge即可</p>
+<hr />
+<h4 id="decreasekey_1">DecreaseKey<a class="headerlink" href="#decreasekey_1" title="Permanent link">&para;</a></h4>
+<p>这一操作遵循级联切除。级联切除是这样应用的：</p>
+<p>首先，如同左偏树一样，一个被Decrease的结点需要从它的父节点切除，然后直接进入斐波那契树森林中。</p>
+<p>之后，对于它的父亲F：如果此前F没有被切除子树过，那么就给F打上标记#；如果F曾经被切除过子树（这时它一定有标记#了），那么就把F也切除掉（此时F的父亲也要打上标记#）。F</p>
+<p>直接进入森林，但是标记#需要去掉：森林里的任何根结点都不能标上标记#（因为它们没法再被切除了）。</p>
+<p>对于F的父亲，也同样地检查和操作，即若F被切除时父亲已经有标记#，则也要切除父亲，直到不需要再切除或到根节点为止。</p>
+<p>可以看到这和左偏树的向上改造有些类似，都是向上对祖先的检查。正因此，这一操作的时间复杂度没法直接保证，后面和DeleteMin一起，我们介绍它的摊还复杂度。</p>
+<hr />
+<h4 id="deleteminfindmin">DeleteMin/FindMin<a class="headerlink" href="#deleteminfindmin" title="Permanent link">&para;</a></h4>
+<p>类似懒惰二项队列。同样，复杂度仍需要摊还分析。在进行摊还分析之前，我们先来介绍两个引理：</p>
+<div class="admonition info">
+<p class="admonition-title">引理1</p>
+<p>一棵斐波那契树<span class="arithmatex">\(X\)</span>的第<span class="arithmatex">\(i\)</span>年轻的子树<span class="arithmatex">\(C\)</span>的秩至少是<span class="arithmatex">\(i−2\)</span>。其中第<span class="arithmatex">\(i\)</span>年轻表示它是第<span class="arithmatex">\(i\)</span>个被并入的，秩即子树棵数</p>
+<details class="proof">
+<summary>证明</summary>
+<p>由于斐波那契树的合并也需要遵循同秩的原则，因此当<span class="arithmatex">\(C\)</span>并入<span class="arithmatex">\(X\)</span>时，由于<span class="arithmatex">\(X\)</span>已经有了至少<span class="arithmatex">\(i−1\)</span>、至多<span class="arithmatex">\(i\)</span>棵子树，从而C的秩至少是<span class="arithmatex">\(i−1\)</span>。从此之后，C只能被切除子树1次，否则它将会被从<span class="arithmatex">\(X\)</span>切除，从而就不会是<span class="arithmatex">\(X\)</span>的儿子了，因此C的秩至少是<span class="arithmatex">\(i−2\)</span>。定理得证。</p>
+</details>
+</div>
+<div class="admonition info">
+<p class="admonition-title">引理2</p>
+<p>引理1是引理2的引理：一棵秩为<span class="arithmatex">\(R\)</span>的斐波那契树<span class="arithmatex">\(X\)</span>，它的大小至少是<span class="arithmatex">\(F_{R+1}\)</span>，其中<span class="arithmatex">\(Fi\)</span>指斐波那契数列第<span class="arithmatex">\(i\)</span>项。</p>
+<details class="proof">
+<summary>证明</summary>
+<p>我们设SR是秩为R的斐波那契树大小的最小值。显然，S0=1、S1=2。对于SR，它一定有R棵子树，从而有第1,2,...,R年轻的子树。由于引理1，它一定有秩（至少）为0,1,...,R−2的子树，注意这里只枚举了第2-R项，所以它还有一棵大小至少为1的子树，算上树根，因此有</p>
+<div class="arithmatex">\[
+S_R = 1+1+\Sigma_{i=0}^{R-2}S_i \Rightarrow S_R - S_{R-1} = S_{R-2}
+\]</div>
+<p>并且它的首项为<span class="arithmatex">\(S_0=1,S_1=2\)</span>，这个引理正是斐波那契堆的命名来源</p>
+</details>
+</div>
+<p>下面我们就可以来开始分析 DecreaseKey 和 DeleteMin 的摊还复杂度：</p>
+<h3 id="摊还分析">摊还分析<a class="headerlink" href="#摊还分析" title="Permanent link">&para;</a></h3>
+<p>我们将位势函数定义为<span class="arithmatex">\(\Phi = T + 2L\)</span>，其中T是树的棵数，L是标记数。容易看到<span class="arithmatex">\(\Phi_0 = 0\)</span>，并且任意时刻<span class="arithmatex">\(\Phi\)</span>非负，因此位势函数可以应用。</p>
+<h4 id="decreasekey-分析">DecreaseKey 分析<a class="headerlink" href="#decreasekey-分析" title="Permanent link">&para;</a></h4>
+<p>假设级联切除总共切除了<span class="arithmatex">\(c\)</span>次。每一次都增加了一棵树；除了第一次和最后一次，每一次都消去一个标记；最后一次大概率会增加一个标记（除非遇到了根节点）。那么位势变化的上界即</p>
+<div class="arithmatex">\[
+\Delta\Phi = -2(c-2+1)+c = -c+2
+\]</div>
+<p>计算上切除时间<span class="arithmatex">\(c\)</span>，从而摊还时间为<span class="arithmatex">\(T^* = c+\Delta\Phi \leq c+-c+2 = 2 = O(1)\)</span>,那么累加后显然摊还复杂度为<span class="arithmatex">\(O(1)\)</span></p>
+<h4 id="deletemin-分析">DeleteMin 分析<a class="headerlink" href="#deletemin-分析" title="Permanent link">&para;</a></h4>
+<p>这里挪用了算法导论的分析</p>
+<p>我们假设<span class="arithmatex">\(rank(H)\)</span>表示<span class="arithmatex">\(H\)</span>中秩的最大值，<span class="arithmatex">\(trees(H)\)</span>表示<span class="arithmatex">\(H\)</span>中树的棵树</p>
+<p>那么实际的开销：<span class="arithmatex">\(c_i = O(rank(H)) + O(trees(H))\)</span></p>
+<ul>
+<li><span class="arithmatex">\(O(rank(H))\)</span> 用于将<span class="arithmatex">\(Min\)</span>树的孩子合并到root list中</li>
+<li><span class="arithmatex">\(O(rank(H)) + O(trees(H))\)</span> 用于查找并且更新<span class="arithmatex">\(Min\)</span>指针</li>
+<li><span class="arithmatex">\(O(rank(H)) + O(trees(H))\)</span> 用于合并调整森林</li>
+</ul>
+<p>势能的变化：<span class="arithmatex">\(\Delta\Phi \leq rank(H') + 1 - trees(H)\)</span></p>
+<ul>
+<li>没有节点被标记</li>
+<li><span class="arithmatex">\(trees(H') \leq rank(H') + 1 \Leftarrow \text{no two trees have same rank after consolidation}\)</span></li>
+</ul>
+<p>摊还开销：<span class="arithmatex">\(O(logn)\)</span></p>
+<ul>
+<li><span class="arithmatex">\(\hat{c_i} = c_i + \Delta \Phi = O(rank(H)) + O(rank(H'))\)</span></li>
+<li>The rank of a Fibonacci heap with n elements is <span class="arithmatex">\(O(logn) \Leftarrow \text{Fibonacci Lemma2}\)</span> </li>
+</ul>
+<hr />
+<p><img alt="" src="../assets/ch5/image-4.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022-2024 <a href="https://github.com/Ader817" target="_blank" rel="noopener">Ader817</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["content.code.annotate", "navigation.tracking", "navigation.tabs", "navigation.indexes", "navigation.top"], "search": "../../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.0.8/js/maodian.js"></script>
+      
+    
+  </body>
+</html>
