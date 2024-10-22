@@ -33,7 +33,7 @@ nav:
       - Chapter 3 | Inverted File Index: cs/ads/ch3.md
       - Chapter 4 | Leftist Heap & Skew Heap: cs/ads/ch4.md
       - Chapter 5 | Binomial Queue & Fibonacci Heap: cs/ads/ch5.md
-      - Chapter 6 | Backtracing: cs/ads/ch6.md
+      - Chapter 6 | Search and Backtracing: cs/ads/ch6.md
   - Writeups:
     - writeups/index.md
     - "2024":

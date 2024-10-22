@@ -352,7 +352,7 @@ Skew Heap 是一种具有堆性质的二叉树，但是并没有像 Leftist Heap
 其中，额外需要定义 heavy node 和 light node：
 
 !!! definition "heavy node & light node"
-    对于一个子堆 $H$，如果 $size(H.\text{right\_descendant}) \geq \frac{1}{2}size(H)$，则 $H$ 是 heavy node，否则是 light node。 
+    对于一个子堆 $H$，如果 $size(H.\text{right.descendant}) \geq \frac{1}{2}size(H)$，则 $H$ 是 heavy node，否则是 light node。 
 
     ??? extra "\@ cy'ppt"
         A node p is heavy if the number of descendants of p’s right subtree is at least half of the number of descendants of p, and light otherwise.  Note that the number of descendants of a node includes the node itself.
