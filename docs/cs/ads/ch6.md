@@ -205,7 +205,7 @@ A* 算法的基本思想：
     与这部分知识相关的还有Von Neumann's Minimax Theorem;Nash Equilibrium等等，这里不再赘述
 
 如果我们在 Tic-tac-toe 中也定义类似的“收益”：
-其中W是在P位置下棋后所有可能的赢法数
+其中W是在P位置下棋后所有可能的赢法数（按照ppt的意思，“可能形成的连线数”可能表示的更恰当）
 
 $$
 f(P) = W_{\text Computer} - W_{\text Human}
