@@ -224,7 +224,7 @@ $$
 
 alpha和beta的含义如下
 
-- $\alpha$:MAX's best option on path to root
+- $\alpha$:Max's best option on path to root
 - $\beta$: Min's best option on path to root
   
 ??? note "reference graph"
