@@ -26,14 +26,18 @@ nav:
     - cs/index.md
     - "概率论与数理统计":
       - 简介: cs/pas/index.md
-      - chapter1: cs/pas/ch1.md
-      - chapter2: cs/pas/ch2.md
+      - Chapter1: cs/pas/ch1.md
+      - Chapter2: cs/pas/ch2.md
     - "高级数据结构与算法分析":
       - Chapter 2 | Red Black Tree & B+ Tree: cs/ads/ch2.md
       - Chapter 3 | Inverted File Index: cs/ads/ch3.md
       - Chapter 4 | Leftist Heap & Skew Heap: cs/ads/ch4.md
       - Chapter 5 | Binomial Queue & Fibonacci Heap: cs/ads/ch5.md
       - Chapter 6 | Search and Backtracing: cs/ads/ch6.md
+    - "图像信息处理":
+      - Chapter 1 | 成像与图像的基本属性: cs/dip/ch1.md
+      - Chapter 2 | 二值图像与形态学: cs/dip/ch2.md
+      
   - Writeups:
     - writeups/index.md
     - "2024":
