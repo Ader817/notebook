@@ -1,0 +1,1997 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Ader的笔记本">
+      
+      
+      
+        <link rel="canonical" href="https://ader817.github.io/notebook/cs/ads/ch11/">
+      
+      
+        <link rel="prev" href="../ch10/">
+      
+      
+        <link rel="next" href="../problem/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Chapter 11 | Approximation - Ader's notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775m1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25m13.274 9.537zl-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074M4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5M4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75M8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.5 4.5 0 0 1-.563-1.191 3.84 3.84 0 0 1-.05-2.063 4.65 4.65 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4 2.4 0 0 1-.507-.441 3.1 3.1 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19.01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.7 3.7 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 .018-1.042.75.75 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.76 2.76 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6 6 0 0 0-.26.16 1 1 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1 1 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.61.61 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1 1 0 0 0-.34.398M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343za8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746m1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275M6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734L6.94 8 4.97 6.03a.75.75 0 0 1 .018-1.042.75.75 0 0 1 1.042-.018"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005 0-.009.004"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.5 3.5 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327q0 .15-.025.292c.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5q-.002.615-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A5 5 0 0 1 8 16a5 5 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5 5 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.7 1.7 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06m.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.17.17 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5m4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5m0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5M2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chapter-11--approxiamtion" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Ader&#39;s notebook" class="md-header__button md-logo" aria-label="Ader's notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ader's notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 11 | Approximation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Ader817/notebook/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../home/" class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  Computer Science
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../writeups/" class="md-tabs__link">
+          
+  
+    
+  
+  Writeups
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Ader&#39;s notebook" class="md-nav__button md-logo" aria-label="Ader's notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"/></svg>
+
+    </a>
+    Ader's notebook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Ader817/notebook/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../home/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Computer Science
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Science
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../pas/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    概率论与数理统计
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            高级数据结构与算法分析
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch0/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 0 | Amortized Analysis
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1 | AVL Tree & Splay Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2 | Red Black Tree & B+ Tree
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3 | Inverted File Index
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4 | Leftist Heap & Skew Heap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 5 | Binomial Queue & Fibonacci Heap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch6/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 6 | Search and Backtracing
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch7/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 7 | Divide and Conquer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch8/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 8 | Dynamic Programming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch9/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 9 | Greedy Algorithm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch10/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 10 | NP Completeness
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 11 | Approximation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 11 | Approximation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#近似算法" class="md-nav__link">
+    <span class="md-ellipsis">
+      近似算法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="近似算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#近似范式" class="md-nav__link">
+    <span class="md-ellipsis">
+      近似范式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#案例-approximate-bin-packing" class="md-nav__link">
+    <span class="md-ellipsis">
+      [案例] Approximate Bin Packing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[案例] Approximate Bin Packing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#online-next-fit-nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (online) Next Fit (NF)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#online-first-fit-ff" class="md-nav__link">
+    <span class="md-ellipsis">
+      (online) First Fit (FF)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#online-best-fit-bf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (online) Best Fit (BF)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-first-fit-decreasing-ffd" class="md-nav__link">
+    <span class="md-ellipsis">
+      (offline) First Fit Decreasing (FFD)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#案例-knapsack-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      [案例] Knapsack Problem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[案例] Knapsack Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fractional-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fractional Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0-1-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      0-1 Version
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0-1 Version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#贪心做法" class="md-nav__link">
+    <span class="md-ellipsis">
+      贪心做法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#动态规划做法" class="md-nav__link">
+    <span class="md-ellipsis">
+      动态规划做法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#案例-the-k-center-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      [案例] The K-center Problem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[案例] The K-center Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naive-greedy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naive Greedy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2r-greedy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2r-Greedy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smarter-greedy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smarter Greedy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../problem/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Problem set
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../dip/ch1/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    图像信息处理
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../co/ch1/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机组成原理
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../writeups/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Writeups
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#近似算法" class="md-nav__link">
+    <span class="md-ellipsis">
+      近似算法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="近似算法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#近似范式" class="md-nav__link">
+    <span class="md-ellipsis">
+      近似范式
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#案例-approximate-bin-packing" class="md-nav__link">
+    <span class="md-ellipsis">
+      [案例] Approximate Bin Packing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[案例] Approximate Bin Packing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#online-next-fit-nf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (online) Next Fit (NF)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#online-first-fit-ff" class="md-nav__link">
+    <span class="md-ellipsis">
+      (online) First Fit (FF)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#online-best-fit-bf" class="md-nav__link">
+    <span class="md-ellipsis">
+      (online) Best Fit (BF)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#offline-first-fit-decreasing-ffd" class="md-nav__link">
+    <span class="md-ellipsis">
+      (offline) First Fit Decreasing (FFD)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#案例-knapsack-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      [案例] Knapsack Problem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[案例] Knapsack Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fractional-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fractional Version
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#0-1-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      0-1 Version
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="0-1 Version">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#贪心做法" class="md-nav__link">
+    <span class="md-ellipsis">
+      贪心做法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#动态规划做法" class="md-nav__link">
+    <span class="md-ellipsis">
+      动态规划做法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#案例-the-k-center-problem" class="md-nav__link">
+    <span class="md-ellipsis">
+      [案例] The K-center Problem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="[案例] The K-center Problem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#naive-greedy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Naive Greedy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2r-greedy" class="md-nav__link">
+    <span class="md-ellipsis">
+      2r-Greedy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smarter-greedy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smarter Greedy
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#总结" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="chapter-11--approxiamtion">Chapter 11 | Approxiamtion<a class="headerlink" href="#chapter-11--approxiamtion" title="Permanent link">&para;</a></h1>
+<h2 id="近似算法">近似算法<a class="headerlink" href="#近似算法" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Approximation_algorithm">https://en.wikipedia.org/wiki/Approximation_algorithm</a></p>
+</div>
+<p>在上一章中我们介绍了 P/NP 问题，而大家普遍认为 P ≠ NP，这就意味着对于某些问题，我们无法使用多项式时间解决，而在问题规模变大时，越发不可接受。</p>
+<p>因此，我们考虑能否退而求其次，在多项式时间内求一个<strong>比较优</strong>的解。更具体的来说，我们尝试寻找一种多项式算法，使得其结果始终在关于准确解的可接受偏差范围内，对于这种算法，我们称之为<strong>近似算法(approximation algorithm)</strong>。</p>
+<p>我们设 <span class="arithmatex">\(f(n, x)\)</span> 是对输入大小为 <span class="arithmatex">\(n\)</span> 的情况下，对结果 <span class="arithmatex">\(x\)</span> 的<strong>最坏情况</strong>的一个直观量化（例如 dist, weight...），若设 <span class="arithmatex">\(x^*\)</span> 为准确解，<span class="arithmatex">\(x\)</span> 为给定算法结果，则我们定义<strong>近似比(Approximation Ratio)</strong><span class="arithmatex">\(\rho\)</span>：</p>
+<div class="arithmatex">\[
+\forall n \; \rho = \max\left\{\frac{f(n, x)}{f(n, x^*)}, \frac{f(n, x^*)}{f(n, x)}\right\}
+\]</div>
+<p>则称给定算法为 <span class="arithmatex">\(\rho\)</span> 近似算法(<span class="arithmatex">\(\rho\)</span>-approximation algorithm)。</p>
+<div class="admonition question">
+<p class="admonition-title">近似算法 v.s. 随机算法</p>
+<p>在看到近似算法时，我脑子里一下子浮现出了<a href="./Lec13.md">随机算法</a>的概念，同样是求准确解的近似解，两者有何区别呢？</p>
+<details class="success">
+<summary>hint: 最坏情况</summary>
+<p>近似算法和随机算法最大的区别就是，当我们设计、分析、讨论近似算法的时候，<strong>我们关注的都是它的最坏情况</strong>。也就是说，近似算法是完全可控的，而纯粹的随机算法则是通过概率来减少坏情况出现的可能，并没有严格的约束。近似算法最坏也就坏到 <span class="arithmatex">\(\rho\)</span>，而随机算法最坏可以坏到海拉鲁大陆。</p>
+</details>
+</div>
+<hr />
+<h3 id="近似范式">近似范式<a class="headerlink" href="#近似范式" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Polynomial-time_approximation_scheme">https://en.wikipedia.org/wiki/Polynomial-time_approximation_scheme</a></p>
+</div>
+<p><strong>近似范式(approximation scheme)</strong>指的是对于某个优化问题的一族相同模式的算法，它们满足对于确定的 <span class="arithmatex">\(\epsilon &gt; 0\)</span>，算法的近似比为 <span class="arithmatex">\(1+\epsilon\)</span>。</p>
+<blockquote>
+<p>可以粗糙地理解为：“范式”是一个输出为算法的特殊函数，而 <span class="arithmatex">\(\epsilon\)</span> 是“范式”的一个参数，对于特定的 <span class="arithmatex">\(\epsilon\)</span>，“范式”输出一个特定的算法（这些算法有着相同的模式），而这些“范式”输出的算法，都解决同一个问题，并且对于任意固定的 <span class="arithmatex">\(\epsilon\)</span> 其近似比为 <span class="arithmatex">\(1+\epsilon\)</span>。</p>
+<p>而关于 <span class="arithmatex">\(\epsilon &gt; 0\)</span> 这个约束，是因为近似比必定大于 1。</p>
+</blockquote>
+<p>而此时，这一族的算法的复杂度可以表示为 <span class="arithmatex">\(O(f(n, \epsilon))\)</span>，如 <span class="arithmatex">\(O(n^{2/\epsilon}), O((\frac{1}{\epsilon})^2n^3)\)</span>。当 <span class="arithmatex">\(f(n, \epsilon)\)</span> 关于 <span class="arithmatex">\(n\)</span> 是多项式时，我们称其为<strong>多项式时间近似范式(polynomial-time approximation scheme, PTAS)</strong>。当 <span class="arithmatex">\(f(n, \epsilon)\)</span> 关于 <span class="arithmatex">\(n\)</span> 和 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 都是多项式时，我们称其为<strong>完全多项式时间近似范式(fully polynomial-time approximation scheme, FPTAS)</strong>。</p>
+<p>为什么要区分 PTAS 和 FPTAS 呢？我们观察 <span class="arithmatex">\(\epsilon\)</span> 对算法的影响：随着 <span class="arithmatex">\(\epsilon\)</span> 的减小，近似比逐渐变小，即准确度提高；而 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 变大，而通常来说 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 与算法复杂度都是正相关的，因此会导致算法复杂度升高。如果说这个近似范式是 FPTAS，那么为了提高准确度而缩小 <span class="arithmatex">\(\epsilon\)</span>，导致的复杂度变化是相对可接受的（多项式级的变化，如 <span class="arithmatex">\((\frac{1}{\epsilon})^2n^3\)</span> 关于 <span class="arithmatex">\(\frac{1}{\epsilon}\)</span> 是多项式级的）；然而如果它不是 FPTAS，那么 <span class="arithmatex">\(\epsilon\)</span> 的缩小可能带来恐怖的复杂度增加（如 <span class="arithmatex">\(n^{2/\epsilon}\)</span> 关于 <span class="arithmatex">\(\epsilon\)</span> 是指数级的）。</p>
+<hr />
+<div class="admonition note">
+<p>接下来，我们以若干具体例子做分析，以便更好地理解近似算法。</p>
+</div>
+<hr />
+<h2 id="案例-approximate-bin-packing">[案例] Approximate Bin Packing<a class="headerlink" href="#案例-approximate-bin-packing" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Bin_packing">https://en.wikipedia.org/wiki/Bin_packing</a></p>
+</div>
+<p>装箱问题指的是，给定 <span class="arithmatex">\(N\)</span> 个 item，第 <span class="arithmatex">\(i\in [1,N]\)</span> 个 item 的 size 为 <span class="arithmatex">\(S_i \in (0,1]\)</span>，一个 bin 的大小为 <span class="arithmatex">\(1\)</span>，尝试寻找最少的，能够装载所有 item 的 bin 的数量。</p>
+<details class="eg">
+<summary>🌰 例子</summary>
+<p>给定 7 个 item，size 分别为 <span class="arithmatex">\(0.2, 0.5, 0.4, 0.7, 0.1, 0.3, 0.8\)</span>，则最少需要 3 个 bin（准确解）：</p>
+<ul>
+<li>bin 1: <span class="arithmatex">\(0.2 + 0.8\)</span>;</li>
+<li>bin 2: <span class="arithmatex">\(0.7 + 0.3\)</span>;</li>
+<li>bin 3: <span class="arithmatex">\(0.4 + 0.1 + 0.5\)</span>;</li>
+</ul>
+<p>显然我们发现这个解必定是最优解</p>
+</details>
+<p>这是一个 NP hard 问题，现在我们考虑三种近似解法。需要注意的是，这三种都是<strong>在线(online)</strong>解法（Place an item before processing the next one, and can <strong>NOT change</strong> decision），即处理 <span class="arithmatex">\(item_i\)</span> 时我们不知道 <span class="arithmatex">\(item_{i+1}\sim item_{N}\)</span> 的情况。之后我们会再讨论<strong>离线(offline)</strong>做法，也就是我们知道所有 item 的情况以后再给出策略。</p>
+<hr />
+<h3 id="online-next-fit-nf">(online) Next Fit (NF)<a class="headerlink" href="#online-next-fit-nf" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Next-fit_bin_packing">https://en.wikipedia.org/wiki/Next-fit_bin_packing</a></p>
+</div>
+<p>NF 策略总是选择当前最后一个 bin，若能够容纳，则将当前 item 放入其中，否则新开一个 bin。</p>
+<p>虽然根据我们的直观感受，这个算法是比较烂的，但是事实上，这个算法对于解决这样的 NPH 问题还是有可取之处的。事实上，许多介绍的近似算法都看起来非常的 Naive，不过还是比较有效的。</p>
+<p>NF 策略总是使用不超过 <span class="arithmatex">\(2M-1\)</span> 个 bin，其中 <span class="arithmatex">\(M\)</span> 表示准确解的 <span class="arithmatex">\(\#bin\)</span>。</p>
+<details class="proof">
+<summary>proof for 2M-1</summary>
+<p>我们从 NF 的结果出发，证明当 NF 的结果为需要 <span class="arithmatex">\(2M-1\)</span> 或 <span class="arithmatex">\(2M\)</span> 个 bin 时，准确解为至少需要 <span class="arithmatex">\(M\)</span> 个 bin。</p>
+<p>假设 <span class="arithmatex">\(S(B_i)\)</span> 表示第 <span class="arithmatex">\(i\)</span> 个 bin 的 size，则根据 NF 的定义，有：<span class="arithmatex">\(S(B_{i}) + S(B_{i+1}) &gt; 1\)</span>（是 NF 的必要不充分条件）。稍作解释，使用反证法，假设 <span class="arithmatex">\(S(B_{i}) + S(B_{i+1}) \leq 1\)</span>，这说明无论 <span class="arithmatex">\(B_{i+1}\)</span> 中有多少 item，都一定能放进 <span class="arithmatex">\(B_i\)</span>，而这与 NF “<span class="arithmatex">\(B_i\)</span> 放不下了才开始放 <span class="arithmatex">\(B_{i+1}\)</span>” 的性质相违背。于是我们将所有桶两两配对：</p>
+<p>1.当 NF 的结果是需要 <span class="arithmatex">\(2M-1\)</span> 个 bin 时：</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+    S(B_1) + S(B_2) &amp;&gt; 1 \\
+    S(B_3) + S(B_4) &amp;&gt; 1 \\
+    \vdots \\
+    S(B_{2M-3}) + S(B_{2M-2}) &amp;&gt; 1 \\
+    S(B_{2M-1}) &amp;\leq 1
+\end{aligned}
+\right. \\
+\begin{aligned}
+    &amp;\therefore \sum_{i=1}^{2M-1} &gt; \sum_{i=1}^{2M-2} &gt; M-1 \\
+    &amp;\therefore \sum_{i=1}^{2M-1} \geq M
+\end{aligned}
+\]</div>
+<p>即 item 的总 size 至少为 M，而每个 bin 最多能装 1 size，所以在即使全部 bin 都装满的情况下，最少需要 <span class="arithmatex">\(M\)</span> 个 bin，因此准确的解至少需要 <span class="arithmatex">\(M\)</span> 个 bin。则 NF 结果为 <span class="arithmatex">\(2M-1\)</span> 个 bin 时，准确结果至少为 <span class="arithmatex">\(M\)</span>；所以反过来说，如果准确结果为 <span class="arithmatex">\(M\)</span>，NF 的近似算法得到的结果不会超过 <span class="arithmatex">\(2M\)</span>，该算法的近似比为 2</p>
+<p>2.而当 NF 的结果是需要 <span class="arithmatex">\(2M\)</span> 个 bin 时，可以转化为 <span class="arithmatex">\(2M-1\)</span> 的情况。</p>
+</details>
+<hr />
+<h3 id="online-first-fit-ff">(online) First Fit (FF)<a class="headerlink" href="#online-first-fit-ff" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/First-fit_bin_packing">https://en.wikipedia.org/wiki/First-fit_bin_packing</a></p>
+</div>
+<p>FF 策略总是选择第一个能放下当前 item 的 bin，若所有 bin 都无法容纳当前 item，则新开一个 bin。</p>
+<p>NF 策略总是使用不超过 <span class="arithmatex">\(\lfloor 1.7M \rfloor\)</span> 个 bin，并且存在一组能对边界取等的输入（也就是说这个边界是比较紧的），其中 <span class="arithmatex">\(M\)</span> 表示准确解的 <span class="arithmatex">\(\#bin\)</span>。</p>
+<hr />
+<h3 id="online-best-fit-bf">(online) Best Fit (BF)<a class="headerlink" href="#online-best-fit-bf" title="Permanent link">&para;</a></h3>
+<div class="admonition quote">
+<p class="admonition-title">links</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Best-fit_bin_packing">https://en.wikipedia.org/wiki/Best-fit_bin_packing</a></p>
+</div>
+<p>BF 策略总是选择能够容纳当前 item 且剩余空间最小的 bin（即 tightest），若所有 bin 都无法容纳当前 item，则新开一个 bin。</p>
+<p>BF 策略也总是使用不超过 <span class="arithmatex">\(\lfloor 1.7M \rfloor\)</span> 个 bin，并且存在一组能对边界取等的输入（同样说明这个边界是比较紧的），其中 <span class="arithmatex">\(M\)</span> 表示准确解的 <span class="arithmatex">\(\#bin\)</span>。</p>
+<hr />
+<blockquote>
+<p>虽然在线做法由于对信息把握的不全面，在不特殊构造输入的情况下甚至几乎不可能达到最优解，但是现实世界中有很多能建模为装箱问题的问题，都要求使用在线做法解决。因此，研究在线做法还是有其意义的。</p>
+</blockquote>
+<p>此外，关于在线做法，有一个结论：</p>
+<div class="admonition property">
+<p class="admonition-title">theorem</p>
+<p>对于装箱问题，如果限定使用在线做法，则<strong>最优</strong>的近似解法，其<strong>最坏情况</strong>的结果也至少需要准确解的 <span class="arithmatex">\(\frac{5}{3}\)</span>。</p>
+<blockquote>
+<p>PPT 上的原话是，无论哪种在线做法也至少需要使用 <span class="arithmatex">\(\frac{5}{3}\)</span> 的准确解给出的数量，但是显然这个 <span class="arithmatex">\(\frac{5}{3}\)</span> 是针对最坏解的讨论。回顾「近似算法 v.s. 随机算法」这个 block 里的内容，我们分析近似解，都是针对其最坏情况来说的。</p>
+</blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Lower Bound for bin packing problem</p>
+<p><img alt="" src="../image.png" /></p>
+</div>
+<hr />
+<h3 id="offline-first-fit-decreasing-ffd">(offline) First Fit Decreasing (FFD)<a class="headerlink" href="#offline-first-fit-decreasing-ffd" title="Permanent link">&para;</a></h3>
+<p>离线做法的优势在于它能够获得所有 item 的信息以求统筹规划。这里给出的近似做法是，将 item 按照 size 降序排序，而后使用 FF（或 BF，由于单调性，两者等价）。</p>
+<details class="eg">
+<summary>🌰 例子</summary>
+<p>给定 7 个 item（同之前的 🌰），经过排序后，它们的 size 分别为 $0.8, 0.7, 0.5, 0.4, 0.3, 0.2, 0.1，则最少需要 3 个 bin（准确解）：</p>
+<ul>
+<li>bin 1: <span class="arithmatex">\(0.8 + 0.2\)</span>;</li>
+<li>bin 2: <span class="arithmatex">\(0.7 + 0.3\)</span>;</li>
+<li>bin 3: <span class="arithmatex">\(0.5 + 0.4 + 0.1\)</span>;</li>
+</ul>
+</details>
+<p>FFD 策略总是使用不超过 <span class="arithmatex">\(\frac{11}{9}M + \frac{6}{9}\)</span> 个 bin（为啥就连 wiki 也不约 6/9），并且存在一组能对边界取等的输入，其中 <span class="arithmatex">\(M\)</span> 表示准确解的 <span class="arithmatex">\(\#bin\)</span>。</p>
+<hr />
+<h2 id="案例-knapsack-problem">[案例] Knapsack Problem<a class="headerlink" href="#案例-knapsack-problem" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">link</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Knapsack_problem">https://en.wikipedia.org/wiki/Knapsack_problem</a></p>
+</div>
+<p>一个与装箱问题很像的问题是背包问题。其大致描述如下：给定一个容量为 <span class="arithmatex">\(M\)</span> 的背包，以及 <span class="arithmatex">\(N\)</span> 个 item，第 <span class="arithmatex">\(i\)</span> 个 item 的重量为 <span class="arithmatex">\(w_i\)</span>，其利润为 <span class="arithmatex">\(p_i\)</span>。要求在不超过背包容量的前提下，使得背包中的利润最大化。（我也不知道为什么 PPT 上会把容量和重量关联起来，anyway，容量限制了 item 的重量和。）</p>
+<div class="admonition warning">
+<p class="admonition-title">注意</p>
+<p>或许在学习 dp 的时候你已经接触过背包问题了，但是请注意，我们这里讨论的背包问题有一个非常重要的特点就是，容量和利润都是<strong>实数</strong>，更直白的来说，你没办法通过将容量或利润作为状态来 dp 求准确解。</p>
+</div>
+<p>而根据每一个物品能否自由拆分，背包问题分为 fractional version 和 0-1 version 两类。</p>
+<div class="admonition proof">
+<p class="admonition-title">Knapsack is NP-complete</p>
+<p><img alt="" src="../image-1.png" /></p>
+</div>
+<hr />
+<h3 id="fractional-version">Fractional Version<a class="headerlink" href="#fractional-version" title="Permanent link">&para;</a></h3>
+<p>如果我们记 <span class="arithmatex">\(x_i\in[0,1]\)</span> 为第 <span class="arithmatex">\(i\)</span> 个 item 的选中量（即假设 item 都是连续可分的），则约束条件可以表述为 <span class="arithmatex">\(\sum_{i}^N w_ix_i \leq M\)</span>，现在求 <span class="arithmatex">\(\sum_{i}^{N} p_ix_i\)</span> 的最大值。</p>
+<details class="eg">
+<summary>🌰 例子</summary>
+<p>假设现在 <span class="arithmatex">\(M = 20.0\)</span>，并且 <span class="arithmatex">\(N = 3\)</span>，分别是：</p>
+<ul>
+<li>item 1: <span class="arithmatex">\(w_1 = 18.0, p_1 = 25.0\)</span>; </li>
+<li>item 2: <span class="arithmatex">\(w_2 = 15.0, p_2 = 24.0\)</span>;</li>
+<li>item 3: <span class="arithmatex">\(w_3 = 10.0, p_3 = 15.0\)</span>;</li>
+</ul>
+<p>则最优解为 <span class="arithmatex">\(x_1 = 0, x_2 = 1, x_3 = \frac{1}{2}\)</span>，此时 <span class="arithmatex">\(\sum_{i}^{N} p_ix_i = 31.5\)</span>。</p>
+</details>
+<p>由于 <span class="arithmatex">\(x_i\in[0,1]\)</span>，给了我们极大的选择自由，我们可以选择任意多的某个物品。那么非常朴素的一个想法就是，尽可能多地选择“性价比”高的物品。也就是说，我们可以按照 <span class="arithmatex">\(\frac{p_i}{w_i}\)</span>（PPT 称之为 profit density）降序排序，而后从大到小依次选择物品，直到背包装满为止。</p>
+<p>不过该做法已经是准确解了，所以我们不对它进行关于近似算法的讨论。</p>
+<hr />
+<h3 id="0-1-version">0-1 Version<a class="headerlink" href="#0-1-version" title="Permanent link">&para;</a></h3>
+<p>相较于 fractional version，0-1 version 要求 <span class="arithmatex">\(x_i \in \{0,1\}\)</span>，换句话说每一个物品要么选要么不选。这是一个经典的 NPC 问题，我们尝试使用近似算法来求较优解。</p>
+<hr />
+<h4 id="贪心做法">贪心做法<a class="headerlink" href="#贪心做法" title="Permanent link">&para;</a></h4>
+<p>我们可以使用贪心算法，贪心策略可以是总是选可以放得下的、还没放入中的，<strong>利润最大</strong>的或 性价比（<span class="arithmatex">\(\frac{p_i}{w_i}\)</span>） <strong>最大</strong>的。这些做法的近似比都是 2。</p>
+<details class="proof">
+<summary>proof for <span class="arithmatex">\(\rho\)</span> = 2</summary>
+<p>我们用 <span class="arithmatex">\(p_\text{max}\)</span> 表示所有 item 中最大的利润，用 <span class="arithmatex">\(P_\text{optimal}\)</span> 表示准确解，<span class="arithmatex">\(P_\text{greedy}\)</span> 表示我们使用贪心做法得到的答案。在该问题中，近似比的计算表达式为：</p>
+<div class="arithmatex">\[
+\rho = \max(
+    \frac{P_\text{optimal}}{P_\text{greedy}},
+    \frac{P_\text{greedy}}{P_\text{optimal}}
+)
+\]</div>
+<p>下面是证明过程：</p>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+    &amp; p_\text{max} \leq P_\text{greedy} &amp; (1)\\
+    &amp; P_\text{optimal} \leq P_\text{greedy} + p_\text{max} &amp; (2)
+\end{aligned}
+\right.
+\]</div>
+<p>将 <span class="arithmatex">\((1)\)</span> 式两侧同除以 <span class="arithmatex">\(P_\text{greedy}\)</span> 得：</p>
+<div class="arithmatex">\[
+\frac{p_\text{max}}{P_\text{greedy}} \leq 1 \quad (3)
+\]</div>
+<p>将 <span class="arithmatex">\((2)\)</span> 式两侧同除以 <span class="arithmatex">\(P_\text{greedy}\)</span>，并代入 <span class="arithmatex">\((3)\)</span> 得：</p>
+<div class="arithmatex">\[
+\frac{P_\text{optimal}}{P_\text{greedy}} \leq 1 + \frac{p_\text{max}}{P_\text{greedy}} \leq 2
+\]</div>
+<blockquote>
+<p>PPT 的证明过程中还有一个不等式，虽然成立，但是好像没起到作用，我就扩展一下写在这里求个眼熟了：</p>
+<div class="arithmatex">\[
+p_\text{max} \leq P_\text{greedy} \leq P_\text{optimal} \leq P_\text{frac}
+\]</div>
+<p>其中 <span class="arithmatex">\(P_\text{frac}\)</span> 指的是同样的数据下 fractional version 的答案。</p>
+</blockquote>
+</details>
+<blockquote>
+<p>补充结论：背包问题具有 FPTAS。</p>
+</blockquote>
+<hr />
+<h4 id="动态规划做法">动态规划做法<a class="headerlink" href="#动态规划做法" title="Permanent link">&para;</a></h4>
+<p><del>（真是混乱）</del></p>
+<div class="arithmatex">\[
+W_{i,p} = \text{the minimum weight of a collection from } \{1, …, i\} \text{ with total profit being  exactly } p \\
+W_{i,p} = \left\{
+\begin{aligned}
+    &amp;\infty &amp;&amp; i = 0 \\
+    &amp;W_{i-1, p} &amp;&amp; p_i &gt; p \\
+    &amp;\min\{W_{i-1, p}, w_i + W_{i-1, p-p_i}\} &amp;&amp; otherwise        
+\end{aligned}
+\right.\\
+i = 1, ..., n; p = 1, ..., n\cdot p_\text{max} \\
+O(n^2p_\text{max})
+\]</div>
+<p>如果 <span class="arithmatex">\(p_\text{max}\)</span> 很大，可以考虑将它们近似取整，类似于将浮点数向上取整。</p>
+<hr />
+<h2 id="案例-the-k-center-problem">[案例] The K-center Problem<a class="headerlink" href="#案例-the-k-center-problem" title="Permanent link">&para;</a></h2>
+<div class="admonition quote">
+<p class="admonition-title">link</p>
+<p>Berkeley's: <a href="https://ugtcs.berkeley.edu/src/approx-sp19/scribe-notes-2.pdf">https://ugtcs.berkeley.edu/src/approx-sp19/scribe-notes-2.pdf</a></p>
+</div>
+<p>（二维）K 中心问题指：给定平面上的一系列 site（即点），在平面中找出 <span class="arithmatex">\(k\)</span> 个不同的 center，记 <span class="arithmatex">\(site_i\)</span> 到离它最近的 center 的距离为 <span class="arithmatex">\(dis_i\)</span>，求 <span class="arithmatex">\(\max \{dis_i\}\)</span> 的最小值。</p>
+<div class="admonition section">
+<p class="admonition-title">数学语言表达</p>
+<p>设 <span class="arithmatex">\(C = \{c_1, c_2, ..., c_k\}\)</span> 为 <span class="arithmatex">\(k\)</span> 个 center，<span class="arithmatex">\(S = \{s_1, s_2, ..., s_n\}\)</span> 为 <span class="arithmatex">\(n\)</span> 个 site，我们定义 site 到关于 center 的集合 <span class="arithmatex">\(C\)</span> 的距离为：</p>
+<div class="arithmatex">\[
+dis(s_i, C) = \min_{c_i\in C} \{ dis(s_i, c_i) \}
+\]</div>
+<p>即 <span class="arithmatex">\(s_i\)</span> 到距离它最近的 center 的距离。</p>
+<p>定义最大的最小覆盖半径为：</p>
+<div class="arithmatex">\[
+r(C) = \max_{s_i\in S} \{ dis(s_i, C) \} \\
+\]</div>
+<p>现在要寻找一个 <span class="arithmatex">\(C\)</span> 使得 <span class="arithmatex">\(r(C)\)</span> 最小（<span class="arithmatex">\(|C| = k\)</span>）。</p>
+</div>
+<p>很绕，非常绕。接下来开始说人话。</p>
+<p>平面的问题我们就用平面的思路来看，就是一个平面上有一堆点，现在我要在上面找 <span class="arithmatex">\(k\)</span> 个中心去画圆，使得这 <span class="arithmatex">\(k\)</span> 个圆能覆盖所有的点。现在要求最大的那个圆的半径最小能多小。</p>
+<details class="tip" open="open">
+<summary>关于距离</summary>
+<p>PPT 上对<strong>距离</strong>做了更进一步的说明，但是其实并不是这个问题的重点，但是为了严谨性，我还是在这里放上三条性质：</p>
+<div class="admonition property">
+<p class="admonition-title">3 property of 'distance'</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    &amp; dis(x,x) = 0 &amp;&amp; \text{(identity)} \\
+    &amp; dis(x,y) = dis(y,x) &amp;&amp; \text{(symmetry)} \\
+    &amp; dis(x,y) \leq dis(x,z) + dis(z,y) &amp;&amp; \text{(triangle inequality)}
+\end{aligned}
+\]</div>
+</div>
+</details>
+<hr />
+<div class="admonition tip">
+<p class="admonition-title">碎碎念</p>
+<p>这个东西和聚类有点像。主要难点就在于，我们不知道应该以何种策略去覆盖这些点，要是把两个距离很远的点划在同一个圆内，那答案肯定小不了。</p>
+</div>
+<p>接下来我们来尝试解决的这个问题。</p>
+<hr />
+<h3 id="naive-greedy">Naive Greedy<a class="headerlink" href="#naive-greedy" title="Permanent link">&para;</a></h3>
+<p>一个做法是，我们每次都选择最可能成为中心的那个点，具体来说：</p>
+<ol>
+<li>如果是第一个点，就选取所有点的中心；</li>
+<li>如果不是第一个点，就选取能一个最能让 <span class="arithmatex">\(r(C)\)</span> 下降的；</li>
+</ol>
+<p>这个做法的 bug 比较大，假设我们的点是聚类非常明显的两个点云，那么第一个点就会落在两个点云之间，这很蠢，所以我们不浪费过多时间在这个方法上。</p>
+<blockquote>
+<p>注意，随着 center 的增加，原来以 <span class="arithmatex">\(c_i\)</span> 为 center 的 site 很可能以最新插入的 <span class="arithmatex">\(c_j\)</span> 为 center。</p>
+</blockquote>
+<hr />
+<h3 id="2r-greedy">2r-Greedy<a class="headerlink" href="#2r-greedy" title="Permanent link">&para;</a></h3>
+<p>既然正向做很困难，那我们能不能反着做呢？有一种套路叫二分答案，即先猜答案，再验证是否是答案。在这个问题中我们可以迁移这个思想，即先猜一个 <span class="arithmatex">\(r\)</span>，然后尝试用 <span class="arithmatex">\(k\)</span> 个半径为 <span class="arithmatex">\(r\)</span> 的圆去覆盖剩下的所有点。</p>
+<p>更具体的来说，假设准确解对应的一个 center 集合为 <span class="arithmatex">\(C^*\)</span>，那么 <span class="arithmatex">\(\forall r(C_x) \geq r(C^*)\)</span> 的 <span class="arithmatex">\(C_x\)</span> 都必定存在覆盖方案；反过来说，如果我们能够验证对于 <span class="arithmatex">\(C_x\)</span> 能够覆盖所有的点，那么就可以约束准确解 <span class="arithmatex">\(r(C^*) \leq r(C_x)\)</span>。</p>
+<div class="admonition question">
+<p class="admonition-title">如何“验证”</p>
+<p>可是，仔细一想我们发现，二分答案的过程中，“验证对于 <span class="arithmatex">\(C_x\)</span> 能够覆盖所有的点”这件事也不好做，虽然我们有半径，但是我们也很难找到一个最好的方案来覆盖所有的点。</p>
+<details class="success">
+<summary>hint: 近似算法</summary>
+<p>于是我们的近似算法就可以大展拳脚了。但是需要注意，这里所谓的近似算法，指的是使用二分答案求解 <span class="arithmatex">\(r(C)\)</span> 这个算法，而非判断 <span class="arithmatex">\(k\)</span> 个半径为 <span class="arithmatex">\(r\)</span> 的圆能否覆盖所有点的算法。这一点非常重要！</p>
+<p>而关于算法具体如何操作，请接着看。 </p>
+</details>
+</div>
+<p>首先，我们再次梳理一下这个算法，它包含内外两层，首先外部通过在答案的<strong>候选区间（即 <span class="arithmatex">\((0, r_\text{max}]\)</span>，<span class="arithmatex">\(r_\text{max}\)</span> 为最远的两个点的距离）</strong>二分候选值，接着通过判定算法来判定接下来的二分方向。</p>
+<p>然而，由于我们很难在多项式时间实现准确的“判定”，所以我们采取这样一个启发式的策略来进行<strong>宽泛的必要条件筛选</strong>：</p>
+<div class="admonition section">
+<p class="admonition-title">流程描述</p>
+<p>设 <span class="arithmatex">\(C_x\)</span> 表示选中的 center，<span class="arithmatex">\(S_x\)</span> 表示尚未被任何圆覆盖的 site，<span class="arithmatex">\(r_x\)</span> 表示当前二分出来的，要我们判断的半径，<span class="arithmatex">\(S\)</span> 依然表示所有 site 的集合：</p>
+<ol>
+<li>初始化 <span class="arithmatex">\(C_x = \emptyset\)</span>；</li>
+<li>当 <span class="arithmatex">\(S_x \not = \emptyset\)</span> 时（即还有点没被覆盖时），重复这些操作：<ol>
+<li>随机选取一个 site <span class="arithmatex">\(s_i \in S_x\)</span>，将其插入 <span class="arithmatex">\(C_x\)</span>（即将 <span class="arithmatex">\(s_i\)</span> 当作一个 center），并从 <span class="arithmatex">\(S_x\)</span> 中将 <span class="arithmatex">\(s_i\)</span> 删除（即 <span class="arithmatex">\(s_i\)</span> 必定被覆盖）；</li>
+<li>删除 <span class="arithmatex">\(S_x\)</span> 中所有距离 <span class="arithmatex">\(s_i\)</span> 不足 <span class="arithmatex">\(r_x\)</span> 的点（即删除满足 <span class="arithmatex">\(dis(s_i, s_j) \leq r_x\)</span> 的所有 <span class="arithmatex">\(s_k \in S_x\)</span>）；</li>
+</ol>
+</li>
+<li>当所有点都被覆盖后：<ol>
+<li>如果 <span class="arithmatex">\(|C_x| \leq k\)</span>，则返回 yes；</li>
+<li>否则返回 no；</li>
+</ol>
+</li>
+</ol>
+<p>如果返回 yes，则下一个 <span class="arithmatex">\(r_x\)</span> 应当取更小的 <span class="arithmatex">\(r_x\)</span>；如果返回 no，下一次应该取更大的 <span class="arithmatex">\(r_x\)</span>（稍候会解释为什么）。</p>
+</div>
+<p>现在对其做进一步解释。这是一个启发式的做法，旨在每次寻找还没被覆盖的点作为新的 center，用一个半径为 <span class="arithmatex">\(2r_x\)</span> 的圆去覆盖剩下的点。通过判断这样所需要的 center 数量是否超过 <span class="arithmatex">\(k\)</span> 来判断是否能够覆盖。接下来很绕，请一步一步的看：</p>
+<ol>
+<li>当这个启发式搜索成功时，说明 <span class="arithmatex">\(2r_x \geq r(C^*)\)</span>，即 <span class="arithmatex">\(k\)</span> 个 <span class="arithmatex">\(2r_x\)</span> 的圆可以覆盖所有点；</li>
+<li>当这个启发式搜索失败时，<strong>不能</strong>说明 <span class="arithmatex">\(2r_x \geq r(C^*)\)</span>，即 <span class="arithmatex">\(k\)</span> 个 <span class="arithmatex">\(2r_x\)</span> 的圆不能覆盖所有点，因为启发式方案并不是最优方案；<strong>但是能说明必定不存在 <span class="arithmatex">\(r_x\)</span> 的覆盖，即 <span class="arithmatex">\(r_x \leq r(C^*)\)</span></strong>（证明见下方 lemma）；</li>
+</ol>
+<details class="property" open="open">
+<summary>lemma</summary>
+<p>假设半径为 <span class="arithmatex">\(r\)</span>，以 <span class="arithmatex">\(c\)</span> 为圆心的圆 <span class="arithmatex">\(C\)</span> 覆盖了 <span class="arithmatex">\(S\)</span> 中的所有点。</p>
+<p>那么，对于固定的半径 <span class="arithmatex">\(r'\)</span>，要想取任意的 <span class="arithmatex">\(s_i \in S\)</span> 为圆心，形成的圆 <span class="arithmatex">\(C_i\)</span>，<strong>总是</strong>能覆盖 <span class="arithmatex">\(S\)</span> 中的所有点，则 <span class="arithmatex">\(r' \geq 2r\)</span>。</p>
+<blockquote>
+<p>lemma 的证明就不在这里展开了，证明的关键是考虑两点分布在直径两端的情况。</p>
+</blockquote>
+<p>这个引理的附加结论就是：</p>
+<div class="arithmatex">\[
+\forall i \quad C \subset C_i
+\]</div>
+<p>即以 <span class="arithmatex">\(r\)</span> 为半径的最优覆盖圆，一定能被以任意 <span class="arithmatex">\(s_i\)</span> 为圆心、<span class="arithmatex">\(2r\)</span> 为半径的圆所覆盖。</p>
+<p><center>
+    <img alt="" src="img/71.svg" />
+</center></p>
+</details>
+<p>当我们发现我们处于情况 <code>1.</code> 时，我们开心的发现我们确实得到了一个距离 <span class="arithmatex">\(r(C^*)\)</span> 更近的上界 <span class="arithmatex">\(2r_x\)</span>，由于二分的性质，我们每次通过 <code>1.</code> 确定的上界，总是越来越紧的。</p>
+<p>当我们处于情况 <code>2.</code> 时，我们不知道 <span class="arithmatex">\(2r_x\)</span> 和 <span class="arithmatex">\(r(C^*)\)</span> 的大小关系，但是知道 <span class="arithmatex">\(r_x\)</span> 和 <span class="arithmatex">\(r(C^*)\)</span> 的关系，由于二分的性质，我们每次通过 <code>2.</code> 确定的下界，也总是越来越紧的。</p>
+<p>而最终，我们会得到一个最终的 <span class="arithmatex">\(r_{x_0}\)</span>，满足：<span class="arithmatex">\(r_{x_0} \leq r(C^*) \leq 2r_{x_0}\)</span>（式中哪边能取等取决于最后落在 <code>1.</code> 还是 <code>2.</code>）。</p>
+<p>而我们最终给出的<strong>答案</strong>是 <span class="arithmatex">\(2r_{x_0}\)</span>（因为 <span class="arithmatex">\(r_{x_0}\)</span> 不满足条件，不是解，更不是近似解）。</p>
+<hr />
+<p>现在，我们来计算近似比：</p>
+<div class="arithmatex">\[
+\begin{aligned}
+    &amp; \begin{aligned}
+        \because \;\;\;
+        &amp; r_{x_0} \leq r(C^*) \leq 2r_{x_0} \\
+        &amp; \frac{1}{2} \leq \frac{r(C^*)}{2r_{x_0}} \leq 1 \\
+        &amp; 1 \leq \frac{2r_{x_0}}{r(C^*)} \leq 2
+    \end{aligned} \\
+    &amp; \therefore \; \rho = \max\{
+            \frac{ 2 r_{x_0} }{ r(C^*) },
+            \frac{ r(C^*) }{ 2 r_{x_0} }
+        \} = 2
+\end{aligned}
+\]</div>
+<hr />
+<h3 id="smarter-greedy">Smarter Greedy<a class="headerlink" href="#smarter-greedy" title="Permanent link">&para;</a></h3>
+<p>我们关注到，上面那个做法总是随机的选取新的 <span class="arithmatex">\(c_i\)</span>，但是对于 center 的选取，我们其实可以总是选择距离已有的 center 最远的点，此外，当 <span class="arithmatex">\(|C| &gt; k\)</span> 时，我们也没必要继续做了。</p>
+<div class="admonition section">
+<p class="admonition-title">流程描述</p>
+<ol>
+<li>初始化 <span class="arithmatex">\(C_x = \emptyset\)</span>，<span class="arithmatex">\(S_x = S\)</span>；</li>
+<li>随机选取一个 site <span class="arithmatex">\(s_i \in S_x\)</span>，将其插入 <span class="arithmatex">\(C_x\)</span>，并从 <span class="arithmatex">\(S_x\)</span> 中将 <span class="arithmatex">\(s_i\)</span> 删除；</li>
+<li>当 <span class="arithmatex">\(|C_x| \leq k\)</span> 且 <span class="arithmatex">\(S_x \not = \emptyset\)</span> 时，重复以下步骤：<ol>
+<li>选取一个 site <span class="arithmatex">\(s_i \in S_x\)</span>，这个 site 满足 <span class="arithmatex">\(\forall s_j \in S_x \quad dis(s_i, C_x) \geq dis(s_j, C_x)\)</span>（即这个点是还没被覆盖的点中距离 <span class="arithmatex">\(C_x\)</span> 最远的点）；</li>
+<li>将 <span class="arithmatex">\(s_i\)</span> 插入 <span class="arithmatex">\(C_x\)</span>，并从 <span class="arithmatex">\(S_x\)</span> 中将 <span class="arithmatex">\(s_i\)</span> 删除；</li>
+</ol>
+</li>
+<li>如果 <span class="arithmatex">\(|C_x| \leq k\)</span> 且 <span class="arithmatex">\(S_x = \emptyset\)</span>，则返回 yes；否则返回 no。</li>
+</ol>
+</div>
+<p>由于这个做法实际上只是优化了一下启发式的策略，并没有改变内核，所以其近似比仍然是 <span class="arithmatex">\(2\)</span>。</p>
+<hr />
+<h2 id="总结">总结<a class="headerlink" href="#总结" title="Permanent link">&para;</a></h2>
+<p>关于算法的设计，我们考虑这三个维度：</p>
+<ol>
+<li>最优性(optimality)：即能求准确解；</li>
+<li>高效性(efficiency)：即算法是否高效；</li>
+<li>普遍性(all instances)：即算法是否普遍适用于所有的情况；</li>
+</ol>
+<p>倘若一个解法：</p>
+<ol>
+<li>同时满足最优性和高效性，那么这个算法对特殊情况能高效求准确解；</li>
+<li>同时满足最优性和普遍性，那么这个算法对所有情况都能求准确解；</li>
+<li>同时满足高效性和普遍性，那么这个算法可能是个近似算法；</li>
+</ol>
+<p>就算 N=NP 成立，我们仍然无法保证三个愿望一次满足。</p>
+<blockquote>
+<p>不是很明白最后一句话如何理解，但是这一部分应该就是看个眼熟，不是很重要。</p>
+</blockquote>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../ch10/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Chapter 10 | NP Completeness">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter 10 | NP Completeness
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../problem/" class="md-footer__link md-footer__link--next" aria-label="下一页: Problem set">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Problem set
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022-2024 <a href="https://github.com/Ader817" target="_blank" rel="noopener">Ader817</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.path", "navigation.prune", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "toc.follow", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+        <script src="../../../assets/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,1820 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Ader的笔记本">
+      
+      
+      
+        <link rel="canonical" href="https://ader817.github.io/notebook/cs/dip/ch3/">
+      
+      
+        <link rel="prev" href="../ch2/">
+      
+      
+        <link rel="next" href="../ch4/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>Chapter 3 | 图像灰度变换 - Ader's notebook</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.35f28582.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775m1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25m13.274 9.537zl-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074M4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5M4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75M8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.5 4.5 0 0 1-.563-1.191 3.84 3.84 0 0 1-.05-2.063 4.65 4.65 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4 2.4 0 0 1-.507-.441 3.1 3.1 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19.01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.7 3.7 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 .018-1.042.75.75 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.76 2.76 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6 6 0 0 0-.26.16 1 1 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1 1 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.61.61 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1 1 0 0 0-.34.398M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343za8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746m1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275M6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734L6.94 8 4.97 6.03a.75.75 0 0 1 .018-1.042.75.75 0 0 1 1.042-.018"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005 0-.009.004"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.5 3.5 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327q0 .15-.025.292c.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5q-.002.615-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A5 5 0 0 1 8 16a5 5 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5 5 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.7 1.7 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06m.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.17.17 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5m4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5m0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5M2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0"/></svg>');}</style>
+
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#3-图像灰度变换" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../../.." title="Ader&#39;s notebook" class="md-header__button md-logo" aria-label="Ader's notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Ader's notebook
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chapter 3 | 图像灰度变换
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="indigo"  aria-label="切换至夜间模式"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="切换至夜间模式" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="teal"  aria-label="切换至日间模式"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="切换至日间模式" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="搜索" placeholder="搜索" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="查找">
+        
+        <button type="reset" class="md-search__icon md-icon" title="清空当前内容" aria-label="清空当前内容" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Ader817/notebook/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="标签" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../home/" class="md-tabs__link">
+          
+  
+    
+  
+  Home
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  Computer Science
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../writeups/" class="md-tabs__link">
+          
+  
+    
+  
+  Writeups
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="Ader&#39;s notebook" class="md-nav__button md-logo" aria-label="Ader's notebook" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"/></svg>
+
+    </a>
+    Ader's notebook
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Ader817/notebook/" title="前往仓库" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../home/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Computer Science
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Science
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../pas/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    概率论与数理统计
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../ads/ch0/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    高级数据结构与算法分析
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    图像信息处理
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            图像信息处理
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 1 | 成像与图像的基本属性
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 2 | 二值图像与形态学
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chapter 3 | 图像灰度变换
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 3 | 图像灰度变换
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#灰度感知--grayscale-perception" class="md-nav__link">
+    <span class="md-ellipsis">
+      灰度感知 | Grayscale perception
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#可视化增强--visibility-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      可视化增强 | Visibility enhancement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可视化增强 | Visibility enhancement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamma-校正--gamma-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\gamma\) 校正 | \(\gamma\) correction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对数操作--logarithmic-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      对数操作 | logarithmic operation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#灰度图像及其直方图--grayscale-image-and-histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      灰度图像及其直方图 | Grayscale image and histogram
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="灰度图像及其直方图 | Grayscale image and histogram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grayscale-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grayscale image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histogram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#彩色图像及其直方图--color-image-and-histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      彩色图像及其直方图 | Color image and histogram
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="彩色图像及其直方图 | Color image and histogram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#color-histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Color histogram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#直方图的特性--characteristics-of-histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图的特性 | Characteristics of histogram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#直方图变换--histogram-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图变换 | Histogram transform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="直方图变换 | Histogram transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#变换例子" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换例子
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="变换例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#直方图均衡化--histogram-equalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图均衡化 | Histogram equalization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="直方图均衡化 | Histogram equalization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#变换函数-t---连续灰度变化" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换函数 \(T\) - 连续灰度变化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#变换函数-t---离散灰度变化" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换函数 \(T\) - 离散灰度变化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#直方图均衡化的步骤" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图均衡化的步骤
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#直方图匹配--histogram-fitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图匹配 | Histogram fitting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#图像增强--image-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      图像增强 | Image enhancement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#变换分类" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换分类
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="变换分类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#线性变换--linear-grayscale-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      线性变换 | Linear grayscale transform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="线性变换 | Linear grayscale transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#拉伸--contrast-stretching" class="md-nav__link">
+    <span class="md-ellipsis">
+      拉伸 | Contrast stretching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#分段拉伸" class="md-nav__link">
+    <span class="md-ellipsis">
+      分段拉伸
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#非线性变换--nonlinear-histogram-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      非线性变换 | Nonlinear histogram transform
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ch4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chapter 4 | 几何变换
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../co/ch1/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    计算机组成原理
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+      
+        
+        
+      
+    
+    <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+      
+        
+  
+  
+    <a href="../../../writeups/" class="md-nav__link">
+      
+  
+  <span class="md-ellipsis">
+    Writeups
+  </span>
+  
+
+      
+        <span class="md-nav__icon md-icon"></span>
+      
+    </a>
+  
+
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#灰度感知--grayscale-perception" class="md-nav__link">
+    <span class="md-ellipsis">
+      灰度感知 | Grayscale perception
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#可视化增强--visibility-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      可视化增强 | Visibility enhancement
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="可视化增强 | Visibility enhancement">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gamma-校正--gamma-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\gamma\) 校正 | \(\gamma\) correction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#对数操作--logarithmic-operation" class="md-nav__link">
+    <span class="md-ellipsis">
+      对数操作 | logarithmic operation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#灰度图像及其直方图--grayscale-image-and-histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      灰度图像及其直方图 | Grayscale image and histogram
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="灰度图像及其直方图 | Grayscale image and histogram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#grayscale-image" class="md-nav__link">
+    <span class="md-ellipsis">
+      Grayscale image
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histogram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#彩色图像及其直方图--color-image-and-histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      彩色图像及其直方图 | Color image and histogram
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="彩色图像及其直方图 | Color image and histogram">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#color-histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      Color histogram
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#直方图的特性--characteristics-of-histogram" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图的特性 | Characteristics of histogram
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#直方图变换--histogram-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图变换 | Histogram transform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="直方图变换 | Histogram transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#变换例子" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换例子
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="变换例子">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#直方图均衡化--histogram-equalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图均衡化 | Histogram equalization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="直方图均衡化 | Histogram equalization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#变换函数-t---连续灰度变化" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换函数 \(T\) - 连续灰度变化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#变换函数-t---离散灰度变化" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换函数 \(T\) - 离散灰度变化
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#直方图均衡化的步骤" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图均衡化的步骤
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#直方图匹配--histogram-fitting" class="md-nav__link">
+    <span class="md-ellipsis">
+      直方图匹配 | Histogram fitting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#图像增强--image-enhancement" class="md-nav__link">
+    <span class="md-ellipsis">
+      图像增强 | Image enhancement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#变换分类" class="md-nav__link">
+    <span class="md-ellipsis">
+      变换分类
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="变换分类">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#线性变换--linear-grayscale-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      线性变换 | Linear grayscale transform
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="线性变换 | Linear grayscale transform">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#拉伸--contrast-stretching" class="md-nav__link">
+    <span class="md-ellipsis">
+      拉伸 | Contrast stretching
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#分段拉伸" class="md-nav__link">
+    <span class="md-ellipsis">
+      分段拉伸
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#非线性变换--nonlinear-histogram-transform" class="md-nav__link">
+    <span class="md-ellipsis">
+      非线性变换 | Nonlinear histogram transform
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="3-图像灰度变换">3 图像灰度变换<a class="headerlink" href="#3-图像灰度变换" title="Permanent link">&para;</a></h1>
+<h2 id="灰度感知--grayscale-perception">灰度感知 | Grayscale perception<a class="headerlink" href="#灰度感知--grayscale-perception" title="Permanent link">&para;</a></h2>
+<p>根据韦伯定理（ch1），我们有</p>
+<div class="arithmatex">\[\dfrac{\Delta I}{I}\approx K_{Weber}\approx 1\%\sim 2\%\]</div>
+<p>据此我们可以做这样的推导，</p>
+<div class="arithmatex">\[\frac{I_{max}}{I_{min}}=(1+K_{Weber})^{255} \approx 13 \sim 156\]</div>
+<p>其中<span class="arithmatex">\(I_\text{max}\)</span>为最大可感知的亮度，<span class="arithmatex">\(I_\text{min}\)</span>为最小可感知的亮度；255表示0-255的色彩深度的变化，对应了256个可感知的亮度级别。</p>
+<p>该式的含义是：如果我们划分了256个可感知的亮度级别，那么从最小的可感知亮度开始，每增加一个亮度级别，亮度将变化为原来的<span class="arithmatex">\((1+K_\text{Weber})\)</span>倍，因此在256亮度级别总数下，最大可感知亮度与最小可感知亮度的比例必然是<span class="arithmatex">\((1+K_\text{Weber})\)</span></p>
+<p>另外人们发现感知能力是服从<span class="arithmatex">\(\log(I)\)</span> 的，换言之，亮度线性变化引起的人类感受变化并不也是线性的，而是对数的。这称作<strong>Fechner’s Law</strong>。</p>
+<h2 id="可视化增强--visibility-enhancement">可视化增强 | Visibility enhancement<a class="headerlink" href="#可视化增强--visibility-enhancement" title="Permanent link">&para;</a></h2>
+<h3 id="gamma-校正--gamma-correction"><span class="arithmatex">\(\gamma\)</span> 校正 | <span class="arithmatex">\(\gamma\)</span> correction<a class="headerlink" href="#gamma-校正--gamma-correction" title="Permanent link">&para;</a></h3>
+<p>根据费希纳定律(Fechner's Law)，人眼对亮度的感知不是线性的，更接近于对数分布——对暗部的变化更敏感，对亮部的变化则不太敏感。而原始图像的亮度通常是线性记录的，不符合人眼的特性。</p>
+<p>Gamma 矫正通过调整图像的亮度，使其符合人眼的对比敏感度，从而让图像显示得更加自然，亮度变化更加均匀，增强可视化效果。</p>
+<p>我们可以对亮度做<span class="arithmatex">\(\gamma\)</span>的指数运算（当然实际操作中可能还需要乘上一个系数来调整亮度的范围）来近似表示这个对数变化，从图像也可以看出二者的趋势会更加接近</p>
+<p><center><img alt="" src="../images/ch3/image.png" width="50%" /></center></p>
+<div class="admonition note">
+<p class="admonition-title">图像通过gamma校正进行操作</p>
+<p><center><img alt="" src="../images/ch3/image-1.png" width="70%" /></center></p>
+<blockquote>
+<p>姑且可以认为这样操作与调整曝光时间的效果是一样的</p>
+</blockquote>
+</div>
+<div class="admonition note">
+<p class="admonition-title">不同<span class="arithmatex">\(\gamma\)</span>的渐变效果</p>
+<p><center><img alt="" src="../images/ch3/image-2.png" /></center></p>
+<p>左边在亮度上其实是均匀变化的，但是在我们人眼看来，深色数量远多于亮色。通过一个非线性校正后（右图），我们人眼看来就是均匀变化的了。这也就是gamma校正的目的</p>
+<p>并且实测出来人眼需要的gamma值是2.2；通常情况下这也是显示器的默认值</p>
+</div>
+<h3 id="对数操作--logarithmic-operation">对数操作 | logarithmic operation<a class="headerlink" href="#对数操作--logarithmic-operation" title="Permanent link">&para;</a></h3>
+<p>类似地，为了增强图像的可视信息，我们也可以对图像中的像素进行基于对数的操作，这更加符合人眼的感知。</p>
+<div class="arithmatex">\[L_d=\dfrac{\log(L_w+1)}{\log(L_{max}+1)}\]</div>
+<p>其中，<span class="arithmatex">\(L_d\)</span> 是显示亮度，<span class="arithmatex">\(L_w\)</span> 是真实世界亮度，<span class="arithmatex">\(L_{max}\)</span> 是场景中的最亮值。</p>
+<p>这个映射能够确保不管场景的动态范围是怎么样的，其最大值都能映射到1（白），其他的值能够比较平滑地变化。</p>
+<h2 id="灰度图像及其直方图--grayscale-image-and-histogram">灰度图像及其直方图 | Grayscale image and histogram<a class="headerlink" href="#灰度图像及其直方图--grayscale-image-and-histogram" title="Permanent link">&para;</a></h2>
+<h3 id="grayscale-image">Grayscale image<a class="headerlink" href="#grayscale-image" title="Permanent link">&para;</a></h3>
+<p>学习完前面的知识后，对灰度图肯定有了一定的了解，这里再简略地介绍一下灰度图</p>
+<ul>
+<li>由像素组成的二维阵列。（M 行 × N 列）</li>
+<li>每个像素由 8 位表示。灰度有 <span class="arithmatex">\(2^8 = 256\)</span> 级，分别为 p=0,1,2,...,255。</li>
+<li>灰度强度越小，像素越暗，反之亦然。 p = 0 为黑色， p = 255 为白色。</li>
+</ul>
+<h3 id="histogram">Histogram<a class="headerlink" href="#histogram" title="Permanent link">&para;</a></h3>
+<p>灰度直方图是一类统计图形，它表示一幅图像中各个灰度等级的像素个数在像素总数中所占的比重。</p>
+<p><strong><em>e.g.</em></strong></p>
+<p><center><img alt="" src="../images/ch3/image-4.png" width="50%" /></center></p>
+<p>量化：如 256 分为 8 个灰度级， 0-32 为一个灰度级，以此类推... 每个柱子就反映了像素数目占的比例。</p>
+<p>设灰度等级范围为<span class="arithmatex">\([0,L-1]\)</span> ，灰度直方图用下列离散函数来表示：</p>
+<div class="arithmatex">\[h(r_k)=n_k\]</div>
+<p>其中，<span class="arithmatex">\(r_k\)</span> 为第<span class="arithmatex">\(k\)</span>级灰度，<span class="arithmatex">\(n_k\)</span> 是图像中具有灰度级 <span class="arithmatex">\(r_k\)</span> 的像素数目，<span class="arithmatex">\(0 \leq k \leq L-1,0 \leq n_k \leq n-1\)</span>, <span class="arithmatex">\(n\)</span> 为图像总的像素数目。  </p>
+<p>我们通常用概率密度函数来归一化直方图：</p>
+<div class="arithmatex">\[P(r_k)=\dfrac{n_k}{n}\]</div>
+<p><span class="arithmatex">\(P(r_k)\)</span>为灰度级<span class="arithmatex">\(r_k\)</span>所发生的概率（概率密度函数）。此时，满足下列条件：  </p>
+<div class="arithmatex">\[\sum\limits_{k=0}^{L-1}P(r_k)=1\]</div>
+<div class="admonition example">
+<p class="admonition-title">Grayscale image with histogram Example</p>
+<p><img alt="" src="../images/ch3/image-3.png" /></p>
+</div>
+<h2 id="彩色图像及其直方图--color-image-and-histogram">彩色图像及其直方图 | Color image and histogram<a class="headerlink" href="#彩色图像及其直方图--color-image-and-histogram" title="Permanent link">&para;</a></h2>
+<h3 id="color-histogram">Color histogram<a class="headerlink" href="#color-histogram" title="Permanent link">&para;</a></h3>
+<p>接下来我们介绍彩色图像的直方图。彩色直方图也是一类统计图形，它表示一幅图像中 r,g,b 通道上<u>各个</u>亮度等级的像素个数在像素总数中所占的比重。</p>
+<details class="tip">
+<summary>整体亮度与通道亮度</summary>
+<p>整体亮度（Luminance/Lightness）：通常通过加权平均（例如 Y = 0.299R + 0.587G + 0.114B）来计算，这个值代表了图像或像素的“明暗程度”。</p>
+<p>通道亮度（Channel Intensity）：指在每个单独的通道（红、绿或蓝）中，每个像素的强度值。它表示该通道对该像素颜色的贡献，但并不是图像的整体亮度。</p>
+<p>所以我们这里说的“各个亮度等级”其实指的就是通道的强度值</p>
+</details>
+<p><img alt="" src="../images/ch3/image-5.png" /></p>
+<h2 id="直方图的特性--characteristics-of-histogram">直方图的特性 | Characteristics of histogram<a class="headerlink" href="#直方图的特性--characteristics-of-histogram" title="Permanent link">&para;</a></h2>
+<p>直方图</p>
+<ul>
+<li>是空间域处理技术的基础。</li>
+<li>反映图像灰度的分布规律，但不能体现图像中的细节变化情况。</li>
+<li>对于一幅给定的图像，其直方图是唯一的。</li>
+<li>不同的图像可以对应相同的直方图。</li>
+</ul>
+<div class="admonition example">
+<p class="admonition-title">Same histogram Different image</p>
+<p><img alt="" src="../images/ch3/image-6.png" /></p>
+</div>
+<p>对直方图进行操作能有效地用于图像增强、压缩和分割, 他们是图像处理的一个实用手段。</p>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><img alt="" src="../images/ch3/image-7.png" />
+<center>缺点：对直方图直接操作会带来噪声</center></p>
+</div>
+<p>显然，用直方图表示图像的特征的缺点是：直方图把结构信息丢失，只知道颜色分布，不知道结构。  </p>
+<h2 id="直方图变换--histogram-transform">直方图变换 | Histogram transform<a class="headerlink" href="#直方图变换--histogram-transform" title="Permanent link">&para;</a></h2>
+<h3 id="变换例子">变换例子<a class="headerlink" href="#变换例子" title="Permanent link">&para;</a></h3>
+<h4 id="直方图均衡化--histogram-equalization">直方图均衡化 | Histogram equalization<a class="headerlink" href="#直方图均衡化--histogram-equalization" title="Permanent link">&para;</a></h4>
+<div class="admonition note">
+<p>直方图均衡化是一种简单有效的图像增强技术，通过改变图像的直方图来改变图像中各像素的灰度，主要用于增强动态范围偏小的图像的对比度。原始图像由于其灰度分布可能集中在较窄的区间，造成图像不够清晰。例如，过曝光图像的灰度级集中在高亮度范围内，而曝光不足将使图像灰度级集中在低亮度范围内。采用直方图均衡化，可以把原始图像的直方图变换为均匀分布（均衡）的形式，这样就增加了像素之间灰度值差别的动态范围，从而达到增强图像整体对比度的效果。换言之，直方图均衡化的基本原理是：对在图像中像素个数多的灰度值（即对画面起主要作用的灰度值）进行展宽，而对像素个数少的灰度值（即对画面不起主要作用的灰度值）进行归并，从而增大对比度，使图像清晰，达到增强的目的。</p>
+</div>
+<p>直方图均衡化：将原图像的非均匀分布的直方图通过变换函数 <span class="arithmatex">\(T\)</span> 修正为均分布的直方图，然后按均衡直方图修正原图像。</p>
+<p>图像均衡化处理后，图像的直方图是平直的，即各灰度级具有相同的出现频数：</p>
+<p><img alt="" src="../images/ch3/image-8.png" /></p>
+<p>所以我们就是要找到变换函数 <span class="arithmatex">\(T\)</span> ，确定如下对应关系：</p>
+<div class="arithmatex">\[s=T(r)\]</div>
+<p>从而确保输入图像中的每一个灰度 <span class="arithmatex">\(r\)</span> 都能转换为新图像中的一个对应的灰度 <span class="arithmatex">\(s\)</span> 。</p>
+<h5 id="变换函数-t---连续灰度变化">变换函数 <span class="arithmatex">\(T\)</span> - 连续灰度变化<a class="headerlink" href="#变换函数-t---连续灰度变化" title="Permanent link">&para;</a></h5>
+<p>假设：  </p>
+<ul>
+<li>令 <span class="arithmatex">\(r\)</span> 和 <span class="arithmatex">\(s\)</span> 分别代表变化前后图像的灰度级，并且 <span class="arithmatex">\(0\leq r,s \leq 1\)</span> 。</li>
+<li><span class="arithmatex">\(P(r)\)</span> 和 <span class="arithmatex">\(P(s)\)</span> 分别为变化前后各级灰度的概率密度函数（<span class="arithmatex">\(r\)</span> 和 <span class="arithmatex">\(s\)</span> 值已归一化，最大灰度值为 <span class="arithmatex">\(1\)</span> ）</li>
+</ul>
+<details class="info">
+<summary>归一化</summary>
+<p>在图像信息处理中，<strong>归一化</strong>(Normalization)是将图像的像素值调整到一个特定的数值范围内（通常是[0,1]），以便统一数据的尺度，便于后续处理、分析、和模型输入。</p>
+<p>归一化方法通常包括<strong>线性归一化</strong>（例如将[0,255]均匀映射到目标范围[0,1]）、<strong>标准化</strong>（常用于深度学习，让数据具有均值为0，标准差为1的分布）</p>
+</details>
+<p>规定：  </p>
+<ul>
+<li>在<span class="arithmatex">\(0\leq r \leq 1\)</span>中，<span class="arithmatex">\(T(r)\)</span> 是单调递增函数，并且 <span class="arithmatex">\(0\leq T(r)\leq 1\)</span>。</li>
+<li>反变换 <span class="arithmatex">\(r = T^{-1}(s)\)</span> 也为单调递增函数。</li>
+</ul>
+<p>考虑到灰度变换不影响像素的位置分布，也不会增减像素数目。所以有：</p>
+<div class="arithmatex">\[\int_{0}^rP(r)dr =\int_{0}^sP(s)ds=\int_{0}^s1ds=s=T(r)\]</div>
+<div class="admonition question">
+<p class="admonition-title">为什么 <span class="arithmatex">\(P(s)= 1\)</span> ？ </p>
+<p>因为这里 <span class="arithmatex">\(P(s)\)</span> 是概率密度函数，因为 <span class="arithmatex">\(s\)</span> 是均匀分布的，所以 <span class="arithmatex">\(P(s)= 1\)</span> 。</p>
+</div>
+<p>因此得到我们需要求的转换函数<span class="arithmatex">\(T(r)\)</span></p>
+<div class="arithmatex">\[s=T(r)=\int_{0}^rP(r)dr\]</div>
+<p>即转换函数 <span class="arithmatex">\(T\)</span> 在变量 <span class="arithmatex">\(r\)</span> 处的函数值 <span class="arithmatex">\(s\)</span>，是原直方图中灰度等级为 <span class="arithmatex">\([0,r]\)</span> 以内的直方图曲线所覆盖的面积。</p>
+<h5 id="变换函数-t---离散灰度变化">变换函数 <span class="arithmatex">\(T\)</span> - 离散灰度变化<a class="headerlink" href="#变换函数-t---离散灰度变化" title="Permanent link">&para;</a></h5>
+<p>设一幅图像的像素总数为 <span class="arithmatex">\(n\)</span> ，分 <span class="arithmatex">\(L\)</span> 个灰度级，<span class="arithmatex">\(n_k\)</span> 为第 <span class="arithmatex">\(k\)</span> 个灰度级出现的像素数，则第 <span class="arithmatex">\(k\)</span> 个灰度级出现的概率为：</p>
+<div class="arithmatex">\[P(r_k)=\dfrac{n_k}{n}\quad (0\leq r_k\leq 1, k=0, 1,2,...L-1)\]</div>
+<p><strong>离散</strong>灰度直方图均衡化的转换公式为：</p>
+<div class="arithmatex">\[s_k=T(r_k)=\sum\limits_{i=0}^kP(r_i)=\sum\limits_{i=0}^k\dfrac{n_i}{n}=\dfrac{1}{n}\sum\limits_{i=0}^k n_i\]</div>
+<p>对于原直方图中的任意一个灰度级 <span class="arithmatex">\(r_k\)</span>，只需将灰度级为 <span class="arithmatex">\([0,r_k]\)</span> 以内的所有像素个数的和除以图像的像素总数，就可以得到转换之后的对应灰度级 <span class="arithmatex">\(s_k\)</span></p>
+<p>其实就是连续灰度变化的“离散”版本</p>
+<h5 id="直方图均衡化的步骤">直方图均衡化的步骤<a class="headerlink" href="#直方图均衡化的步骤" title="Permanent link">&para;</a></h5>
+<p>以灰度直方图为例：</p>
+<ol>
+<li>计算原始图像的灰度直方图 <span class="arithmatex">\(n_k\)</span>。</li>
+<li>计算原始图像的像素总个数（注意：对于 bmp 文件，这一数值并不储存在图像信息头的 <code>biSizeImage</code> 中，因为<code>biSizeImage</code> = <code>biwidth'</code> * <code>biheight</code>，其中<code>biwidth</code>包括了 padding 字节）。</li>
+<li>计算原始图像的灰度分布频率 <span class="arithmatex">\(P (r_k)\)</span>.</li>
+<li>计算原始图像的灰度累积分布频率 <span class="arithmatex">\(s_k\)</span>.</li>
+<li>将归一化的 <span class="arithmatex">\(s_k\)</span> 乘以 <span class="arithmatex">\(L - 1\)</span> 再四舍五入，以使得均衡化后图像的灰度级与归一化前的原始图像一致。（其中 L 是图像的灰度级数，如对于8位图像，L=256）</li>
+<li>根据以上映射关系，参照原始图像中的像素，写出直方图均衡化之后的图像。由于“四舍五入”的关系，几个相邻的 <span class="arithmatex">\(s_k\)</span> 可能会落入同一个灰度级。也就是说离散直方图均衡化后，不同灰度的概率可能不同。</li>
+</ol>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>设图像有 <span class="arithmatex">\(64*64=4096\)</span> 个像素，有8个灰度级，灰度分布为:</p>
+<p><img alt="" src="../images/ch3/image-9.png" />
+1. 计算 <span class="arithmatex">\(s_k\)</span>(利用前缀和)
+2. 把计算的 <span class="arithmatex">\(s_k\)</span> 就近安排到8个灰度级中</p>
+<p><img alt="" src="../images/ch3/image-10.png" /></p>
+<p>通过直方图，可以看出，灰度分布比之前更加均匀了。</p>
+<p><img alt="" src="../images/ch3/image-11.png" /></p>
+</div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>按照均衡化的要求，在均衡化后的结果直方图中，各灰度级发生的概率应该是相同的，如右上图所示连续灰度级均衡化结果那样。但是，如刚刚中离散灰度级均衡化后，各灰度级出现的概率并不完全一样。为什么？</p>
+<ul>
+<li>步骤2中，所得的 <span class="arithmatex">\(s_k\)</span> 不可能正好等于8级灰度值中的某一级，因此需要就近归入某一个灰度级中。这样，相邻的多个 <span class="arithmatex">\(s_k\)</span> 就可能落入同一个灰度级，需要在步骤3时将处于同一个灰度级的像素个数累加。因此，离散灰度直方图均衡化操作以后，每个灰度级处的概率密度（或像素个数）并不完全一样。</li>
+</ul>
+</div>
+<p>直方图均衡化实质上是减少图像的灰度级以换取对比度的加大。在均衡过程中，原来的直方图上出现概率较小的灰度级被归入很少几个甚至一个灰度级中，故得不到增强。若这些灰度级所构成的图像细节比较重要，则需采用局部区域直方图均衡化处理。</p>
+<h4 id="直方图匹配--histogram-fitting">直方图匹配 | Histogram fitting<a class="headerlink" href="#直方图匹配--histogram-fitting" title="Permanent link">&para;</a></h4>
+<ul>
+<li>所谓直方图匹配，就是修改一幅图像的直方图，使得它与另一幅图像的直方图匹配或具有一种预先规定的函数形状。  </li>
+<li>直方图匹配的目标，是突出我们感兴趣的灰度范围，使图像质量改善。  </li>
+<li>利用直方图均衡化操作，可以实现直方图匹配过程。</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Difference between qualization and fitting</p>
+<p>直方图反映了图像全局的像素点灰度值的分布情况，而直方图匹配又是调整图像的直方图，所以直方图匹配的结果是调整了图像的全局亮度、对比度，这是一种调整图像对比度的图像增强方法。调整图像直方图的方法还有直方图均衡化，只不过直方图均衡化是自动地将直方图均匀摊开了，目的是图像的灰度分布尽可能地均匀。直方图匹配可以用在想要把图像调整为某种特定的对比度图像，或者在拥有两幅图像时将其中一幅图像调整为与另一幅对比度、色调相近的图像。</p>
+</div>
+<p>具体过程：<br />
+1. 对原始图像进行直方图均衡化：<span class="arithmatex">\(S=T(r)\)</span>
+2. 假定对求得的图像，也就是规定化之后的图像进行直方图均衡化:<span class="arithmatex">\(V=G(z)\)</span>
+3. 因为都是进行直方图均衡化，所以有<span class="arithmatex">\(S=V\)</span>，于是有<span class="arithmatex">\(z=G^{-1}(V)=G^{-1}(S)=G^{-1}(T(r))\)</span></p>
+<p>具体情境下往往是离散的：</p>
+<p>类似步骤 1 和 2 ，分别计算获得两张表（参见直方图均衡化中的算例），从中选取一对 <span class="arithmatex">\(v\)</span> 、<span class="arithmatex">\(s\)</span> ，使 <span class="arithmatex">\(v = s\)</span>，并从两张表中查出对应的<span class="arithmatex">\(z\)</span>、<span class="arithmatex">\(r\)</span>。这样，原始图像中灰度级为 <span class="arithmatex">\(r\)</span> 的所有像素都映射成灰度级 <span class="arithmatex">\(z\)</span> ，最终得到所期望的图像。</p>
+<p>直方图（灰度）变换用以确定变换前后两个直方图灰度级之间对应关系的变换函数。经过直方图变换以后，原图像中的任何一个灰度值都唯一对应一个新的灰度值，从而构成一幅新图像。  </p>
+<p>直方图均衡化、直方图匹配都属于直方图变换操作。</p>
+<h4 id="图像增强--image-enhancement">图像增强 | Image enhancement<a class="headerlink" href="#图像增强--image-enhancement" title="Permanent link">&para;</a></h4>
+<ul>
+<li>采用一系列技术去改善图像的视觉效果，或将图像转换成一种更适合于人或机器进行分析处理的形式。</li>
+<li>图像增强并不以图像保真为准则，而是有选择地突出某些对人或机器分析有意义的信息，抑制无用信息，提高图像的使用价值。</li>
+<li>
+<p>根据任务目标突出图像中感兴趣的信息，消除干扰，改善图像的视觉效果或增强便于机器识别的信息。</p>
+<div class="admonition example">
+<p class="admonition-title">Luminance adjustment</p>
+<p><img alt="" src="../images/ch3/image-12.png" /></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Contrast adjustment</p>
+<p><img alt="" src="../images/ch3/image-13.png" /></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Color quantization</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Figure 1</label><label for="__tabbed_1_2">Figure 2 - More informative one</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="" src="../images/ch3/image-14.png" /></p>
+<p>Color quantization（颜色量化）：用于将图像的颜色数量从原本的丰富色彩减少到一个较小的色彩集。</p>
+<p>这两张图的意思大概都是将色彩通道的灰度级减少</p>
+</div>
+<div class="tabbed-block">
+<p><center><img alt="" src="../images/ch3/image-15.png" width="70%" /></center></p>
+</div>
+</div>
+</div>
+</div>
+</li>
+</ul>
+<h2 id="变换分类">变换分类<a class="headerlink" href="#变换分类" title="Permanent link">&para;</a></h2>
+<p>根据变换函数类型的不同，直方图灰度变换可以分为线性变换和非线性变换两大类。</p>
+<h3 id="线性变换--linear-grayscale-transform">线性变换 | Linear grayscale transform<a class="headerlink" href="#线性变换--linear-grayscale-transform" title="Permanent link">&para;</a></h3>
+<p>直方图灰度的线性变换函数可以表示为</p>
+<div class="arithmatex">\[s=T(r)=kx+b\]</div>
+<div class="admonition note">
+<ul>
+<li><span class="arithmatex">\(r\)</span> 为输入点的灰度值（级）</li>
+<li><span class="arithmatex">\(s\)</span> 为相应输出点的灰度值（级）</li>
+<li><span class="arithmatex">\(k\)</span>、<span class="arithmatex">\(b\)</span>为常数。<span class="arithmatex">\(k&lt;1\)</span>时表示灰度值被抑制，<span class="arithmatex">\(b\)</span>为图像的抬升</li>
+</ul>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p><img alt="" src="../images/ch3/image-16.png" /></p>
+</div>
+<h4 id="拉伸--contrast-stretching">拉伸 | Contrast stretching<a class="headerlink" href="#拉伸--contrast-stretching" title="Permanent link">&para;</a></h4>
+<p><center><img alt="" src="../images/ch3/image-17.png" width="70%" /></center></p>
+<p>输入图像f(x,y)灰度范围为[a,b]
+输出图像g(x,y)灰度范围为[c,d]</p>
+<div class="admonition example">
+<p class="admonition-title">Contrast streching</p>
+<div class="tabbed-set tabbed-alternate" data-tabs="2:2"><input checked="checked" id="__tabbed_2_1" name="__tabbed_2" type="radio" /><input id="__tabbed_2_2" name="__tabbed_2" type="radio" /><div class="tabbed-labels"><label for="__tabbed_2_1">Example 1</label><label for="__tabbed_2_2">Example 2</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<p><img alt="" src="../images/ch3/image-18.png" /></p>
+<p>其实也是一种增强对比度的方式</p>
+</div>
+<div class="tabbed-block">
+<p><img alt="" src="../images/ch3/image-19.png" /></p>
+<p>其实也是一种增强对比度的方式</p>
+</div>
+</div>
+</div>
+</div>
+<h4 id="分段拉伸">分段拉伸<a class="headerlink" href="#分段拉伸" title="Permanent link">&para;</a></h4>
+<p><img alt="" src="../images/ch3/image-20.png" /></p>
+<p>利用分段直方图变换，可以将感兴趣的灰度范围线性扩展，同时相对抑制不感兴趣的灰度区域。</p>
+<h3 id="非线性变换--nonlinear-histogram-transform">非线性变换 | 　Nonlinear histogram transform<a class="headerlink" href="#非线性变换--nonlinear-histogram-transform" title="Permanent link">&para;</a></h3>
+<p>我们有对数变换(Logarithmic transform)和指数变换(Exponential transform)</p>
+<p><center><img alt="" src="../images/ch3/image-21.png" width="80%" /></center></p>
+<p><center><img alt="" src="../images/ch3/image-22.png" width="80%" /></center></p>
+<div class="admonition example">
+<p class="admonition-title">Nonlinear histogram transform</p>
+<p><img alt="" src="../images/ch3/image-23.png" /></p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  回到页面顶部
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="页脚" >
+        
+          
+          <a href="../ch2/" class="md-footer__link md-footer__link--prev" aria-label="上一页: Chapter 2 | 二值图像与形态学">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                上一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter 2 | 二值图像与形态学
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../ch4/" class="md-footer__link md-footer__link--next" aria-label="下一页: Chapter 4 | 几何变换">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                下一页
+              </span>
+              <div class="md-ellipsis">
+                Chapter 4 | 几何变换
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2022-2024 <a href="https://github.com/Ader817" target="_blank" rel="noopener">Ader817</a>
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.path", "navigation.prune", "navigation.tabs", "navigation.indexes", "navigation.top", "navigation.footer", "search.highlight", "search.suggest", "toc.follow", "content.code.annotate", "content.code.copy"], "search": "../../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+        <script src="../../../assets/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
