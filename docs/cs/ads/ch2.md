@@ -207,7 +207,7 @@
 
 下面的这个视频就比较生动地诠释了红黑树的构建过程
 
-👉**[红黑树的构建（自视频 10:52 起）](https://www.bilibili.com/video/BV1uZ4y1P7rr/)**
+👉**[红黑树的构建（自视频 10:52 起）](https://www.bilibili.com/video/BV1Xm421x7Lg?t=652)**
 
 ---
 
@@ -366,7 +366,7 @@
     === "Frame 2"
         ![](./assets/ch2/ch2.41.png)
 
-        兄弟为黑，父亲必定为红
+        兄弟为红，父亲必定为黑
 
         先执行**兄父变色**
     === "Frame 3"
@@ -385,7 +385,19 @@
 ![](./assets/ch2/ch2.44.png)
 
 可以参照这个删除案例的动画做复习巩固
-👉**[红黑树删除-案例 自视频20:41](https://www.bilibili.com/video/BV16m421u7Tb)**
+👉**[红黑树删除-案例 自视频20:41](https://www.bilibili.com/video/BV16m421u7Tb?t=1241)**
+
+!!! tip ""
+    Rotation 在不同数据结构、不同操作中出现的数量：
+
+    |Option|AVL Tree|RB Tree|
+    |----|----|----|
+    |Insertion|$\leq 2$|$\leq 2$|
+    |Deletion|$O(\log N)$|$\leq 3$|
+
+    知道这个结论就可以很轻松地解决这道题目
+
+    ![](./assets/ch2/ch2.68.png)
 
 ---
 

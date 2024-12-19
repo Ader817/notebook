@@ -8,16 +8,64 @@ copyright: Copyright &copy; 2022-2024 <a href="https://github.com/Ader817" targe
 
 theme: 
   name: 'material'
+
   language: 'zh'
+
   features:
-    - content.code.annotate
-    - navigation.tracking
-    - navigation.tabs
-    - navigation.indexes
-    - navigation.top
+      # - header.autohide #自动隐藏头栏
+      # - announce.dismiss # 公告栏
+      # - navigation.instant #这玩意跟公式爆了
+      - navigation.tracking # 在url中使用标题定位锚点
+      - navigation.path # 显示当前路径
+      - navigation.prune # 侧边栏自动折叠
+      - navigation.tabs # 顶部显示导航顶层nav（也就是第一个节点）
+      # - navigation.tabs.sticky # 滚动是隐藏顶部nav，需要配合navigation.tabs使用
+      - navigation.indexes # 指定节点index pages ，跟instant不兼容
+      - navigation.top # 一键回顶部
+      - navigation.footer # 底部导航
+      - search.highlight # 搜索高亮
+      - search.suggest # 搜索建议
+      - toc.follow # toc 跟随
+      - content.code.annotate # 代码行号
+      - content.code.copy # 代码复制
+  
   font: false
-  palette:
-    - scheme: default
+
+  palette: 
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: blue grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: 切换至夜间模式
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent:  teal
+      toggle:
+        icon: material/brightness-4
+        name: 切换至日间模式
+
+  icon:
+    admonition:
+      note: octicons/tag-16
+      abstract: octicons/checklist-16
+      info: octicons/info-16
+      tip: octicons/squirrel-16
+      success: octicons/check-16
+      question: octicons/question-16
+      warning: octicons/alert-16
+      failure: octicons/x-circle-16
+      danger: octicons/zap-16
+      bug: octicons/bug-16
+      example: octicons/beaker-16
+      quote: octicons/quote-16
+    logo: octicons/paper-airplane-16
+  favicon: assets/images/favicon.ico
 
 nav:
   - Home:
@@ -28,16 +76,34 @@ nav:
       - 简介: cs/pas/index.md
       - Chapter1: cs/pas/ch1.md
       - Chapter2: cs/pas/ch2.md
+      - Chapter3: cs/pas/ch3.md
     - "高级数据结构与算法分析":
+      - Chapter 0 | Amortized Analysis: cs/ads/ch0.md
+      - Chapter 1 | AVL Tree & Splay Tree: cs/ads/ch1.md
       - Chapter 2 | Red Black Tree & B+ Tree: cs/ads/ch2.md
       - Chapter 3 | Inverted File Index: cs/ads/ch3.md
       - Chapter 4 | Leftist Heap & Skew Heap: cs/ads/ch4.md
       - Chapter 5 | Binomial Queue & Fibonacci Heap: cs/ads/ch5.md
       - Chapter 6 | Search and Backtracing: cs/ads/ch6.md
+      - Chapter 7 | Divide and Conquer: cs/ads/ch7.md
+      - Chapter 8 | Dynamic Programming: cs/ads/ch8.md
+      - Chapter 9 | Greedy Algorithm: cs/ads/ch9.md
+      - Chapter 10 | NP Completeness: cs/ads/ch10.md
+      - Chapter 11 | Approximation: cs/ads/ch11.md
+      - Problem set: cs/ads/problem.md
     - "图像信息处理":
       - Chapter 1 | 成像与图像的基本属性: cs/dip/ch1.md
       - Chapter 2 | 二值图像与形态学: cs/dip/ch2.md
-      
+      - Chapter 3 | 图像灰度变换: cs/dip/ch3.md
+      - Chapter 4 | 几何变换: cs/dip/ch4.md
+      - Chapter 5 | 卷积和滤波: cs/dip/ch5.md
+      - Chapter 6 | 傅里叶变换: cs/dip/ch6.md
+
+    - "计算机组成原理":
+      - Chapter 1 | 计算机概要与技术: cs/co/ch1.md
+      - Chapter 2 | 计算机的算术运算: cs/co/ch2.md
+      - Chapter 3 | 指令：计算机的语言: cs/co/ch3.md
+      - Chapter 4 | 处理器的设计: cs/co/ch4.md
   - Writeups:
     - writeups/index.md
     - "2024":
@@ -83,7 +149,16 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+extra_css:
+  - assets/stylesheets/extra.css
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  
 extra_javascript:
-  - javascripts/mathjax.js
-  - https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js
-  - https://cdn.jsdelivr.net/gh/TRHX/CDN-for-itrhx.com@3.0.8/js/maodian.js
+  - assets/javascripts/katex.js 
+  # - assets/javascripts/mathjax.js
+  # - https://cdn.jsdelivr.net/gh/Wcowin/Wcowin.github.io@main/docs/javascripts/extra.js  # extra的cdn
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+  # - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js

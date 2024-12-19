@@ -17,7 +17,9 @@
 ---
 
 ### 概述
-二项队列是一种优先队列的实现方式。二叉堆作为基本的堆已经足够好，只是合并操作的复杂度不太能接受（单次$O(N)$）。为了支持高效的合并操作，左偏树和斜堆出现。**但左偏树和斜堆由于不再是完全二叉树，因此实现时必须用到指针式结构，从而它们的建堆反而不能像二叉堆一样以$O(N)$完成**。二项队列则可以兼顾，既以$O(N)$完成建堆，又以$O(log \ N)$完成合并，同时其它操作的复杂度不降低。因此，二项队列是十分重要的。
+二项队列是一种优先队列的实现方式。二叉堆作为基本的堆已经足够好，只是合并操作的复杂度不太能接受（单次$O(N)$）。为了支持高效的合并操作，左偏树和斜堆出现。**但左偏树和斜堆由于不再是完全二叉树，因此实现时必须用到指针式结构**。
+
+而二项队列在这些操作上的时间复杂度与左斜堆非常类似：都有$O(logn)$的合并、删除、插入；$O(n)$的建堆（队）；摊还意义上$O(1)$的插入；并且二项队列往往用 leftchild-rightsibiling 的指针结构实现
 
 ??? question "贴一道 PTA 的题目"
     We can perform BuildHeap for leftist heaps by considering each element as a one-node leftist heap, placing all these heaps on a queue, and performing the following step: Until only one heap is on the queue, dequeue two heaps, merge them, and enqueue the result.  Which one of the following statements is FALSE?
@@ -29,6 +31,8 @@
     C.the time complexity $T(N)=O(\frac{N}{2}​log{2^0}+\frac{N}{2^2}​log2^1+\frac{N}{2^3}​log2^2+⋯+\frac{N}{2K}log2^{K−1})$ for some integer $K$ so that $N=2K$
 
     D.the worst case time complexity of this algorithm is $Θ(NlogN)$
+
+    --> **D选项错误**，应该是$\Theta(N)$，所以我们说左斜堆的建堆操作是可以达到$O(N)$的
 
 ---
 
@@ -55,7 +59,7 @@
 
     4、二项树$B_k$树根的高度是$k$
 
-    这4条性质的证明就不赘述了，从图上可以轻易看出。另外二项树还有一个更有意思的性质：二项树$B_k$中，高度为$h$的结点共有$C_k^h = \binom{k}{d}$个。这个性质容易用数学归纳法证明
+    这4条性质的证明就不赘述了，从图上可以轻易看出。另外二项树还有一个更有意思的性质：二项树$B_k$中，高度为$h$的结点共有$C_k^h = \binom{k}{h}$个。这个性质容易用数学归纳法证明
 
 有了二项树的定义，我们就可以介绍二项队列了。
 
@@ -156,6 +160,21 @@ struct Collection {
     }
     ```
 
+    <center>![](./assets/ch5/image-5.png){width=60%}</center>
+
+    其中 CombineTrees() 函数的定义如下：
+    ```C
+    BinTree CombineTrees( BinTree T1, BinTree T2 ) {  /* merge equal-sized T1 and T2 */
+        if ( T1->Element > T2->Element )
+            /* attach the larger one to the smaller one */
+            return CombineTrees( T2, T1 );
+        /* insert T2 to the front of the children list of T1 */
+        T2->NextSibling = T1->LeftChild;
+        T1->LeftChild = T2;
+        return T1;
+    }
+    ```
+
 ---
 
 #### Insert
@@ -178,13 +197,13 @@ struct Collection {
 
 ??? note "DeleteMin"
     ```C
-    ElementType
-    DeleteMin(BinQueue H) {
+    ElementType DeleteMin(BinQueue H) {
         int i, j;
-        int MinTree; /* The tree with the minimum item */
+        int MinTree; /* MinTree is the index of the tree with the minimum item */
+        
         BinQueue DeletedQUeue;
         Position DeletedTree, OldRoot;
-        ElementType MinItem;
+        ElementType MinItem; /* the minimum item to be returned */
 
         if(IsEmpty(H)) {
             Error("Empty binomial queue");
@@ -192,30 +211,34 @@ struct Collection {
         }
 
         MinItem = Infinity;
-        for (i = 0; i < MaxTrees; i++) {
+        for (i = 0; i < MaxTrees; i++) { /* Step 1: find the minimum item */
+        
             if (H->TheTrees[i] &&
                 H->TheTrees[i]->Element < MinItem) {
                     /* Update minimum */
                     MinItem = H->TheTrees[i]->Element;
                     MinTree = i;
-                }
-        }
+                }/* end if */
+                
+        } /* end for-i-loop */
+        
 
         DeletedTree = H->TheTrees[Mintree];
-        OldRoot = DEletedTree;
+        H->TheTrees[MinTree] = NULL: /* Step 2: remove the MinTree from H => H’ */ 
+        OldRoot = DEletedTree; /* Step 3.1: remove the root */ 
         DeletedTree = DeletedTree->LeftChild;
         free(OldRoot);
 
-        DeletedQueue = Initialize();
-        DeletedQueue->CurrentSize = (1 << MinTree) - 1
+        DeletedQueue = Initialize(); /* Step 3.2: create H” */ 
+        DeletedQueue->CurrentSize = (1 << MinTree) - 1 /* 2MinTree – 1 */
+        
         for (j = MinTree - 1; j >= 0; j--) {
             DeletedQueue->TheTrees[j] = DeletedTree;
             DeletedTree = DeletedTree->NextSibling;
             DeletedQueue->TheTrees[j]->NextSibling = NULL:
-        }
+        } /* end for-j-loop */
 
-        H->TheTrees[MinTree] = NULL;
-        H->CurrentSize -= DeletedQueue->CurrentSize + 1;
+        H->CurrentSize -= DeletedQueue->CurrentSize + 1; /* DeletedQueue size + DeletedMin size(1) */
 
         Merge(H,DeletedQueue);
         return MinItem;
@@ -227,7 +250,7 @@ struct Collection {
 
 ---
 
-### 分析
+### 摊还分析
 这里我们解决前面提到的**插入的摊还时间复杂度分析**（或者说通过连续插入的方式建队的时间复杂度分析）
 
 我们得出的结论如下：
