@@ -622,6 +622,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -2431,7 +2435,7 @@ offset 可以是 3. 因为 RISC-V 是可以不对齐的。（实际上 sh offset
 <div class="admonition example">
 <p class="admonition-title">Loading a 32-bit constant</p>
 <p><center><img alt="" src="../images/ch3/image-25.png" width="70%" /></center></p>
-<p>我们最终想放入寄存器的值是 32 位常数 <code>0x003D0</code>. 先利用 <code>lui</code> 将高 20 位 976 放入寄存器中，随后利用加法指令加上 低 12 位，即 2304.  </p>
+<p>我们最终想放入寄存器的值是 32 位常数 <code>0x003D0900</code>. 先利用 <code>lui</code> 将高 20 位 976 放入寄存器中，随后利用加法指令加上 低 12 位，即 2304.  </p>
 </div>
 <h3 id="branch-addressing">Branch Addressing<a class="headerlink" href="#branch-addressing" title="Permanent link">&para;</a></h3>
 <p>SB-type
@@ -2500,6 +2504,10 @@ far_target:              # 跳转目标代码
 </details>
 <hr />
 <h2 id="synchronization-in-risc-v">Synchronization in RISC-V<a class="headerlink" href="#synchronization-in-risc-v" title="Permanent link">&para;</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>下面这些内容与多核编程/多进程比较相关？貌似不是本课程和考试的重点，讲的也不是很清楚</p>
+</div>
 <ul>
 <li>Two processors sharing an area of memory<ul>
 <li>P1 writes, then P2 reads</li>
@@ -2525,19 +2533,27 @@ write</li>
 把地址 rs1 的值放到寄存器 rd 中，同时</p>
 <p>Store conditional: <code>sc.d rd,(rs1),rs2</code>
 把寄存器 rs2 的值放入地址 rs1.<br />
-如果成功那么 rd 里面是 0. 如果上条指令 load 后，这个地方的值被改变了，那么就失败了，返回 0. </p>
+如果成功那么 rd 里面是 0. 如果上条指令 load 后，这个地方的值被改变了，那么就失败了，返回 1 </p>
+<p>用比较简单的话来讲，就是 <code>lr.d</code> 后，CPU霸道的标记了这个内存地址，其他CPU不允许再动，如果其他CPU对这个内存地址做了操作，那么再进行 <code>sc.d</code> 后，会失败，把 rd 置为 1</p>
 <div class="admonition example">
 <p class="admonition-title">atomic swap</p>
 <p><center><img alt="" src="../images/ch3/image-32.png" width="70%" /></center></p>
+<p>一直到这一对 Atmoic read/write operation 成功执行才退出</p>
 </div>
 <div class="admonition example">
 <p class="admonition-title">lock</p>
 <p><center><img alt="" src="../images/ch3/image-33.png" width="70%" /></center></p>
+<p>大致理解一下：内存地址空间可能被许多进程抢着用，进程需要知道这块内存地址是否被别的进程占用--也就是 lock 的用处</p>
+<p>如果某块地址 lock 为 0，那么我们的进程就可以使用这块地址，将这块地址抢过来后再将 lock 设为 1，这样其他进程就动不了这块内存了</p>
 <p>地址 x20 放的是锁，如果锁为 0, 说明我们现在可以存入数据，则我们获得锁随后存入，并释放锁。否则需要等锁释放了才能存。</p>
 </div>
 <h2 id="translating-and-starting-a-program">Translating and starting a program<a class="headerlink" href="#translating-and-starting-a-program" title="Permanent link">&para;</a></h2>
 <p><center><img alt="" src="../images/ch3/image-34.png" width="70%" /></center></p>
 <h3 id="producing-an-object-module">Producing an Object Module<a class="headerlink" href="#producing-an-object-module" title="Permanent link">&para;</a></h3>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>下面的许多内容都只是做个了解，具体会在编译原理中介绍</p>
+</div>
 <p>Provides information for building a complete program from the pieces(Header).  </p>
 <p><center><img alt="" src="../images/ch3/image-35.png" width="70%" /></center></p>
 <ul>

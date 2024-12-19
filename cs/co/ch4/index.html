@@ -622,6 +622,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1814,7 +1818,7 @@
 
 
 <h1 id="the-processor">The Processor<a class="headerlink" href="#the-processor" title="Permanent link">&para;</a></h1>
-<p><center><img alt="" src="../image.png" /></center></p>
+<p><center><img alt="" src="../images/ch4/image.png" /></center></p>
 <h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
 <h3 id="instruction-execution-overview">Instruction Execution Overview<a class="headerlink" href="#instruction-execution-overview" title="Permanent link">&para;</a></h3>
 <p>CPU performance factors</p>
@@ -1838,7 +1842,7 @@ Determined by CPU <em>hardware</em></li>
 <li>branches  </li>
 </ul>
 <h3 id="cpu-overview">CPU Overview<a class="headerlink" href="#cpu-overview" title="Permanent link">&para;</a></h3>
-<p><center><img alt="" src="../image-1.png" /></center></p>
+<p><center><img alt="" src="../images/ch4/image-1.png" /></center></p>
 <ul>
 <li>Use ALU to calculate<ul>
 <li>Arithmetic result</li>
@@ -1857,7 +1861,7 @@ Determined by CPU <em>hardware</em></li>
 </details>
 <p>Can’t just join wires together -- <em>Use multiplexers</em>.  </p>
 <h3 id="control">Control<a class="headerlink" href="#control" title="Permanent link">&para;</a></h3>
-<p><center><img alt="" src="../image-2.png" /></center>
+<p><center><img alt="" src="../images/ch4/image-2.png" /></center>
 * different sources for unit
 * read/write memory</p>
 <h2 id="logical-design-convention">Logical Design Convention<a class="headerlink" href="#logical-design-convention" title="Permanent link">&para;</a></h2>
@@ -1878,8 +1882,8 @@ Store information</li>
 </ul>
 <details class="note">
 <summary>逻辑电路内容简要复习</summary>
-<p><center><img alt="" src="../image-3.png" width="70%" /></center></p>
-<p><center><img alt="" src="../image-4.png" /></center></p>
+<p><center><img alt="" src="../images/ch4/image-3.png" width="70%" /></center></p>
+<p><center><img alt="" src="../images/ch4/image-4.png" /></center></p>
 </details>
 <h2 id="building-a-datapath">Building a datapath<a class="headerlink" href="#building-a-datapath" title="Permanent link">&para;</a></h2>
 <p>Elements that process data and addresses in the CPU.  </p>
@@ -1913,7 +1917,7 @@ Store information</li>
 <li><strong>Modify PC for branch instructions</strong></li>
 </ul>
 <h3 id="instruction-fetching">Instruction fetching<a class="headerlink" href="#instruction-fetching" title="Permanent link">&para;</a></h3>
-<p><img alt="" src="../image-5.png" /></p>
+<p><img alt="" src="../images/ch4/image-5.png" /></p>
 <ul>
 <li>R-format Instructions  <ul>
 <li>Read 2 register operands</li>
@@ -1949,37 +1953,33 @@ use ALU, substract and check Zero output</li>
 </ul>
 <h3 id="path-built-using-multiplexer">Path Built using Multiplexer<a class="headerlink" href="#path-built-using-multiplexer" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p>R-type instruction Datapath 
-    <div align=center> <img src="http://cdn.hobbitqia.cc/202303312308474.png" width = 50%/> </div></p>
-</li>
+<li>R-type instruction Datapath </li>
+</ul>
+<p><img alt="" src="../images/ch4/new-image.png" /></p>
+<ul>
 <li>
 <p>I-type instruction Datapath</p>
 <ul>
 <li>For ALU</li>
 <li>For load<br />
-<div align=center> <img src="http://cdn.hobbitqia.cc/202303312310587.png" width = 50%/> </div></li>
+<img alt="" src="../images/ch4/new-image-1.png" /></li>
 </ul>
 </li>
 <li>
 <p>S-type (store) instruction Datapath</p>
 </li>
 </ul>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202303312327879.png" width = 50%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-2.png" /></p>
 <ul>
 <li>SB-type (branch) instruction Datapath</li>
 </ul>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202303312328985.png" width = 50%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-3.png" /></p>
 <ul>
 <li>UJ-type instruction Datapath</li>
 </ul>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202303312329165.png" width = 50%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-4.png" /></p>
 <p><strong>Full datapath</strong></p>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202303312331894.png" width = 50%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-5.png" /></p>
 <h2 id="a-simple-implementation-scheme">A simple Implementation Scheme<a class="headerlink" href="#a-simple-implementation-scheme" title="Permanent link">&para;</a></h2>
 <p>Analyse for cause and effect</p>
 <ul>
@@ -1988,14 +1988,12 @@ use ALU, substract and check Zero output</li>
 <li>Controlling the <em>flow of data</em> (multiplexor inputs)</li>
 <li>ALU's operation based on <em>instruction type</em> and <em>function</em> code</li>
 </ul>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202303312348754.png" width = 50%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-6.png" /></p>
 <ul>
 <li>7 个控制信号和一个 4 位的 <code>ALU_operation</code>.  </li>
 <li>MemToReg 有三个源，分别是 <code>load</code> 指令，PC 来的(<code>jal, jalr</code> 存 PC+4), ALU 出来的（R 型，I 型）</li>
 </ul>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202303312353531.png" width = 50%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-7.png" /></p>
 <h3 id="alu-symbol--control">ALU symbol &amp; Control<a class="headerlink" href="#alu-symbol--control" title="Permanent link">&para;</a></h3>
 <p>ALU used for</p>
 <ul>
@@ -2004,25 +2002,20 @@ use ALU, substract and check Zero output</li>
 <li>R-type: F depends on opcode</li>
 </ul>
 <p>因此我们进行两级解码 2-level decode. </p>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202303312358260.png" width = 60%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-8.png" /></p>
 <h4 id="first-level">First level<a class="headerlink" href="#first-level" title="Permanent link">&para;</a></h4>
 <ul>
 <li>一级解码后，可以决定除了 <code>ALU_opration</code> 以外的控制信号</li>
 <li>同时我们会解码出 2 位的 <code>ALU_op</code>. </li>
 </ul>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304010000818.png" width = 60%/> </div>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304010002960.png" width = 60%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-9.png" /></p>
 <h4 id="second-level">second level<a class="headerlink" href="#second-level" title="Permanent link">&para;</a></h4>
 <p>ALU operation is decided by 2-bit ALUOp derived 
 from opcode, and funct7 &amp; funct3 fields of the 
-instruction.  </p>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304221553193.png" width = 60%/> </div>
-
+instruction.<br />
+<img alt="" src="../images/ch4/new-image-10.png" /></p>
 <h3 id="datapath-with-control">Datapath with Control<a class="headerlink" href="#datapath-with-control" title="Permanent link">&para;</a></h3>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304221556020.png" width = 60%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-11.png" /></p>
 <p>蓝线为控制通路，会决定数据的流向。</p>
 <h2 id="an-overview-of-pipelining">An overview of pipelining<a class="headerlink" href="#an-overview-of-pipelining" title="Permanent link">&para;</a></h2>
 <h3 id="performance">Performance<a class="headerlink" href="#performance" title="Permanent link">&para;</a></h3>
@@ -2032,8 +2025,7 @@ instruction.  </p>
 <p>Longest delay determines clock period. (<code>ld</code>)<br />
 We will improve performance by pipelining.  </p>
 <h3 id="pipelining">Pipelining<a class="headerlink" href="#pipelining" title="Permanent link">&para;</a></h3>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304221621197.png" width = 50%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-12.png" /></p>
 <p>我们可以把每条指令都划分为这么几步：</p>
 <ol>
 <li><strong>IF</strong>: Instruction fetch from memory</li>
@@ -2042,16 +2034,14 @@ We will improve performance by pipelining.  </p>
 <li><strong>MEM</strong>: Access memory operand</li>
 <li><strong>WB</strong>: Write result back to register</li>
 </ol>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304221628989.png" width = 55%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-13.png" /></p>
 <p><span class="arithmatex">\(CPI \approx 1\)</span></p>
 <ul>
 <li>One instruction will be issued (or finished) each cycle.  </li>
 <li>During any cycle, one instruction is present in each stage.  </li>
 </ul>
 <h4 id="pipeline-performance">Pipeline Performance<a class="headerlink" href="#pipeline-performance" title="Permanent link">&para;</a></h4>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304221631201.png" width = 60%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-14.png" /></p>
 <p>不同操作的时间也不同，流水线 CPU 的时钟周期为最长的操作时间。</p>
 <p>流水线可以提高吞吐量(throughput) 但并没有改变每条指令的执行时间(Latency)。  </p>
 <h4 id="risc-v-isa-designed-for-pipelining">RISC-V ISA designed for pipelining<a class="headerlink" href="#risc-v-isa-designed-for-pipelining" title="Permanent link">&para;</a></h4>
@@ -2085,7 +2075,7 @@ instruction.  </li>
 <p>An instruction depends on completion of data access by a previous instruction.  </p>
 <div class="admonition example">
 <p class="admonition-title">Example</p>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202304221655907.png" width = 60%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-15.png" /></p>
 <p>注意这里 WB 是在前半个周期将数据写入寄存器, ID 是在后半个周期将数据从寄存器中取出。<br />
 但实际上我们要用的结果在 EX 时已经产生了。</p>
 </div>
@@ -2099,19 +2089,19 @@ Use result when it is computed  </p>
 </ul>
 <details class="example">
 <summary>Example</summary>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202304221659717.png" width = 60%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-16.png" /></p>
 </details>
 </li>
 </ul>
 <p><strong>Load-Use Data Hazard</strong></p>
 <details class="example">
 <summary>Example</summary>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202304221702990.png" width = 60%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-17.png" /></p>
 </details>
 <p>可以把后续与这些寄存器无关的指令先拿到这里执行。（Code Scheduling）</p>
 <details class="example">
 <summary>Example</summary>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202304252119432.png" width = 60%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-18.png" /></p>
 <p>修改后, <code>ld x2, 8(x0)</code> 已经从内存中读出数据还没有写回寄存器，可以直接送到 <code>add x3, x1, x2</code> 中去。</p>
 </details>
 <h4 id="control-hazards">Control Hazards<a class="headerlink" href="#control-hazards" title="Permanent link">&para;</a></h4>
@@ -2123,7 +2113,7 @@ Use result when it is computed  </p>
 <p>可以预测，或者将比较放在 ID 级。</p>
 <details class="example">
 <summary>Example</summary>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202304252133496.png" width = 60%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-19.png" /></p>
 </details>
 <p><strong>Branch Prediction</strong><br />
 更长的流水线不能很早地决定分支结果。<br />
@@ -2147,25 +2137,23 @@ Use result when it is computed  </p>
 </ul>
 </div>
 <h2 id="risc-v-pipelined-datapath">RISC-V Pipelined Datapath<a class="headerlink" href="#risc-v-pipelined-datapath" title="Permanent link">&para;</a></h2>
-<p>不同阶段之间，我们需要寄存器来保存之前阶段得到的值。<br />
-竞争只会发生在从右往左的阶段。</p>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304252216779.png" width = 65%/> </div>
-
+<p>不同阶段之间，我们需要寄存器来保存之前阶段得到的值。  </p>
+<p>竞争只会发生在从右往左的阶段。</p>
+<p><img alt="" src="../images/ch4/new-image-20.png" /></p>
 <p>注意到，第五个阶段写回时，写寄存器号应该是从 MEM/WB 中的，而不是 IF 出的寄存器号。</p>
 <ul>
 <li><em>Single-clock-cycle pipeline diagram</em>: Shows pipeline usage in a single cycle; Highlight resources used</li>
 <li><em>multi-clock-cycle diagram</em>: Graph of operation over time</li>
 </ul>
 <h3 id="pipelined-control">Pipelined Control<a class="headerlink" href="#pipelined-control" title="Permanent link">&para;</a></h3>
-<p>控制信号 ID 阶段全部译出，随后通过寄存器传到后续阶段中去。<br />
-有些信号在 WB 阶段用，有些在 M 阶段用，有些在 EX. 使用之后就不再需要把信号传递下去。</p>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304252240226.png" width = 65%/> </div>
-
+<p>控制信号 ID 阶段全部译出，随后通过寄存器传到后续阶段中去。  </p>
+<p>有些信号在 WB 阶段用，有些在 M 阶段用，有些在 EX. 使用之后就不再需要把信号传递下去。</p>
+<p><img alt="" src="../images/ch4/new-image-21.png" /></p>
 <h2 id="data-hazards_1">Data Hazards<a class="headerlink" href="#data-hazards_1" title="Permanent link">&para;</a></h2>
 <h3 id="forwarding">Forwarding<a class="headerlink" href="#forwarding" title="Permanent link">&para;</a></h3>
 <details class="example">
 <summary>Example</summary>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202304252252506.png" width = 65%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-22.png" /></p>
 <p><code>and</code> 语句中将 EX 的结果前递, <code>or</code> 语句中要将 DM 的结果前递（此时 EX 的值已经不是第一条指令的结果了）</p>
 </details>
 <p>如何判断是否需要前递？ <br />
@@ -2181,8 +2169,7 @@ Data hazards when</p>
 <p>只有在我们要改变寄存器的值的时候才能用前递的值（有些指令可能根本就不会写回寄存器，没有有效的 Rd） <br />
 <code>EX/MEM.RegWrite, MEM/WB.RegWrite</code> 不为 0.<br />
 此外 <code>EX/MEM.RegisterRd, MEM/WB.RegisterRd</code> 也不能为 0. </p>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202304252320206.png" width = 70%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-23.png" /></p>
 <table>
 <thead>
 <tr>
@@ -2211,7 +2198,7 @@ Data hazards when</p>
 </table>
 <div class="admonition example">
 <p class="admonition-title">Double Data Hazard</p>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202304252355576.png" width = 50%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-24.png" /></p>
 <p>我们前递时要加一个条件，<strong>只有在 EX/MEM 的条件不成立时</strong>，才能查看 MEM/WB 的条件。</p>
 </div>
 <h3 id="load-use-hazard-detection">Load-Use Hazard Detection<a class="headerlink" href="#load-use-hazard-detection" title="Permanent link">&para;</a></h3>
@@ -2226,10 +2213,9 @@ Data hazards when</p>
 相当于又进行了一次 decode. </p>
 <details class="example">
 <summary>Example</summary>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202305012259025.png" width = 60%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-25.png" /></p>
 </details>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202305012300281.png" width = 60%/> </div>
-
+<p><img alt="" src="../images/ch4/new-image-26.png" /></p>
 <ul>
 <li>Stalls reduce performance<ul>
 <li>But are required to get correct results</li>
@@ -2243,7 +2229,7 @@ Data hazards when</p>
 <p>一种方法是在 ID 级决定是否跳转（此时已经有了两个源操作数和立即数）</p>
 <details class="example">
 <summary>Example</summary>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202305012319336.png" width = 60%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-27.png" /></p>
 </details>
 <p>这样我们只可能多余一条指令，插入 bubble 即可。但是这样也不可接受。</p>
 <h3 id="dynamic-branch-prediction">Dynamic Branch Prediction<a class="headerlink" href="#dynamic-branch-prediction" title="Permanent link">&para;</a></h3>
@@ -2264,16 +2250,16 @@ Data hazards when</p>
 <p>可以处理 for 循环的预测。  </p>
 <div class="admonition note">
 <p class="admonition-title">1-Bit Predictor</p>
-<p>但也存在问题，对于双层循环，当内层循环要结束时会错两次。
-<div align=center> <img src="http://cdn.hobbitqia.cc/202305020905597.png" width = 45%/> </div></p>
+<p>但是精益求精的设计者们仍然不满意这样的预测</p>
+<p>例如，对于双层循环，当内层循环要结束时会错两次：</p>
+<p><img alt="" src="../images/ch4/new-image-28.png" /></p>
 <ul>
 <li>Mispredict as taken on last iteration of inner loop</li>
 <li>Then mispredict as not taken on first iteration of inner loop next time around</li>
 </ul>
 </div>
-<p>可以修改预测方式：只有连续错误两次才会修改我们的预测。即 2-Bit Predictor. </p>
-<div align=center> <img src="http://cdn.hobbitqia.cc/202305020908092.png" width = 45%/> </div>
-
+<p>可以修改预测方式：只有连续错误两次才会修改我们的预测。即 2-Bit Predictor. 
+<img alt="" src="../images/ch4/new-image-29.png" /></p>
 <h3 id="calculating-the-branch-target">Calculating the Branch Target<a class="headerlink" href="#calculating-the-branch-target" title="Permanent link">&para;</a></h3>
 <p>即使 branch 命中了，我们也有一个时钟的 bubble 来计算地址。<br />
 但 branch 要跳转的地址其实是可以存下来的。  </p>
@@ -2361,11 +2347,11 @@ CPU 自己决定执行那些指令，编译器会帮忙重排指令，但还是�
 <h4 id="static-multiple-issue">Static multiple issue<a class="headerlink" href="#static-multiple-issue" title="Permanent link">&para;</a></h4>
 <details class="example">
 <summary>RISC-V with Static Dual Issue</summary>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202305070002576.png" width = 45%/> </div></p>
-<p>ALU/branch 指令不用访问内存。
-<div align=center> <img src="http://cdn.hobbitqia.cc/202305070006563.png" width = 45%/> </div></p>
-<p>所以这两条不能同时发出，因为存在竞争关系。
-<div align=center> <img src="http://cdn.hobbitqia.cc/202305070006098.png" width = 45%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-30.png" /></p>
+<p>ALU/branch 指令不用访问内存。</p>
+<p><img alt="" src="../images/ch4/new-image-31.png" /></p>
+<p>所以这两条不能同时发出，因为存在竞争关系。</p>
+<p><img alt="" src="../images/ch4/new-image-32.png" /></p>
 </details>
 <p>Loop Unrolling<br />
 循环展开（但注意指令间要尽量减少相同寄存器的依赖）</p>
@@ -2376,7 +2362,7 @@ CPU 自己决定执行那些指令，编译器会帮忙重排指令，但还是�
 </ul>
 <details class="example">
 <summary>Loop Unrolling Example</summary>
-<p><div align=center> <img src="http://cdn.hobbitqia.cc/202305070012380.png" width = 45%/> </div></p>
+<p><img alt="" src="../images/ch4/new-image-33.png" /></p>
 </details>
 
 
