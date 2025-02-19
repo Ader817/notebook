@@ -1,131 +1,171 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://ader817.github.io/notebook/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch0/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch1/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch0.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch10/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch1.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch11/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch10.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch2/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch11.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch3/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch2.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch4/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch3.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch5/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch4.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch6/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch5.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch7/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch6.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch8/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch7.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/ch9/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch8.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/ads/problem/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/ch9.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/co/ch1/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/algorithm/ads/problem.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/co/ch2/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/co/ch3/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/pas/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/co/ch4/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/pas/ch1.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/dip/ch1/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/pas/ch2.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/dip/ch2/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/pas/ch3.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/dip/ch3/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/pas/ch4.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/dip/ch4/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/pas/ch5.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/dip/ch5/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/pas/ch6.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/dip/ch6/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/pas/ch7.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/pas/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/math/pas/ch8.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/pas/ch1/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/software/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/pas/ch2/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/software/dip/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/cs/pas/ch3/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/software/dip/ch1.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/home/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/software/dip/ch2.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/writeups/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/software/dip/ch3.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
     <url>
-         <loc>https://ader817.github.io/notebook/writeups/basectf/basectf2024/</loc>
-         <lastmod>2024-12-19</lastmod>
+         <loc>https://ader817.github.io/notebook/software/dip/ch4.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/software/dip/ch5.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/software/dip/ch6.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/system/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/system/co/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/system/co/ch1.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/system/co/ch2.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/system/co/ch3.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/system/co/ch4.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/writeups/index.html</loc>
+         <lastmod>2025-02-19</lastmod>
+    </url>
+    <url>
+         <loc>https://ader817.github.io/notebook/writeups/basectf/basectf2024.html</loc>
+         <lastmod>2025-02-19</lastmod>
     </url>
 </urlset>
