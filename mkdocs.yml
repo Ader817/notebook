@@ -93,6 +93,7 @@ markdown_extensions:
   - admonition
   - pymdownx.details
   - pymdownx.superfences
+  - pymdownx.magiclink
   - pymdownx.tabbed:
       alternate_style: true
   - pymdownx.highlight:
@@ -109,24 +110,23 @@ markdown_extensions:
   - md_in_html
 
 extra_css:
-  #- assets/stylesheets/extra.css #霞鹭字体
-  - https://unpkg.com/katex@0/dist/katex.min.css
   #- https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
-  - assets/stylesheets/custom.css
   #- assets/stylesheets/counter.css
+  #- https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  - assets/stylesheets/custom.css
+  - https://unpkg.com/katex@0/dist/katex.min.css
   - https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css
-  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
   - https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap
   
 extra_javascript:
-  - assets/javascripts/katex.js 
-  - assets/javascripts/toc.js
   # - assets/javascripts/mathjax.js
   # - https://cdn.jsdelivr.net/gh/Wcowin/Wcowin.github.io@main/docs/javascripts/extra.js  # extra的cdn
-  - https://unpkg.com/katex@0/dist/katex.min.js
-  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
   # - https://polyfill.io/v3/polyfill.min.js?features=es6
   # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+  - assets/javascripts/katex.js 
+  - assets/javascripts/toc.js
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
 
 
 nav:
