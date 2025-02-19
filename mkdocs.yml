@@ -1,36 +1,37 @@
 site_name: Ader's notebook
+site_author: Ader
 site_url: https://ader817.github.io/notebook
+site_description: Ader's notebook
+
 repo_name: Ader817/notebook
 repo_url: https://github.com/Ader817/notebook/
-edit_uri: tree/master/docs
-site_description: Ader的笔记本
-copyright: Copyright &copy; 2022-2024 <a href="https://github.com/Ader817" target="_blank" rel="noopener">Ader817</a>
+use_directory_urls: false
+
+copyright: Copyright &copy; 2024-2025 <a href="https://github.com/Ader817" target="_blank" rel="noopener">Ader817</a>
 
 theme: 
-  name: 'material'
-
-  language: 'zh'
-
+  name: material
+  custom_dir: overrides
+  language: zh
+  favicon: assets/images/favicon.ico
   features:
-      # - header.autohide #自动隐藏头栏
-      # - announce.dismiss # 公告栏
-      # - navigation.instant #这玩意跟公式爆了
-      - navigation.tracking # 在url中使用标题定位锚点
-      - navigation.path # 显示当前路径
-      - navigation.prune # 侧边栏自动折叠
-      - navigation.tabs # 顶部显示导航顶层nav（也就是第一个节点）
-      # - navigation.tabs.sticky # 滚动是隐藏顶部nav，需要配合navigation.tabs使用
-      - navigation.indexes # 指定节点index pages ，跟instant不兼容
-      - navigation.top # 一键回顶部
-      - navigation.footer # 底部导航
-      - search.highlight # 搜索高亮
-      - search.suggest # 搜索建议
-      - toc.follow # toc 跟随
-      - content.code.annotate # 代码行号
-      - content.code.copy # 代码复制
-  
-  font: false
-
+    - content.action.edit
+    - content.action.view
+    - content.code.copy
+    - content.code.annotate
+    - header.autohide
+    - navigation.tabs
+    - navigation.top
+    - navigation.footer
+    - navigation.indexes
+    - navigation.tracking
+    - navigation.prune
+    - search.share
+    - search.suggest
+    - search.highlight
+  font:
+    text: JetBrains Mono, LXGW WenKai Screen GB Screen 
+    code: JetBrains Mono, Consolas
   palette: 
     # Palette toggle for light mode
     - media: "(prefers-color-scheme: light)"
@@ -49,7 +50,6 @@ theme:
       toggle:
         icon: material/brightness-4
         name: 切换至日间模式
-
   icon:
     admonition:
       note: octicons/tag-16
@@ -65,100 +65,126 @@ theme:
       example: octicons/beaker-16
       quote: octicons/quote-16
     logo: octicons/paper-airplane-16
-  favicon: assets/images/favicon.ico
+
+plugins:
+  - search
+  - heti:
+      disable_serve: true
+  - statistics: # 需要在 markdown_extensions 里面加一句 md_in_html 才能显示 icon
+      #page_template: "assets/stylesheets/statistics.html"
+      page_check_metadata: counter
+      words_per_minute: 150
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem
+  - pymdownx.critic
+  - pymdownx.caret
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.tilde
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - toc:
+      title: 目录
+      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}} # enable Unicode link
+  - md_in_html
+
+extra_css:
+  #- assets/stylesheets/extra.css #霞鹭字体
+  - https://unpkg.com/katex@0/dist/katex.min.css
+  #- https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  - assets/stylesheets/custom.css
+  #- assets/stylesheets/counter.css
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css
+  - https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
+  - https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap
+  
+extra_javascript:
+  - assets/javascripts/katex.js 
+  - assets/javascripts/toc.js
+  # - assets/javascripts/mathjax.js
+  # - https://cdn.jsdelivr.net/gh/Wcowin/Wcowin.github.io@main/docs/javascripts/extra.js  # extra的cdn
+  - https://unpkg.com/katex@0/dist/katex.min.js
+  - https://unpkg.com/katex@0/dist/contrib/auto-render.min.js
+  # - https://polyfill.io/v3/polyfill.min.js?features=es6
+  # - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 
 nav:
   - Home:
-    - home/index.md
-  - Computer Science:
-    - cs/index.md
-    - "概率论与数理统计":
-      - 简介: cs/pas/index.md
-      - Chapter1: cs/pas/ch1.md
-      - Chapter2: cs/pas/ch2.md
-      - Chapter3: cs/pas/ch3.md
-    - "高级数据结构与算法分析":
-      - Chapter 0 | Amortized Analysis: cs/ads/ch0.md
-      - Chapter 1 | AVL Tree & Splay Tree: cs/ads/ch1.md
-      - Chapter 2 | Red Black Tree & B+ Tree: cs/ads/ch2.md
-      - Chapter 3 | Inverted File Index: cs/ads/ch3.md
-      - Chapter 4 | Leftist Heap & Skew Heap: cs/ads/ch4.md
-      - Chapter 5 | Binomial Queue & Fibonacci Heap: cs/ads/ch5.md
-      - Chapter 6 | Search and Backtracing: cs/ads/ch6.md
-      - Chapter 7 | Divide and Conquer: cs/ads/ch7.md
-      - Chapter 8 | Dynamic Programming: cs/ads/ch8.md
-      - Chapter 9 | Greedy Algorithm: cs/ads/ch9.md
-      - Chapter 10 | NP Completeness: cs/ads/ch10.md
-      - Chapter 11 | Approximation: cs/ads/ch11.md
-      - Problem set: cs/ads/problem.md
-    - "图像信息处理":
-      - Chapter 1 | 成像与图像的基本属性: cs/dip/ch1.md
-      - Chapter 2 | 二值图像与形态学: cs/dip/ch2.md
-      - Chapter 3 | 图像灰度变换: cs/dip/ch3.md
-      - Chapter 4 | 几何变换: cs/dip/ch4.md
-      - Chapter 5 | 卷积和滤波: cs/dip/ch5.md
-      - Chapter 6 | 傅里叶变换: cs/dip/ch6.md
+    - index.md
 
+  - Algorithm:
+    - algorithm/index.md
+    - "高级数据结构与算法分析":
+      - algorithm/ads/index.md
+      - Chapter 0 | Amortized Analysis: algorithm/ads/ch0.md
+      - Chapter 1 | AVL Tree & Splay Tree: algorithm/ads/ch1.md
+      - Chapter 2 | Red Black Tree & B+ Tree: algorithm/ads/ch2.md
+      - Chapter 3 | Inverted File Index: algorithm/ads/ch3.md
+      - Chapter 4 | Leftist Heap & Skew Heap: algorithm/ads/ch4.md
+      - Chapter 5 | Binomial Queue & Fibonacci Heap: algorithm/ads/ch5.md
+      - Chapter 6 | Search and Backtracing: algorithm/ads/ch6.md
+      - Chapter 7 | Divide and Conquer: algorithm/ads/ch7.md
+      - Chapter 8 | Dynamic Programming: algorithm/ads/ch8.md
+      - Chapter 9 | Greedy Algorithm: algorithm/ads/ch9.md
+      - Chapter 10 | NP Completeness: algorithm/ads/ch10.md
+      - Chapter 11 | Approximation: algorithm/ads/ch11.md
+      - Problem set: algorithm/ads/problem.md
+
+  - Software:
+    - software/index.md
+    - "图像信息处理":
+      - software/dip/index.md
+      - Chapter 1 | 成像与图像的基本属性: software/dip/ch1.md
+      - Chapter 2 | 二值图像与形态学: software/dip/ch2.md
+      - Chapter 3 | 图像灰度变换: software/dip/ch3.md
+      - Chapter 4 | 几何变换: software/dip/ch4.md
+      - Chapter 5 | 卷积和滤波: software/dip/ch5.md
+      - Chapter 6 | 傅里叶变换: software/dip/ch6.md
+
+  - System:
+    - system/index.md
     - "计算机组成原理":
-      - Chapter 1 | 计算机概要与技术: cs/co/ch1.md
-      - Chapter 2 | 计算机的算术运算: cs/co/ch2.md
-      - Chapter 3 | 指令：计算机的语言: cs/co/ch3.md
-      - Chapter 4 | 处理器的设计: cs/co/ch4.md
+      - system/co/index.md
+      - Chapter 1 | 计算机概要与技术: system/co/ch1.md
+      - Chapter 2 | 计算机的算术运算: system/co/ch2.md
+      - Chapter 3 | 指令：计算机的语言: system/co/ch3.md
+      - Chapter 4 | 处理器的设计: system/co/ch4.md
+
+  - Math:
+    - math/index.md
+    - "概率论与数理统计":
+      - math/pas/index.md
+      - Chapter 1 | 概率论的基本概念: math/pas/ch1.md
+      - Chapter 2 | 随机变量及其概率分布: math/pas/ch2.md
+      - Chapter 3 | 多元随机变量及其分布: math/pas/ch3.md
+      - Chapter 4 | 随机变量的数字特征: math/pas/ch4.md
+      - Chapter 5 | 大数定律与中心极限定理: math/pas/ch5.md
+      - Chapter 6 | 统计量与抽样分布: math/pas/ch6.md
+      - Chapter 7 | 参数估计: math/pas/ch7.md
+      - Chapter 8 | 假设检验: math/pas/ch8.md
+
   - Writeups:
     - writeups/index.md
     - "2024":
       - BaseCTF 2024: writeups/basectf/basectf2024.md
-
-markdown_extensions:
-  - toc:
-      permalink: true # link for each title
-      slugify: !!python/object/apply:pymdownx.slugs.slugify {kwds: {case: lower}} # enable Unicode link
-  - admonition
-  - abbr
-  - attr_list
-  - def_list
-  - footnotes
-  - meta
-  - md_in_html
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      # smart_enable: all
-  - pymdownx.caret
-  - pymdownx.critic
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-  - pymdownx.highlight
-  - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.magiclink:
-      repo_url_shorthand: true
-      user: squidfunk
-      repo: mkdocs-material
-  - pymdownx.mark
-  # - pymdownx.smartsymbols
-  - pymdownx.tabbed:
-      alternate_style: true
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
-
-extra_css:
-  - assets/stylesheets/extra.css
-  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
-  - https://cdn.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css
-  
-extra_javascript:
-  - assets/javascripts/katex.js 
-  # - assets/javascripts/mathjax.js
-  # - https://cdn.jsdelivr.net/gh/Wcowin/Wcowin.github.io@main/docs/javascripts/extra.js  # extra的cdn
-  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
-  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
-  # - https://polyfill.io/v3/polyfill.min.js?features=es6
-  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
