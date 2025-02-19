@@ -18,10 +18,9 @@
 <link href="https://fonts.googleapis.com/css?family=JetBrains+Mono,+LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono,+Consolas:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"JetBrains Mono, LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono, Consolas"}</style>
 <link href="../../css/heti.css" rel="stylesheet"/>
-<link href="https://unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/custom.css" rel="stylesheet"/>
+<link href="https://unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
-<link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
@@ -251,41 +250,44 @@
             高级数据结构与算法分析
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="ch0.html">
 <span class="md-ellipsis">
-    Chapter 0 | Amortized Analysis
+    Balanced Search Trees
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="ch1.html">
-<span class="md-ellipsis">
-    Chapter 1 | AVL Tree &amp; Splay Tree
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="ch2.html">
 <span class="md-ellipsis">
-    Chapter 2 | Red Black Tree &amp; B+ Tree
+    Inverted Index
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="ch3.html">
 <span class="md-ellipsis">
-    Chapter 3 | Inverted File Index
+    Heaps
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="ch4.html">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
 <span class="md-ellipsis">
-    Chapter 4 | Leftist Heap &amp; Skew Heap
+    Algorithms
   </span>
-</a>
-</li>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_2_5">
+<span class="md-nav__icon md-icon"></span>
+            Algorithms
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="ch5.html">
 <span class="md-ellipsis">
@@ -317,7 +319,7 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="ch9.html">
 <span class="md-ellipsis">
-    Chapter 9 | Greedy Algorithm
+    Chapter 9 | Greedy Algorithms
   </span>
 </a>
 </li>
@@ -453,15 +455,47 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="ch11.html">
 <span class="md-ellipsis">
-    Chapter 11 | Approximation
+    Chapter 11 | Approxiamtion
   </span>
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="ch12.html">
+<span class="md-ellipsis">
+    Chapter 12 | Local Search
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch13.html">
+<span class="md-ellipsis">
+    Chapter 13 | Randomized Algorithms
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch14.html">
+<span class="md-ellipsis">
+    Chapter 14 | Parallel Algorithms
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch15.html">
+<span class="md-ellipsis">
+    Chapter 15 | External Sorting
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="problem.html">
 <span class="md-ellipsis">
-    Problem set
+    Problem Set
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
 </ul>
@@ -643,10 +677,10 @@
 <h2 id="概述">概述</h2>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
-<p>OI Wiki: https://oi-wiki.org/misc/cc-basic/</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/P_versus_NP_problem</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/NP-completeness</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/NP-hardness</p>
+<p>OI Wiki: <a href="https://oi-wiki.org/misc/cc-basic/">https://oi-wiki.org/misc/cc-basic/</a></p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/P_versus_NP_problem">https://en.wikipedia.org/wiki/P_versus_NP_problem</a></p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/NP-completeness">https://en.wikipedia.org/wiki/NP-completeness</a></p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/NP-hardness">https://en.wikipedia.org/wiki/NP-hardness</a></p>
 </div>
 <p>根据问题的难度，由不同的定义划分，问题可以分为：</p>
 <p><strong>P</strong> 问题<span><span class="heti-spacing"> </span>(polynomial time)</span>、<strong>NP</strong> 问题<span><span class="heti-spacing"> </span>(nondeterministic polynomial time)</span>、<strong>NPC</strong> 问题<span><span class="heti-spacing"> </span>(NP complete)</span>、<strong>NPH</strong> 问题<span><span class="heti-spacing"> </span>(NP hard)</span>。除此之外 ，我们还需要额外了解不可计算问题<span><span class="heti-spacing"> </span>(undecidable)</span>。</p>
@@ -655,7 +689,7 @@
 <summary>Undecidable Problem</summary>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Undecidable_problem</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Undecidable_problem">https://en.wikipedia.org/wiki/Undecidable_problem</a></p>
 </div>
 <p><strong>不可判定问题<span><span class="heti-spacing"> </span>(undecidable problem)</span></strong>是一类特殊的<a href="https://en.wikipedia.org/wiki/Decision_problem">决定性问题</a>，它的特点是我们无法设计一个算法来求解它的结果。</p>
 <p>其中一个比较典型的例子就是<strong><a href="#halting-problem">停机问题🔍</a></strong>。</p>
@@ -665,7 +699,7 @@
 <img alt="" src="assets/ch10/image.png" width="80%"/>
 </center>
 <blockquote>
-<p>Source: https://en.wikipedia.org/wiki/NP-hardness</p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/NP-hardness">https://en.wikipedia.org/wiki/NP-hardness</a></p>
 </blockquote>
 <p>可以粗浅的按照图中的“Complexity”轴来理解其中的转化关系，接下来给出它们的详细定义：</p>
 <div class="admonition definition">
@@ -712,7 +746,7 @@
 <h3 id="halting-problem">Halting Problem</h3>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Halting_problem</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Halting_problem">https://en.wikipedia.org/wiki/Halting_problem</a></p>
 </div>
 <p>停机问题是一个典型的不可计算问题，它指的是，对于任意一个程序，我们无法设计一个算法来判断它是否会在有限时间内停机（即判断程序是否会死循环<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
 <p>我们通过反证法可以证明：</p>
@@ -730,8 +764,8 @@
 <h3 id="hamilton-cycle-problem">Hamilton Cycle Problem</h3>
 <div class="admonition quote">
 <p class="admonition-title">links</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Hamiltonian_path_problem</p>
-<p>OI Wiki: https://oi-wiki.org/graph/hamilton</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Hamiltonian_path_problem">https://en.wikipedia.org/wiki/Hamiltonian_path_problem</a></p>
+<p>OI Wiki: <a href="https://oi-wiki.org/graph/hamilton">https://oi-wiki.org/graph/hamilton</a></p>
 </div>
 <div class="admonition definition">
 <p class="admonition-title">哈密顿回路问题</p>
@@ -742,7 +776,7 @@
 <h3 id="traveling-salesman-problem">Traveling Salesman Problem</h3>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Travelling_salesman_problem</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Travelling_salesman_problem">https://en.wikipedia.org/wiki/Travelling_salesman_problem</a></p>
 </div>
 <div class="admonition definition">
 <p class="admonition-title">旅行商问题</p>
@@ -772,7 +806,7 @@
 <p>现在，假设我们已知<a href="#hamilton-cycle-problem" target="_blank"><span class="heti-skip"><span class="heti-spacing"> </span>Hamilton Cycle Problem<span class="heti-spacing"> </span></span></a>问题是一个<span class="heti-skip"><span class="heti-spacing"> </span>NPC<span class="heti-spacing"> </span></span>问题，尝试通过<strong><a href="#多项式时间归约" target="_blank">多项式时间归约🔍</a></strong>的方式来证明<span class="heti-skip"><span class="heti-spacing"> </span>TSP<span class="heti-spacing"> </span></span>也是一个<span class="heti-skip"><span class="heti-spacing"> </span>NPC<span class="heti-spacing"> </span></span>问题。</p>
 <div class="admonition quote">
 <p class="admonition-title">Recommended Reading</p>
-<p>https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/hamiltonianCycle_to_TSP.html</p>
+<p><a href="https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/hamiltonianCycle_to_TSP.html">https://opendsa-server.cs.vt.edu/ODSA/Books/Everything/html/hamiltonianCycle_to_TSP.html</a></p>
 </div>
 <p>首先回顾证明<span class="heti-skip"><span class="heti-spacing"> </span>NPC<span class="heti-spacing"> </span></span>的步骤：</p>
 <ol>
@@ -843,7 +877,7 @@
 <h3 id="circuit-sat">Circuit-SAT</h3>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Circuit_satisfiability_problem</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Circuit_satisfiability_problem">https://en.wikipedia.org/wiki/Circuit_satisfiability_problem</a></p>
 </div>
 <p><span>Circuit-SAT<span class="heti-spacing"> </span></span>又叫<span><span class="heti-spacing"> </span>circuit satisfiability problem</span>，它是最早被证明是<span class="heti-skip"><span class="heti-spacing"> </span>NPC<span class="heti-spacing"> </span></span>的问题，即通过<span class="heti-skip"><span class="heti-spacing"> </span>NPC<span class="heti-spacing"> </span></span>问题的定义证明。</p>
 <p>其具体描述如下：</p>
@@ -852,7 +886,7 @@
 <p><span>Circuit-SAT<span class="heti-spacing"> </span></span>即为确定给定布尔电路是否具有使输出为真的输入分配的决策的问题。</p>
 <p><img alt="" src="assets/ch10/image-2.png"/></p>
 <blockquote>
-<p>Source: https://en.wikipedia.org/wiki/Circuit_satisfiability_problem</p>
+<p>Source: <a href="https://en.wikipedia.org/wiki/Circuit_satisfiability_problem">https://en.wikipedia.org/wiki/Circuit_satisfiability_problem</a></p>
 </blockquote>
 <p>上图中，左侧电路满足条件，右侧电路不满足条件。</p>
 <hr/>
@@ -862,7 +896,7 @@
 <h4 id="3-sat">3-SAT</h4>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#3-satisfiability</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#3-satisfiability">https://en.wikipedia.org/wiki/Boolean_satisfiability_problem#3-satisfiability</a></p>
 </div>
 <p><span>3-SAT<span class="heti-spacing"> </span></span>指的是<span class="heti-skip"><span class="heti-spacing"> </span>Circuit-SAT<span class="heti-spacing"> </span></span>问题的一个特例，它对布尔电路，或者说布尔表达式的形式有特殊要求，具体来说，它要求布尔表达式形如：</p>
 <div class="arithmatex">\[
@@ -886,8 +920,8 @@
 <h3 id="图灵机">图灵机</h3>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Turing_machine</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Nondeterministic_Turing_machine</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Turing_machine">https://en.wikipedia.org/wiki/Turing_machine</a></p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Nondeterministic_Turing_machine">https://en.wikipedia.org/wiki/Nondeterministic_Turing_machine</a></p>
 </div>
 <p>图灵机有一些变体，而我们在这里引入图灵机是为了介绍<span><span class="heti-spacing"> </span>P/NP</span>，只介绍<strong>确定型图灵机</strong>和<strong>非确定型图灵机</strong>。</p>
 <blockquote>
@@ -898,7 +932,7 @@
 <h3 id="多项式时间归约">多项式时间归约</h3>
 <div class="admonition quote">
 <p class="admonition-title">Links</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Polynomial-time_reduction</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Polynomial-time_reduction">https://en.wikipedia.org/wiki/Polynomial-time_reduction</a></p>
 </div>
 <p>我们引入<span class="heti-skip"><span class="heti-spacing"> </span>P/NP<span class="heti-spacing"> </span></span>等这些概念，是为了衡量问题的复杂程度，而如何在具体的“问题”间传递、比较这种“复杂程度”，就是<strong>多项式时间归约<span><span class="heti-spacing"> </span>(polynomial reduce)</span></strong>的目的。</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>graph LR;
@@ -920,7 +954,7 @@
 </main>
 <footer class="md-footer">
 <nav aria-label="页脚" class="md-footer__inner md-grid">
-<a aria-label="上一页: Chapter 9 | Greedy Algorithm" class="md-footer__link md-footer__link--prev" href="ch9.html">
+<a aria-label="上一页: Chapter 9 | Greedy Algorithms" class="md-footer__link md-footer__link--prev" href="ch9.html">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
 </div>
@@ -929,17 +963,17 @@
                 上一页
               </span>
 <div class="md-ellipsis">
-                Chapter 9 | Greedy Algorithm
+                Chapter 9 | Greedy Algorithms
               </div>
 </div>
 </a>
-<a aria-label="下一页: Chapter 11 | Approximation" class="md-footer__link md-footer__link--next" href="ch11.html">
+<a aria-label="下一页: Chapter 11 | Approxiamtion" class="md-footer__link md-footer__link--next" href="ch11.html">
 <div class="md-footer__title">
 <span class="md-footer__direction">
                 下一页
               </span>
 <div class="md-ellipsis">
-                Chapter 11 | Approximation
+                Chapter 11 | Approxiamtion
               </div>
 </div>
 <div class="md-footer__button md-icon">

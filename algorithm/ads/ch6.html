@@ -18,10 +18,9 @@
 <link href="https://fonts.googleapis.com/css?family=JetBrains+Mono,+LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono,+Consolas:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"JetBrains Mono, LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono, Consolas"}</style>
 <link href="../../css/heti.css" rel="stylesheet"/>
-<link href="https://unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/custom.css" rel="stylesheet"/>
+<link href="https://unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
-<link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
@@ -251,41 +250,44 @@
             高级数据结构与算法分析
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="ch0.html">
 <span class="md-ellipsis">
-    Chapter 0 | Amortized Analysis
+    Balanced Search Trees
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="ch1.html">
-<span class="md-ellipsis">
-    Chapter 1 | AVL Tree &amp; Splay Tree
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="ch2.html">
 <span class="md-ellipsis">
-    Chapter 2 | Red Black Tree &amp; B+ Tree
+    Inverted Index
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="ch3.html">
 <span class="md-ellipsis">
-    Chapter 3 | Inverted File Index
+    Heaps
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="ch4.html">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
 <span class="md-ellipsis">
-    Chapter 4 | Leftist Heap &amp; Skew Heap
+    Algorithms
   </span>
-</a>
-</li>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_2_5">
+<span class="md-nav__icon md-icon"></span>
+            Algorithms
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="ch5.html">
 <span class="md-ellipsis">
@@ -403,7 +405,7 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="ch9.html">
 <span class="md-ellipsis">
-    Chapter 9 | Greedy Algorithm
+    Chapter 9 | Greedy Algorithms
   </span>
 </a>
 </li>
@@ -417,15 +419,47 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="ch11.html">
 <span class="md-ellipsis">
-    Chapter 11 | Approximation
+    Chapter 11 | Approxiamtion
   </span>
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="ch12.html">
+<span class="md-ellipsis">
+    Chapter 12 | Local Search
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch13.html">
+<span class="md-ellipsis">
+    Chapter 13 | Randomized Algorithms
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch14.html">
+<span class="md-ellipsis">
+    Chapter 14 | Parallel Algorithms
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch15.html">
+<span class="md-ellipsis">
+    Chapter 15 | External Sorting
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="problem.html">
 <span class="md-ellipsis">
-    Problem set
+    Problem Set
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
 </ul>
@@ -572,8 +606,8 @@
 <p>搜索有很多优化方式，如减小状态空间，更改搜索顺序，剪枝等</p>
 <div class="admonition quote">
 <p class="admonition-title">link</p>
-<p>OI-Wiki:https://oi.wiki/search/backtracking/</p>
-<p>Hello-Algorithm:https://www.hello-algo.com/chapter_backtracking/backtracking_algorithm/</p>
+<p>OI-Wiki:<a href="https://oi.wiki/search/backtracking/">https://oi.wiki/search/backtracking/</a></p>
+<p>Hello-Algorithm:<a href="https://www.hello-algo.com/chapter_backtracking/backtracking_algorithm/">https://www.hello-algo.com/chapter_backtracking/backtracking_algorithm/</a></p>
 </div>
 <h2 id="fundamental-search">Fundamental Search</h2>
 <p>搜索通常可以用搜索树的形式表现
@@ -630,7 +664,7 @@
 <h3 id="-a-search">* A* Search</h3>
 <div class="admonition quote">
 <p class="admonition-title">link</p>
-<p>http://www.gamedev.net/reference/articles/article2003.asp</p>
+<p><a href="http://www.gamedev.net/reference/articles/article2003.asp">http://www.gamedev.net/reference/articles/article2003.asp</a></p>
 </div>
 <p>A* （A* search algorithm，<span>A *<span class="heti-spacing"> </span></span>读作<span><span class="heti-spacing"> </span>A-star</span><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，简称<span class="heti-skip"><span class="heti-spacing"> </span>A *<span class="heti-spacing"> </span></span>算法，是一种在图形平面上，对于有多个节点的路径求出最低通过成本的算法。它属于图遍历（Graph traversal）和最佳优先搜索算法（Best-first search<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，亦是<span class="heti-skip"><span class="heti-spacing"> </span>BFS<span class="heti-spacing"> </span></span>的改进。例如课上讲到的扫地机器人就是运用了这个算法</p>
 <p><span>A*<span class="heti-spacing"> </span></span>算法的基本思想：</p>
@@ -795,7 +829,7 @@ f(P) = W_{\text Computer} - W_{\text Human}
 </main>
 <footer class="md-footer">
 <nav aria-label="页脚" class="md-footer__inner md-grid">
-<a aria-label="上一页: Chapter 5 | Binomial Queue &amp; Fibonacci Heap" class="md-footer__link md-footer__link--prev" href="ch5.html">
+<a aria-label="上一页: Chapter 5 | Binomial Queue &amp;amp; Fibonacci Heap" class="md-footer__link md-footer__link--prev" href="ch5.html">
 <div class="md-footer__button md-icon">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
 </div>

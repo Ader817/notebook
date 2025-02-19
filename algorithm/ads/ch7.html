@@ -18,10 +18,9 @@
 <link href="https://fonts.googleapis.com/css?family=JetBrains+Mono,+LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono,+Consolas:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
 <style>:root{--md-text-font:"JetBrains Mono, LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono, Consolas"}</style>
 <link href="../../css/heti.css" rel="stylesheet"/>
-<link href="https://unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet"/>
 <link href="../../assets/stylesheets/custom.css" rel="stylesheet"/>
+<link href="https://unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet"/>
 <link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
-<link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-webfont@1.1.0/style.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
@@ -251,41 +250,44 @@
             高级数据结构与算法分析
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="ch0.html">
 <span class="md-ellipsis">
-    Chapter 0 | Amortized Analysis
+    Balanced Search Trees
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="ch1.html">
-<span class="md-ellipsis">
-    Chapter 1 | AVL Tree &amp; Splay Tree
-  </span>
-</a>
-</li>
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="ch2.html">
 <span class="md-ellipsis">
-    Chapter 2 | Red Black Tree &amp; B+ Tree
+    Inverted Index
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="ch3.html">
 <span class="md-ellipsis">
-    Chapter 3 | Inverted File Index
+    Heaps
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="ch4.html">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2_5" type="checkbox"/>
+<label class="md-nav__link" for="__nav_2_2_5" id="__nav_2_2_5_label" tabindex="0">
 <span class="md-ellipsis">
-    Chapter 4 | Leftist Heap &amp; Skew Heap
+    Algorithms
   </span>
-</a>
-</li>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_5_label" class="md-nav" data-md-level="3">
+<label class="md-nav__title" for="__nav_2_2_5">
+<span class="md-nav__icon md-icon"></span>
+            Algorithms
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item">
 <a class="md-nav__link" href="ch5.html">
 <span class="md-ellipsis">
@@ -454,7 +456,7 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="ch9.html">
 <span class="md-ellipsis">
-    Chapter 9 | Greedy Algorithm
+    Chapter 9 | Greedy Algorithms
   </span>
 </a>
 </li>
@@ -468,15 +470,47 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="ch11.html">
 <span class="md-ellipsis">
-    Chapter 11 | Approximation
+    Chapter 11 | Approxiamtion
   </span>
 </a>
 </li>
 <li class="md-nav__item">
+<a class="md-nav__link" href="ch12.html">
+<span class="md-ellipsis">
+    Chapter 12 | Local Search
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch13.html">
+<span class="md-ellipsis">
+    Chapter 13 | Randomized Algorithms
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch14.html">
+<span class="md-ellipsis">
+    Chapter 14 | Parallel Algorithms
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch15.html">
+<span class="md-ellipsis">
+    Chapter 15 | External Sorting
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="problem.html">
 <span class="md-ellipsis">
-    Problem set
+    Problem Set
   </span>
+<span class="md-nav__icon md-icon"></span>
 </a>
 </li>
 </ul>
@@ -673,7 +707,7 @@
 <h2 id="概述">概述</h2>
 <div class="admonition quote">
 <p class="admonition-title">link</p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm</p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm">https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm</a></p>
 </div>
 <p>套用<span class="heti-skip"><span class="heti-spacing"> </span>Wiki<span class="heti-spacing"> </span></span>上的说法，<strong>分治法<span><span class="heti-spacing"> </span>(Divide-and-conquer algorithm)</span></strong>属于一种算法范型，它的基本思想是将一个问题分解为若干个规模较小的相同问题，然后递归地解决这些子问题，最后将这些子问题的解合并得到原问题的解，一个比较经典的案例就是归并排序。</p>
 <p>本节的重点实际上也并不是聚焦于分治本身，而是其复杂度分析。</p>
@@ -828,8 +862,8 @@ T(N) = ... =
 <h3 id="主方法">主方法</h3>
 <div class="admonition quote">
 <p class="admonition-title">link</p>
-<p><span>OI Wiki: https://oi-wiki.org/basic/complexity/#<span class="heti-spacing"> </span></span>主定理<span><span class="heti-spacing"> </span>-master-theorem</span></p>
-<p>Wikipedia: https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms)</p>
+<p><span>OI Wiki:<span class="heti-spacing"> </span></span><a href="https://oi-wiki.org/basic/complexity/#主定理-master-theorem"><span>https://oi-wiki.org/basic/complexity/#<span class="heti-spacing"> </span></span>主定理<span><span class="heti-spacing"> </span>-master-theorem</span></a></p>
+<p>Wikipedia: <a href="https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms">https://en.wikipedia.org/wiki/Master_theorem_(analysis_of_algorithms</a>)</p>
 </div>
 <p><strong>主方法<span><span class="heti-spacing"> </span>(master method)</span></strong>之所以叫“主”，是因为它分析的是<span class="heti-skip"><span class="heti-spacing"> </span>combine<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>conquer<span class="heti-spacing"> </span></span>部分孰为主导。</p>
 <hr/>
