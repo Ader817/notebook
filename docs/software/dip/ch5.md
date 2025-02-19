@@ -2,8 +2,7 @@
 counter: True
 ---
 
-# Chapter 5 卷积和滤波 | Convolution and Filtering
-
+# Chapter 5 | 卷积和滤波
 !!! abstract "Abstract"
 
     * Continuous 1D convolution

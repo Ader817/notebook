@@ -2,7 +2,7 @@
 counter: True
 ---
 
-# Instructions: Language of the Computer
+# Chap 3: Instructions: Language of the Computer
 
 ## Introduction
 

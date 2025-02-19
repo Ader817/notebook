@@ -2,7 +2,7 @@
 counter: True
 ---
 
-# Lecture 1 | AVL Trees & Splay Trees
+# Chapter 1 | AVL Trees & Splay Trees
 
 !!! tip "阅读技巧"
     因为没法在这里用代码写动画，所以我用 [Tab](https://facelessuser.github.io/pymdown-extensions/extensions/tabbed/?h=%3D%3D%3D#tabbed) 模拟了一下动画帧，可以手动切换这些标签来动态观察。一般这种内容的 Tab 标题都会是 `Frame {}`。

@@ -2,7 +2,7 @@
 counter: true
 ---
 
-# Topic 1 | Amortized Analysis
+# Chapter 0 | Amortized Analysis
 
 ## 摊还分析
 

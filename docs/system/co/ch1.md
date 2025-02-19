@@ -2,7 +2,7 @@
 counter: True
 ---
 
-# Computer Abstractions and Technology
+# Chap 1: Computer Abstractions and Technology
 
 ## 8 Ideas in Computer Architecture
 

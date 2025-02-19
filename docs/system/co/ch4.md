@@ -2,7 +2,7 @@
 counter: True
 ---
 
-# The Processor
+# Chap 4: The Processor
 
 <center>![](images/ch4/image.png)</center>
 

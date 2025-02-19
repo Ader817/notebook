@@ -2,7 +2,7 @@
 counter: True
 ---
 
-# Arithmetic for Computer
+# Chap 2: Arithmetic for Computer
 
 ## Introduction
 
