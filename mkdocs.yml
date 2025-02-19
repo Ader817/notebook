@@ -138,19 +138,28 @@ nav:
     - algorithm/index.md
     - "高级数据结构与算法分析":
       - algorithm/ads/index.md
-      - algorithm/ads/ch0.md
-      - algorithm/ads/ch1.md
-      - algorithm/ads/ch2.md
-      - algorithm/ads/ch3.md
-      - algorithm/ads/ch4.md
-      - algorithm/ads/ch5.md
-      - algorithm/ads/ch6.md
-      - algorithm/ads/ch7.md
-      - algorithm/ads/ch8.md
-      - algorithm/ads/ch9.md
-      - algorithm/ads/ch10.md
-      - algorithm/ads/ch11.md
-      - algorithm/ads/problem.md
+      - Balanced Search Trees:
+        - algorithm/ads/ch0.md
+        - algorithm/ads/ch1.md
+      - Inverted Index:
+        - algorithm/ads/ch2.md
+      - Heaps:
+        - algorithm/ads/ch3.md
+        - algorithm/ads/ch4.md
+      - Algorithms:
+        - algorithm/ads/ch5.md
+        - algorithm/ads/ch6.md
+        - algorithm/ads/ch7.md
+        - algorithm/ads/ch8.md
+        - algorithm/ads/ch9.md
+        - algorithm/ads/ch10.md
+        - algorithm/ads/ch11.md
+        - algorithm/ads/ch12.md
+        - algorithm/ads/ch13.md
+        - algorithm/ads/ch14.md
+        - algorithm/ads/ch15.md
+      - Problem Set:
+        - algorithm/ads/problem.md
 
   - Software:
     - software/index.md
@@ -162,6 +171,8 @@ nav:
       - software/dip/ch4.md
       - software/dip/ch5.md
       - software/dip/ch6.md
+      - software/dip/ch7.md
+      - software/dip/ch8.md
 
   - System:
     - system/index.md
@@ -171,6 +182,8 @@ nav:
       - system/co/ch2.md
       - system/co/ch3.md
       - system/co/ch4.md
+      - system/co/ch5.md
+      - system/co/ch6.md
 
   - Math:
     - math/index.md
