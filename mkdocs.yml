@@ -5,7 +5,6 @@ site_description: Ader's notebook
 
 repo_name: Ader817/notebook
 repo_url: https://github.com/Ader817/notebook/
-use_directory_urls: false
 
 copyright: Copyright &copy; 2024-2025 <a href="https://github.com/Ader817" target="_blank" rel="noopener">Ader817</a>
 
@@ -73,7 +72,7 @@ plugins:
   - statistics: # 需要在 markdown_extensions 里面加一句 md_in_html 才能显示 icon
       #page_template: "assets/stylesheets/statistics.html"
       page_check_metadata: counter
-      words_per_minute: 150
+      words_per_minute: 100
   - awesome-pages # 自动根据文件大标题生成侧边目录标题
 
 markdown_extensions:
@@ -133,10 +132,13 @@ extra_javascript:
 nav:
   - Home:
     - index.md
-
+  - Language:
+    - language/index.md
+    - C++:
+      - language/cpp/index.md
   - Algorithm:
     - algorithm/index.md
-    - "高级数据结构与算法分析":
+    - 高级数据结构与算法分析:
       - algorithm/ads/index.md
       - Balanced Search Trees:
         - algorithm/ads/ch0.md
@@ -163,7 +165,7 @@ nav:
 
   - Software:
     - software/index.md
-    - "图像信息处理":
+    - 图像信息处理:
       - software/dip/index.md
       - software/dip/ch1.md
       - software/dip/ch2.md
@@ -176,7 +178,7 @@ nav:
 
   - System:
     - system/index.md
-    - "计算机组成原理":
+    - 计算机组成原理:
       - system/co/index.md
       - system/co/ch1.md
       - system/co/ch2.md
@@ -184,10 +186,25 @@ nav:
       - system/co/ch4.md
       - system/co/ch5.md
       - system/co/ch6.md
+    - 计算机体系结构:
+      - system/ca/index.md
+
+  - Web:
+    - web/index.md
+    - 数据库系统:
+      - web/db/index.md
+      - web/db/ch1.md
+      - web/db/ch2.md
+      - web/db/ch3.md
+      - web/db/ch4.md
+      - web/db/ch5.md
+      - web/db/ch6.md
+      - web/db/ch7.md
+      - web/db/ch8.md
 
   - Math:
     - math/index.md
-    - "概率论与数理统计":
+    - 概率论与数理统计:
       - math/pas/index.md
       - math/pas/ch1.md
       - math/pas/ch2.md
@@ -200,5 +217,4 @@ nav:
 
   - Writeups:
     - writeups/index.md
-    - "2024":
-      - BaseCTF 2024: writeups/basectf/basectf2024.md
+    - BaseCTF 2024: writeups/basectf/basectf2024.md
