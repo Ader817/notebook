@@ -100,6 +100,10 @@ markdown_extensions:
       anchor_linenums: true
       line_spans: __span
       pygments_lang_class: true
+  - pymdownx.superfences: # enable mermaid
+      custom_fences:
+        - name: mermaid
+          class: mermaid
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.tasklist:
@@ -214,7 +218,8 @@ nav:
       - math/pas/ch6.md
       - math/pas/ch7.md
       - math/pas/ch8.md
-
+  - Tools:
+    - tools/venv.md
   - Writeups:
     - writeups/index.md
     - BaseCTF 2024: writeups/basectf/basectf2024.md

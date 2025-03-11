@@ -23,7 +23,7 @@ counter: true
 传统的识别方法：
 
 <div style="text-align: center">
-    <img src="images/C8/1.png" width="60%">
+    <img src="../images/ch8/1.png" width="60%">
 </div>
 
 - 特征是不可学习或训练的
@@ -42,7 +42,7 @@ counter: true
 特征学习的模型：
 
 <div style="text-align: center">
-    <img src="images/C8/2.png" width="60%">
+    <img src="../images/ch8/2.png" width="60%">
 </div>
 
 （特征学习/深度学习/表征学习）关键思想：
@@ -53,7 +53,7 @@ counter: true
     - 理论支持：电路设计中的深度-广度权衡(depth-breadth tradeoff)，采用更深层的结构，可以更加高效地表征很多功能
 
         <div style="text-align: center">
-            <img src="images/C8/3.png" width="40%">
+            <img src="../images/ch8/3.png" width="40%">
         </div>
 
         - 深层的结构可被高效地表征
@@ -83,12 +83,12 @@ counter: true
 神经元：对突触的观测值连到汇总的地方，并进行加权求和，通过激活函数（归一化后）产生输出，本质上就是一个函数。
 
 <div style="text-align: center">
-    <img src="images/C8/4.png" width="60%">
+    <img src="../images/ch8/4.png" width="60%">
 </div>
 
 
 <div style="text-align: center">
-    <img src="images/C8/5.png" width="30%">
+    <img src="../images/ch8/5.png" width="30%">
 </div>
 
 - 输入：$x_1, x_2, x_3$
@@ -105,17 +105,17 @@ counter: true
 - ReLU：$f(z) = \max(0, z)$
 
 <div style="text-align: center">
-    <img src="images/C8/6.png" width="60%">
+    <img src="../images/ch8/6.png" width="60%">
 </div>
 
 <div style="text-align: center">
-    <img src="images/C8/7.png" width="60%">
+    <img src="../images/ch8/7.png" width="60%">
 </div>
 
 多层神经网络：
 
 <div style="text-align: center">
-    <img src="images/C8/8.png" width="60%">
+    <img src="../images/ch8/8.png" width="60%">
 </div>
 
 <u>求解方法：**[反向传播](https://en.wikipedia.org/wiki/Backpropagation)**(back-propagation, BP)</u>
@@ -132,21 +132,21 @@ counter: true
     === "神经元1"
 
         <div style="text-align: center">
-            <img src="images/C8/9.png" width="60%">
+            <img src="../images/ch8/9.png" width="60%">
         </div>
 
 
     === "神经元2"
 
         <div style="text-align: center">
-            <img src="images/C8/10.png" width="60%">
+            <img src="../images/ch8/10.png" width="60%">
         </div>
 
 
     === "神经元3"
 
         <div style="text-align: center">
-            <img src="images/C8/11.png" width="60%">
+            <img src="../images/ch8/11.png" width="60%">
         </div>
 
     现在进入内层的传播了。$w_{mn}$表示输出神经元$m$与下一层的输入神经元$n$之间的连接的权重。
@@ -154,26 +154,26 @@ counter: true
     === "神经元4"
 
         <div style="text-align: center">
-            <img src="images/C8/12.png" width="60%">
+            <img src="../images/ch8/12.png" width="60%">
         </div>
 
 
     === "神经元5"
 
         <div style="text-align: center">
-            <img src="images/C8/13.png" width="60%">
+            <img src="../images/ch8/13.png" width="60%">
         </div>
 
     信号被传送到输出层。
 
     <div style="text-align: center">
-        <img src="images/C8/14.png" width="60%">
+        <img src="../images/ch8/14.png" width="60%">
     </div>
 
     现在将在网络中$y$的输出信号与预期输出值（目标，来自训练好的数据集）$z$进行比较，它们的差值称为输出层神经元的误差信号$d$。
 
     <div style="text-align: center">
-        <img src="images/C8/15.png" width="60%">
+        <img src="../images/ch8/15.png" width="60%">
     </div>
 
     然后将误差信号反向传递至所有的神经元，此时原来的输出信号将作为输入。
@@ -181,20 +181,20 @@ counter: true
     === "神经元4"
 
         <div style="text-align: center">
-            <img src="images/C8/16.png" width="60%">
+            <img src="../images/ch8/16.png" width="60%">
         </div>
 
 
     === "神经元5"
 
         <div style="text-align: center">
-            <img src="images/C8/17.png" width="60%">
+            <img src="../images/ch8/17.png" width="60%">
         </div>
 
     用于反向传递误差的权重系数$w_{mn}$等于在计算输出值时用到的权重值，改变的只是数据流方向。这种方法可用于所有的网络层。如果被传递的误差来自多个被加入的神经元，那么处理方式如下所示：
 
     <div style="text-align: center">
-        <img src="images/C8/18.png" width="60%">
+        <img src="../images/ch8/18.png" width="60%">
     </div>   
 
     当每个神经元的误差计算完毕时，每个神经元输入节点的权重系数可能需要被修改。在下面给出的公式中，$\dfrac{\text{d}f(e)}{\text{d}e}$表示神经元激活函数的导数。
@@ -202,20 +202,20 @@ counter: true
     === "神经元1"
 
         <div style="text-align: center">
-            <img src="images/C8/19.png" width="60%">
+            <img src="../images/ch8/19.png" width="60%">
         </div>
 
 
     === "神经元2"
 
         <div style="text-align: center">
-            <img src="images/C8/20.png" width="60%">
+            <img src="../images/ch8/20.png" width="60%">
         </div>
 
     === "最后"
 
         <div style="text-align: center">
-            <img src="images/C8/21.png" width="60%">
+            <img src="../images/ch8/21.png" width="60%">
         </div>
 
 
@@ -252,7 +252,7 @@ counter: true
         - 结果是一个3D数组，每一个切片是一个特征图
 
     <div style="text-align: center">
-        <img src="images/C8/22.png" width="40%">
+        <img src="../images/ch8/22.png" width="40%">
     </div>
 
 
@@ -267,7 +267,7 @@ counter: true
         - 最大池化：在池化窗口中选择最大值作为输出
 
     <div style="text-align: center">
-        <img src="images/C8/24.png" width="60%">
+        <img src="../images/ch8/24.png" width="60%">
     </div>
 
     - 通常结合二次抽样(subsample)
@@ -280,7 +280,7 @@ counter: true
         - 减少变体
 
     <div style="text-align: center">
-        <img src="images/C8/25.png" width="60%">
+        <img src="../images/ch8/25.png" width="60%">
     </div>
 
 ### Cuda-convnet
@@ -289,7 +289,7 @@ counter: true
 - 代码：[cuda-convnet](https://code.google.com/archive/p/cuda-convnet/)
 
 <div style="text-align: center">
-    <img src="images/C8/26.png" width="80%">
+    <img src="../images/ch8/26.png" width="80%">
 </div>
 
 - 特征：
@@ -302,7 +302,7 @@ counter: true
     - 方框表示全连接层：对输入应用线性滤波器，然后应用S型激活函数
 
     <div style="text-align: center">
-        <img src="images/C8/27.png" width="10%">
+        <img src="../images/ch8/27.png" width="10%">
     </div>
 
 - 过程：
@@ -310,37 +310,37 @@ counter: true
 === "Input -> C1"
 
     <div style="text-align: center">
-        <img src="images/C8/28.png" width="60%">
+        <img src="../images/ch8/28.png" width="60%">
     </div>
 
 === "C1 -> C2"
 
     <div style="text-align: center">
-        <img src="images/C8/29.png" width="60%">
+        <img src="../images/ch8/29.png" width="60%">
     </div>
 
 === "C2 -> C3"
 
     <div style="text-align: center">
-        <img src="images/C8/30.png" width="60%">
+        <img src="../images/ch8/30.png" width="60%">
     </div>
 
 === "C3 -> C4 -> C5"
 
     <div style="text-align: center">
-        <img src="images/C8/31.png" width="50%">
+        <img src="../images/ch8/31.png" width="50%">
     </div>
 
 === "C5 -> F6"
 
     <div style="text-align: center">
-        <img src="images/C8/32.png" width="60%">
+        <img src="../images/ch8/32.png" width="60%">
     </div>
 
 === "F6 -> F7 -> Output"
 
     <div style="text-align: center">
-        <img src="images/C8/33.png" width="60%">
+        <img src="../images/ch8/33.png" width="60%">
     </div>
 
 
@@ -351,40 +351,40 @@ counter: true
 完整的工作流：
 
 <div style="text-align: center">
-    <img src="images/C8/42.png" width="70%">
+    <img src="../images/ch8/42.png" width="70%">
 </div>
 
 - 分类器会从特征提取器中挑选分数最高的结果作为分类依据
 
     <div style="text-align: center">
-        <img src="images/C8/37.png" width="50%">
+        <img src="../images/ch8/37.png" width="50%">
     </div>
 
 - 特征提取器(feature exactor)
     - 先来看特征提取器的功能：
 
         <div style="text-align: center">
-            <img src="images/C8/35.png" width="60%">
+            <img src="../images/ch8/35.png" width="60%">
         </div>
 
         - 对于一张图片，需要使用多种不同的滤波器，每个滤波器代表一类图像，图片与滤波器的运算结果是一个“概率”值，但是这个“概率”可以<0或>1，因此更确切的说法是“分数”
         - 最终结果（得到一组概率值，构成一个一维向量）：
 
         <div style="text-align: center">
-            <img src="images/C8/36.png" width="60%">
+            <img src="../images/ch8/36.png" width="60%">
         </div>
 
         - 更抽象的理解：
             - 单个滤波器的计算：向量乘法
 
             <div style="text-align: center">
-                <img src="images/C8/38.png" width="60%">
+                <img src="../images/ch8/38.png" width="60%">
             </div>
 
             - 多个滤波器的计算：矩阵乘法
 
             <div style="text-align: center">
-                <img src="images/C8/39.png" width="60%">
+                <img src="../images/ch8/39.png" width="60%">
             </div>
 
             - 用公式表示为：$Wx = \hat{y}$
@@ -394,13 +394,13 @@ counter: true
                 - $Wx$的计算被称为**全连接层**(fully-connected layer)
 
                 <div style="text-align: center">
-                    <img src="images/C8/40.png" width="60%">
+                    <img src="../images/ch8/40.png" width="60%">
                 </div>
 
         - 但我们希望能够得到真正的概率（在0-1之间），且这些概率之和为1。解决方案是使用softmax函数：$a(x)_i = \dfrac{e^{x_i}}{\sum_j e^{x_j}}$，效果如下所示：
 
         <div style="text-align: center">
-            <img src="images/C8/41.png" width="40%">
+            <img src="../images/ch8/41.png" width="40%">
         </div>
 
         原公式变为：$\hat{y} = SM(Wx)$

@@ -27,7 +27,7 @@ counter: true
 2. 使用这个坐标系，在兴趣点附近得到一小块特征区域
 
 <div style="text-align: center">
-    <img src="images/C7/3.png" width="60%">
+    <img src="../images/ch7/3.png" width="60%">
 </div>
 
 
@@ -41,7 +41,7 @@ counter: true
     - 光学(photometric)不变量：亮度、曝光量...
 
 <div style="text-align: center">
-    <img src="images/C7/4.png" width="70%">
+    <img src="../images/ch7/4.png" width="70%">
 </div>
 
 对于图像而言，好的特征点应具备如下特点：
@@ -55,7 +55,7 @@ counter: true
 假设我们仅考虑图像中小窗口（可以在图像内移动）内的像素点，下面展示了三种可能情况（黄色区域表示窗口）：
 
 <div style="text-align: center">
-    <img src="images/C7/5.png" width="70%">
+    <img src="../images/ch7/5.png" width="70%">
 </div>
 
 - **平坦区域**(flat region)：无论向何种方向移动窗口，窗口内的像素都没有发生变化
@@ -131,7 +131,7 @@ $$
 - $\lambda_-$：沿$x_-$方向上的增量（特征值）
 
 <div style="text-align: center">
-    <img src="images/C7/6.png" width="30%">
+    <img src="../images/ch7/6.png" width="30%">
 </div>
 
 那么可以得到：
@@ -145,7 +145,7 @@ $$
 二次函数$E(u, v)$的几何意义是一个**椭圆**，椭圆的曲率和尺寸可由它的特征值$\lambda_1, \lambda_2$表示，椭圆的方向由对应的特征向量表示
 
 <div style="text-align: center">
-    <img src="images/C7/7.png" width="50%">
+    <img src="../images/ch7/7.png" width="50%">
 </div>
 
 ---
@@ -159,7 +159,7 @@ $$
         - 一个大一个小时，该像素点位于边缘
 
         <div style="text-align: center">
-            <img src="images/C7/53.png" width="70%">
+            <img src="../images/ch7/53.png" width="70%">
         </div>
 
 - 寻找响应值$R_{-}$较大的像素点
@@ -183,11 +183,11 @@ $$
     === "例1"
 
         <div style="text-align: center">
-            <img src="images/C7/8.png" width="70%">
+            <img src="../images/ch7/8.png" width="70%">
         </div>
 
         <div style="text-align: center">
-            <img src="images/C7/9.png" width="50%">
+            <img src="../images/ch7/9.png" width="50%">
         </div>
 
     === "例2"
@@ -195,19 +195,19 @@ $$
         原图：
 
         <div style="text-align: center">
-            <img src="images/C7/11.png" width="50%">
+            <img src="../images/ch7/11.png" width="50%">
         </div>
 
         用颜色区分图像的f值，越红表示f值越大，越蓝表示f值越小：
 
         <div style="text-align: center">
-            <img src="images/C7/12.png" width="50%">
+            <img src="../images/ch7/12.png" width="50%">
         </div>
 
         找到两张图共有的特征点：
 
         <div style="text-align: center">
-            <img src="images/C7/13.png" width="50%">
+            <img src="../images/ch7/13.png" width="50%">
         </div>
 
 ---
@@ -218,7 +218,7 @@ $$
     - 旋转椭圆时，椭圆的形状（即特征值）保持不变。因此在图像的旋转过程中，角点的响应值$R$保持不变
 
     <div style="text-align: center">
-        <img src="images/C7/14.png" width="50%">
+        <img src="../images/ch7/14.png" width="50%">
     </div>   
 
 - **加法和数乘光强**(intensity)改变具备部分的不变性
@@ -226,7 +226,7 @@ $$
     - 光强缩放：$I \rightarrow aI$
 
     <div style="text-align: center">
-        <img src="images/C7/16.png" width="60%">
+        <img src="../images/ch7/16.png" width="60%">
     </div>  
 
 - 仿射不变性
@@ -234,7 +234,7 @@ $$
 - 但**不具备尺度不变性**
 
     <div style="text-align: center">
-        <img src="images/C7/15.png" width="50%">
+        <img src="../images/ch7/15.png" width="50%">
     </div>   
 
     - 不同尺度比率下的哈里斯检测器的效果
@@ -247,7 +247,7 @@ $$
     对于图像的某个像素点，考虑其周围不同大小的区域（用以该像素点为中心点的圆表示）：
 
     <div style="text-align: center">
-        <img src="images/C7/17.png" width="50%">
+        <img src="../images/ch7/17.png" width="50%">
     </div> 
 
     可以看到，虽然这两幅图的尺度比例不同，但是左图最大的区域在图像中的比例和右图区域在图像中的比例看起来是一样的。
@@ -255,7 +255,7 @@ $$
     如何在图像上独立地选取不同像素点对应的区域？
 
     <div style="text-align: center">
-        <img src="images/C7/18.png" width="50%">
+        <img src="../images/ch7/18.png" width="50%">
     </div>
 
 解决方案：
@@ -264,7 +264,7 @@ $$
 - 对于图像的一个像素点，我们将其看作一个关于区域大小（即圆圈半径）的函数
 
 <div style="text-align: center">
-    <img src="images/C7/19.png" width="70%">
+    <img src="../images/ch7/19.png" width="70%">
 </div>
 
 - 共同的方法：取函数的**局部极大值**，因为它可以作为图像缩放过程中的不变量
@@ -272,14 +272,14 @@ $$
 - 一个好的函数应该**只有一个峰值**，一般来说好的函数与图像的**对比度**(contrast)相关
 
 <div style="text-align: center">
-    <img src="images/C7/20.png" width="70%">
+    <img src="../images/ch7/20.png" width="70%">
 </div>
 
 ---
 **局部极值检测**(local extrama detection)：将图像的某个像素点与它在三个尺度上的26个邻居像素点进行比较。
 
 <div style="text-align: center">
-    <img src="images/C7/28.png" width="40%">
+    <img src="../images/ch7/28.png" width="40%">
 </div>
 
 方向(orientation)：
@@ -289,7 +289,7 @@ $$
 - 方向的选择：
 
 <div style="text-align: center">
-    <img src="images/C7/29.png" width="50%">
+    <img src="../images/ch7/29.png" width="50%">
 </div>
    
 假设我们比较图像$I_1$和$I_2$，且$I_2$是$I_1$变换版本。无论它们之间发生何种变换，我们希望找到这两幅图相同的特征点，这称为**变换不变性**(transformational invariance)。有很多的特征方法可以处理平移、二维旋转、尺度等变换的不变性，甚至可以处理局部的三维旋转、仿射变换、亮度/对比度改变等。
@@ -298,7 +298,7 @@ $$
 尺度不变的图像侦测算法有：
 
 <div style="text-align: center">
-    <img src="images/C7/21.png" width="70%">
+    <img src="../images/ch7/21.png" width="70%">
 </div>
 
 - 这两种算法的思路大致相同：$f = \text{Kernel} \times \text{Image}$，且它们的核在尺度和旋转过程中保持不变
@@ -317,13 +317,13 @@ $$
     - 特征函数f：拉普拉斯-高斯 = blob 检测器
 
     <div style="text-align: center">
-        <img src="images/C7/23.png" width="40%">
+        <img src="../images/ch7/23.png" width="40%">
     </div>
 
     - 对于图像的每个像素点，我们将能够产生拉普拉斯值峰值的尺度比例称为**特征比例**(characteristic scale)
 
     <div style="text-align: center">
-        <img src="images/C7/24.png" width="40%">
+        <img src="../images/ch7/24.png" width="40%">
     </div>
 
 ??? example "例子"
@@ -331,13 +331,13 @@ $$
     === "例1"
 
         <div style="text-align: center">
-            <img src="images/C7/25.png" width="70%">
+            <img src="../images/ch7/25.png" width="70%">
         </div>
 
     === "例2"
 
         <div style="text-align: center">
-            <img src="images/C7/26.png" width="60%">
+            <img src="../images/ch7/26.png" width="60%">
         </div>
 
 ## Feature Description
@@ -349,7 +349,7 @@ $$
 - 提取SIFT的过程：
 
     <div style="text-align: center">
-        <img src="images/C7/30.png" width="70%">
+        <img src="../images/ch7/30.png" width="70%">
     </div>
 
 - 重点考虑最后的**SIFT描述器**(descriptor)，它能在旋转过程中保持不变
@@ -367,7 +367,7 @@ $$
             - 最后需要对图像进行归一化，以减小亮度改变对图像的影响   
 
         <div style="text-align: center">
-            <img src="images/C7/31.png" width="80%">
+            <img src="../images/ch7/31.png" width="80%">
         </div>  
 
 ??? example "例子"
@@ -375,11 +375,11 @@ $$
     视觉单词包(bags of "visual words")：基于采集到的图像，利用高斯差分法检测感兴趣点，提取SIFT特征。然后将提取的描述符聚类，使用分层k-means聚类生成词汇树。将每个聚类中心称为视觉单词(visual word)。
 
     <div style="text-align: center">
-        <img src="images/C7/32.png" width="60%">
+        <img src="../images/ch7/32.png" width="60%">
     </div>  
 
     <div style="text-align: center">
-        <img src="images/C7/33.png" width="70%">
+        <img src="../images/ch7/33.png" width="70%">
     </div>   
 
 ???+ abstract "SIFT的优缺点"
@@ -405,7 +405,7 @@ $$
     - 计算**积分图像**(integral image)
 
         <div style="text-align: center">
-            <img src="images/C7/34.png" width="40%">
+            <img src="../images/ch7/34.png" width="40%">
         </div> 
 
         - 像素点$(x, y)$与原点间矩形区域的像素和：$S(x, y) = \sum \sum I(x, y)$
@@ -418,26 +418,26 @@ $$
     - 应用**二阶导数滤波器**（可近似）对图像进行滤波操作
 
         <div style="text-align: center">
-            <img src="images/C7/35.png" width="70%">
+            <img src="../images/ch7/35.png" width="70%">
         </div> 
 
         - 改变尺度：积分图像允许我们能提高滤波器的采样率
 
         <div style="text-align: center">
-            <img src="images/C7/36.png" width="70%">
+            <img src="../images/ch7/36.png" width="70%">
         </div>
 
     - **非极大抑制**(non-maximal suppression)
         - 在$(x, y, s)$空间中找到局部极大值
 
         <div style="text-align: center">
-            <img src="images/C7/37.png" width="60%">
+            <img src="../images/ch7/37.png" width="60%">
         </div>
 
         - 仅保留那些大于其26个邻居像素点值的像素点
 
         <div style="text-align: center">
-            <img src="images/C7/38.png" width="40%">
+            <img src="../images/ch7/38.png" width="40%">
         </div>
 
     - **二次插值法**(quadratic interpolation)
@@ -459,7 +459,7 @@ $$
     - 这会产生一个有64个元素的描述器
 
     <div style="text-align: center">
-        <img src="images/C7/39.png" width="70%">
+        <img src="../images/ch7/39.png" width="70%">
     </div>
 
 ???+ question "<u>为什么SURF的效果比SIFT好？</u>"
@@ -481,13 +481,13 @@ $$
     === "缝合前的两张图"
 
         <div style="text-align: center">
-            <img src="images/C7/1.png" width="70%">
+            <img src="../images/ch7/1.png" width="70%">
         </div>
 
     === "缝合后的全景图"
 
         <div style="text-align: center">
-            <img src="images/C7/2.png" width="50%">
+            <img src="../images/ch7/2.png" width="50%">
         </div>
 
 :star:具体步骤：
@@ -499,7 +499,7 @@ $$
     - 二维变换
 
     <div style="text-align: center">
-        <img src="images/C7/54.png" width="50%">
+        <img src="../images/ch7/54.png" width="50%">
     </div>
 
     - 拟合的变换矩阵：$H = \begin{bmatrix}h_{11} & h_{12} & h_{13} \\ h_{21} & h_{22} & h_{23} \\ 0 & 0 & 1\end{bmatrix}$，一张图像上所有像素点共享这个变换矩阵
@@ -531,43 +531,43 @@ $$
     === "Step 0"
 
         <div style="text-align: center">
-            <img src="images/C7/40.png" width="70%">
+            <img src="../images/ch7/40.png" width="70%">
         </div>
 
     === "Step 1"
 
         <div style="text-align: center">
-            <img src="images/C7/41.png" width="70%">
+            <img src="../images/ch7/41.png" width="70%">
         </div>
 
     === "Step 2"
 
         <div style="text-align: center">
-            <img src="images/C7/42.png" width="70%">
+            <img src="../images/ch7/42.png" width="70%">
         </div>
 
     === "Step 3"
 
         <div style="text-align: center">
-            <img src="images/C7/43.png" width="70%">
+            <img src="../images/ch7/43.png" width="70%">
         </div>
 
     === "Step 4"
 
         <div style="text-align: center">
-            <img src="images/C7/44.png" width="70%">
+            <img src="../images/ch7/44.png" width="70%">
         </div>
 
     === "Step n"
 
         <div style="text-align: center">
-            <img src="images/C7/45.png" width="70%">
+            <img src="../images/ch7/45.png" width="70%">
         </div>
 
 算法的伪代码如下：
 
 <div style="text-align: center">
-    <img src="images/C7/46.png" width="70%">
+    <img src="../images/ch7/46.png" width="70%">
 </div>
 
 确定采样次数：
@@ -578,7 +578,7 @@ $$
     - 需要选择足够大的$k$值，以保持其位于预期失败率以下
 
     <div style="text-align: center">
-        <img src="images/C7/47.png" width="70%">
+        <img src="../images/ch7/47.png" width="70%">
     </div>
 
     - 令预期不出错的概率为$p$，那么采样次数至少为$k = \lceil \dfrac{\log (1 - p)}{\log (1 - w^n)} \rceil$
@@ -597,7 +597,7 @@ $$
 - 但这可能会改变内在点，因此需要重新归类内在点和离群点
 
 <div style="text-align: center">
-    <img src="images/C7/48.png" width="80%">
+    <img src="../images/ch7/48.png" width="80%">
 </div>
 
 RANSAC的优缺点：
@@ -637,8 +637,8 @@ RANSAC的优缺点：
  $$
 
 <div style="text-align: center">
-    <img src="images/C7/55.png" width="47.5%">
-    <img src="images/C7/56.png" width="40%">
+    <img src="../images/ch7/55.png" width="47.5%">
+    <img src="../images/ch7/56.png" width="40%">
 </div>
 
 左图表示高斯金字塔，右图表示拉普拉斯金字塔。
@@ -649,15 +649,15 @@ RANSAC的优缺点：
     === "例1"
 
         <div style="text-align: center">
-            <img src="images/C7/50.png" width="60%">
+            <img src="../images/ch7/50.png" width="60%">
         </div>
 
     === "例2"
 
         <div style="text-align: center">
-            <img src="images/C7/51.png" width="60%">
+            <img src="../images/ch7/51.png" width="60%">
         </div>
 
         <div style="text-align: center">
-            <img src="images/C7/52.png" width="60%">
+            <img src="../images/ch7/52.png" width="60%">
         </div>

@@ -51,7 +51,7 @@ counter: true
         - 假如有n个存储体，在一个访问时间内便能轮换访问n个存储体，使得带宽提升了n倍，这种轮换访问方法被称为**地址交错**(address interleaving)
 
         <div style="text-align: center">
-            <img src="images/ch5/4.png" width="70%">
+            <img src="../images/ch5/4.png" width="70%">
         </div>
 
     - 各种类型：
@@ -95,7 +95,7 @@ counter: true
     - 磁盘由一组绕轴旋转的金属盘片(platter)构成，盘片上覆有磁记录材料，通过一个读写头(read-write head)来读写信息，整个驱动器被密封在磁盘内部
 
     <div style="text-align: center">
-        <img src="images/ch5/47.png" width="80%">
+        <img src="../images/ch5/47.png" width="80%">
     </div>
 
     - 组成部分：
@@ -114,7 +114,7 @@ counter: true
         一道计算题，不难，主要理解一下概念：
 
         <div style="text-align: center">
-            <img src="images/ch5/48.png" width="70%">
+            <img src="../images/ch5/48.png" width="70%">
         </div>
 
 
@@ -123,7 +123,7 @@ counter: true
 **内存层级**(memory hierarchy)：一种多级的存储结构，规定：越靠近处理器的内存，它的访问时间更短、存储空间更小、成本更高。
 
 <div style="text-align: center">
-    <img src="images/ch5/49.png" width="70%">
+    <img src="../images/ch5/49.png" width="70%">
 </div>
 
 
@@ -145,7 +145,7 @@ counter: true
 - 块/行(block/line)：在两级内存结构中的最小信息单元（下图标出的蓝色方块），一个块可能包含多个字数据
 
 <div style="text-align: center">
-    <img src="images/ch5/3.png" width="30%">
+    <img src="../images/ch5/3.png" width="30%">
 </div>
 
 - **命中**(hit)：处理器所需的数据位于上层内存中
@@ -168,7 +168,7 @@ counter: true
 先考虑一种很简单的高速缓存，以及一个很简单的情况：假如处理器请求一个单字数据$X_n$，高速缓存的内容发生了如下的变化：
 
 <div style="text-align: center">
-    <img src="images/ch5/5.png" width="45%">
+    <img src="../images/ch5/5.png" width="45%">
 </div>
 
 由于原来高速缓存内只有数据$X_1, X_2, \dots, X_{n-1}$，$X_n$不在高速缓存内，所以出现了失效的情况，需要从更底层的内存中获取该数据，并且放在高速缓存中。
@@ -184,7 +184,7 @@ $$
 由于可能存在不同字数据占据相同高速缓存块的情况，所以需要用**标签**(tag)来区分数据。因为底层内存的空间更大，因此通常会用数据在底层内存的**低位地址**来表示在高速缓存中的地址，即**索引**；而**高位地址**就作为区分相同高速缓存块下不同数据的**标签**，如下图所示：
 
 <div style="text-align: center">
-    <img src="images/ch5/6.png" width="60%">
+    <img src="../images/ch5/6.png" width="60%">
 </div>
 
 上面的图片中，高速缓存块数为8，而内存块数为32，因此字数据内存地址的低3位对应它在高速缓存中的索引，而高2位则作为区分同一高速缓存块下的不同数据的标签。
@@ -199,13 +199,13 @@ $$
         我们对一个块数为8，初始是空的高速缓存进行九次访问：
 
         <div style="text-align: center">
-            <img src="images/ch5/7.png" width="80%">
+            <img src="../images/ch5/7.png" width="80%">
         </div>
 
         下图展示了在访问过程中高速缓存内容的变化：
 
         <div style="text-align: center">
-            <img src="images/ch5/8.png" width="80%">
+            <img src="../images/ch5/8.png" width="80%">
         </div>
 
         不难发现，第8次访问（$\mathtt{18 = 10010}_{\text{two}}$）与第2次访问（$\mathtt{26 = 11010}_{\text{two}}$）存在冲突，因为它们占据相同的高速缓存块。这种情况下，最近访问的数据将会占据该高速缓存块的位置（即覆写高速缓存块内已有的数据），这体现了**时间局部性**的思想。
@@ -217,19 +217,19 @@ $$
         === "题目"
 
             <div style="text-align: center">
-                <img src="images/ch5/66.png" width="70%">
+                <img src="../images/ch5/66.png" width="70%">
             </div>
 
         === "答案"
 
             <div style="text-align: center">
-                <img src="images/ch5/67.png" width="70%">
+                <img src="../images/ch5/67.png" width="70%">
             </div>
 
 下图展示了内存地址（假定为64位）与高速缓存位置之间的关系：
 
 <div style="text-align: center">
-    <img src="images/ch5/9.png" width="70%">
+    <img src="../images/ch5/9.png" width="70%">
 </div>
 
 正如前面提到过的，我们可以将内存地址分为以下几部分：
@@ -301,7 +301,7 @@ $$
         对于直接映射高速缓存，采用不同的地址映射方式：
 
         <div style="text-align: center">
-            <img src="images/ch5/65.png" width="80%">
+            <img src="../images/ch5/65.png" width="80%">
         </div>
 
         - 该方法是可行的，因为地址高10位与次高10位的异或的结果仍然是一个10位的数，而索引一共也就10位，因此这种映射方式是OK的
@@ -310,7 +310,7 @@ $$
 ??? example "现实中的例子：The Intrinsity FastMATH处理器的高速缓存"
 
     <div style="text-align: center">
-        <img src="images/ch5/11.png" width="80%">
+        <img src="../images/ch5/11.png" width="80%">
     </div>
 
     !!! info "注"
@@ -360,13 +360,13 @@ $$
 下图展示了这三种失效在整个失效中的比例：
 
 <div style="text-align: center">
-    <img src="images/ch5/41.png" width="70%">
+    <img src="../images/ch5/41.png" width="70%">
 </div>
 
 三种失效对应的解决方案，以及解决方案可能带来的负面影响：
 
 <div style="text-align: center">
-    <img src="images/ch5/42.png" width="80%">
+    <img src="../images/ch5/42.png" width="80%">
 </div>
 
 
@@ -377,7 +377,7 @@ $$
 ???+ abstract "总结"
 
     <div style="text-align: center">
-        <img src="images/ch5/50.png" width="80%">
+        <img src="../images/ch5/50.png" width="80%">
     </div>
 
 
@@ -500,7 +500,7 @@ $$
 然而，如果高速缓存块的空间过大，对于固定空间大小的高速缓存，那么该高速缓存的块数就会减小，那么就会产生更多的<u>数据竞争</u>问题，因此此时失效率反而会升高。下图便展示了这一结果，其中不同曲线表示不同的高速缓存大小：
 
 <div style="text-align: center">
-    <img src="images/ch5/10.png" width="70%">
+    <img src="../images/ch5/10.png" width="70%">
 </div>
 
 事实上，增大高速缓存块的空间还会增加访问时间，从而导致**更长的命中时间**(hit time)和**失效损失**(miss penalty)。
@@ -541,13 +541,13 @@ $$
 下面这张图展示了这三类高速缓存置放方案的区别：
 
 <div style="text-align: center">
-    <img src="images/ch5/12.png" width="80%">
+    <img src="../images/ch5/12.png" width="80%">
 </div>
 
 事实上，我们可以把直接映射和全相联两种方式看作组相联的两种特殊情况。以一个带有8个高速缓存块的高速缓存为例，直接映射是一种单路(one-way)组相联，而全相联是一种8路组相联，如下图所示：
 
 <div style="text-align: center">
-    <img src="images/ch5/13.png" width="80%">
+    <img src="../images/ch5/13.png" width="80%">
 </div>
 
 ??? example "例题"
@@ -565,11 +565,11 @@ $$
         === "直接映射"
 
             <div style="text-align: center">
-                <img src="images/ch5/14.png" width="50%">
+                <img src="../images/ch5/14.png" width="50%">
             </div>
 
             <div style="text-align: center">
-                <img src="images/ch5/15.png" width="80%">
+                <img src="../images/ch5/15.png" width="80%">
             </div>
 
             失效次数：5
@@ -577,11 +577,11 @@ $$
         === "2路组相联"
 
             <div style="text-align: center">
-                <img src="images/ch5/16.png" width="50%">
+                <img src="../images/ch5/16.png" width="50%">
             </div>
 
             <div style="text-align: center">
-                <img src="images/ch5/17.png" width="80%">
+                <img src="../images/ch5/17.png" width="80%">
             </div>
 
             >注：这里采用了LRU的替换策略（后面会介绍的）
@@ -591,7 +591,7 @@ $$
         === "全相联"
 
             <div style="text-align: center">
-                <img src="images/ch5/18.png" width="80%">
+                <img src="../images/ch5/18.png" width="80%">
             </div>
 
             失效次数：3
@@ -600,7 +600,7 @@ $$
 下面考虑如何在**组相联**高速缓存中寻找高速缓存块。与直接映射高速缓存一样，我们将内存地址划分为以下几个字段：
 
 <div style="text-align: center">
-    <img src="images/ch5/20.png" width="50%">
+    <img src="../images/ch5/20.png" width="50%">
 </div>
 
 - **标签**(tag)：用于区分同一组内的不同高速缓存块，处理器通过比较所需内存地址与高速缓存的标签来判断是否命中
@@ -627,7 +627,7 @@ $$
 下面展示一个4路组相联高速缓存的原理图：
 
 <div style="text-align: center">
-    <img src="images/ch5/21.png" width="80%">
+    <img src="../images/ch5/21.png" width="80%">
 </div>
 
 不难发现，访问一个相联高速缓存需要先选择某个组，然后在组内进行查找，这带来了因比较和选择而产生的延时成本，因此在选择置放方案时需要权衡好**失效(miss)成本**和**相联(associativity)成本**。
@@ -637,20 +637,20 @@ $$
     === "直接映射"
 
         <div style="text-align: center">
-            <img src="images/ch5/51.png" width="80%">
+            <img src="../images/ch5/51.png" width="80%">
         </div>
 
     === "组相联"
 
         <div style="text-align: center">
-            <img src="images/ch5/53.png" width="80%">
+            <img src="../images/ch5/53.png" width="80%">
         </div>
 
 
     === "全相联"
 
         <div style="text-align: center">
-            <img src="images/ch5/52.png" width="80%">
+            <img src="../images/ch5/52.png" width="80%">
         </div>
 
 ---
@@ -669,7 +669,7 @@ $$
 下表展示了一个高速缓存块大小为16字的64KiB高速缓存中，不同置放方案下的数据失效率的对比情况：
 
 <div style="text-align: center">
-    <img src="images/ch5/19.png" width="80%">
+    <img src="../images/ch5/19.png" width="80%">
 </div>
 
 ??? example "例题"
@@ -685,7 +685,7 @@ $$
                 题目开头说这些地址都是**字**地址，也就是说一个地址代表的是一个字（4字节），不是一个字节，因此需要注意地址中表示偏移量的那几位。
 
             <div style="text-align: center">
-                <img src="images/ch5/72.png" width="80%">
+                <img src="../images/ch5/72.png" width="80%">
             </div>
 
 
@@ -702,7 +702,7 @@ $$
             === "2"
 
                 <div style="text-align: center">
-                    <img src="images/ch5/75.png" width="80%">
+                    <img src="../images/ch5/75.png" width="80%">
                 </div>
 
             === "3"
@@ -716,7 +716,7 @@ $$
             === "4"
 
                 <div style="text-align: center">
-                    <img src="images/ch5/77.png" width="80%">
+                    <img src="../images/ch5/77.png" width="80%">
                 </div>
 
             === "5"
@@ -732,19 +732,19 @@ $$
             === "6"
 
                 <div style="text-align: center">
-                    <img src="images/ch5/79.png" width="80%">
+                    <img src="../images/ch5/79.png" width="80%">
                 </div>
 
             === "7"
 
                 <div style="text-align: center">
-                    <img src="images/ch5/80.png" width="80%">
+                    <img src="../images/ch5/80.png" width="80%">
                 </div>
 
             === "8"
 
                 <div style="text-align: center">
-                    <img src="images/ch5/81.png" width="80%">
+                    <img src="../images/ch5/81.png" width="80%">
                 </div>
 
     === "例2"
@@ -752,7 +752,7 @@ $$
         === "题目"
 
             <div style="text-align: center">
-                <img src="images/ch5/90.png" width="80%">
+                <img src="../images/ch5/90.png" width="80%">
             </div>
 
             原题有些问题，给了两个地址序列，这里我仅考虑上面那个序列，下面的序列被我删掉了。
@@ -769,7 +769,7 @@ $$
 下面给出三种不同的内存组织，并分析它们各自的性能：
 
 <div style="text-align: center">
-    <img src="images/ch5/54.png" width="80%">
+    <img src="../images/ch5/54.png" width="80%">
 </div>
 
 === "单字宽的内存组织"
@@ -777,20 +777,20 @@ $$
     对于块的大小为四字的高速缓存，这类内存的带宽仅有约$\dfrac{1}{4}$，也就是说只有1个字是有用的，另外3个字都作废了，因此这种内存组织不切实际。
 
     <div style="text-align: center">
-        <img src="images/ch5/55.png" width="60%">
+        <img src="../images/ch5/55.png" width="60%">
     </div>
 
 === "更宽的内存组织"
 
     <div style="text-align: center">
-        <img src="images/ch5/56.png" width="60%">
+        <img src="../images/ch5/56.png" width="60%">
     </div>
 
 
 === "**交错的**(interleaved)内存组织"
 
     <div style="text-align: center">
-        <img src="images/ch5/57.png" width="60%">
+        <img src="../images/ch5/57.png" width="60%">
     </div>
 
     因此，这类内存组织的效果在这三者中是最优的。
@@ -846,7 +846,7 @@ $$
         === "题目"
 
             <div style="text-align: center">
-                <img src="images/ch5/68.png" width="70%">
+                <img src="../images/ch5/68.png" width="70%">
             </div>
 
             >这道题除了考多级高速缓存外，还考了写命中和写失效的几种策略
@@ -854,7 +854,7 @@ $$
         === "解答"
 
             <div style="text-align: center">
-                <img src="images/ch5/69.png" width="70%">
+                <img src="../images/ch5/69.png" width="70%">
             </div>
 
     === "例3"
@@ -862,7 +862,7 @@ $$
         === "题目"
 
             <div style="text-align: center">
-                <img src="images/ch5/70.png" width="80%">
+                <img src="../images/ch5/70.png" width="80%">
             </div>
 
             !!! info "注"
@@ -977,7 +977,7 @@ void dgemm(int n, double * A, double * B, double * C) {
 - 优化前后的效果比较：
 
 <div style="text-align: center">
-    <img src="images/ch5/23.png" width="80%">
+    <img src="../images/ch5/23.png" width="80%">
 </div>
 
 
@@ -996,13 +996,13 @@ void dgemm(int n, double * A, double * B, double * C) {
                 - n路(n-way)组相联：每组包含n个高速缓存块
             
                 <div style="text-align: center">
-                    <img src="images/ch5/38.png" width="90%">
+                    <img src="../images/ch5/38.png" width="90%">
                 </div>
 
         - 相联程度越高，失效率就越低。但随着高速缓存空间的增大，这一效果会越不明显，因为大高速缓存的失效率本来就很低
 
             <div style="text-align: center">
-                <img src="images/ch5/39.png" width="60%">
+                <img src="../images/ch5/39.png" width="60%">
             </div>
 
         - 但更高的相联程度会带来更大的成本和更慢的访问时间
@@ -1010,7 +1010,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     === "**识别方式**"
 
         <div style="text-align: center">
-            <img src="images/ch5/40.png" width="90%">
+            <img src="../images/ch5/40.png" width="90%">
         </div>
 
         - 需要同时考虑失效和实现相联所需的成本
@@ -1057,13 +1057,13 @@ void dgemm(int n, double * A, double * B, double * C) {
 对于这样的高速缓存，它的控制器本质上是一个**有限状态机**(finite-state machine)。它是一个顺序逻辑函数，由一组输入、一组输出、一个生成下一状态的函数和一个输出函数（这些函数均根据当前状态和输入进行计算）构成（实际上这是摩尔(Moore)型状态机）。下面是有限状态机的图示：
 
 <div style="text-align: center">
-    <img src="images/ch5/43.png" width="60%">
+    <img src="../images/ch5/43.png" width="60%">
 </div>
 
 高速缓存控制器的状态图如下所示：
 
 <div style="text-align: center">
-    <img src="images/ch5/44.png" width="70%">
+    <img src="../images/ch5/44.png" width="70%">
 </div>
 
 四种状态的简介：
@@ -1100,14 +1100,14 @@ void dgemm(int n, double * A, double * B, double * C) {
     - **地址转译/映射**(address translation/mapping)：将虚拟地址映射到被访问内存的物理地址的过程
 
     <div style="text-align: center">
-        <img src="images/ch5/28.png" width="50%">
+        <img src="../images/ch5/28.png" width="50%">
     </div>
 
     - **虚拟地址**(virtual address)：关联虚拟空间（应该就是地址空间）位置的地址，它会被转译为被访问内存的物理地址(physical address)上
         - 虚拟地址被划分为**虚拟页编号**(virtual page number)和**页偏移量**(page offset)，其中虚拟页编号会被转译为物理页编号；而页偏移量保持不变，它表示的是页的大小
 
         <div style="text-align: center">
-            <img src="images/ch5/29.png" width="60%">
+            <img src="../images/ch5/29.png" width="60%">
         </div>
 
         - 在RISC-V中，64位的地址中高16位不会被用到，因此虚拟地址只有48位；同时假设物理内存有1TiB大，因此物理地址有40位。一般情况下虚拟地址的位数都会比物理地址的大
@@ -1140,7 +1140,7 @@ void dgemm(int n, double * A, double * B, double * C) {
 下图展示了加上页表寄存器和页表后的地址转译过程：
 
 <div style="text-align: center">
-    <img src="images/ch5/30.png" width="70%">
+    <img src="../images/ch5/30.png" width="70%">
 </div>
 
 - 页表中的每一项都添加了一个**合法位**(valid bit)，功能与高速缓存中的类似：
@@ -1154,7 +1154,7 @@ void dgemm(int n, double * A, double * B, double * C) {
 下图所示的页表中，除了用于保存物理地址的页之外，那些空闲的页（灰色的块）会被标记并在磁盘（二级内存）中保留它们的空间（交换空间），以便不时之需：
 
 <div style="text-align: center">
-    <img src="images/ch5/31.png" width="60%">
+    <img src="../images/ch5/31.png" width="60%">
 </div>
 
 操作系统同时也创建了一个用于跟踪每个物理页使用进程或虚拟地址的情况的数据结构。当页错误发生时，如果主存中的每个页都被使用，那么操作系统必须选择其中一个要被替换的页，此时采取的策略是**LRU**（least recently used, 最早使用），即替换很久没有被访问过的页（将这个被替换的页放入二级内存的交换空间中）。
@@ -1180,7 +1180,7 @@ void dgemm(int n, double * A, double * B, double * C) {
 - 使用**多级页表**能够有效减少页表所需存储空间（RISC-V的做法！）
 
     <div style="text-align: center">
-        <img src="images/ch5/32.png" width="80%">
+        <img src="../images/ch5/32.png" width="80%">
     </div>
 
     这里我们使用了四级页表，每个页表负责9位地址（虚拟页编号占36位），从高位地址开始寻找。如果在某个页表中找到了的话（即合法位为1），那么继续到下一级页表中寻找，直至最后一个页表。
@@ -1193,7 +1193,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     === "题目"
 
         <div style="text-align: center">
-            <img src="images/ch5/88.png" width="80%">
+            <img src="../images/ch5/88.png" width="80%">
         </div>
 
     === "答案"
@@ -1212,7 +1212,7 @@ void dgemm(int n, double * A, double * B, double * C) {
         === "3"
 
             <div style="text-align: center">
-                <img src="images/ch5/89.png" width="80%">
+                <img src="../images/ch5/89.png" width="80%">
             </div>
 
 
@@ -1221,7 +1221,7 @@ void dgemm(int n, double * A, double * B, double * C) {
 **转译-旁路缓冲器**(translation-lookaside buffer, **TLB**)：一块用于追踪最近使用过的地址映射的**高速缓存**，以尝试避免直接访问页表（页表是存在内存中的，访问耗时较长）。它利用了局部性原则，由于直接保存了物理地址，因此无需再次转译，从而实现加速访问。下图展示了添加TLB后的访问内存过程：
 
 <div style="text-align: center">
-    <img src="images/ch5/33.png" width="80%">
+    <img src="../images/ch5/33.png" width="80%">
 </div>
 
 - 其中TLB中的每个项的标签位保存了虚拟页编号，而数据位保存了物理页编号，同时也保留了页表中的几个状态位（合法位、引用位、脏位等）
@@ -1241,7 +1241,7 @@ void dgemm(int n, double * A, double * B, double * C) {
 - TLB的大致规格
 
     <div style="text-align: center">
-        <img src="images/ch5/34.png" width="60%">
+        <img src="../images/ch5/34.png" width="60%">
     </div>
 
 - 小规模的TLB采用全相联，大规模的TLB相联程度会小一些
@@ -1249,13 +1249,13 @@ void dgemm(int n, double * A, double * B, double * C) {
 ??? example "例子：The Instrinsity FastMATH TLB"
 
     <div style="text-align: center">
-        <img src="images/ch5/35.png" width="80%">
+        <img src="../images/ch5/35.png" width="80%">
     </div>
 
     读/写穿操作的流程图：
 
     <div style="text-align: center">
-        <img src="images/ch5/36.png" width="80%">
+        <img src="../images/ch5/36.png" width="80%">
     </div>
 
 
@@ -1268,7 +1268,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     - 根据上面例子给出的内存层级，有以下几种不同失效情况的组合：
 
     <div style="text-align: center">
-        <img src="images/ch5/37.png" width="80%">
+        <img src="../images/ch5/37.png" width="80%">
     </div>
 
     注意：
@@ -1281,7 +1281,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     === "题目"
 
         <div style="text-align: center">
-            <img src="images/ch5/82.png" width="80%">
+            <img src="../images/ch5/82.png" width="80%">
         </div>
 
     === "答案"
@@ -1291,7 +1291,7 @@ void dgemm(int n, double * A, double * B, double * C) {
             每个页的大小为$4B = 2^{12}bit$，因此地址的低12位表示偏移量，高4位表示标签位，无索引位（因为是全相联）
 
             <div style="text-align: center">
-                <img src="images/ch5/83.png" width="80%">
+                <img src="../images/ch5/83.png" width="80%">
             </div>
 
         === "2"
@@ -1299,7 +1299,7 @@ void dgemm(int n, double * A, double * B, double * C) {
             每个页的大小为$16B = 2^{14}bit$，因此地址的低14位表示偏移量，高2位表示标签位，无索引位（因为是全相联）
 
             <div style="text-align: center">
-                <img src="images/ch5/84.png" width="80%">
+                <img src="../images/ch5/84.png" width="80%">
             </div>
 
         === "3"
@@ -1307,7 +1307,7 @@ void dgemm(int n, double * A, double * B, double * C) {
             每个页的大小为$4B = 2^{12}bit$，因此地址的低12位表示偏移量，中间1位表示索引位（4个条目，2路组相联），高3位表示标签位
 
             <div style="text-align: center">
-                <img src="images/ch5/85.png" width="80%">
+                <img src="../images/ch5/85.png" width="80%">
             </div>
 
         === "4"
@@ -1315,13 +1315,13 @@ void dgemm(int n, double * A, double * B, double * C) {
             每个页的大小为$4B = 2^{12}bit$，因此地址的低12位表示偏移量，中间2位表示索引位（4个条目，直接映射），高2位表示标签位
 
             <div style="text-align: center">
-                <img src="images/ch5/86.png" width="80%">
+                <img src="../images/ch5/86.png" width="80%">
             </div>
 
         === "5"
 
             <div style="text-align: center">
-                <img src="images/ch5/87.png" width="80%">
+                <img src="../images/ch5/87.png" width="80%">
             </div>
 
 ??? info "补充知识"
@@ -1399,7 +1399,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     - 我们希望可用性保持在相当高的水平：
 
     <div style="text-align: center">
-        <img src="images/ch5/24.png" width="70%">
+        <img src="../images/ch5/24.png" width="70%">
     </div>
 
     - 提升可用性的方法
@@ -1425,11 +1425,11 @@ void dgemm(int n, double * A, double * B, double * C) {
 有以下几种不同类型的RAID：
 
 <div style="text-align: center">
-    <img src="images/ch5/58.png" width="90%">
+    <img src="../images/ch5/58.png" width="90%">
 </div>
 
 <div style="text-align: center">
-    <img src="images/ch5/59.png" width="60%">
+    <img src="../images/ch5/59.png" width="60%">
 </div>     
 
 
@@ -1451,7 +1451,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     - 由于是“完整拷贝”，所以它需要额外100%的容量开销，因而成为最昂贵的方法
 
     <div style="text-align: center">
-        <img src="images/ch5/60.png" width="60%">
+        <img src="../images/ch5/60.png" width="60%">
     </div>   
 
 === "RAID 2"
@@ -1463,7 +1463,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     位交错奇偶校验硬盘(bit-interleaved parity disk)
 
     <div style="text-align: center">
-        <img src="images/ch5/61.png" width="70%">
+        <img src="../images/ch5/61.png" width="70%">
     </div>           
 
     - 我们让某几个硬盘共用一个冗余的硬盘P，P的数据的每一位等于“这些硬盘对应位之和 mod 2”（即奇偶位(parity)）
@@ -1476,7 +1476,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     块交错奇偶校验(bit-interleaved parity)
 
     <div style="text-align: center">
-        <img src="images/ch5/62.png" width="70%">
+        <img src="../images/ch5/62.png" width="70%">
     </div>  
 
     - 该方法允许同步、独立地读取不同硬盘的数据
@@ -1484,7 +1484,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     - 采用小范围写算法：1次逻辑写 = 2次物理读 + 2次物理写（每次写操作都会涉及到奇偶校验硬盘P），成本较高。具体过程如下所示：
 
     <div style="text-align: center">
-        <img src="images/ch5/63.png" width="70%">
+        <img src="../images/ch5/63.png" width="70%">
     </div>
 
         
@@ -1493,7 +1493,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     高I/O速率交错奇偶校验(high I/O rate interleaved parity)
 
     <div style="text-align: center">
-        <img src="images/ch5/64.png" width="70%">
+        <img src="../images/ch5/64.png" width="70%">
     </div> 
 
     - 交错的奇偶校验块
@@ -1522,7 +1522,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     - 将所有奇偶位拼起来（右边低位），它可以直接反映哪一位上的数据有误（比如拼起来为1010，表示第10位（第6个数据位）上的数据有误），从而可以实现纠错
 
     <div style="text-align: center">
-        <img src="images/ch5/25.png" width="80%">
+        <img src="../images/ch5/25.png" width="80%">
     </div>
 
     ??? example "例题"
@@ -1530,13 +1530,13 @@ void dgemm(int n, double * A, double * B, double * C) {
         === "题目"
 
             <div style="text-align: center">
-                <img src="images/ch5/26.png" width="80%">
+                <img src="../images/ch5/26.png" width="80%">
             </div>
 
         === "答案"
 
             <div style="text-align: center">
-                <img src="images/ch5/27.png" width="80%">
+                <img src="../images/ch5/27.png" width="80%">
             </div>
 
 - 改进——单位纠正/双位检测(single error correcting/double error detecting, **SEC/DED**)：额外增加1个奇偶位，用于检测数据上所有位的错误，这样可以在实现单位纠错的基础上，实现双位检测错误的功能~
@@ -1575,7 +1575,7 @@ void dgemm(int n, double * A, double * B, double * C) {
     - **高速缓存一致性问题**(cache coherence problem)：两个不同的处理器在内存的同一位置中获得两个不同的值，如下图的例子所示：
 
     <div style="text-align: center">
-        <img src="images/ch5/45.png" width="70%">
+        <img src="../images/ch5/45.png" width="70%">
     </div>
 
 
@@ -1601,7 +1601,7 @@ void dgemm(int n, double * A, double * B, double * C) {
 ??? example "例子"
 
     <div style="text-align: center">
-        <img src="images/ch5/46.png" width="80%">
+        <img src="../images/ch5/46.png" width="80%">
     </div>
 
     关注表格的3、4两行：一个处理器(B)读取数据后，另一个处理器(A)随后马上向同一位置写入数据。由于写操作是一种独一无二的访问，其他任何处理器内保存同一位置内存数据的高速缓存块全部失效，所以可以看到在写操作之后，处理器B高速缓存内的数据被清除掉了。那么当下一次处理器B再读取数据时，就会发生高速缓存失效，因而需要重新到内存中读取新的数据了。

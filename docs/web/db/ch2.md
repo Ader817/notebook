@@ -2,7 +2,7 @@
 counter: true
 ---
 
-# Chap 2: Relational Model
+# Chap 2:Relational Model
 
 ## Structure of Relational Databases
 

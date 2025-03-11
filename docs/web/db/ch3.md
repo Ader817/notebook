@@ -115,6 +115,18 @@ Deletes all contents of table, but retains table
 
 ## Basic Query Structure
 
+??? info "比较运算符"
+    在 SQL 中，常用的比较运算符用于条件筛选（如 WHERE、HAVING 或 CASE 语句）
+    
+    包括大于(`>`)，小于(`<`)，等于(`=`)，不等于(`<>` 或 `!=`)，大于等于(`>=`)，小于等于(`<=`)。
+
+    其中需要补充的是：
+
+    - `<>` 和 `!=` 都表示不等于，但前者是SQL标准语法，在某些 SQL 方言中，`!=` 可能不被支持。
+    - `=` 是等于运算符，但在某些 SQL 方言中，`==` 也可以用作等于运算符。
+    - `BETWEEN` 用于检查值是否在两个值之间（包括边界值）。
+
+
 ### The `select` Clause 
 
 The **`select`** clause list the attributes desired in the result of a query.  

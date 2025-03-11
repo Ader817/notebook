@@ -35,7 +35,7 @@ counter: true
 典型的I/O设备连接模型
 
 <div style="text-align: center">
-    <img src="images/ch6/1.png" width="80%">
+    <img src="../images/ch6/1.png" width="80%">
 </div>
 
 I/O设备的三大特性：
@@ -47,7 +47,7 @@ I/O设备的三大特性：
 下表展示了不同I/O设备的三大特性的数据：
 
 <div style="text-align: center">
-    <img src="images/ch6/2.png" width="70%">
+    <img src="../images/ch6/2.png" width="70%">
 </div>
 
 ## Disk Storage and Dependability
@@ -60,7 +60,7 @@ I/O设备的三大特性：
 总览：
 
 <div style="text-align: center">
-    <img src="images/ch6/3.png" width="70%">
+    <img src="../images/ch6/3.png" width="70%">
 </div>
 
 **总线**(bus)：共用的通信连接（包含一根或多条线路）
@@ -73,23 +73,23 @@ I/O设备的三大特性：
     - 输出操作
 
         <div style="text-align: center">
-            <img src="images/ch6/4.png" width="80%">
+            <img src="../images/ch6/4.png" width="80%">
         </div>
 
     - 输入操作
 
         <div style="text-align: center">
-            <img src="images/ch6/5.png" width="80%">
+            <img src="../images/ch6/5.png" width="80%">
         </div>
 
 - 总线类型：
 
     <div style="text-align: center">
-        <img src="images/ch6/6.png" width="80%">
+        <img src="../images/ch6/6.png" width="80%">
     </div>
 
     <div style="text-align: center">
-        <img src="images/ch6/7.png" width="80%">
+        <img src="../images/ch6/7.png" width="80%">
     </div>
 
     这三种模型的共同组成部分有：
@@ -104,7 +104,7 @@ I/O设备的三大特性：
     - **异步总线**：不用时钟，而采用**握手**协议(handshaking protocol)——一种用于协调异步总线传输的串行步骤，下面介绍具体过程：
 
         <div style="text-align: center">
-            <img src="images/ch6/8.png" width="80%">
+            <img src="../images/ch6/8.png" width="80%">
         </div>
 
         1. 当`ReadReq`处于高电平时，内存从数据总线中读取地址，执行读操作，然后抬高`Ack`的电平，告诉设备它看到了`ReadReq`信号
@@ -122,7 +122,7 @@ I/O设备的三大特性：
             === "问题"
 
                 <div style="text-align: center">
-                    <img src="images/ch6/11.png" width="80%">
+                    <img src="../images/ch6/11.png" width="80%">
                 </div>
 
             === "分析"
@@ -131,13 +131,13 @@ I/O设备的三大特性：
                 === "同步"
 
                     <div style="text-align: center">
-                        <img src="images/ch6/12.png" width="70%">
+                        <img src="../images/ch6/12.png" width="70%">
                     </div>
 
                 === "异步"
 
                     <div style="text-align: center">
-                        <img src="images/ch6/13.png" width="80%">
+                        <img src="../images/ch6/13.png" width="80%">
                     </div>
 
 - **总线仲裁**(bus arbitration)
@@ -149,11 +149,11 @@ I/O设备的三大特性：
         单个控制器在总线事务中的初始化
 
         <div style="text-align: center">
-            <img src="images/ch6/9.png" width="80%">
+            <img src="../images/ch6/9.png" width="80%">
         </div>
 
         <div style="text-align: center">
-            <img src="images/ch6/10.png" width="80%">
+            <img src="../images/ch6/10.png" width="80%">
         </div>
 
     - 方案：
@@ -171,7 +171,7 @@ I/O设备的三大特性：
         === "题目"
 
             <div style="text-align: center">
-                <img src="images/ch6/14.png" width="80%">
+                <img src="../images/ch6/14.png" width="80%">
             </div>
 
         === "分析"
@@ -179,26 +179,26 @@ I/O设备的三大特性：
             === "4字大小的块"
 
                 <div style="text-align: center">
-                    <img src="images/ch6/15.png" width="60%">
+                    <img src="../images/ch6/15.png" width="60%">
                 </div>
 
                 <div style="text-align: center">
-                    <img src="images/ch6/16.png" width="60%">
+                    <img src="../images/ch6/16.png" width="60%">
                 </div>
 
 
             === "16字大小的块"
 
                 <div style="text-align: center">
-                    <img src="images/ch6/17.png" width="60%">
+                    <img src="../images/ch6/17.png" width="60%">
                 </div>
 
                 <div style="text-align: center">
-                    <img src="images/ch6/18.png" width="70%">
+                    <img src="../images/ch6/18.png" width="70%">
                 </div>
 
                 <div style="text-align: center">
-                    <img src="images/ch6/19.png" width="60%">
+                    <img src="../images/ch6/19.png" width="60%">
                 </div>
 
 ## Interface
@@ -228,14 +228,14 @@ I/O系统的三大特征：
     - 中断驱动的I/O模式：它的优点是并发操作(concurrent operation)
 
     <div style="text-align: center">
-        <img src="images/ch6/20.png" width="80%">
+        <img src="../images/ch6/20.png" width="80%">
     </div>
 
 - **直接内存访问**(direct memory access, DMA)：设备控制器直接向/从内存传输数据，不需要处理器的介入
     - DMA传输模式
 
         <div style="text-align: center">
-            <img src="images/ch6/21.png" width="70%">
+            <img src="../images/ch6/21.png" width="70%">
         </div>
 
         1. 首先处理器通过提供一些信息来设置DMA模式，具体包括：设备ID、操作、待传输数据的内存源地址和目标地址、需要传输的字节数等
@@ -251,17 +251,17 @@ I/O系统的三大特征：
         === "题目"
 
             <div style="text-align: center">
-                <img src="images/ch6/22.png" width="70%">
+                <img src="../images/ch6/22.png" width="70%">
             </div>
 
         === "答案"
 
             <div style="text-align: center">
-                <img src="images/ch6/23.png" width="70%">
+                <img src="../images/ch6/23.png" width="70%">
             </div>
 
             <div style="text-align: center">
-                <img src="images/ch6/24.png" width="70%">
+                <img src="../images/ch6/24.png" width="70%">
             </div>
 
     === "中断"
@@ -269,14 +269,14 @@ I/O系统的三大特征：
         === "题目"
 
             <div style="text-align: center">
-                <img src="images/ch6/25.png" width="70%">
+                <img src="../images/ch6/25.png" width="70%">
             </div>
 
         === "答案"
 
             <div style="text-align: center">
-                <img src="images/ch6/25.5.png" width="70%">
-                <img src="images/ch6/26.png" width="70%">
+                <img src="../images/ch6/25.5.png" width="70%">
+                <img src="../images/ch6/26.png" width="70%">
             </div>
 
     === "DMA"
@@ -284,13 +284,13 @@ I/O系统的三大特征：
         === "题目"
 
             <div style="text-align: center">
-                <img src="images/ch6/27.png" width="70%">
+                <img src="../images/ch6/27.png" width="70%">
             </div>
 
         === "答案"
 
             <div style="text-align: center">
-                <img src="images/ch6/28.png" width="70%">
+                <img src="../images/ch6/28.png" width="70%">
             </div>
 
 
@@ -315,32 +315,32 @@ I/O系统的三大特征：
     === "题目"
 
         <div style="text-align: center">
-            <img src="images/ch6/29.png" width="70%">
+            <img src="../images/ch6/29.png" width="70%">
         </div>
 
 
         <div style="text-align: center">
-            <img src="images/ch6/30.png" width="70%">
+            <img src="../images/ch6/30.png" width="70%">
         </div>
 
     === "解答"
 
 
         <div style="text-align: center">
-            <img src="images/ch6/31.png" width="70%">
+            <img src="../images/ch6/31.png" width="70%">
         </div>
 
 
         <div style="text-align: center">
-            <img src="images/ch6/32.png" width="70%">
+            <img src="../images/ch6/32.png" width="70%">
         </div>
 
 
         <div style="text-align: center">
-            <img src="images/ch6/33.png" width="70%">
+            <img src="../images/ch6/33.png" width="70%">
         </div>
 
 
         <div style="text-align: center">
-            <img src="images/ch6/34.png" width="70%">
+            <img src="../images/ch6/34.png" width="70%">
         </div>
