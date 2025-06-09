@@ -191,6 +191,16 @@
         </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../tools/venv/">
+          
+  
+    
+  
+  Tools
+
+        </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="../../../writeups/">
           
   
@@ -494,6 +504,15 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../tools/venv/">
+<span class="md-ellipsis">
+    Tools
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="../../../writeups/">
 <span class="md-ellipsis">
     Writeups
@@ -651,7 +670,7 @@
 <li>使用这个坐标系，在兴趣点附近得到一小块特征区域</li>
 </ol>
 <div style="text-align: center">
-<img src="images/C7/3.png" width="60%"/>
+<img src="../images/ch7/3.png" width="60%"/>
 </div>
 <h2 id="feature-detection">Feature Detection</h2>
 <p><strong>不变的局部特征</strong>(invariant local features)：</p>
@@ -664,7 +683,7 @@
 </li>
 </ul>
 <div style="text-align: center">
-<img src="images/C7/4.png" width="70%"/>
+<img src="../images/ch7/4.png" width="70%"/>
 </div>
 <p>对于图像而言，好的特征点应具备如下特点：</p>
 <ul>
@@ -674,7 +693,7 @@
 <h3 id="harris-corner-detector">Harris Corner Detector</h3>
 <p>假设我们仅考虑图像中小窗口（可以在图像内移动）内的像素点，下面展示了三种可能情况（黄色区域表示窗口<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：</p>
 <div style="text-align: center">
-<img src="images/C7/5.png" width="70%"/>
+<img src="../images/ch7/5.png" width="70%"/>
 </div>
 <ul>
 <li><strong>平坦区域</strong>(flat region)：无论向何种方向移动窗口，窗口内的像素都没有发生变化</li>
@@ -732,7 +751,7 @@ A \xi = \lambda \xi
 <li><span class="arithmatex">\(\lambda_-\)</span>：沿<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x_-\)</span><span class="heti-spacing"> </span></span>方向上的增量（特征值）</li>
 </ul>
 <div style="text-align: center">
-<img src="images/C7/6.png" width="30%"/>
+<img src="../images/ch7/6.png" width="30%"/>
 </div>
 <p>那么可以得到：</p>
 <div class="arithmatex">\[
@@ -741,7 +760,7 @@ Hx_+ = \lambda_+ x_+ \quad \quad Hx_- = \lambda_- x_-
 <p>因为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(H\)</span><span class="heti-spacing"> </span></span>是一个对称矩阵，那么<span><span class="heti-spacing"> </span><span class="arithmatex">\(H = R^{-1} \begin{bmatrix}\lambda_1 &amp; 0 \\ 0 &amp; \lambda_2\end{bmatrix} R\)</span></span>。</p>
 <p>二次函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(E(u, v)\)</span><span class="heti-spacing"> </span></span>的几何意义是一个<strong>椭圆</strong>，椭圆的曲率和尺寸可由它的特征值<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\lambda_1, \lambda_2\)</span><span class="heti-spacing"> </span></span>表示，椭圆的方向由对应的特征向量表示</p>
 <div style="text-align: center">
-<img src="images/C7/7.png" width="50%"/>
+<img src="../images/ch7/7.png" width="50%"/>
 </div>
 <hr/>
 <p>用该工具寻找图像特征点（这里特指角点）的方法：</p>
@@ -758,7 +777,7 @@ Hx_+ = \lambda_+ x_+ \quad \quad Hx_- = \lambda_- x_-
 <li>一个大一个小时，该像素点位于边缘</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/53.png" width="70%"/>
+<img src="../images/ch7/53.png" width="70%"/>
 </div>
 </li>
 </ul>
@@ -791,24 +810,24 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/8.png" width="70%"/>
+<img src="../images/ch7/8.png" width="70%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/C7/9.png" width="50%"/>
+<img src="../images/ch7/9.png" width="50%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p>原图：</p>
 <p></p><div style="text-align: center">
-<img src="images/C7/11.png" width="50%"/>
+<img src="../images/ch7/11.png" width="50%"/>
 </div>
 <p>用颜色区分图像的<span class="heti-skip"><span class="heti-spacing"> </span>f<span class="heti-spacing"> </span></span>值，越红表示<span class="heti-skip"><span class="heti-spacing"> </span>f<span class="heti-spacing"> </span></span>值越大，越蓝表示<span class="heti-skip"><span class="heti-spacing"> </span>f<span class="heti-spacing"> </span></span>值越小：</p>
 <p></p><div style="text-align: center">
-<img src="images/C7/12.png" width="50%"/>
+<img src="../images/ch7/12.png" width="50%"/>
 </div>
 <p>找到两张图共有的特征点：</p>
 <p></p><div style="text-align: center">
-<img src="images/C7/13.png" width="50%"/>
+<img src="../images/ch7/13.png" width="50%"/>
 </div>
 </div>
 </div>
@@ -824,7 +843,7 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>旋转椭圆时，椭圆的形状（即特征值）保持不变。因此在图像的旋转过程中，角点的响应值<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(R\)</span><span class="heti-spacing"> </span></span>保持不变</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/14.png" width="50%"/>
+<img src="../images/ch7/14.png" width="50%"/>
 </div>
 </li>
 <li>
@@ -834,7 +853,7 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>光强缩放：<span class="arithmatex">\(I \rightarrow aI\)</span></li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/16.png" width="60%"/>
+<img src="../images/ch7/16.png" width="60%"/>
 </div>
 </li>
 <li>
@@ -843,7 +862,7 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>
 <p>但<strong>不具备尺度不变性</strong></p>
 <p></p><div style="text-align: center">
-<img src="images/C7/15.png" width="50%"/>
+<img src="../images/ch7/15.png" width="50%"/>
 </div>
 <ul>
 <li>不同尺度比率下的哈里斯检测器的效果</li>
@@ -855,12 +874,12 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <summary>思考</summary>
 <p>对于图像的某个像素点，考虑其周围不同大小的区域（用以该像素点为中心点的圆表示<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：</p>
 <p></p><div style="text-align: center">
-<img src="images/C7/17.png" width="50%"/>
+<img src="../images/ch7/17.png" width="50%"/>
 </div>
 <p>可以看到，虽然这两幅图的尺度比例不同，但是左图最大的区域在图像中的比例和右图区域在图像中的比例看起来是一样的。</p>
 <p>如何在图像上独立地选取不同像素点对应的区域？</p>
 <p></p><div style="text-align: center">
-<img src="images/C7/18.png" width="50%"/>
+<img src="../images/ch7/18.png" width="50%"/>
 </div>
 </details>
 <p>解决方案：</p>
@@ -869,7 +888,7 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>对于图像的一个像素点，我们将其看作一个关于区域大小（即圆圈半径）的函数</li>
 </ul>
 <div style="text-align: center">
-<img src="images/C7/19.png" width="70%"/>
+<img src="../images/ch7/19.png" width="70%"/>
 </div>
 <ul>
 <li>共同的方法：取函数的<strong>局部极大值</strong>，因为它可以作为图像缩放过程中的不变量</li>
@@ -877,12 +896,12 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>一个好的函数应该<strong>只有一个峰值</strong>，一般来说好的函数与图像的<strong>对比度</strong><span>(contrast)<span class="heti-spacing"> </span></span>相关</li>
 </ul>
 <div style="text-align: center">
-<img src="images/C7/20.png" width="70%"/>
+<img src="../images/ch7/20.png" width="70%"/>
 </div>
 <hr/>
 <p><strong>局部极值检测</strong>(local extrama detection)：将图像的某个像素点与它在三个尺度上的<span class="heti-skip"><span class="heti-spacing"> </span>26<span class="heti-spacing"> </span></span>个邻居像素点进行比较。</p>
 <div style="text-align: center">
-<img src="images/C7/28.png" width="40%"/>
+<img src="../images/ch7/28.png" width="40%"/>
 </div>
 <p>方向<span><span class="heti-spacing"> </span>(orientation)</span>：</p>
 <ul>
@@ -891,13 +910,13 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>方向的选择：</li>
 </ul>
 <div style="text-align: center">
-<img src="images/C7/29.png" width="50%"/>
+<img src="../images/ch7/29.png" width="50%"/>
 </div>
 <p>假设我们比较图像<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(I_1\)</span><span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span><span class="arithmatex">\(I_2\)</span></span>，且<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(I_2\)</span><span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(I_1\)</span><span class="heti-spacing"> </span></span>变换版本。无论它们之间发生何种变换，我们希望找到这两幅图相同的特征点，这称为<strong>变换不变性</strong>(transformational invariance)。有很多的特征方法可以处理平移、二维旋转、尺度等变换的不变性，甚至可以处理局部的三维旋转、仿射变换、亮度<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>对比度改变等。</p>
 <hr/>
 <p>尺度不变的图像侦测算法有：</p>
 <div style="text-align: center">
-<img src="images/C7/21.png" width="70%"/>
+<img src="../images/ch7/21.png" width="70%"/>
 </div>
 <ul>
 <li>这两种算法的思路大致相同：<span class="arithmatex">\(f = \text{Kernel} \times \text{Image}\)</span>，且它们的核在尺度和旋转过程中保持不变</li>
@@ -918,13 +937,13 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>特征函数<span><span class="heti-spacing"> </span>f</span>：拉普拉斯<span class="heti-skip"><span class="heti-spacing"> </span>-<span class="heti-spacing"> </span></span>高斯<span class="heti-skip"><span class="heti-spacing"> </span>= blob<span class="heti-spacing"> </span></span>检测器</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/23.png" width="40%"/>
+<img src="../images/ch7/23.png" width="40%"/>
 </div>
 <ul>
 <li>对于图像的每个像素点，我们将能够产生拉普拉斯值峰值的尺度比例称为<strong>特征比例</strong>(characteristic scale)</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/24.png" width="40%"/>
+<img src="../images/ch7/24.png" width="40%"/>
 </div>
 </li>
 </ul>
@@ -934,12 +953,12 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/25.png" width="70%"/>
+<img src="../images/ch7/25.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/26.png" width="60%"/>
+<img src="../images/ch7/26.png" width="60%"/>
 </div>
 </div>
 </div>
@@ -952,7 +971,7 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>
 <p>提取<span class="heti-skip"><span class="heti-spacing"> </span>SIFT<span class="heti-spacing"> </span></span>的过程：</p>
 <p></p><div style="text-align: center">
-<img src="images/C7/30.png" width="70%"/>
+<img src="../images/ch7/30.png" width="70%"/>
 </div>
 </li>
 <li>
@@ -978,7 +997,7 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 </li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/31.png" width="80%"/>
+<img src="../images/ch7/31.png" width="80%"/>
 </div>
 </li>
 </ul>
@@ -988,10 +1007,10 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <summary>例子</summary>
 <p>视觉单词包<span><span class="heti-spacing"> </span>(bags of "visual words")</span>：基于采集到的图像，利用高斯差分法检测感兴趣点，提取<span class="heti-skip"><span class="heti-spacing"> </span>SIFT<span class="heti-spacing"> </span></span>特征。然后将提取的描述符聚类，使用分层<span class="heti-skip"><span class="heti-spacing"> </span>k-means<span class="heti-spacing"> </span></span>聚类生成词汇树。将每个聚类中心称为视觉单词<span><span class="heti-spacing"> </span>(visual word)</span>。</p>
 <p></p><div style="text-align: center">
-<img src="images/C7/32.png" width="60%"/>
+<img src="../images/ch7/32.png" width="60%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/C7/33.png" width="70%"/>
+<img src="../images/ch7/33.png" width="70%"/>
 </div>
 </details>
 <details class="abstract" open="open">
@@ -1033,7 +1052,7 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>
 <p>计算<strong>积分图像</strong>(integral image)</p>
 <p></p><div style="text-align: center">
-<img src="images/C7/34.png" width="40%"/>
+<img src="../images/ch7/34.png" width="40%"/>
 </div>
 <ul>
 <li>像素点<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\((x, y)\)</span><span class="heti-spacing"> </span></span>与原点间矩形区域的像素和：<span class="arithmatex">\(S(x, y) = \sum \sum I(x, y)\)</span></li>
@@ -1046,13 +1065,13 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <li>
 <p>应用<strong>二阶导数滤波器</strong>（可近似）对图像进行滤波操作</p>
 <p></p><div style="text-align: center">
-<img src="images/C7/35.png" width="70%"/>
+<img src="../images/ch7/35.png" width="70%"/>
 </div>
 <ul>
 <li>改变尺度：积分图像允许我们能提高滤波器的采样率</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/36.png" width="70%"/>
+<img src="../images/ch7/36.png" width="70%"/>
 </div>
 </li>
 <li>
@@ -1061,13 +1080,13 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <li>在<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\((x, y, s)\)</span><span class="heti-spacing"> </span></span>空间中找到局部极大值</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/37.png" width="60%"/>
+<img src="../images/ch7/37.png" width="60%"/>
 </div>
 <ul>
 <li>仅保留那些大于其<span class="heti-skip"><span class="heti-spacing"> </span>26<span class="heti-spacing"> </span></span>个邻居像素点值的像素点</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/38.png" width="40%"/>
+<img src="../images/ch7/38.png" width="40%"/>
 </div>
 </li>
 <li>
@@ -1097,7 +1116,7 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <li>这会产生一个有<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>个元素的描述器</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/39.png" width="70%"/>
+<img src="../images/ch7/39.png" width="70%"/>
 </div>
 </li>
 </ul>
@@ -1121,12 +1140,12 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/1.png" width="70%"/>
+<img src="../images/ch7/1.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/2.png" width="50%"/>
+<img src="../images/ch7/2.png" width="50%"/>
 </div>
 </div>
 </div>
@@ -1143,7 +1162,7 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <li>二维变换</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/54.png" width="50%"/>
+<img src="../images/ch7/54.png" width="50%"/>
 </div>
 <ul>
 <li>拟合的变换矩阵：<span class="arithmatex">\(H = \begin{bmatrix}h_{11} &amp; h_{12} &amp; h_{13} \\ h_{21} &amp; h_{22} &amp; h_{23} \\ 0 &amp; 0 &amp; 1\end{bmatrix}\)</span>，一张图像上所有像素点共享这个变换矩阵</li>
@@ -1183,32 +1202,32 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/40.png" width="70%"/>
+<img src="../images/ch7/40.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/41.png" width="70%"/>
+<img src="../images/ch7/41.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/42.png" width="70%"/>
+<img src="../images/ch7/42.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/43.png" width="70%"/>
+<img src="../images/ch7/43.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/44.png" width="70%"/>
+<img src="../images/ch7/44.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/45.png" width="70%"/>
+<img src="../images/ch7/45.png" width="70%"/>
 </div>
 </div>
 </div>
@@ -1216,7 +1235,7 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 </details>
 <p>算法的伪代码如下：</p>
 <div style="text-align: center">
-<img src="images/C7/46.png" width="70%"/>
+<img src="../images/ch7/46.png" width="70%"/>
 </div>
 <p>确定采样次数：</p>
 <ul>
@@ -1228,7 +1247,7 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <li>需要选择足够大的<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(k\)</span><span class="heti-spacing"> </span></span>值，以保持其位于预期失败率以下</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C7/47.png" width="70%"/>
+<img src="../images/ch7/47.png" width="70%"/>
 </div>
 <ul>
 <li>令预期不出错的概率为<span><span class="heti-spacing"> </span><span class="arithmatex">\(p\)</span></span>，那么采样次数至少为<span><span class="heti-spacing"> </span><span class="arithmatex">\(k = \lceil \dfrac{\log (1 - p)}{\log (1 - w^n)} \rceil\)</span></span></li>
@@ -1250,7 +1269,7 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <li>但这可能会改变内在点，因此需要重新归类内在点和离群点</li>
 </ul>
 <div style="text-align: center">
-<img src="images/C7/48.png" width="80%"/>
+<img src="../images/ch7/48.png" width="80%"/>
 </div>
 <p><span>RANSAC<span class="heti-spacing"> </span></span>的优缺点：</p>
 <ul>
@@ -1298,8 +1317,8 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
  \end{align}
  $$</p>
 <div style="text-align: center">
-<img src="images/C7/55.png" width="47.5%"/>
-<img src="images/C7/56.png" width="40%"/>
+<img src="../images/ch7/55.png" width="47.5%"/>
+<img src="../images/ch7/56.png" width="40%"/>
 </div>
 <p>左图表示高斯金字塔，右图表示拉普拉斯金字塔。</p>
 <details class="example">
@@ -1308,15 +1327,15 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/50.png" width="60%"/>
+<img src="../images/ch7/50.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C7/51.png" width="60%"/>
+<img src="../images/ch7/51.png" width="60%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/C7/52.png" width="60%"/>
+<img src="../images/ch7/52.png" width="60%"/>
 </div>
 </div>
 </div>

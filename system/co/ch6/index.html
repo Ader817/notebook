@@ -191,6 +191,16 @@
         </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../tools/venv/">
+          
+  
+    
+  
+  Tools
+
+        </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="../../../writeups/">
           
   
@@ -444,6 +454,15 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../tools/venv/">
+<span class="md-ellipsis">
+    Tools
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="../../../writeups/">
 <span class="md-ellipsis">
     Writeups
@@ -569,7 +588,7 @@
 </ul>
 <p>典型的<span class="heti-skip"><span class="heti-spacing"> </span>I/O<span class="heti-spacing"> </span></span>设备连接模型</p>
 <div style="text-align: center">
-<img src="images/ch6/1.png" width="80%"/>
+<img src="../images/ch6/1.png" width="80%"/>
 </div>
 <p><span>I/O<span class="heti-spacing"> </span></span>设备的三大特性：</p>
 <ul>
@@ -579,14 +598,14 @@
 </ul>
 <p>下表展示了不同<span class="heti-skip"><span class="heti-spacing"> </span>I/O<span class="heti-spacing"> </span></span>设备的三大特性的数据：</p>
 <div style="text-align: center">
-<img src="images/ch6/2.png" width="70%"/>
+<img src="../images/ch6/2.png" width="70%"/>
 </div>
 <h2 id="disk-storage-and-dependability">Disk Storage and Dependability</h2>
 <p>见<span class="heti-skip"><span class="heti-spacing"> </span>Chap 5<span class="heti-spacing"> </span></span>最后的<a href="../ch5/#dependable-memory-hierarchy"><span><span class="heti-spacing"> </span>Supplements</span></a>。</p>
 <h2 id="buses-and-other-connections">Buses and Other Connections</h2>
 <p>总览：</p>
 <div style="text-align: center">
-<img src="images/ch6/3.png" width="70%"/>
+<img src="../images/ch6/3.png" width="70%"/>
 </div>
 <p><strong>总线</strong>(bus)：共用的通信连接（包含一根或多条线路）</p>
 <ul>
@@ -603,13 +622,13 @@
 <li>
 <p>输出操作</p>
 <p></p><div style="text-align: center">
-<img src="images/ch6/4.png" width="80%"/>
+<img src="../images/ch6/4.png" width="80%"/>
 </div>
 </li>
 <li>
 <p>输入操作</p>
 <p></p><div style="text-align: center">
-<img src="images/ch6/5.png" width="80%"/>
+<img src="../images/ch6/5.png" width="80%"/>
 </div>
 </li>
 </ul>
@@ -617,10 +636,10 @@
 <li>
 <p>总线类型：</p>
 <p></p><div style="text-align: center">
-<img src="images/ch6/6.png" width="80%"/>
+<img src="../images/ch6/6.png" width="80%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/7.png" width="80%"/>
+<img src="../images/ch6/7.png" width="80%"/>
 </div>
 <p>这三种模型的共同组成部分有：</p>
 <ul>
@@ -636,7 +655,7 @@
 <li>
 <p><strong>异步总线</strong>：不用时钟，而采用<strong>握手</strong>协议<span><span class="heti-spacing"> </span>(handshaking protocol)</span>——一种用于协调异步总线传输的串行步骤，下面介绍具体过程：</p>
 <p></p><div style="text-align: center">
-<img src="images/ch6/8.png" width="80%"/>
+<img src="../images/ch6/8.png" width="80%"/>
 </div>
 <ol>
 <li>当<code>ReadReq</code>处于高电平时，内存从数据总线中读取地址，执行读操作，然后抬高<code>Ack</code>的电平，告诉设备它看到了<code>ReadReq</code>信号</li>
@@ -656,7 +675,7 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/11.png" width="80%"/>
+<img src="../images/ch6/11.png" width="80%"/>
 </div>
 </div>
 <div class="tabbed-block">
@@ -664,12 +683,12 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/12.png" width="70%"/>
+<img src="../images/ch6/12.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/13.png" width="80%"/>
+<img src="../images/ch6/13.png" width="80%"/>
 </div>
 </div>
 </div>
@@ -691,10 +710,10 @@
 <summary>例子</summary>
 <p>单个控制器在总线事务中的初始化</p>
 <p></p><div style="text-align: center">
-<img src="images/ch6/9.png" width="80%"/>
+<img src="../images/ch6/9.png" width="80%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/10.png" width="80%"/>
+<img src="../images/ch6/10.png" width="80%"/>
 </div>
 </details>
 <ul>
@@ -720,7 +739,7 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/14.png" width="80%"/>
+<img src="../images/ch6/14.png" width="80%"/>
 </div>
 </div>
 <div class="tabbed-block">
@@ -728,21 +747,21 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/15.png" width="60%"/>
+<img src="../images/ch6/15.png" width="60%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/16.png" width="60%"/>
+<img src="../images/ch6/16.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/17.png" width="60%"/>
+<img src="../images/ch6/17.png" width="60%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/18.png" width="70%"/>
+<img src="../images/ch6/18.png" width="70%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/19.png" width="60%"/>
+<img src="../images/ch6/19.png" width="60%"/>
 </div>
 </div>
 </div>
@@ -793,7 +812,7 @@
 <li>中断驱动的<span class="heti-skip"><span class="heti-spacing"> </span>I/O<span class="heti-spacing"> </span></span>模式：它的优点是并发操作<span><span class="heti-spacing"> </span>(concurrent operation)</span></li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/ch6/20.png" width="80%"/>
+<img src="../images/ch6/20.png" width="80%"/>
 </div>
 </li>
 <li>
@@ -802,7 +821,7 @@
 <li>
 <p><span>DMA<span class="heti-spacing"> </span></span>传输模式</p>
 <p></p><div style="text-align: center">
-<img src="images/ch6/21.png" width="70%"/>
+<img src="../images/ch6/21.png" width="70%"/>
 </div>
 <ol>
 <li>首先处理器通过提供一些信息来设置<span class="heti-skip"><span class="heti-spacing"> </span>DMA<span class="heti-spacing"> </span></span>模式，具体包括：设备<span><span class="heti-spacing"> </span>ID</span>、操作、待传输数据的内存源地址和目标地址、需要传输的字节数等</li>
@@ -825,15 +844,15 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/22.png" width="70%"/>
+<img src="../images/ch6/22.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/23.png" width="70%"/>
+<img src="../images/ch6/23.png" width="70%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/24.png" width="70%"/>
+<img src="../images/ch6/24.png" width="70%"/>
 </div>
 </div>
 </div>
@@ -844,13 +863,13 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/25.png" width="70%"/>
+<img src="../images/ch6/25.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/25.5.png" width="70%"/>
-<img src="images/ch6/26.png" width="70%"/>
+<img src="../images/ch6/25.5.png" width="70%"/>
+<img src="../images/ch6/26.png" width="70%"/>
 </div>
 </div>
 </div>
@@ -861,12 +880,12 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/27.png" width="70%"/>
+<img src="../images/ch6/27.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/28.png" width="70%"/>
+<img src="../images/ch6/28.png" width="70%"/>
 </div>
 </div>
 </div>
@@ -897,24 +916,24 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/29.png" width="70%"/>
+<img src="../images/ch6/29.png" width="70%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/30.png" width="70%"/>
+<img src="../images/ch6/30.png" width="70%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/ch6/31.png" width="70%"/>
+<img src="../images/ch6/31.png" width="70%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/32.png" width="70%"/>
+<img src="../images/ch6/32.png" width="70%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/33.png" width="70%"/>
+<img src="../images/ch6/33.png" width="70%"/>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/ch6/34.png" width="70%"/>
+<img src="../images/ch6/34.png" width="70%"/>
 </div>
 </div>
 </div>

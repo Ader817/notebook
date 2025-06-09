@@ -191,6 +191,16 @@
         </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../tools/venv/">
+          
+  
+    
+  
+  Tools
+
+        </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="../../../writeups/">
           
   
@@ -572,6 +582,15 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../tools/venv/">
+<span class="md-ellipsis">
+    Tools
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="../../../writeups/">
 <span class="md-ellipsis">
     Writeups
@@ -718,7 +737,7 @@
 <h3 id="pram-model">PRAM Model</h3>
 <p>下面给出<span class="heti-skip"><span class="heti-spacing"> </span>PRAM<span class="heti-spacing"> </span></span>模型的图示：</p>
 <div style="text-align: center">
-<img src="images/lec14/1.png" width="40%"/>
+<img src="../assets/ch14/1.png" width="40%"/>
 </div>
 <ul>
 <li><span><span class="arithmatex">\(P_1, \dots, P_n\)</span><span class="heti-spacing"> </span></span>表示<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>个处理器，它们同时访问一块共享内存</li>
@@ -734,7 +753,7 @@
 <div class="tabbed-block">
 <p>处理器<span class="heti-skip"><span class="heti-spacing"> </span>i<span class="heti-spacing"> </span></span>执行操作：<code>c := a + b</code></p>
 <p></p><div style="text-align: center">
-<img src="images/lec14/2.png" width="40%"/>
+<img src="../assets/ch14/2.png" width="40%"/>
 </div>
 </div>
 <div class="tabbed-block">
@@ -745,7 +764,7 @@
 </span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="c1">// 因此实际上执行这个循环所需时间为 O(1)</span>
 </span></code></pre></div>
 <p></p><div style="text-align: center">
-<img src="images/lec14/3.png" width="40%"/>
+<img src="../assets/ch14/3.png" width="40%"/>
 </div>
 </div>
 </div>
@@ -775,7 +794,7 @@
 <div class="tabbed-block">
 <p>下面给出用<span class="heti-skip"><span class="heti-spacing"> </span>PRAM<span class="heti-spacing"> </span></span>模型计算此题的过程图示：</p>
 <p></p><div style="text-align: center">
-<img src="images/lec14/4.png" width="80%"/>
+<img src="../assets/ch14/4.png" width="80%"/>
 </div>
 <ul>
 <li>最底层表示初始情况，每层表示并行算法的每个步骤</li>
@@ -812,7 +831,7 @@
 </details>
 <p>根据上面对例子的分析，我们可以得出关于操作数量和时间之间的关系图：</p>
 <div style="text-align: center">
-<img src="images/lec14/5.png" width="40%"/>
+<img src="../assets/ch14/5.png" width="40%"/>
 </div>
 <ul>
 <li>横轴上的最大值为<span><span class="heti-spacing"> </span><span class="arithmatex">\(p\)</span></span>，等于用到过的处理器的最大数量</li>
@@ -845,11 +864,11 @@
 </details>
 <p>因此对应的操作数量和时间之间的关系图变成了：</p>
 <div style="text-align: center">
-<img src="images/lec14/6.png" width="40%"/>
+<img src="../assets/ch14/6.png" width="40%"/>
 </div>
 <p>由于没有了那些灰色区域（不工作的处理器<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，因此这张图更清楚地反映了真实情况下各个时间段内的用到的处理器数量。对于更一般的情况，如下所示：</p>
 <div style="text-align: center">
-<img src="images/lec14/7.png" width="40%"/>
+<img src="../assets/ch14/7.png" width="40%"/>
 </div>
 <p>可以看到，每个时间段处于工作状态的处理器数量，即工作量是不一样的，且没有任何规律可言。</p>
 <h3 id="measurement">Measurement</h3>
@@ -911,7 +930,7 @@
 </div>
 <p>解决这个问题的方法与前面的求和问题是类似的，首先还是借助一棵平衡二叉树模型来分析：</p>
 <div style="text-align: center">
-<img src="images/lec14/8.png" width="60%"/>
+<img src="../assets/ch14/8.png" width="60%"/>
 </div>
 <p>我们可以先计算求和问题，为之后前缀和问题的解决打下基础。</p>
 <p>接下来，我们规定<strong>前缀和</strong><span class="arithmatex">\(C(h, i) = \sum\limits_{k=1}^\alpha A(k)\)</span>，其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\((0, \alpha)\)</span><span class="heti-spacing"> </span></span>表示二叉树的节点<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\((h, i)\)</span><span class="heti-spacing"> </span></span>最右侧路径上的叶子节点的位置。要得到<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(C(h, i)\)</span><span class="heti-spacing"> </span></span>的值，需要分以下情况讨论：</p>
@@ -919,8 +938,8 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec14/9.png" width="48%"/>
-<img src="images/lec14/10.png" width="46.5%"/>
+<img src="../assets/ch14/9.png" width="48%"/>
+<img src="../assets/ch14/10.png" width="46.5%"/>
 </div>
 <p>计算最左边路径上的节点：</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
@@ -929,7 +948,7 @@
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec14/11.png" width="60%"/>
+<img src="../assets/ch14/11.png" width="60%"/>
 </div>
 <p>计算每一层偶数位上的节点：</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
@@ -938,7 +957,7 @@
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec14/12.png" width="60%"/>
+<img src="../assets/ch14/12.png" width="60%"/>
 </div>
 <p>计算除最左边路径外每一层奇数位上的节点：</p>
 <div class="language-c highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
@@ -1044,12 +1063,12 @@
 <div class="tabbed-block">
 <p>对以下两个数组，先分别给出它们的排行，然后合并这两个数组。</p>
 <p></p><div style="text-align: center">
-<img src="images/lec14/13.png" width="60%"/>
+<img src="../assets/ch14/13.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec14/14.png" width="60%"/>
+<img src="../assets/ch14/14.png" width="60%"/>
 </div>
 </div>
 </div>
@@ -1114,22 +1133,22 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec14/15.png" width="60%"/>
+<img src="../assets/ch14/15.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec14/16.png" width="60%"/>
+<img src="../assets/ch14/16.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec14/17.png" width="60%"/>
+<img src="../assets/ch14/17.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec14/18.png" width="60%"/>
+<img src="../assets/ch14/18.png" width="60%"/>
 </div>
 <p>绿色部分表示一个个的子问题（<del>这样表示有点丑</del>）</p>
 </div>
@@ -1264,19 +1283,19 @@
 <li>先从数组<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(A\)</span><span class="heti-spacing"> </span></span>中的<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>个元素中挑选<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n^{\frac{7}{8}}\)</span><span class="heti-spacing"> </span></span>个元素出来，形成数组<span><span class="heti-spacing"> </span><span class="arithmatex">\(B\)</span></span></li>
 </ul>
 <div style="text-align: center">
-<img src="images/lec14/19.png" width="50%"/>
+<img src="../assets/ch14/19.png" width="50%"/>
 </div>
 <ul>
 <li>将数组<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(B\)</span><span class="heti-spacing"> </span></span>划分为多个大小为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n^{\frac{1}{8}}\)</span><span class="heti-spacing"> </span></span>的小块，因此有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n^{\frac{3}{4}}\)</span><span class="heti-spacing"> </span></span>个这样的小块。然后对每个小块求出最大值，通过两两比较的方式得到了<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n^{\frac{3}{4}}\)</span><span class="heti-spacing"> </span></span>个局部最大值</li>
 </ul>
 <div style="text-align: center">
-<img src="images/lec14/20.png" width="50%"/>
+<img src="../assets/ch14/20.png" width="50%"/>
 </div>
 <ul>
 <li>接下来将这些最大值划分为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n^{\frac{1}{2}}\)</span><span class="heti-spacing"> </span></span>个大小为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n^{\frac{1}{4}}\)</span><span class="heti-spacing"> </span></span>的小块，然后对每个小块求出最大值，进而通过两两比较的方式得到所有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n^{\frac{7}{8}}\)</span><span class="heti-spacing"> </span></span>个元素的最大值</li>
 </ul>
 <div style="text-align: center">
-<img src="images/lec14/21.png" width="40%"/>
+<img src="../assets/ch14/21.png" width="40%"/>
 </div>
 <p>分析：</p>
 <ul>

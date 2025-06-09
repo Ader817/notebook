@@ -191,6 +191,16 @@
         </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../tools/venv/">
+          
+  
+    
+  
+  Tools
+
+        </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="../../../writeups/">
           
   
@@ -458,6 +468,15 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../tools/venv/">
+<span class="md-ellipsis">
+    Tools
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="../../../writeups/">
 <span class="md-ellipsis">
     Writeups
@@ -572,7 +591,7 @@
 <h2 id="introduction">Introduction</h2>
 <p>传统的识别方法：</p>
 <div style="text-align: center">
-<img src="images/C8/1.png" width="60%"/>
+<img src="../images/ch8/1.png" width="60%"/>
 </div>
 <ul>
 <li>特征是不可学习或训练的<ul>
@@ -594,7 +613,7 @@
 </ul>
 <p>特征学习的模型：</p>
 <div style="text-align: center">
-<img src="images/C8/2.png" width="60%"/>
+<img src="../images/ch8/2.png" width="60%"/>
 </div>
 <p>（特征学习<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>深度学习<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>表征学习）关键思想：</p>
 <ul>
@@ -606,7 +625,7 @@
 <li>
 <p>理论支持：电路设计中的深度<span class="heti-skip"><span class="heti-spacing"> </span>-<span class="heti-spacing"> </span></span>广度权衡<span><span class="heti-spacing"> </span>(depth-breadth tradeoff)</span>，采用更深层的结构，可以更加高效地表征很多功能</p>
 <p></p><div style="text-align: center">
-<img src="images/C8/3.png" width="40%"/>
+<img src="../images/ch8/3.png" width="40%"/>
 </div>
 <ul>
 <li>深层的结构可被高效地表征</li>
@@ -638,10 +657,10 @@
 </ul>
 <p>神经元：对突触的观测值连到汇总的地方，并进行加权求和，通过激活函数（归一化后）产生输出，本质上就是一个函数。</p>
 <div style="text-align: center">
-<img src="images/C8/4.png" width="60%"/>
+<img src="../images/ch8/4.png" width="60%"/>
 </div>
 <div style="text-align: center">
-<img src="images/C8/5.png" width="30%"/>
+<img src="../images/ch8/5.png" width="30%"/>
 </div>
 <ul>
 <li>输入：<span class="arithmatex">\(x_1, x_2, x_3\)</span></li>
@@ -658,14 +677,14 @@
 <li>ReLU：<span class="arithmatex">\(f(z) = \max(0, z)\)</span></li>
 </ul>
 <div style="text-align: center">
-<img src="images/C8/6.png" width="60%"/>
+<img src="../images/ch8/6.png" width="60%"/>
 </div>
 <div style="text-align: center">
-<img src="images/C8/7.png" width="60%"/>
+<img src="../images/ch8/7.png" width="60%"/>
 </div>
 <p>多层神经网络：</p>
 <div style="text-align: center">
-<img src="images/C8/8.png" width="60%"/>
+<img src="../images/ch8/8.png" width="60%"/>
 </div>
 <p><u>求解方法：<strong><a href="https://en.wikipedia.org/wiki/Backpropagation">反向传播</a></strong>(back-propagation, BP)</u></p>
 <ol>
@@ -683,17 +702,17 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/9.png" width="60%"/>
+<img src="../images/ch8/9.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/10.png" width="60%"/>
+<img src="../images/ch8/10.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/11.png" width="60%"/>
+<img src="../images/ch8/11.png" width="60%"/>
 </div>
 </div>
 </div>
@@ -703,59 +722,59 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/12.png" width="60%"/>
+<img src="../images/ch8/12.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/13.png" width="60%"/>
+<img src="../images/ch8/13.png" width="60%"/>
 </div>
 </div>
 </div>
 </div>
 <p>信号被传送到输出层。</p>
 <p></p><div style="text-align: center">
-<img src="images/C8/14.png" width="60%"/>
+<img src="../images/ch8/14.png" width="60%"/>
 </div>
 <p>现在将在网络中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(y\)</span><span class="heti-spacing"> </span></span>的输出信号与预期输出值（目标，来自训练好的数据集）<span><span class="arithmatex">\(z\)</span><span class="heti-spacing"> </span></span>进行比较，它们的差值称为输出层神经元的误差信号<span><span class="heti-spacing"> </span><span class="arithmatex">\(d\)</span></span>。</p>
 <p></p><div style="text-align: center">
-<img src="images/C8/15.png" width="60%"/>
+<img src="../images/ch8/15.png" width="60%"/>
 </div>
 <p>然后将误差信号反向传递至所有的神经元，此时原来的输出信号将作为输入。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="3:2"><input checked="checked" id="__tabbed_3_1" name="__tabbed_3" type="radio"/><input id="__tabbed_3_2" name="__tabbed_3" type="radio"/><div class="tabbed-labels"><label for="__tabbed_3_1">神经元<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span></label><label for="__tabbed_3_2">神经元<span><span class="heti-spacing"> </span>5</span></label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/16.png" width="60%"/>
+<img src="../images/ch8/16.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/17.png" width="60%"/>
+<img src="../images/ch8/17.png" width="60%"/>
 </div>
 </div>
 </div>
 </div>
 <p>用于反向传递误差的权重系数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(w_{mn}\)</span><span class="heti-spacing"> </span></span>等于在计算输出值时用到的权重值，改变的只是数据流方向。这种方法可用于所有的网络层。如果被传递的误差来自多个被加入的神经元，那么处理方式如下所示：</p>
 <p></p><div style="text-align: center">
-<img src="images/C8/18.png" width="60%"/>
+<img src="../images/ch8/18.png" width="60%"/>
 </div>
 <p>当每个神经元的误差计算完毕时，每个神经元输入节点的权重系数可能需要被修改。在下面给出的公式中，<span><span class="arithmatex">\(\dfrac{\text{d}f(e)}{\text{d}e}\)</span><span class="heti-spacing"> </span></span>表示神经元激活函数的导数。</p>
 <div class="tabbed-set tabbed-alternate" data-tabs="4:3"><input checked="checked" id="__tabbed_4_1" name="__tabbed_4" type="radio"/><input id="__tabbed_4_2" name="__tabbed_4" type="radio"/><input id="__tabbed_4_3" name="__tabbed_4" type="radio"/><div class="tabbed-labels"><label for="__tabbed_4_1">神经元<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span></label><label for="__tabbed_4_2">神经元<span class="heti-skip"><span class="heti-spacing"> </span>2<span class="heti-spacing"> </span></span></label><label for="__tabbed_4_3">最后</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/19.png" width="60%"/>
+<img src="../images/ch8/19.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/20.png" width="60%"/>
+<img src="../images/ch8/20.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/21.png" width="60%"/>
+<img src="../images/ch8/21.png" width="60%"/>
 </div>
 </div>
 </div>
@@ -797,7 +816,7 @@
 </ul>
 </div>
 <p></p><div style="text-align: center">
-<img src="images/C8/22.png" width="40%"/>
+<img src="../images/ch8/22.png" width="40%"/>
 </div>
 </details>
 <h3 id="pooling">Pooling</h3>
@@ -814,7 +833,7 @@
 </li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C8/24.png" width="60%"/>
+<img src="../images/ch8/24.png" width="60%"/>
 </div>
 <ul>
 <li>通常结合二次抽样<span><span class="heti-spacing"> </span>(subsample)</span></li>
@@ -832,7 +851,7 @@
 </li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C8/25.png" width="60%"/>
+<img src="../images/ch8/25.png" width="60%"/>
 </div>
 </li>
 </ul>
@@ -842,7 +861,7 @@
 <li>代码：<a href="https://code.google.com/archive/p/cuda-convnet/">cuda-convnet</a></li>
 </ul>
 <div style="text-align: center">
-<img src="images/C8/26.png" width="80%"/>
+<img src="../images/ch8/26.png" width="80%"/>
 </div>
 <ul>
 <li>
@@ -857,7 +876,7 @@
 <li>方框表示全连接层：对输入应用线性滤波器，然后应用<span class="heti-skip"><span class="heti-spacing"> </span>S<span class="heti-spacing"> </span></span>型激活函数</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C8/27.png" width="10%"/>
+<img src="../images/ch8/27.png" width="10%"/>
 </div>
 </li>
 <li>
@@ -868,32 +887,32 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/28.png" width="60%"/>
+<img src="../images/ch8/28.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/29.png" width="60%"/>
+<img src="../images/ch8/29.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/30.png" width="60%"/>
+<img src="../images/ch8/30.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/31.png" width="50%"/>
+<img src="../images/ch8/31.png" width="50%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/32.png" width="60%"/>
+<img src="../images/ch8/32.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/C8/33.png" width="60%"/>
+<img src="../images/ch8/33.png" width="60%"/>
 </div>
 </div>
 </div>
@@ -902,13 +921,13 @@
 <p>将卷积的特征提取功能与分类算法的图像分类相结合，我们得到了一种基于卷积的<strong>分类</strong><span>(classification)<span class="heti-spacing"> </span></span>算法。</p>
 <p>完整的工作流：</p>
 <div style="text-align: center">
-<img src="images/C8/42.png" width="70%"/>
+<img src="../images/ch8/42.png" width="70%"/>
 </div>
 <ul>
 <li>
 <p>分类器会从特征提取器中挑选分数最高的结果作为分类依据</p>
 <p></p><div style="text-align: center">
-<img src="images/C8/37.png" width="50%"/>
+<img src="../images/ch8/37.png" width="50%"/>
 </div>
 </li>
 <li>
@@ -917,14 +936,14 @@
 <li>
 <p>先来看特征提取器的功能：</p>
 <p></p><div style="text-align: center">
-<img src="images/C8/35.png" width="60%"/>
+<img src="../images/ch8/35.png" width="60%"/>
 </div>
 <ul>
 <li>对于一张图片，需要使用多种不同的滤波器，每个滤波器代表一类图像，图片与滤波器的运算结果是一个“概率”值，但是这个“概率”可以<span class="heti-skip"><span class="heti-spacing"> </span>&lt;0<span class="heti-spacing"> </span></span>或<span><span class="heti-spacing"> </span>&gt;1</span>，因此更确切的说法是“分数”</li>
 <li>最终结果（得到一组概率值，构成一个一维向量<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C8/36.png" width="60%"/>
+<img src="../images/ch8/36.png" width="60%"/>
 </div>
 <ul>
 <li>
@@ -933,13 +952,13 @@
 <li>单个滤波器的计算：向量乘法</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C8/38.png" width="60%"/>
+<img src="../images/ch8/38.png" width="60%"/>
 </div>
 <ul>
 <li>多个滤波器的计算：矩阵乘法</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C8/39.png" width="60%"/>
+<img src="../images/ch8/39.png" width="60%"/>
 </div>
 <ul>
 <li>
@@ -951,7 +970,7 @@
 <li><span><span class="arithmatex">\(Wx\)</span><span class="heti-spacing"> </span></span>的计算被称为<strong>全连接层</strong>(fully-connected layer)</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C8/40.png" width="60%"/>
+<img src="../images/ch8/40.png" width="60%"/>
 </div>
 </li>
 </ul>
@@ -961,7 +980,7 @@
 </li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/C8/41.png" width="40%"/>
+<img src="../images/ch8/41.png" width="40%"/>
 </div>
 <p>原公式变为：<span class="arithmatex">\(\hat{y} = SM(Wx)\)</span></p>
 </li>

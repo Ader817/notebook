@@ -191,6 +191,16 @@
         </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../tools/venv/">
+          
+  
+    
+  
+  Tools
+
+        </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="../../../writeups/">
           
   
@@ -536,6 +546,15 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../tools/venv/">
+<span class="md-ellipsis">
+    Tools
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="../../../writeups/">
 <span class="md-ellipsis">
     Writeups
@@ -656,7 +675,7 @@
 <div class="tabbed-block">
 <p>假设主存一次最多只能处理<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(M = 3\)</span><span class="heti-spacing"> </span></span>条记录，请通过外部排序算法（归并排序）来实现对以下序列的排序：</p>
 <p></p><div style="text-align: center">
-<img src="images/lec15/1.png" width="60%"/>
+<img src="../assets/ch15/1.png" width="60%"/>
 </div>
 </div>
 <div class="tabbed-block">
@@ -665,7 +684,7 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/2.png" width="40%"/>
+<img src="../assets/ch15/2.png" width="40%"/>
 </div>
 <ul>
 <li>由于一次最多只能对<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>条记录进行排序，所以将原序列分为若干组，每组有<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>条记录，一组组地进行排序（排序算法任意）</li>
@@ -674,13 +693,13 @@
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/3.png" width="40%"/>
+<img src="../assets/ch15/3.png" width="40%"/>
 </div>
 <p>这里开始合并<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>排序的操作了，注意还是要放在两个不同的磁带里（可以利用原有的空闲磁带） </p>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/4.png" width="60%"/>
+<img src="../assets/ch15/4.png" width="60%"/>
 </div>
 <ul>
 <li>进一步的合并<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>排序！</li>
@@ -728,7 +747,7 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/5.png" width="60%"/>
+<img src="../assets/ch15/5.png" width="60%"/>
 </div>
 <p>由于多出一路子序列，所以需要更多的磁带（下面还会用到其他额外的磁带）</p>
 </div>
@@ -737,13 +756,13 @@
 <details class="play" open="open">
 <summary>动画演示</summary>
 <p></p><div style="text-align: center">
-<img src="images/lec15/6.gif" width="60%"/>
+<img src="../assets/ch15/6.gif" width="60%"/>
 </div>
 </details>
 <p>由于需要同时比较三个数据，因此这里用到了<strong>最小堆</strong>这一数据结构，便于随时取出最小的数据，并加快比较速度。</p>
 <p>剩余部分的合并与之类似，故不再展示其详细过程。下面给出合并后的结果：</p>
 <p></p><div style="text-align: center">
-<img src="images/lec15/7.png" width="50%"/>
+<img src="../assets/ch15/7.png" width="50%"/>
 </div>
 <p>本例中，第<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>个子序列为空，但为了一般性的解释，我们还是为第<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>个子序列预留了一个磁带。</p>
 <details class="info">
@@ -796,7 +815,7 @@
 <div class="tabbed-block">
 <p>已知<span><span class="heti-spacing"> </span><span class="arithmatex">\(k=2\)</span></span>，磁带数<span><span class="heti-spacing"> </span>=3</span>，且原序列的情况如下：</p>
 <p></p><div style="text-align: center">
-<img src="images/lec15/8.png" width="50%"/>
+<img src="../assets/ch15/8.png" width="50%"/>
 </div>
 <p>“<span>34<span class="heti-spacing"> </span></span>个<span><span class="heti-spacing"> </span>run</span>”意味着原序列由<span class="heti-skip"><span class="heti-spacing"> </span>34<span class="heti-spacing"> </span></span>组内部已排好序的子序列构成。</p>
 </div>
@@ -805,13 +824,13 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/9.png" width="50%"/>
+<img src="../assets/ch15/9.png" width="50%"/>
 </div>
 <p>我们现将原来的<span class="heti-skip"><span class="heti-spacing"> </span>34<span class="heti-spacing"> </span></span>个<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>均分为包含<span class="heti-skip"><span class="heti-spacing"> </span>17<span class="heti-spacing"> </span></span>个<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>的两个子序列，然后对它们进行合并，形成一个<span class="heti-skip"><span class="heti-spacing"> </span>17<span class="heti-spacing"> </span></span>个<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>的完整序列，此时每个<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>会包含更多排好序的记录。</p>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/10.png" width="50%"/>
+<img src="../assets/ch15/10.png" width="50%"/>
 </div>
 <ul>
 <li>由于这么一趟下来后只有一条磁带里包含记录，为了继续合并，还是需要将所有的<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>一分为二。因此在进入下一趟操作前，需要将包含记录的磁带的一半的<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>拷贝到另一个空磁带上。</li>
@@ -832,13 +851,13 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/11.png" width="50%"/>
+<img src="../assets/ch15/11.png" width="50%"/>
 </div>
 <p>现将原序列划分为大小不一的两个子序列（34 -&gt; 21 + 13）</p>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/12.png" width="50%"/>
+<img src="../assets/ch15/12.png" width="50%"/>
 </div>
 <p>合并两个子序列后，还会剩下两个子序列，</p>
 <ul>
@@ -849,32 +868,32 @@
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/13.png" width="50%"/>
+<img src="../assets/ch15/13.png" width="50%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/14.png" width="50%"/>
+<img src="../assets/ch15/14.png" width="50%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/15.png" width="50%"/>
+<img src="../assets/ch15/15.png" width="50%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/16.png" width="50%"/>
+<img src="../assets/ch15/16.png" width="50%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/17.png" width="50%"/>
+<img src="../assets/ch15/17.png" width="50%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/18.png" width="50%"/>
+<img src="../assets/ch15/18.png" width="50%"/>
 </div>
 </div>
 </div>
@@ -904,7 +923,7 @@
 <div class="tabbed-block">
 <p>请基于下面给出的原序列生成较长的<span><span class="heti-spacing"> </span>run</span>：</p>
 <p></p><div style="text-align: center">
-<img src="images/lec15/24.png" width="50%"/>
+<img src="../assets/ch15/24.png" width="50%"/>
 </div>
 </div>
 <div class="tabbed-block">
@@ -912,13 +931,13 @@
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/25.png" width="50%"/>
+<img src="../assets/ch15/25.png" width="50%"/>
 </div>
 <p>该算法主要借助<strong>最小堆</strong>（大小为<span><span class="heti-spacing"> </span>3</span>）来生成<span><span class="heti-spacing"> </span>run</span>。先取出堆中最小的元素出来，作为第一个<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>的元素。</p>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/26.png" width="50%"/>
+<img src="../assets/ch15/26.png" width="50%"/>
 </div>
 <p>每次从堆中删除元素时，需要比较这个被删除的元素与下一个进入堆的元素：</p>
 <ul>
@@ -928,39 +947,39 @@
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/27.png" width="50%"/>
+<img src="../assets/ch15/27.png" width="50%"/>
 </div>
 <p>现在就遇到了“否则”的情况了：12 &lt; 81，因此<span class="heti-skip"><span class="heti-spacing"> </span>12<span class="heti-spacing"> </span></span>要放入新的<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>内，且它目前不会参与堆排序。</p>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/28.png" width="50%"/>
+<img src="../assets/ch15/28.png" width="50%"/>
 </div>
 <p>还是“否则”的情况。</p>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/29.png" width="20%"/>
+<img src="../assets/ch15/29.png" width="20%"/>
 </div>
 <p>现在，第一个<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>内的所有元素都从堆中出来了，那么此时堆中剩下的元素将会进入下一个<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>中。</p>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/30.png" width="50%"/>
+<img src="../assets/ch15/30.png" width="50%"/>
 </div>
 </div>
 <div class="tabbed-block">
 <details class="play" open="open">
 <summary>动画演示</summary>
 <p></p><div style="text-align: center">
-<img src="images/lec15/31.gif" width="50%"/>
+<img src="../assets/ch15/31.gif" width="50%"/>
 </div>
 </details>
 <p>由于后面大部分时间都是风平浪静的状态，所以这里就用一段动画快速跳过了，不做过多分析。</p>
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/32.png" width="50%"/>
+<img src="../assets/ch15/32.png" width="50%"/>
 </div>
 <p>由于最后读进去的<span class="heti-skip"><span class="heti-spacing"> </span>15<span class="heti-spacing"> </span></span>比当时被删除的堆元素小，因此它会被放入第<span class="heti-skip"><span class="heti-spacing"> </span>3<span class="heti-spacing"> </span></span>个<span class="heti-skip"><span class="heti-spacing"> </span>run<span class="heti-spacing"> </span></span>内。</p>
 </div>
@@ -1194,7 +1213,7 @@
 <li>单个的输入文件是一个包含<span class="heti-skip"><span class="heti-spacing"> </span>250<span class="heti-spacing"> </span></span>份记录的记录块</li>
 </ul>
 <p></p><div style="text-align: center">
-<img src="images/lec15/19.png" width="50%"/>
+<img src="../assets/ch15/19.png" width="50%"/>
 </div>
 <p>可以看到，题目的模型与前面的例子是类似的，但这里我们要重点分析这个主存是如何输入和输出数据的。</p>
 </div>
@@ -1203,13 +1222,13 @@
 <li>
 <p>首先，我们需要将主存划分为<strong>输入缓存</strong>和<strong>输出缓存</strong>两个部分（此时内部排序应为归并排序<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
 <p></p><div style="text-align: center">
-<img src="images/lec15/20.png" width="50%"/>
+<img src="../assets/ch15/20.png" width="50%"/>
 </div>
 </li>
 <li>
 <p>然后从两个子序列中分别读出一个记录块到输入缓存中，开始进行内部排序。</p>
 <p></p><div style="text-align: center">
-<img src="images/lec15/21.png" width="60%"/>
+<img src="../assets/ch15/21.png" width="60%"/>
 </div>
 </li>
 <li>
@@ -1217,14 +1236,14 @@
 <details class="play" open="open">
 <summary>动画演示</summary>
 <p></p><div style="text-align: center">
-<img src="images/lec15/22.gif" width="50%"/>
+<img src="../assets/ch15/22.gif" width="50%"/>
 </div>
 </details>
 </li>
 <li>
 <p>由于输出缓存空间有限，所以还没排完序输出缓存空间已满。因此不得不暂停排序过程，将输出缓存排好序的部分记录块丢给空闲的磁带，然后清空缓存的内容，以迎接之后的排序结果。</p>
 <p></p><div style="text-align: center">
-<img src="images/lec15/23.png" width="60%"/>
+<img src="../assets/ch15/23.png" width="60%"/>
 </div>
 </li>
 </ul>
@@ -1261,7 +1280,7 @@
 </div>
 <div class="tabbed-block">
 <p></p><div style="text-align: center">
-<img src="images/lec15/33.png" width="30%"/>
+<img src="../assets/ch15/33.png" width="30%"/>
 </div>
 <p>最小时间<span><span class="heti-spacing"> </span>= 2 * 3 + 4 * 3 + 5 * 2 + 15 * 1 = 43</span></p>
 <p><del>一棵哈夫曼树直接秒了</del></p>
