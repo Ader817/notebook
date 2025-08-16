@@ -2,7 +2,7 @@
 counter: true
 ---
 
-# Chap 2:Relational Model
+# Chap 2: Relational Model
 
 ## Structure of Relational Databases
 
@@ -175,7 +175,6 @@ counter: true
 - Assignment: $\leftarrow$
 - Outer join : $r \rtimes       s$,  $r  \ltimes    s$, $r$⟗$s$
 - Division: $r \div s$
-
 
 #### Set-Intersection
 

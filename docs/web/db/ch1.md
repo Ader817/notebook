@@ -2,7 +2,7 @@
 counter: True
 ---
 
-# Chap 1:Introduction
+# Chap 1: Introduction
 
 ## Database Systems
 ![](images/ch1/image.png)

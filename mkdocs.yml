@@ -205,7 +205,14 @@ nav:
       - web/db/ch6.md
       - web/db/ch7.md
       - web/db/ch8.md
-
+      - web/db/ch9.md
+      - web/db/ch10.md
+      - web/db/ch11.md
+      - web/db/ch12.md
+      - web/db/ch13.md
+      - web/db/ch14.md
+      - web/db/ch15.md
+      
   - Math:
     - math/index.md
     - 概率论与数理统计:
@@ -218,8 +225,42 @@ nav:
       - math/pas/ch6.md
       - math/pas/ch7.md
       - math/pas/ch8.md
+    - 因果推断:
+      - math/causal/index.md
+
   - Tools:
     - tools/venv.md
+  
+  - AI:
+    - ai/index.md
+    - EECS498:
+      - ai/eecs498/index.md
+      - ai/eecs498/ch1.md
+      - ai/eecs498/ch2.md
+      - ai/eecs498/ch3.md
+      - ai/eecs498/ch4.md
+      - ai/eecs498/ch5.md
+      - ai/eecs498/ch6.md
+      - ai/eecs498/ch7.md
+      - ai/eecs498/ch8.md
+      - ai/eecs498/ch9.md
+      - ai/eecs498/ch10.md
+      - ai/eecs498/ch11.md
+      - ai/eecs498/ch12.md
+      - ai/eecs498/ch13.md
+      - ai/eecs498/ch14.md
+      - ai/eecs498/ch15.md
+      - ai/eecs498/ch16.md
+      - ai/eecs498/ch17.md
+      - ai/eecs498/ch18.md
+      - ai/eecs498/ch19.md
+      - ai/eecs498/ch20.md
+      - ai/eecs498/ch21.md
+      - ai/eecs498/ch22.md
+      
+  - Misc:
+    - Misc/softmax.md
+    
   - Writeups:
     - writeups/index.md
     - BaseCTF 2024: writeups/basectf/basectf2024.md
