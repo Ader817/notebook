@@ -229,7 +229,9 @@ nav:
       - math/causal/index.md
 
   - Tools:
+    - tools/index.md
     - tools/venv.md
+    - tools/shell.md
   
   - AI:
     - ai/index.md
