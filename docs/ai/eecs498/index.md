@@ -1,31 +1,37 @@
-# EECS498
+# EECS498: Deep Learning for Computer Vision
 
-!!! abstract "Catalog"
+- **Course Website:** https://web.eecs.umich.edu/~justincj/teaching/eecs498/
+- **Instructor:** [Justin Johnson](https://web.eecs.umich.edu/~justincj/)
 
-    - [x] [Lec 1: Introduction to Deep Learning for Computer Vision](ch1.md)
-    - [x] [Lec 2: Image Classification](ch2.md) 
-    - [x] [Lec 3: Linear Classifiers](ch3.md) 
-    - [x] [Lec 4: Optimization](ch4.md)
-    - [x] [Lec 5: Neural Networks](ch5.md)
-    - [x] [Lec 6: Backpropagation](ch6.md)
-    - [x] [Lec 7: Convolutional Networks](ch7.md)
-    - [x] [Lec 8: CNN Architectures](ch8.md)
-    - [x] [Lec 9: Hardware and Software](ch9.md)
-    - [x] [Lec 10: Training Neural Networks I](ch10.md)
-    - [x] [Lec 11: Training Neural Networks II](ch11.md)
-    - [x] [Lec 12: Recurrent Networks](ch12.md)
-    - [x] [Lec 13: Attention](ch13.md)
-    - [x] [Lec 14: Visualizing and Understanding](ch14.md)
-    - [x] [Lec 15: Object Detection](ch15.md)
-    - [x] [Lec 16: Detection and Segmentation](ch16.md)
-    - [x] [Lec 17: 3D Vision](ch17.md)
-    - [x] [Lec 18: Videos](ch18.md)
-    - [x] [Lec 19: Generative Models I](ch19.md)
-    - [x] [Lec 20: Generative Models II](ch20.md)
-    - [x] [Lec 21: Reinforcement Learning](ch21.md)
-    - [x] [Lec 22: Conclustion](ch22.md)
+## Lecture Videos and Slides (Fall 2019)
+
+|     #      |                                             Content                                              |                                          Slide                                           |
+| :--------: | :----------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------: |
+| Lecture 1  | [Introduction to Deep Learning for Computer Vision](https://www.youtube.com/watch?v=dJYGatp4SvA) | [Slide 01](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture01.pdf) |
+| Lecture 2  |               [Image Classification](https://www.youtube.com/watch?v=0nqvO3AM2Vw)                | [Slide 02](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture02.pdf) |
+| Lecture 3  |                [Linear Classifiers](https://www.youtube.com/watch?v=qcSEP17uKKY)                 | [Slide 03](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture03.pdf) |
+| Lecture 4  |                   [Optimization](https://www.youtube.com/watch?v=YnQJTfbwBM8)                    | [Slide 04](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture04.pdf) |
+| Lecture 5  |                  [Neural Networks](https://www.youtube.com/watch?v=g6InpdhUblE)                  | [Slide 05](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture05.pdf) |
+| Lecture 6  |                  [Backpropagation](https://www.youtube.com/watch?v=dB-u77Y5a6A)                  | [Slide 06](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture06.pdf) |
+| Lecture 7  |              [Convolutional Networks](https://www.youtube.com/watch?v=ANyxBVxmdZ0)               | [Slide 07](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture07.pdf) |
+| Lecture 8  |                 [CNN Architectures](https://www.youtube.com/watch?v=XaZIlVrIO-Q)                 | [Slide 08](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture08.pdf) |
+| Lecture 9  |               [Hardware and Software](https://www.youtube.com/watch?v=oXPX8GIOiU4)               | [Slide 09](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture09.pdf) |
+| Lecture 10 |            [Training Neural Networks I](https://www.youtube.com/watch?v=lGbQlr1Ts7w)             | [Slide 10](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture10.pdf) |
+| Lecture 11 |            [Training Neural Networks II](https://www.youtube.com/watch?v=WUazOtlti0g)            | [Slide 11](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture11.pdf) |
+| Lecture 12 |                [Recurrent Networks](https://www.youtube.com/watch?v=dUzLD91Sj-o)                 | [Slide 12](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture12.pdf) |
+| Lecture 13 |                     [Attention](https://www.youtube.com/watch?v=YAgjfMR9R_M)                     | [Slide 13](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture13.pdf) |
+| Lecture 14 |        [Visualizing and Understanding CNNs](https://www.youtube.com/watch?v=G1hGwHVykDU)         | [Slide 14](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture14.pdf) |
+| Lecture 15 |                 [Object Detection](https://www.youtube.com/watch?v=TB-fdISzpHQ)                  | [Slide 15](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture15.pdf) |
+| Lecture 16 |            [Detection and Segmentation](https://www.youtube.com/watch?v=9AyMR4IhSWQ)             | [Slide 16](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture16.pdf) |
+| Lecture 17 |                     [3D Vision](https://www.youtube.com/watch?v=S1_nCdLUQQ8)                     | [Slide 17](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture17.pdf) |
+| Lecture 18 |                      [Videos](https://www.youtube.com/watch?v=A9D6NXBJdwU)                       | [Slide 18](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture18.pdf) |
+| Lecture 19 |                [Generative Models I](https://www.youtube.com/watch?v=Q3HU2vEhD5Y)                | [Slide 19](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture19.pdf) |
+| Lecture 20 |               [Generative Models II](https://www.youtube.com/watch?v=igP03FXZqgo)                | [Slide 20](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture20.pdf) |
+| Lecture 21 |              [Reinforcement Learning](https://www.youtube.com/watch?v=Qex3XzcFKP4)               | [Slide 21](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture21.pdf) |
+| Lecture 22 |                    [Conclusion](https://www.youtube.com/watch?v=s3Ky_Ls4YSY)                     | [Slide 22](https://web.eecs.umich.edu/~justincj/slides/eecs498/498_FA2019_lecture22.pdf) |
 
 !!! success "Reference"
     - [EECS498 Course Page](https://web.eecs.umich.edu/~justincj/teaching/eecs498/WI2022/)
     - [Course Video](https://www.youtube.com/watch?v=dJYGatp4SvA&list=PL5-TkQAfAZFbzxjBHtzdVCWE0Zbhomg7r)
     - [frankly6's blog](https://frankly6.cn/2025/03/27/EECS498-notes/#lecture-1)
+
