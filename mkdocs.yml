@@ -177,7 +177,6 @@ nav:
 
   - Software:
     - software/index.md
-    - software/eicu-tutorial.md
     - 图像信息处理:
       - software/dip/index.md
       - software/dip/ch1.md
@@ -305,6 +304,7 @@ nav:
       
   - Misc:
     - misc/softmax.md
+    - misc/eicu-tutorial.md
     
   - Writeups:
     - writeups/index.md
