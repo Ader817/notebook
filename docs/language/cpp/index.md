@@ -1,7 +1,7 @@
 # C++
 
 !!! abstract "目录"
-    - TBD
+    - [C++ Notes](cpp-note.md)
 
 !!! recommend "Reference"
 

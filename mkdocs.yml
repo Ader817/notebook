@@ -140,6 +140,14 @@ nav:
     - language/index.md
     - C++:
       - language/cpp/index.md
+      - language/cpp/cpp-note.md
+    - Python:
+      - language/python/index.md
+      - language/python/dataclasses.md
+      - language/python/dotenv.md
+      - language/python/pathlib.md
+      - language/python/pyyaml.md
+      - language/python/re.md
   - Algorithm:
     - algorithm/index.md
     - 高级数据结构与算法分析:
@@ -169,6 +177,7 @@ nav:
 
   - Software:
     - software/index.md
+    - software/eicu-tutorial.md
     - 图像信息处理:
       - software/dip/index.md
       - software/dip/ch1.md
@@ -215,6 +224,10 @@ nav:
       
   - Math:
     - math/index.md
+    - Matrix:
+      - math/matrix/index.md
+      - math/matrix/understanding.md
+      - math/matrix/derivative.md
     - 概率论与数理统计:
       - math/pas/index.md
       - math/pas/ch1.md
@@ -227,14 +240,44 @@ nav:
       - math/pas/ch8.md
     - 因果推断:
       - math/causal/index.md
+      - math/causal/ch1.md
+      - math/causal/ch2.md
+      - math/causal/ch3.md
+      - math/causal/ch4.md
+      - math/causal/ch5.md
+      - math/causal/ch6.md
+      - math/causal/ch7.md
+      - math/causal/ch8.md
+      - math/causal/ch9.md
 
   - Tools:
     - tools/index.md
     - tools/venv.md
-    - tools/shell.md
-  
+    - tools/tmux.md
+    - tools/ansi.md
+    - tools/shortcuts.md
+    - tools/net-check.md
+    - tools/tun-tap.md
+
   - AI:
     - ai/index.md
+    - AI Notes:
+      - ai/notes/index.md
+      - ai/notes/transformer.md
+      - ai/notes/word2vec.md
+    - Agent:
+      - ai/agent/index.md
+      - ai/agent/prompt-engineering.md
+    - CS224N:
+      - ai/cs224n/index.md
+      - ai/cs224n/word-vectors.md
+      - ai/cs224n/language-model.md
+      - ai/cs224n/attention.md
+      - ai/cs224n/pretraining.md
+      - ai/cs224n/posttraining.md
+      - ai/cs224n/peft.md
+      - ai/cs224n/rag-agents.md
+      - ai/cs224n/benchmark-evaluation.md
     - EECS498:
       - ai/eecs498/index.md
       - ai/eecs498/ch1.md
@@ -261,7 +304,7 @@ nav:
       - ai/eecs498/ch22.md
       
   - Misc:
-    - Misc/softmax.md
+    - misc/softmax.md
     
   - Writeups:
     - writeups/index.md
