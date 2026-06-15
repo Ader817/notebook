@@ -1,0 +1,1567 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Ader's notebook" name="description"/>
+<meta content="Ader" name="author"/>
+<link href="https://ader817.github.io/notebook/language/cpp/cpp-note/" rel="canonical"/>
+<link href="../" rel="prev"/>
+<link href="../../python/" rel="next"/>
+<link href="../../../assets/images/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
+<title>cpp note - Ader's notebook</title>
+<link href="../../../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775m1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25m13.274 9.537zl-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074M4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5M4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75M8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.5 4.5 0 0 1-.563-1.191 3.84 3.84 0 0 1-.05-2.063 4.65 4.65 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4 2.4 0 0 1-.507-.441 3.1 3.1 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19.01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.7 3.7 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 .018-1.042.75.75 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.76 2.76 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6 6 0 0 0-.26.16 1 1 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1 1 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.61.61 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1 1 0 0 0-.34.398M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343za8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746m1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275M6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734L6.94 8 4.97 6.03a.75.75 0 0 1 .018-1.042.75.75 0 0 1 1.042-.018"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005 0-.009.004"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.5 3.5 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327q0 .15-.025.292c.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5q-.002.615-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A5 5 0 0 1 8 16a5 5 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5 5 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.7 1.7 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06m.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.17.17 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5m4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5m0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5M2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0"/></svg>');}</style>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=JetBrains+Mono,+LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono,+Consolas:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"JetBrains Mono, LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono, Consolas"}</style>
+<link href="../../../css/heti.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/custom.css" rel="stylesheet"/>
+<link href="https://unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet"/>
+<link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="blue-grey" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#cpp-note">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="Ader's notebook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Ader's notebook">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Ader's notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              cpp note
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="切换至夜间模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="blue-grey" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="切换至夜间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+<input aria-label="切换至日间模式" class="md-option" data-md-color-accent="teal" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="切换至日间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<a aria-label="分享" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="分享">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Ader817/notebook/" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+          
+  
+    
+  
+  Home
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../">
+          
+  
+    
+  
+  Language
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../algorithm/">
+          
+  
+    
+  
+  Algorithm
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../software/">
+          
+  
+    
+  
+  Software
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../system/">
+          
+  
+    
+  
+  System
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../web/">
+          
+  
+    
+  
+  Web
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../math/">
+          
+  
+    
+  
+  Math
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../tools/">
+          
+  
+    
+  
+  Tools
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../ai/">
+          
+  
+    
+  
+  AI
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../misc/softmax/">
+          
+  
+    
+  
+  Misc
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../writeups/">
+          
+  
+    
+  
+  Writeups
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Ader's notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Ader's notebook">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
+</a>
+    Ader's notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Ader817/notebook/" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../..">
+<span class="md-ellipsis">
+    Home
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
+    Language
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_2_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_2">
+<span class="md-nav__icon md-icon"></span>
+            Language
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_2_2" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    C++
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_2_2_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_2_2">
+<span class="md-nav__icon md-icon"></span>
+            C++
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    cpp note
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    cpp note
+    
+  </span>
+</a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rvalue-reference">
+<span class="md-ellipsis">
+      Rvalue Reference
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#binding">
+<span class="md-ellipsis">
+      Binding
+    </span>
+</a>
+<nav aria-label="Binding" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#左值引用绑定">
+<span class="md-ellipsis">
+      左值引用绑定
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#右值引用绑定">
+<span class="md-ellipsis">
+      右值引用绑定
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#move-semantics">
+<span class="md-ellipsis">
+      Move Semantics
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stdstring_view">
+<span class="md-ellipsis">
+      std::string_view
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#constexpr">
+<span class="md-ellipsis">
+      constexpr
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#enum-class">
+<span class="md-ellipsis">
+      enum class
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stdoptional">
+<span class="md-ellipsis">
+      std::optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#using">
+<span class="md-ellipsis">
+      using
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#range-based-for-loop">
+<span class="md-ellipsis">
+      Range-based for loop
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#if-with-initializer">
+<span class="md-ellipsis">
+      if with initializer
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#noexcept">
+<span class="md-ellipsis">
+      noexcept
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stdchrono">
+<span class="md-ellipsis">
+      std::chrono
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multithreading">
+<span class="md-ellipsis">
+      Multithreading
+    </span>
+</a>
+<nav aria-label="Multithreading" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+<span class="md-ellipsis">
+      \&lt;thread&gt;
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+<span class="md-ellipsis">
+      \&lt;mutex&gt;
+    </span>
+</a>
+<nav aria-label="\&lt;mutex&gt;" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lock--unlock">
+<span class="md-ellipsis">
+      lock &amp; unlock
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lock_guard">
+<span class="md-ellipsis">
+      lock_guard
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#unique_lock">
+<span class="md-ellipsis">
+      unique_lock
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+<span class="md-ellipsis">
+      \&lt;conditoin_variable&gt;
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lambda-expression">
+<span class="md-ellipsis">
+      lambda expression
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../python/">
+<span class="md-ellipsis">
+    Python
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../algorithm/">
+<span class="md-ellipsis">
+    Algorithm
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../software/">
+<span class="md-ellipsis">
+    Software
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../system/">
+<span class="md-ellipsis">
+    System
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../web/">
+<span class="md-ellipsis">
+    Web
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../math/">
+<span class="md-ellipsis">
+    Math
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../tools/">
+<span class="md-ellipsis">
+    Tools
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../ai/">
+<span class="md-ellipsis">
+    AI
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../misc/softmax/">
+<span class="md-ellipsis">
+    Misc
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../writeups/">
+<span class="md-ellipsis">
+    Writeups
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rvalue-reference">
+<span class="md-ellipsis">
+      Rvalue Reference
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#binding">
+<span class="md-ellipsis">
+      Binding
+    </span>
+</a>
+<nav aria-label="Binding" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#左值引用绑定">
+<span class="md-ellipsis">
+      左值引用绑定
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#右值引用绑定">
+<span class="md-ellipsis">
+      右值引用绑定
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#move-semantics">
+<span class="md-ellipsis">
+      Move Semantics
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stdstring_view">
+<span class="md-ellipsis">
+      std::string_view
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#constexpr">
+<span class="md-ellipsis">
+      constexpr
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#enum-class">
+<span class="md-ellipsis">
+      enum class
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stdoptional">
+<span class="md-ellipsis">
+      std::optional
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#using">
+<span class="md-ellipsis">
+      using
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#range-based-for-loop">
+<span class="md-ellipsis">
+      Range-based for loop
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#if-with-initializer">
+<span class="md-ellipsis">
+      if with initializer
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#noexcept">
+<span class="md-ellipsis">
+      noexcept
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stdchrono">
+<span class="md-ellipsis">
+      std::chrono
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multithreading">
+<span class="md-ellipsis">
+      Multithreading
+    </span>
+</a>
+<nav aria-label="Multithreading" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_1">
+<span class="md-ellipsis">
+      \&lt;thread&gt;
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_2">
+<span class="md-ellipsis">
+      \&lt;mutex&gt;
+    </span>
+</a>
+<nav aria-label="\&lt;mutex&gt;" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lock--unlock">
+<span class="md-ellipsis">
+      lock &amp; unlock
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lock_guard">
+<span class="md-ellipsis">
+      lock_guard
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#unique_lock">
+<span class="md-ellipsis">
+      unique_lock
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_3">
+<span class="md-ellipsis">
+      \&lt;conditoin_variable&gt;
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lambda-expression">
+<span class="md-ellipsis">
+      lambda expression
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/Ader817/notebook/edit/master/docs/language/cpp/cpp-note.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
+</a>
+<a class="md-content__button md-icon" href="https://github.com/Ader817/notebook/raw/master/docs/language/cpp/cpp-note.md" title="查看本页的源代码">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
+</a>
+<h1 id="cpp-note">cpp note</h1>
+<h2 id="rvalue-reference">Rvalue Reference</h2>
+<blockquote>
+<p>C++11 </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>类别</th>
+<th>特征</th>
+<th>例子</th>
+<th>核心理解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>左值<span><span class="heti-spacing"> </span>(Lvalue)</span></strong></td>
+<td>有名字、有内存地址、生命周期长。</td>
+<td>int a; std::string s;</td>
+<td>能够持久存在的对象，<strong>不能</strong>随意窃取其资源。</td>
+</tr>
+<tr>
+<td><strong>右值<span><span class="heti-spacing"> </span>(Rvalue)</span></strong></td>
+<td>临时的、无名的、即将销毁的</td>
+<td>字面量<span><span class="heti-spacing"> </span>"hello"</span>（其实也是有内存地址的，存放在只读数据区）<span>,<span class="heti-spacing"> </span></span>函数返回值<span><span class="heti-spacing"> </span>func(), x + y</span></td>
+<td><strong>将死之身</strong>，可以安全地窃取其资源。</td>
+</tr>
+</tbody>
+</table>
+<p>右值引用，<strong>T&amp;&amp;</strong></p>
+<ul>
+<li>一种新的引用类型，专门用来绑定到右值上</li>
+<li>目的：让编译器能够区分传进来的是可能需要被继续使用的左值还是可以窃取资源的右值</li>
+</ul>
+<blockquote>
+<p>只要有名字就是左值，即使一个变量的类型是右值引用 <code>T&amp;&amp;</code>，只要它在函数体内有名字，它就在表达式中表现为左值</p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="c1">// str 的【类型】是：右值引用 (std::string&amp;&amp;)</span>
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="c1">// str 的【值类别】是：左值 (Lvalue) —— 因为它叫 "str"</span>
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span>
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="p">;</span><span class="w">            </span><span class="c1">// 调用拷贝构造 (深拷贝)</span>
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="w"> </span><span class="c1">// 调用移动构造 (窃取资源)</span>
+</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="p">}</span>
+</span></code></pre></div>
+</blockquote>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>右值引用<span class="heti-skip"><span class="heti-spacing"> </span>(T&amp;&amp;)<span class="heti-spacing"> </span></span>和右值这个概念，在很大程度上就是给编译器看的一个“特殊的类型标签”，目的是为了指挥编译器走另一条路。而在底层左值引用<span class="heti-skip"><span class="heti-spacing"> </span>(T&amp;)<span class="heti-spacing"> </span></span>和右值引用<span class="heti-skip"><span class="heti-spacing"> </span>(T&amp;&amp;)<span class="heti-spacing"> </span></span>本质都是指针</p>
+</div>
+<h2 id="binding">Binding</h2>
+<p>绑定是引用变量去和值建立联系的“动作”，在<span><span class="heti-spacing"> </span>C++</span>（特别是涉及引用的语境）中<heti-adjacent class="heti-adjacent-quarter">，</heti-adjacent>“绑定”指的就是<strong>把一个“名字”（引用变量）和一块“内存”（实际的对象）连起来的过程。</strong></p>
+<p>可以把它想象成 <strong>“系绳子”</strong>。</p>
+<h3 id="左值引用绑定">左值引用绑定</h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">      </span><span class="c1">// a 是一只名叫“a”的狗（实际对象）</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">    </span><span class="c1">// ref 是一根绳子。</span>
+</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">                 </span><span class="c1">// “绑定”就是把绳子 ref 系在了狗 a 的脖子上。</span>
+</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">                 </span><span class="c1">// 以后拽 ref 这根绳子，就是在拽 a 这只狗。</span>
+</span></code></pre></div>
+<h3 id="右值引用绑定">右值引用绑定</h3>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// "hello" 是一个临时的字符串对象，它本来没有名字，是个流浪狗。</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1">// 如果没人理它，这一行结束它就“死”了（析构）。</span>
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">r_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"hello"</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1">// 此时发生“绑定”：</span>
+</span><span id="__span-2-6"><a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1">// r_ref 这根绳子，把这个临时的流浪狗拴住了。</span>
+</span><span id="__span-2-7"><a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1">// 只要绳子 r_ref 还在，这条狗就不会死（生命周期延长）。</span>
+</span></code></pre></div>
+<blockquote>
+<p>非<span class="heti-skip"><span class="heti-spacing"> </span>const<span class="heti-spacing"> </span></span>左值引用不能绑定到右值，因为<span class="heti-skip"><span class="heti-spacing"> </span>C++<span class="heti-spacing"> </span></span>认为非<span class="heti-skip"><span class="heti-spacing"> </span>const<span class="heti-spacing"> </span></span>左值引用可能会修改它绑定的对象</p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// void func(std::string&amp; s)</span>
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">func</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span><span class="w"> </span><span class="c1">// 报错！</span>
+</span></code></pre></div>
+</blockquote>
+<h2 id="move-semantics">Move Semantics</h2>
+<blockquote>
+<p>C++11</p>
+</blockquote>
+<p><code>std::move</code> 本质是进行强制类型转换，强制将一个<strong>左值</strong>转换成<strong>右值引用</strong>类型，本质上可以理解为“贴标签”</p>
+<ul>
+<li><strong>没有<span><span class="heti-spacing"> </span>std::move</span></strong>：变量<span class="heti-skip"><span class="heti-spacing"> </span>a<span class="heti-spacing"> </span></span>身上贴着“贵重物品，小心轻放”的标签（左值<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
+<li><strong>用了<span><span class="heti-spacing"> </span>std::move</span></strong>：相当于你把<span class="heti-skip"><span class="heti-spacing"> </span>a<span class="heti-spacing"> </span></span>原来的标签撕了，贴上一张“<strong>废品，由于随意处置</strong>”的标签（转为右值引用类型<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
+</ul>
+<p>编译器看到“废品”标签，就放心地把它交给了回收站（移动构造函数）去处理，而不是交给复印店（拷贝构造函数）</p>
+<p>“移动语义”的实现是由移动构造函数（移动拷贝）来完成的，而在绝大多数场景下，移动构造函数都会由编译器自动生成：
+</p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="w">  </span><span class="k">class</span><span class="w"> </span><span class="nc">UserInfo</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="w">  </span><span class="k">public</span><span class="o">:</span>
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w">          </span><span class="c1">// 标准库 string，懂移动</span>
+</span><span id="__span-4-4"><a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="w">      </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">history</span><span class="p">;</span><span class="w">  </span><span class="c1">// 标准库 vector，懂移动</span>
+</span><span id="__span-4-5"><a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="w">      </span><span class="kt">int</span><span class="w"> </span><span class="n">age</span><span class="p">;</span><span class="w">                   </span><span class="c1">// 基础类型，直接拷贝（等同于移动）</span>
+</span><span id="__span-4-6"><a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">      </span><span class="c1">// 【关键】什么都不用写！</span>
+</span><span id="__span-4-8"><a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">      </span><span class="c1">// 编译器会自动生成：</span>
+</span><span id="__span-4-9"><a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">      </span><span class="c1">// UserInfo(UserInfo&amp;&amp;) { </span>
+</span><span id="__span-4-10"><a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">      </span><span class="c1">//     name.move(); </span>
+</span><span id="__span-4-11"><a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">      </span><span class="c1">//     history.move(); </span>
+</span><span id="__span-4-12"><a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">      </span><span class="c1">//     age = other.age; </span>
+</span><span id="__span-4-13"><a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">      </span><span class="c1">// }</span>
+</span><span id="__span-4-14"><a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">  </span><span class="p">};</span>
+</span><span id="__span-4-15"><a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a>
+</span><span id="__span-4-16"><a href="#__codelineno-4-16" id="__codelineno-4-16" name="__codelineno-4-16"></a><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="nf">test</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-17"><a href="#__codelineno-4-17" id="__codelineno-4-17" name="__codelineno-4-17"></a><span class="w">      </span><span class="n">UserInfo</span><span class="w"> </span><span class="n">u1</span><span class="p">;</span>
+</span><span id="__span-4-18"><a href="#__codelineno-4-18" id="__codelineno-4-18" name="__codelineno-4-18"></a><span class="w">      </span><span class="c1">// ... 填数据 ...</span>
+</span><span id="__span-4-19"><a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a>
+</span><span id="__span-4-20"><a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">      </span><span class="c1">// 这一行依然会极其高效！</span>
+</span><span id="__span-4-21"><a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">      </span><span class="c1">// 编译器自动生成的移动构造函数会去“偷” u1.name 和 u1.history 的资源</span>
+</span><span id="__span-4-22"><a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">      </span><span class="n">UserInfo</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">u1</span><span class="p">);</span><span class="w"> </span>
+</span><span id="__span-4-23"><a href="#__codelineno-4-23" id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">  </span><span class="p">}</span>
+</span></code></pre></div>
+<blockquote>
+<p><span>C++11<span class="heti-spacing"> </span></span>后，<span>C++98<span class="heti-spacing"> </span></span>的 <strong>Rule of three *<em><span>(Desctructor/Copy Constructor/Copy Assignment O,,   perator) --&gt; C++11<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>*</span></em>Rule of five</strong> (plus Move Constructor/ Move Assignment Operator) / <strong>Rule of zero</strong></p>
+<p><strong>Rule of zero:</strong> 如果你的类不需要手动管理原始资源（如 <code>new</code> 出来的指针、文件句柄<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，那么你就不要去写那<span class="heti-skip"><span class="heti-spacing"> </span>5<span class="heti-spacing"> </span></span>个特殊成员函数（析构、拷贝<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>移动构造、拷贝<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>移动赋值<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，全部交给编译器自动生成。</p>
+</blockquote>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>Modern C++<span class="heti-spacing"> </span></span>风格下，大部分场景下，我们都可以利用标准库容器，让编译器帮我们把写特殊成员函数的脏活都自动干完</p>
+</div>
+<h2 id="stdstring_view">std::string_view</h2>
+<blockquote>
+<p>C++17 <string_view></string_view></p>
+</blockquote>
+<p><code>std::string_view</code>是一个字符串的“快照”或“窗口”，它只包含一个指针和一个长度，不拥有内存，也不进行拷贝</p>
+<p>本质上是一个极其轻量的结构体，只包含两个成员变量<span><span class="heti-spacing"> </span>:</span></p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">// 伪代码实现</span>
+</span><span id="__span-5-2"><a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">string_view</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-5-3"><a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">data_</span><span class="p">;</span><span class="w"> </span><span class="c1">// 指向字符串的起始位置</span>
+</span><span id="__span-5-4"><a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size_</span><span class="p">;</span><span class="w">      </span><span class="c1">// 字符串的长度</span>
+</span><span id="__span-5-5"><a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="w">    </span><span class="c1">// ... 加上一堆类似 string 的只读成员函数 (find, substr, etc.)</span>
+</span><span id="__span-5-6"><a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a><span class="p">};</span>
+</span></code></pre></div>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>C++17<span class="heti-spacing"> </span></span>之前，当我们编写一个接收字符串的函数时，通常有两种写法，但都有缺点：</p>
+<p><strong>使用<span><span class="heti-spacing"> </span>const char</span></strong><span>:(C<span class="heti-spacing"> </span></span>风格<span><span class="heti-spacing"> </span>)</span></p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+</span></code></pre></div>
+<ul>
+<li><strong>优点</strong>：高效，无拷贝。</li>
+<li><strong>缺点</strong>：丢失了长度信息（需要<span><span class="heti-spacing"> </span>strlen</span>，O(N)<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，且无法方便地利用<span class="heti-skip"><span class="heti-spacing"> </span>std::string<span class="heti-spacing"> </span></span>的丰富<span><span class="heti-spacing"> </span>API</span>（如<span><span class="heti-spacing"> </span>find, substr)</span></li>
+</ul>
+<p>*<em>使用<span><span class="heti-spacing"> </span>const std::string&amp; *</span></em><span>(C++98/11<span class="heti-spacing"> </span></span>标准写法<span><span class="heti-spacing"> </span>):</span></p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+</span></code></pre></div>
+<ul>
+<li><strong>优点</strong>：<span>API<span class="heti-spacing"> </span></span>丰富，对于已经存在的<span class="heti-skip"><span class="heti-spacing"> </span>std::string<span class="heti-spacing"> </span></span>对象来说很高效（引用传递<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
+<li><strong>缺点</strong>：当你传入 <strong>字符串字面量</strong>（"hello"）或 <strong>子串</strong> 时，它会发生昂贵的<strong>内存分配</strong></li>
+<li>比如 <code>func("hello world")</code>：为了让引用类型的形参能够绑定，编译器会隐式的创建一个临时对象把 <code>const char*</code> 转为 <code>std::string</code>，那么就需要<ul>
+<li>在堆上分配内存</li>
+<li>把<span class="heti-skip"><span class="heti-spacing"> </span>"hello world"<span class="heti-spacing"> </span></span>拷贝进去</li>
+<li>函数结束后再释放临时对象的内存</li>
+</ul>
+</li>
+<li>比如<span class="heti-skip"><span class="heti-spacing"> </span>std:string<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>API substr():<span class="heti-spacing"> </span></span><code>long_str.substr(0.5)</code><span class="heti-skip"><span class="heti-spacing"> </span>, substr()<span class="heti-spacing"> </span></span>会做深拷贝返回一个新的<span class="heti-skip"><span class="heti-spacing"> </span>std:string<span class="heti-spacing"> </span></span>对象</li>
+</ul>
+<p><span>C++17<span class="heti-spacing"> </span></span>引入的 <code>std::string_view</code> 在这些场景在就会变得非常经济</p>
+<h2 id="constexpr">constexpr</h2>
+<blockquote>
+<p>C++11</p>
+</blockquote>
+<p><code>constexpr</code> 关键字用于声明编译时常量表达式，可以将本来需要在运行时执行的计算移到编译阶段，编译器在编译阶段就直接计算结果并将结果硬编码到指令中，节省了运算开销</p>
+<ul>
+<li><strong><code>constexpr</code> 变量</strong>：声明变量的值必须在编译时确定</li>
+<li><strong><code>constexpr</code> 函数</strong>：声明一个函数可以在常量表达式中使用，并且如果传入的参数是编译时常量，它本身的值也将在编译时计算出来</li>
+</ul>
+<p>有点类似“内联”，但存在一点区别：</p>
+<ul>
+<li><strong><span>inline (<span class="heti-spacing"> </span></span>内联<span><span class="heti-spacing"> </span>)</span></strong>：是<strong>“复制粘贴”</strong>。它关注的是<strong>执行效率</strong>（省去函数调用的开销<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
+<li><strong><span>constexpr (<span class="heti-spacing"> </span></span>常量表达式<span><span class="heti-spacing"> </span>)</span></strong>：是<strong>“提前计算”</strong>。它关注的是<strong>计算时机</strong>（把运行时要做的事挪到编译时做<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
+</ul>
+<p>比如我们计算<span><span class="heti-spacing"> </span>add(3,4)</span>：</p>
+<p><code>inline int add(int a, int b) { return a + b }</code></p>
+<ul>
+<li><strong>编译器的行为</strong>：编译器把<span class="heti-skip"><span class="heti-spacing"> </span>a + b<span class="heti-spacing"> </span></span>这行代码“剪切”下来，贴到<span class="heti-skip"><span class="heti-spacing"> </span>main<span class="heti-spacing"> </span></span>函数里</li>
+<li><strong>最终的机器码</strong>：程序里依然会有<span><span class="heti-spacing"> </span>ADD</span>（加法）指令</li>
+<li><strong>运行时</strong>：程序跑起来后，<strong>CPU</strong> 依然要执行一次<span class="heti-skip"><span class="heti-spacing"> </span>3 + 4<span class="heti-spacing"> </span></span>的运算</li>
+</ul>
+<p><code>constexpr int add(int a, int b) { return a + b }</code></p>
+<ul>
+<li><strong>编译器的行为</strong>：编译器在编译阶段直接算出了结果<span><span class="heti-spacing"> </span>7</span></li>
+<li><strong>最终的机器码</strong>：程序里没有加法指令，只有一个立即数<span><span class="heti-spacing"> </span>7 (MOV EAX, 7)</span></li>
+<li><strong>运行时</strong>：程序跑起来后，<strong>CPU</strong> 什么都不用算，直接拿结果</li>
+</ul>
+<blockquote>
+<p>几个关键字拜访的类型一般是：static constexpr const Type</p>
+<ul>
+<li><strong>static</strong>：管生命周期或者说内存中位置</li>
+<li><strong>constexpr</strong>：管编译期计算</li>
+<li><strong>const</strong>：管数据内容只读</li>
+<li><strong>Type</strong><span>:<span class="heti-spacing"> </span></span>管变量数据类型</li>
+</ul>
+</blockquote>
+<h2 id="enum-class">enum class</h2>
+<blockquote>
+<p>c++11</p>
+</blockquote>
+<p><span>C++11<span class="heti-spacing"> </span></span>引入了<span class="heti-skip"><span class="heti-spacing"> </span>enum class (<span class="heti-spacing"> </span></span>限定作用域枚举<span><span class="heti-spacing"> </span>)</span>，解决了老式<span class="heti-skip"><span class="heti-spacing"> </span>enum<span class="heti-spacing"> </span></span>的几乎所有痛点，例如</p>
+<ul>
+<li>全局作用域污染：<span>enum class<span class="heti-spacing"> </span></span>使用枚举值时应当按照“枚举名<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>枚举值”的方式使用</li>
+<li>避免隐式转换</li>
+</ul>
+<p><mark>应该成为写代码的默认选择</mark></p>
+<p>Usage：</p>
+<p><code>enum class 枚举名 : 底层类型（可选） {枚举值...};</code></p>
+<p>example:</p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Status</span><span class="o">:</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 指定底层用 char 存储 ，省内存</span>
+</span><span id="__span-8-2"><a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="n">Ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+</span><span id="__span-8-3"><a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">  </span><span class="n">Error</span><span class="p">,</span>
+</span><span id="__span-8-4"><a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">  </span><span class="n">Unknown</span>
+</span><span id="__span-8-5"><a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="p">};</span>
+</span><span id="__span-8-6"><a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a>
+</span><span id="__span-8-7"><a href="#__codelineno-8-7" id="__codelineno-8-7" name="__codelineno-8-7"></a><span class="n">Status</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Status</span><span class="o">::</span><span class="n">Error</span><span class="p">;</span><span class="w"> </span><span class="c1">// 像使用类一样，类名::成员变量</span>
+</span><span id="__span-8-8"><a href="#__codelineno-8-8" id="__codelineno-8-8" name="__codelineno-8-8"></a>
+</span><span id="__span-8-9"><a href="#__codelineno-8-9" id="__codelineno-8-9" name="__codelineno-8-9"></a><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="c1">// enum class 不能隐式转 int</span>
+</span></code></pre></div>
+<h2 id="stdoptional">std::optional</h2>
+<blockquote>
+<p>C++17</p>
+</blockquote>
+<p><code>std::optional&lt;T&gt;</code> 的取值范围是<span class="heti-skip"><span class="heti-spacing"> </span>T<span class="heti-spacing"> </span></span>的所有值<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>空<span><span class="heti-spacing"> </span>(nullopt)</span></p>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>推荐用在函数返回值上，用来表示返回值可能为空</p>
+</div>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">findUser</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-2"><a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-3"><a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{}</span>
+</span><span id="__span-9-4"><a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="c1">// 也可以 return std::nullopt</span>
+</span><span id="__span-9-5"><a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-9-6"><a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-9-7"><a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="w">    </span><span class="p">...</span>
+</span><span id="__span-9-8"><a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">user</span><span class="p">[</span><span class="n">id</span><span class="p">];</span><span class="w"> </span><span class="c1">// 自动包装成 optional&lt;User&gt;</span>
+</span><span id="__span-9-9"><a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-9-10"><a href="#__codelineno-9-10" id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li>
+<p><span>.hasvalue()<span class="heti-spacing"> </span></span>若非空返回<span><span class="heti-spacing"> </span>true</span></p>
+</li>
+<li>
+<p><span>.value()<span class="heti-spacing"> </span></span>返回容器内存储值的引用</p>
+</li>
+</ul>
+<blockquote>
+<p><span>C++<span class="heti-spacing"> </span></span>标准库为了让我们写代码更方便（Syntactic Sugar<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，允许我们像使用指针一样直接对<span class="heti-skip"><span class="heti-spacing"> </span>std::optional<span class="heti-spacing"> </span></span>使用<span class="heti-skip"><span class="heti-spacing"> </span>-&gt;<span class="heti-spacing"> </span></span>操作符，这样我们就不用每次都啰嗦地写<span class="heti-skip"><span class="heti-spacing"> </span>.value()<span class="heti-spacing"> </span></span>然后再去调用容器内存储值的方法或对象了</p>
+</blockquote>
+<h2 id="using">using</h2>
+<blockquote>
+<p>C++11</p>
+</blockquote>
+<p>using Identifier = Type</p>
+<p>用于给类型起别名，可以完全替代<span class="heti-skip"><span class="heti-spacing"> </span>C<span class="heti-spacing"> </span></span>风格的 <code>typedef</code> ，它的可读性更强，且支持模板</p>
+<p>例如：</p>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">// --- 使用 using 极其优雅 ---</span>
+</span><span id="__span-10-2"><a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Val</span><span class="o">&gt;</span>
+</span><span id="__span-10-3"><a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="k">using</span><span class="w"> </span><span class="n">MyMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">Val</span><span class="o">&gt;</span><span class="p">;</span>
+</span><span id="__span-10-4"><a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a>
+</span><span id="__span-10-5"><a href="#__codelineno-10-5" id="__codelineno-10-5" name="__codelineno-10-5"></a><span class="c1">// 用的时候：</span>
+</span><span id="__span-10-6"><a href="#__codelineno-10-6" id="__codelineno-10-6" name="__codelineno-10-6"></a><span class="n">MyMap</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">inventory</span><span class="p">;</span>
+</span><span id="__span-10-7"><a href="#__codelineno-10-7" id="__codelineno-10-7" name="__codelineno-10-7"></a><span class="n">MyMap</span><span class="o">&lt;</span><span class="kt">float</span><span class="o">&gt;</span><span class="w"> </span><span class="n">prices</span><span class="p">;</span>
+</span></code></pre></div>
+<h2 id="range-based-for-loop">Range-based for loop</h2>
+<blockquote>
+<p>C++11</p>
+</blockquote>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
+</span><span id="__span-11-2"><a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a>
+</span><span id="__span-11-3"><a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="c1">//     (1)    (2) (3)  (4)</span>
+</span><span id="__span-11-4"><a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">auto</span><span class="w">     </span><span class="o">&amp;</span><span class="w">   </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nums</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-11-5"><a href="#__codelineno-11-5" id="__codelineno-11-5" name="__codelineno-11-5"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span>
+</span><span id="__span-11-6"><a href="#__codelineno-11-6" id="__codelineno-11-6" name="__codelineno-11-6"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>for<span class="heti-spacing"> </span></span>循环中，<span>auto<span class="heti-spacing"> </span></span>有三种常见的写法，区别在于<strong>拷贝</strong>和<strong>读写权限</strong>。</p>
+<p><mark>写法<span><span class="heti-spacing"> </span>A</span></mark>：for (auto x : nums) —— 【值传递<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>拷贝】</p>
+<ul>
+<li><strong>含义</strong>：把容器里的元素<strong>复制</strong>一份给<span><span class="heti-spacing"> </span>x</span>。</li>
+<li><strong>后果</strong>：</li>
+<li><strong>修改无效</strong>：你在循环里修改<span><span class="heti-spacing"> </span>x</span>，改的只是副本，<strong>原容器<span class="heti-skip"><span class="heti-spacing"> </span>nums<span class="heti-spacing"> </span></span>里的数据不会变</strong>。</li>
+<li><strong>性能损耗</strong>：如果容器里存的是<span class="heti-skip"><span class="heti-spacing"> </span>std::string<span class="heti-spacing"> </span></span>或大结构体，每次循环都要进行一次<strong>深拷贝</strong>，效率很低。</li>
+<li><strong>场景</strong>：只读访问基础类型（int, char, bool<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
+</ul>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-12-2"><a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// nums 里的数据没变，只改了 x 这个临时工</span>
+</span><span id="__span-12-3"><a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><mark>写法<span><span class="heti-spacing"> </span>B</span></mark>：for (auto &amp;x : nums) —— 【引用传递<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>读写】</p>
+<ul>
+<li><strong>含义</strong>：<span>x<span class="heti-spacing"> </span></span>是容器里元素的<strong>别名（引用）</strong>。<span>x<span class="heti-spacing"> </span></span>就是那个元素本身。</li>
+<li><strong>后果</strong>：</li>
+<li><strong>可以修改</strong>：你在循环里修改<span><span class="heti-spacing"> </span>x</span>，<strong>原容器<span class="heti-skip"><span class="heti-spacing"> </span>nums<span class="heti-spacing"> </span></span>里的数据也会跟着变</strong>。</li>
+<li><strong>高效</strong>：没有拷贝发生，只是起个绰号。</li>
+<li><strong>场景</strong>：需要修改容器内的元素，或者遍历大对象（为了避免拷贝<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
+</ul>
+<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-13-2"><a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// nums 里的所有元素都变成了 100</span>
+</span><span id="__span-13-3"><a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><mark>写法<span><span class="heti-spacing"> </span>C</span></mark>：for (const auto &amp;x : nums) —— 【常量引用<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>只读高效】</p>
+<ul>
+<li><strong>含义</strong>：<span>x<span class="heti-spacing"> </span></span>是元素的引用，但<strong>被锁住了（const）</strong>，不能修改。</li>
+<li><strong>后果</strong>：</li>
+<li><strong>不能修改</strong>：保证数据安全，防止手误改掉数据。</li>
+<li><strong>高效</strong>：没有拷贝。</li>
+<li><strong>场景</strong>：<span>==<span class="heti-spacing"> </span></span>这是最常用的写法！<span>==<span class="heti-spacing"> </span></span>当你只想读取容器里的数据（比如打印、查找<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，且数据类型较大（如<span><span class="heti-spacing"> </span>string, vector</span>）时。</li>
+</ul>
+<h2 id="if-with-initializer">if with initializer</h2>
+<blockquote>
+<p>c++17</p>
+</blockquote>
+<p><span>C++17<span class="heti-spacing"> </span></span>允许你在<span class="heti-skip"><span class="heti-spacing"> </span>if<span class="heti-spacing"> </span></span>圆括号内用分号分隔“初始化”和“条件判断”，就像<span class="heti-skip"><span class="heti-spacing"> </span>for<span class="heti-spacing"> </span></span>循环的前半部分一样。</p>
+<p>语法：
+</p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-14-1"><a href="#__codelineno-14-1" id="__codelineno-14-1" name="__codelineno-14-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">初始化语句</span><span class="p">;</span><span class="w"> </span><span class="n">条件表达式</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-14-2"><a href="#__codelineno-14-2" id="__codelineno-14-2" name="__codelineno-14-2"></a><span class="w">    </span><span class="c1">// ...</span>
+</span><span id="__span-14-3"><a href="#__codelineno-14-3" id="__codelineno-14-3" name="__codelineno-14-3"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>示例：
+</p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-15-1"><a href="#__codelineno-15-1" id="__codelineno-15-1" name="__codelineno-15-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+</span><span id="__span-15-2"><a href="#__codelineno-15-2" id="__codelineno-15-2" name="__codelineno-15-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;map&gt;</span>
+</span><span id="__span-15-3"><a href="#__codelineno-15-3" id="__codelineno-15-3" name="__codelineno-15-3"></a>
+</span><span id="__span-15-4"><a href="#__codelineno-15-4" id="__codelineno-15-4" name="__codelineno-15-4"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-5"><a href="#__codelineno-15-5" id="__codelineno-15-5" name="__codelineno-15-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="kt">int</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&gt;</span><span class="w"> </span><span class="n">m</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="s">"one"</span><span class="p">}};</span>
+</span><span id="__span-15-6"><a href="#__codelineno-15-6" id="__codelineno-15-6" name="__codelineno-15-6"></a>
+</span><span id="__span-15-7"><a href="#__codelineno-15-7" id="__codelineno-15-7" name="__codelineno-15-7"></a><span class="w">    </span><span class="c1">// 【C++17 写法】</span>
+</span><span id="__span-15-8"><a href="#__codelineno-15-8" id="__codelineno-15-8" name="__codelineno-15-8"></a><span class="w">    </span><span class="c1">// 分号左边：定义并初始化变量 it</span>
+</span><span id="__span-15-9"><a href="#__codelineno-15-9" id="__codelineno-15-9" name="__codelineno-15-9"></a><span class="w">    </span><span class="c1">// 分号右边：判断条件</span>
+</span><span id="__span-15-10"><a href="#__codelineno-15-10" id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-11"><a href="#__codelineno-15-11" id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Found: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-15-12"><a href="#__codelineno-15-12" id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w">        </span><span class="c1">// it 在这里有效</span>
+</span><span id="__span-15-13"><a href="#__codelineno-15-13" id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span>
+</span><span id="__span-15-14"><a href="#__codelineno-15-14" id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-15-15"><a href="#__codelineno-15-15" id="__codelineno-15-15" name="__codelineno-15-15"></a><span class="w">        </span><span class="c1">// it 在 else 里也有效！</span>
+</span><span id="__span-15-16"><a href="#__codelineno-15-16" id="__codelineno-15-16" name="__codelineno-15-16"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Not found"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-15-17"><a href="#__codelineno-15-17" id="__codelineno-15-17" name="__codelineno-15-17"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-15-18"><a href="#__codelineno-15-18" id="__codelineno-15-18" name="__codelineno-15-18"></a>
+</span><span id="__span-15-19"><a href="#__codelineno-15-19" id="__codelineno-15-19" name="__codelineno-15-19"></a><span class="w">    </span><span class="c1">// it 在这里失效了，不会污染外部作用域</span>
+</span><span id="__span-15-20"><a href="#__codelineno-15-20" id="__codelineno-15-20" name="__codelineno-15-20"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="noexcept">noexcept</h2>
+<blockquote>
+<p>C++11</p>
+</blockquote>
+<p><span>noexcept<span class="heti-spacing"> </span></span>可用于函数的<span class="heti-skip"><span class="heti-spacing"> </span>specifier<span class="heti-spacing"> </span></span>中，在编译期声明该函数不会抛出异常，如果抛出异常直接终止程序，从而让编译器能够进行更为激进的优化</p>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>C++<span class="heti-spacing"> </span></span>中，为了支持异常处理，编译器必须生成大量额外的处理代码</p>
+<ul>
+<li>
+<p>没有 <code>noexcept</code> 时：
+    编译器必须假设 <code>Fun()</code> 可能会抛出异常。如果 <code>Fun()</code> 被 <code>Caller()</code> 调用，编译器必须在 <code>Caller()</code> 里记录：“如果在调用 <code>Fun()</code> 时发生了异常，我需要先析构 <code>Caller()</code> 里已经创建的局部变量 A、B、C... 然后再把异常往上传。” 这个过程叫 <strong>栈展开（Stack Unwinding）</strong>。这需要生成额外的指令和查表操作，阻碍了指令重排等优化。</p>
+</li>
+<li>
+<p>有了 <code>noexcept</code> 时：
+    编译器知道 <code>Fun()</code> 绝对不会抛出异常返回给调用者。因此：</p>
+<ol>
+<li>无需准备后路：调用者不需要为这次调用准备复杂的栈展开路径。</li>
+<li>控制流简化：对于编译器来说，这个函数调用只有“成功返回”这一条路，没有“抛出异常”的隐形分支。这使得控制流图（CFG）更简单，编译器敢于进行更激进的指令重排、死代码消除等优化。</li>
+</ol>
+</li>
+</ul>
+<h2 id="stdchrono">std::chrono</h2>
+<blockquote>
+<p>C++11 <code>&lt;chrono&gt;</code></p>
+</blockquote>
+<p>它通过强类型系统（Type Safety<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，解决了<span class="heti-skip"><span class="heti-spacing"> </span>C<span class="heti-spacing"> </span></span>语言时代用“裸整数”表示时间所带来的单位混淆和精度问题</p>
+<p>主要包括三个概念</p>
+<ul>
+<li>时长（duration<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：<code>std::chrono::duration</code></li>
+<li>时间点（timepoint<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：<code>std::chrono:time_point</code></li>
+<li>时钟（clock<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：<code>std::chrono::system_clock</code></li>
+<li><code>std::chrono::system_clock</code>：系统时钟</li>
+<li><code>std::xhrono::steady_clock</code>：秒表，单调递增，在计算<span class="heti-skip"><span class="heti-spacing"> </span>benchmark<span class="heti-spacing"> </span></span>时需要用这个</li>
+</ul>
+<p><strong>Example</strong>:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-16-1"><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+</span><span id="__span-16-2"><a href="#__codelineno-16-2" id="__codelineno-16-2" name="__codelineno-16-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;chrono&gt;</span>
+</span><span id="__span-16-3"><a href="#__codelineno-16-3" id="__codelineno-16-3" name="__codelineno-16-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+</span><span id="__span-16-4"><a href="#__codelineno-16-4" id="__codelineno-16-4" name="__codelineno-16-4"></a>
+</span><span id="__span-16-5"><a href="#__codelineno-16-5" id="__codelineno-16-5" name="__codelineno-16-5"></a><span class="kt">void</span><span class="w"> </span><span class="nf">heavy_work</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-6"><a href="#__codelineno-16-6" id="__codelineno-16-6" name="__codelineno-16-6"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">200</span><span class="p">));</span><span class="w"> </span><span class="c1">// 模拟耗时</span>
+</span><span id="__span-16-7"><a href="#__codelineno-16-7" id="__codelineno-16-7" name="__codelineno-16-7"></a><span class="p">}</span>
+</span><span id="__span-16-8"><a href="#__codelineno-16-8" id="__codelineno-16-8" name="__codelineno-16-8"></a>
+</span><span id="__span-16-9"><a href="#__codelineno-16-9" id="__codelineno-16-9" name="__codelineno-16-9"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-16-10"><a href="#__codelineno-16-10" id="__codelineno-16-10" name="__codelineno-16-10"></a><span class="w">    </span><span class="c1">// 1. 记录开始时间 (使用 steady_clock)</span>
+</span><span id="__span-16-11"><a href="#__codelineno-16-11" id="__codelineno-16-11" name="__codelineno-16-11"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+</span><span id="__span-16-12"><a href="#__codelineno-16-12" id="__codelineno-16-12" name="__codelineno-16-12"></a>
+</span><span id="__span-16-13"><a href="#__codelineno-16-13" id="__codelineno-16-13" name="__codelineno-16-13"></a><span class="w">    </span><span class="n">heavy_work</span><span class="p">();</span>
+</span><span id="__span-16-14"><a href="#__codelineno-16-14" id="__codelineno-16-14" name="__codelineno-16-14"></a>
+</span><span id="__span-16-15"><a href="#__codelineno-16-15" id="__codelineno-16-15" name="__codelineno-16-15"></a><span class="w">    </span><span class="c1">// 2. 记录结束时间</span>
+</span><span id="__span-16-16"><a href="#__codelineno-16-16" id="__codelineno-16-16" name="__codelineno-16-16"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">steady_clock</span><span class="o">::</span><span class="n">now</span><span class="p">();</span>
+</span><span id="__span-16-17"><a href="#__codelineno-16-17" id="__codelineno-16-17" name="__codelineno-16-17"></a>
+</span><span id="__span-16-18"><a href="#__codelineno-16-18" id="__codelineno-16-18" name="__codelineno-16-18"></a><span class="w">    </span><span class="c1">// 3. 计算时长 (时间点相减)</span>
+</span><span id="__span-16-19"><a href="#__codelineno-16-19" id="__codelineno-16-19" name="__codelineno-16-19"></a><span class="w">    </span><span class="c1">// duration_cast 用于将纳秒精度的结果强制转换为我们想要的毫秒</span>
+</span><span id="__span-16-20"><a href="#__codelineno-16-20" id="__codelineno-16-20" name="__codelineno-16-20"></a><span class="w">    </span><span class="k">auto</span><span class="w"> </span><span class="n">diff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">duration_cast</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="o">&gt;</span><span class="p">(</span><span class="n">end</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">start</span><span class="p">);</span>
+</span><span id="__span-16-21"><a href="#__codelineno-16-21" id="__codelineno-16-21" name="__codelineno-16-21"></a>
+</span><span id="__span-16-22"><a href="#__codelineno-16-22" id="__codelineno-16-22" name="__codelineno-16-22"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"耗时: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">diff</span><span class="p">.</span><span class="n">count</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" ms"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-16-23"><a href="#__codelineno-16-23" id="__codelineno-16-23" name="__codelineno-16-23"></a>
+</span><span id="__span-16-24"><a href="#__codelineno-16-24" id="__codelineno-16-24" name="__codelineno-16-24"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-16-25"><a href="#__codelineno-16-25" id="__codelineno-16-25" name="__codelineno-16-25"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="multithreading">Multithreading</h2>
+<blockquote>
+<p>C++11</p>
+</blockquote>
+<p>传统的<span><span class="heti-spacing"> </span>C++</span>（<span>C++11<span class="heti-spacing"> </span></span>标准之前）中并没有引入线程这个概念，在<span class="heti-skip"><span class="heti-spacing"> </span>C++11<span class="heti-spacing"> </span></span>出来之前，如果我们想要在<span class="heti-skip"><span class="heti-spacing"> </span>C++<span class="heti-spacing"> </span></span>中实现多线程，需要借助操作系统平台提供的<span><span class="heti-spacing"> </span>API</span>，比如<span class="heti-skip"><span class="heti-spacing"> </span>Linux<span class="heti-spacing"> </span></span>的<pthread.h>，或者<span class="heti-skip"><span class="heti-spacing"> </span>windows<span class="heti-spacing"> </span></span>下的<windows.h> 。</windows.h></pthread.h></p>
+<p><span>C++11<span class="heti-spacing"> </span></span>提供了语言层面上的多线程，包含在头文件中。它解决了跨平台的问题，提供了管理线程、保护共享数据、线程间同步操作、原子操作等类。<span>C++11<span class="heti-spacing"> </span></span>新标准中引入了<span class="heti-skip"><span class="heti-spacing"> </span>5<span class="heti-spacing"> </span></span>个头文件来支持多线程编程</p>
+<ul>
+<li><code>&lt;thread&gt;</code></li>
+<li><strong>thread</strong><ul>
+<li>constructor</li>
+<li>join</li>
+<li>detach</li>
+</ul>
+</li>
+<li><strong>this_thread</strong><ul>
+<li>get_id</li>
+<li>yield</li>
+<li>sleep_for</li>
+<li>sleep_until</li>
+</ul>
+</li>
+<li><code>&lt;mutex&gt;</code></li>
+<li>mutex</li>
+<li>lock_gaurd</li>
+<li>unique_lock</li>
+<li><code>&lt;atomic&gt;</code></li>
+<li><code>&lt;condition_variable&gt;</code></li>
+</ul>
+<h3 id="_1">\&lt;thread&gt;</h3>
+<p><code>std::thread</code> 是现代<span class="heti-skip"><span class="heti-spacing"> </span>C++<span class="heti-spacing"> </span></span>处理并发的标准方式，它封装了底层操作系统的线程<span><span class="heti-spacing"> </span>API</span>（如<span class="heti-skip"><span class="heti-spacing"> </span>pthread<span class="heti-spacing"> </span></span>或<span class="heti-skip"><span class="heti-spacing"> </span>Win32<span class="heti-spacing"> </span></span>线程<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，提供了一个跨平台的执行流管理工具。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">核心操作</th>
+<th style="text-align: left;">语义</th>
+<th style="text-align: left;">后果</th>
+<th style="text-align: left;">工业界场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>t.join()</code></strong></td>
+<td style="text-align: left;"><strong>等待</strong>。主线程阻塞，直到子线程执行完毕。</td>
+<td style="text-align: left;">同步执行，确保子线程资源被回收。</td>
+<td style="text-align: left;">计算任务、必须获取结果的场景。</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>t.detach()</code></strong></td>
+<td style="text-align: left;"><strong>分离</strong>。子线程驻留后台，独立运行，主线程不再管它。</td>
+<td style="text-align: left;">线程生命周期可能超过 <code>std::thread</code> 对象。</td>
+<td style="text-align: left;">服务端<span class="heti-skip"><span class="heti-spacing"> </span>Socket<span class="heti-spacing"> </span></span>处理、后台监控任务。</td>
+</tr>
+</tbody>
+</table>
+<p>一旦创建了线程，必须在 <code>std::thread</code> 对象析构前显式调用 <code>join()</code> 或 <code>detach()</code>。如果不调用，程序会直接 <code>std::terminate</code>（崩溃）</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-17-1"><a href="#__codelineno-17-1" id="__codelineno-17-1" name="__codelineno-17-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">task</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-17-2"><a href="#__codelineno-17-2" id="__codelineno-17-2" name="__codelineno-17-2"></a>
+</span><span id="__span-17-3"><a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">example</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-17-4"><a href="#__codelineno-17-4" id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">task</span><span class="p">);</span>
+</span><span id="__span-17-5"><a href="#__codelineno-17-5" id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="w">    </span><span class="c1">// 这里必须二选一：</span>
+</span><span id="__span-17-6"><a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">    </span><span class="c1">// t.join(); </span>
+</span><span id="__span-17-7"><a href="#__codelineno-17-7" id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="w">    </span><span class="c1">// t.detach(); </span>
+</span><span id="__span-17-8"><a href="#__codelineno-17-8" id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="p">}</span><span class="w"> </span><span class="c1">// 若未处理，t 析构时会崩溃</span>
+</span></code></pre></div>
+<p><code>std::thread</code> 的构造函数会<strong>拷贝</strong>所有传入的参数。</p>
+<ul>
+<li><strong>按值传递（默认）</strong>：最安全，每个线程拥有自己的数据副本，避免竞态。</li>
+<li><strong>按引用传递</strong>：必须使用 <code>std::ref</code> 包装。</li>
+</ul>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-18-1"><a href="#__codelineno-18-1" id="__codelineno-18-1" name="__codelineno-18-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">worker</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">s</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">s</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">to_string</span><span class="p">(</span><span class="n">n</span><span class="p">);</span><span class="w"> </span><span class="p">}</span>
+</span><span id="__span-18-2"><a href="#__codelineno-18-2" id="__codelineno-18-2" name="__codelineno-18-2"></a>
+</span><span id="__span-18-3"><a href="#__codelineno-18-3" id="__codelineno-18-3" name="__codelineno-18-3"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-18-4"><a href="#__codelineno-18-4" id="__codelineno-18-4" name="__codelineno-18-4"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="p">;</span>
+</span><span id="__span-18-5"><a href="#__codelineno-18-5" id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Score: "</span><span class="p">;</span>
+</span><span id="__span-18-6"><a href="#__codelineno-18-6" id="__codelineno-18-6" name="__codelineno-18-6"></a>
+</span><span id="__span-18-7"><a href="#__codelineno-18-7" id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="w">    </span><span class="c1">// 报错：std::thread 默认尝试拷贝所有参数，无法直接绑定到 string&amp;</span>
+</span><span id="__span-18-8"><a href="#__codelineno-18-8" id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="w">    </span><span class="c1">// std::thread t(worker, val, msg); </span>
+</span><span id="__span-18-9"><a href="#__codelineno-18-9" id="__codelineno-18-9" name="__codelineno-18-9"></a>
+</span><span id="__span-18-10"><a href="#__codelineno-18-10" id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="w">    </span><span class="c1">// 正确：使用 std::ref 显式声明传递引用</span>
+</span><span id="__span-18-11"><a href="#__codelineno-18-11" id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span><span class="w"> </span>
+</span><span id="__span-18-12"><a href="#__codelineno-18-12" id="__codelineno-18-12" name="__codelineno-18-12"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+</span><span id="__span-18-13"><a href="#__codelineno-18-13" id="__codelineno-18-13" name="__codelineno-18-13"></a><span class="p">}</span>
+</span></code></pre></div>
+<p><strong>std::this_thread</strong> 命名空间中包含了许多操作当前正在运行的线程的函数</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">函数</th>
+<th style="text-align: left;">功能</th>
+<th style="text-align: left;">例子</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>get_id()</code></strong></td>
+<td style="text-align: left;">获取当前线程的唯一标识符（TID<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</td>
+<td style="text-align: left;"><code>LOG(INFO) &lt;&lt; std::this_thread::get_id();</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>sleep_for()</code></strong></td>
+<td style="text-align: left;">让当前线程阻塞指定时间。</td>
+<td style="text-align: left;"><code>std::this_thread::sleep_for(std::chrono::seconds(1));</code></td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>yield()</code></strong></td>
+<td style="text-align: left;">主动让出<span class="heti-skip"><span class="heti-spacing"> </span>CPU<span class="heti-spacing"> </span></span>时间片，重新参与调度。</td>
+<td style="text-align: left;">用于忙等待（Busy-waiting）的优化。</td>
+</tr>
+</tbody>
+</table>
+<p><code>std::thread</code> 对象是<strong>不可拷贝</strong>的，但可以<strong>移动</strong>。这意味着你可以把一个创建好的线程所有权“转让”给另一个变量或存入容器（如 <code>std::vector</code>）</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-19-1"><a href="#__codelineno-19-1" id="__codelineno-19-1" name="__codelineno-19-1"></a><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="nf">t1</span><span class="p">(</span><span class="n">task</span><span class="p">);</span>
+</span><span id="__span-19-2"><a href="#__codelineno-19-2" id="__codelineno-19-2" name="__codelineno-19-2"></a><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">t2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">t1</span><span class="p">);</span><span class="w"> </span><span class="c1">// t1 现在为空，t2 接管任务</span>
+</span></code></pre></div>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p><strong>工业界避坑指南：</strong>
+在 <code>detach</code> 场景下，绝对不要向线程传递局部变量的<strong>指针或引用</strong>。因为主线程可能已经执行结束并销毁了局部变量，而后台线程仍在尝试访问它，这将导致典型的 <strong>Use-After-Free</strong> 崩溃。</p>
+</div>
+<h3 id="_2">\&lt;mutex&gt;</h3>
+<p><span>mutex<span class="heti-spacing"> </span></span>头文件主要声明了与互斥量<span class="heti-skip"><span class="heti-spacing"> </span>(mutex)<span class="heti-spacing"> </span></span>相关的类。<span>mutex<span class="heti-spacing"> </span></span>提供了<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>种互斥类型，如下表所示。</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>std::mutex</td>
+<td>最基本的<span class="heti-skip"><span class="heti-spacing"> </span>Mutex<span class="heti-spacing"> </span></span>类。</td>
+</tr>
+<tr>
+<td>std::recursive_mutex</td>
+<td>递归<span class="heti-skip"><span class="heti-spacing"> </span>Mutex<span class="heti-spacing"> </span></span>类。</td>
+</tr>
+<tr>
+<td>std::time_mutex</td>
+<td>定时<span class="heti-skip"><span class="heti-spacing"> </span>Mutex<span class="heti-spacing"> </span></span>类。</td>
+</tr>
+<tr>
+<td>std::recursive_timed_mutex</td>
+<td>定时递归<span class="heti-skip"><span class="heti-spacing"> </span>Mutex<span class="heti-spacing"> </span></span>类。</td>
+</tr>
+</tbody>
+</table>
+<p><span>std::mutex<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>C++11<span class="heti-spacing"> </span></span>中最基本的互斥量，<span>std::mutex<span class="heti-spacing"> </span></span>对象提供了独占所有权的特性——即不支持递归地对<span class="heti-skip"><span class="heti-spacing"> </span>std::mutex<span class="heti-spacing"> </span></span>对象上锁，而<span class="heti-skip"><span class="heti-spacing"> </span>std::recursive_lock<span class="heti-spacing"> </span></span>则可以递归地对互斥量对象上锁</p>
+<h4 id="lock--unlock">lock &amp; unlock</h4>
+<p><span>mutex<span class="heti-spacing"> </span></span>的常见操作有：</p>
+<ul>
+<li>lock()：资源上锁</li>
+<li>unlock()：解锁资源</li>
+</ul>
+<p>现代<span class="heti-skip"><span class="heti-spacing"> </span>C++<span class="heti-spacing"> </span></span>中不推荐使用，因为若<span class="heti-skip"><span class="heti-spacing"> </span>mtx.lock<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>mtx.unlock<span class="heti-spacing"> </span></span>中抛出异常，导致控制流离开当前代码块导致无法解锁，导致<strong>死锁（Deadlock）</strong>，整个程序卡死</p>
+<p>Example:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-20-1"><a href="#__codelineno-20-1" id="__codelineno-20-1" name="__codelineno-20-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span><span class="c1">  // std::cout</span>
+</span><span id="__span-20-2"><a href="#__codelineno-20-2" id="__codelineno-20-2" name="__codelineno-20-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span><span class="c1">  // std::thread</span>
+</span><span id="__span-20-3"><a href="#__codelineno-20-3" id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mutex&gt;</span><span class="c1">  // std::mutex</span>
+</span><span id="__span-20-4"><a href="#__codelineno-20-4" id="__codelineno-20-4" name="__codelineno-20-4"></a>
+</span><span id="__span-20-5"><a href="#__codelineno-20-5" id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">mtx</span><span class="p">;</span><span class="w">  </span><span class="c1">// mutex for critical section</span>
+</span><span id="__span-20-6"><a href="#__codelineno-20-6" id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="kt">void</span><span class="w"> </span><span class="nf">print_block</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-20-7"><a href="#__codelineno-20-7" id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="p">{</span>
+</span><span id="__span-20-8"><a href="#__codelineno-20-8" id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="c1">// critical section (exclusive access to std::cout signaled by locking mtx):</span>
+</span><span id="__span-20-9"><a href="#__codelineno-20-9" id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="w">    </span><span class="n">mtx</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
+</span><span id="__span-20-10"><a href="#__codelineno-20-10" id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-20-11"><a href="#__codelineno-20-11" id="__codelineno-20-11" name="__codelineno-20-11"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-20-12"><a href="#__codelineno-20-12" id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="w">       </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-20-13"><a href="#__codelineno-20-13" id="__codelineno-20-13" name="__codelineno-20-13"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-20-14"><a href="#__codelineno-20-14" id="__codelineno-20-14" name="__codelineno-20-14"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span>
+</span><span id="__span-20-15"><a href="#__codelineno-20-15" id="__codelineno-20-15" name="__codelineno-20-15"></a><span class="w">    </span><span class="n">mtx</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+</span><span id="__span-20-16"><a href="#__codelineno-20-16" id="__codelineno-20-16" name="__codelineno-20-16"></a><span class="p">}</span>
+</span><span id="__span-20-17"><a href="#__codelineno-20-17" id="__codelineno-20-17" name="__codelineno-20-17"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="w"> </span><span class="p">()</span>
+</span><span id="__span-20-18"><a href="#__codelineno-20-18" id="__codelineno-20-18" name="__codelineno-20-18"></a><span class="p">{</span>
+</span><span id="__span-20-19"><a href="#__codelineno-20-19" id="__codelineno-20-19" name="__codelineno-20-19"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">th1</span><span class="w"> </span><span class="p">(</span><span class="n">print_block</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="err">''</span><span class="p">);</span><span class="c1">//线程1：打印*</span>
+</span><span id="__span-20-20"><a href="#__codelineno-20-20" id="__codelineno-20-20" name="__codelineno-20-20"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">th2</span><span class="w"> </span><span class="p">(</span><span class="n">print_block</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="sc">'$'</span><span class="p">);</span><span class="c1">//线程2：打印$</span>
+</span><span id="__span-20-21"><a href="#__codelineno-20-21" id="__codelineno-20-21" name="__codelineno-20-21"></a>
+</span><span id="__span-20-22"><a href="#__codelineno-20-22" id="__codelineno-20-22" name="__codelineno-20-22"></a><span class="w">    </span><span class="n">th1</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+</span><span id="__span-20-23"><a href="#__codelineno-20-23" id="__codelineno-20-23" name="__codelineno-20-23"></a><span class="w">    </span><span class="n">th2</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
+</span><span id="__span-20-24"><a href="#__codelineno-20-24" id="__codelineno-20-24" name="__codelineno-20-24"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-20-25"><a href="#__codelineno-20-25" id="__codelineno-20-25" name="__codelineno-20-25"></a><span class="p">}</span>
+</span></code></pre></div>
+<h4 id="lock_guard">lock_guard</h4>
+<p>现代<span class="heti-skip"><span class="heti-spacing"> </span>C++ 90%<span class="heti-spacing"> </span></span>的简单情况，更推荐使用<span><span class="heti-spacing"> </span>lock_guard</span>，</p>
+<p>创建<span class="heti-skip"><span class="heti-spacing"> </span>lock_guard<span class="heti-spacing"> </span></span>对象时，它将尝试获取提供给它的互斥锁的所有权，当控制流离开<span class="heti-skip"><span class="heti-spacing"> </span>lock_guard<span class="heti-spacing"> </span></span>对象的作用域时，<span>lock_guard<span class="heti-spacing"> </span></span>析构并自动释放互斥锁</p>
+<p>简单而言即为：</p>
+<ul>
+<li>创建时即加锁，作用域结束自动析构并解锁，无需手工解锁</li>
+<li>不能中途复制，必须等作用域结束才解锁</li>
+</ul>
+<p>Example:</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-21-1"><a href="#__codelineno-21-1" id="__codelineno-21-1" name="__codelineno-21-1"></a><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">mtx</span><span class="p">;</span>
+</span><span id="__span-21-2"><a href="#__codelineno-21-2" id="__codelineno-21-2" name="__codelineno-21-2"></a><span class="p">{</span>
+</span><span id="__span-21-3"><a href="#__codelineno-21-3" id="__codelineno-21-3" name="__codelineno-21-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">lock_guard</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">guard</span><span class="p">(</span><span class="n">mtx</span><span class="p">);</span><span class="w"> </span><span class="c1">// 上锁</span>
+</span><span id="__span-21-4"><a href="#__codelineno-21-4" id="__codelineno-21-4" name="__codelineno-21-4"></a><span class="w">    </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-21-5"><a href="#__codelineno-21-5" id="__codelineno-21-5" name="__codelineno-21-5"></a><span class="w">    </span><span class="c1">// ... 做点简单的事 ...</span>
+</span><span id="__span-21-6"><a href="#__codelineno-21-6" id="__codelineno-21-6" name="__codelineno-21-6"></a><span class="p">}</span><span class="w"> </span><span class="c1">// 自动解锁</span>
+</span></code></pre></div>
+<h4 id="unique_lock">unique_lock</h4>
+<p><span>unique_lock<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>lock_guard<span class="heti-spacing"> </span></span>的超集，相较于<span class="heti-skip"><span class="heti-spacing"> </span>lock_guard<span class="heti-spacing"> </span></span>而言功能更加丰富，一般而言需要配合<span class="heti-skip"><span class="heti-spacing"> </span>condition_variable<span class="heti-spacing"> </span></span>使用</p>
+<p>主要特点为：</p>
+<ul>
+<li>可以延迟上锁</li>
+<li>可以中途解锁</li>
+</ul>
+<p>Example:
+</p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-22-1"><a href="#__codelineno-22-1" id="__codelineno-22-1" name="__codelineno-22-1"></a><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">mtx</span><span class="p">;</span>
+</span><span id="__span-22-2"><a href="#__codelineno-22-2" id="__codelineno-22-2" name="__codelineno-22-2"></a><span class="p">{</span>
+</span><span id="__span-22-3"><a href="#__codelineno-22-3" id="__codelineno-22-3" name="__codelineno-22-3"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lock</span><span class="p">(</span><span class="n">mtx</span><span class="p">);</span><span class="w"> </span><span class="c1">// 上锁</span>
+</span><span id="__span-22-4"><a href="#__codelineno-22-4" id="__codelineno-22-4" name="__codelineno-22-4"></a>
+</span><span id="__span-22-5"><a href="#__codelineno-22-5" id="__codelineno-22-5" name="__codelineno-22-5"></a><span class="w">    </span><span class="c1">// 操作共享数据</span>
+</span><span id="__span-22-6"><a href="#__codelineno-22-6" id="__codelineno-22-6" name="__codelineno-22-6"></a><span class="w">    </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+</span><span id="__span-22-7"><a href="#__codelineno-22-7" id="__codelineno-22-7" name="__codelineno-22-7"></a>
+</span><span id="__span-22-8"><a href="#__codelineno-22-8" id="__codelineno-22-8" name="__codelineno-22-8"></a><span class="w">    </span><span class="n">lock</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span><span class="w"> </span><span class="c1">// 手动解锁！(lock_guard 做不到)</span>
+</span><span id="__span-22-9"><a href="#__codelineno-22-9" id="__codelineno-22-9" name="__codelineno-22-9"></a>
+</span><span id="__span-22-10"><a href="#__codelineno-22-10" id="__codelineno-22-10" name="__codelineno-22-10"></a><span class="w">    </span><span class="c1">// 做一些不需要锁的耗时操作 (比如 IO)</span>
+</span><span id="__span-22-11"><a href="#__codelineno-22-11" id="__codelineno-22-11" name="__codelineno-22-11"></a><span class="w">    </span><span class="c1">// 这样不会阻塞其他线程太久</span>
+</span><span id="__span-22-12"><a href="#__codelineno-22-12" id="__codelineno-22-12" name="__codelineno-22-12"></a>
+</span><span id="__span-22-13"><a href="#__codelineno-22-13" id="__codelineno-22-13" name="__codelineno-22-13"></a><span class="w">    </span><span class="n">lock</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span><span class="w"> </span><span class="c1">// 再锁回来</span>
+</span><span id="__span-22-14"><a href="#__codelineno-22-14" id="__codelineno-22-14" name="__codelineno-22-14"></a><span class="w">    </span><span class="c1">// 继续操作共享数据</span>
+</span><span id="__span-22-15"><a href="#__codelineno-22-15" id="__codelineno-22-15" name="__codelineno-22-15"></a><span class="p">}</span><span class="w"> </span><span class="c1">// 自动解锁</span>
+</span></code></pre></div>
+<h3 id="_3">\&lt;conditoin_variable&gt;</h3>
+<p><span>condition_variable<span class="heti-spacing"> </span></span>提供了一种机制，允许线程在某些条件不满足时挂起，直到其他线程通知它们条件已经满足</p>
+<p>相比低级同步原语（例如互斥锁）更加方便和安全，也能够解决“忙等待”的问题。通常搭配<span class="heti-skip"><span class="heti-spacing"> </span>unique_lock<span class="heti-spacing"> </span></span>一起使用</p>
+<p>主要包括这几个方法：</p>
+<ul>
+<li>void wait(unique_lock<mutex>&amp; lock)</mutex></li>
+<li>通常在<span class="heti-skip"><span class="heti-spacing"> </span>unique_lock<span class="heti-spacing"> </span></span>创建语句和<span class="heti-skip"><span class="heti-spacing"> </span>unlock<span class="heti-spacing"> </span></span>解锁（不过<span class="heti-skip"><span class="heti-spacing"> </span>unique_lock<span class="heti-spacing"> </span></span>会在离开作用域时自动解锁）中间调用</li>
+<li><span>wait<span class="heti-spacing"> </span></span>内部的工作流程是：<ul>
+<li>入睡时自动解锁</li>
+<li>醒来时自动加锁</li>
+</ul>
+</li>
+<li>void notify_one() noexcept;</li>
+<li>void notify_all() noexcept</li>
+</ul>
+<p>下面是一个使用<code>condition_variable</code>的简单示例，展示了生产者<span class="heti-skip"><span class="heti-spacing"> </span>-<span class="heti-spacing"> </span></span>消费者问题的基本实现</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-23-1"><a href="#__codelineno-23-1" id="__codelineno-23-1" name="__codelineno-23-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+</span><span id="__span-23-2"><a href="#__codelineno-23-2" id="__codelineno-23-2" name="__codelineno-23-2"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;condition_variable&gt;</span>
+</span><span id="__span-23-3"><a href="#__codelineno-23-3" id="__codelineno-23-3" name="__codelineno-23-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mutex&gt;</span>
+</span><span id="__span-23-4"><a href="#__codelineno-23-4" id="__codelineno-23-4" name="__codelineno-23-4"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;queue&gt;</span>
+</span><span id="__span-23-5"><a href="#__codelineno-23-5" id="__codelineno-23-5" name="__codelineno-23-5"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;thread&gt;</span>
+</span><span id="__span-23-6"><a href="#__codelineno-23-6" id="__codelineno-23-6" name="__codelineno-23-6"></a>
+</span><span id="__span-23-7"><a href="#__codelineno-23-7" id="__codelineno-23-7" name="__codelineno-23-7"></a><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">mtx</span><span class="p">;</span>
+</span><span id="__span-23-8"><a href="#__codelineno-23-8" id="__codelineno-23-8" name="__codelineno-23-8"></a><span class="n">std</span><span class="o">::</span><span class="n">condition_variable</span><span class="w"> </span><span class="n">cv</span><span class="p">;</span>
+</span><span id="__span-23-9"><a href="#__codelineno-23-9" id="__codelineno-23-9" name="__codelineno-23-9"></a><span class="n">std</span><span class="o">::</span><span class="n">queue</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">product</span><span class="p">;</span>
+</span><span id="__span-23-10"><a href="#__codelineno-23-10" id="__codelineno-23-10" name="__codelineno-23-10"></a>
+</span><span id="__span-23-11"><a href="#__codelineno-23-11" id="__codelineno-23-11" name="__codelineno-23-11"></a><span class="kt">void</span><span class="w"> </span><span class="nf">producer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-12"><a href="#__codelineno-23-12" id="__codelineno-23-12" name="__codelineno-23-12"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">5</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-13"><a href="#__codelineno-23-13" id="__codelineno-23-13" name="__codelineno-23-13"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lck</span><span class="p">(</span><span class="n">mtx</span><span class="p">);</span>
+</span><span id="__span-23-14"><a href="#__codelineno-23-14" id="__codelineno-23-14" name="__codelineno-23-14"></a><span class="w">        </span><span class="n">product</span><span class="p">.</span><span class="n">push</span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">);</span>
+</span><span id="__span-23-15"><a href="#__codelineno-23-15" id="__codelineno-23-15" name="__codelineno-23-15"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Producer "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" produced "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">product</span><span class="p">.</span><span class="n">back</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-23-16"><a href="#__codelineno-23-16" id="__codelineno-23-16" name="__codelineno-23-16"></a><span class="w">        </span><span class="n">cv</span><span class="p">.</span><span class="n">notify_one</span><span class="p">();</span>
+</span><span id="__span-23-17"><a href="#__codelineno-23-17" id="__codelineno-23-17" name="__codelineno-23-17"></a><span class="w">        </span><span class="n">lck</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+</span><span id="__span-23-18"><a href="#__codelineno-23-18" id="__codelineno-23-18" name="__codelineno-23-18"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">this_thread</span><span class="o">::</span><span class="n">sleep_for</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="p">(</span><span class="mi">100</span><span class="p">));</span>
+</span><span id="__span-23-19"><a href="#__codelineno-23-19" id="__codelineno-23-19" name="__codelineno-23-19"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-23-20"><a href="#__codelineno-23-20" id="__codelineno-23-20" name="__codelineno-23-20"></a><span class="p">}</span>
+</span><span id="__span-23-21"><a href="#__codelineno-23-21" id="__codelineno-23-21" name="__codelineno-23-21"></a>
+</span><span id="__span-23-22"><a href="#__codelineno-23-22" id="__codelineno-23-22" name="__codelineno-23-22"></a><span class="kt">void</span><span class="w"> </span><span class="nf">consumer</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-23"><a href="#__codelineno-23-23" id="__codelineno-23-23" name="__codelineno-23-23"></a><span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="nb">true</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-24"><a href="#__codelineno-23-24" id="__codelineno-23-24" name="__codelineno-23-24"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">unique_lock</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="o">&gt;</span><span class="w"> </span><span class="n">lck</span><span class="p">(</span><span class="n">mtx</span><span class="p">);</span>
+</span><span id="__span-23-25"><a href="#__codelineno-23-25" id="__codelineno-23-25" name="__codelineno-23-25"></a><span class="w">        </span><span class="n">cv</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">lck</span><span class="p">,</span><span class="w"> </span><span class="p">[]{</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="o">!</span><span class="n">product</span><span class="p">.</span><span class="n">empty</span><span class="p">();</span><span class="w"> </span><span class="p">});</span>
+</span><span id="__span-23-26"><a href="#__codelineno-23-26" id="__codelineno-23-26" name="__codelineno-23-26"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">product</span><span class="p">.</span><span class="n">empty</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-27"><a href="#__codelineno-23-27" id="__codelineno-23-27" name="__codelineno-23-27"></a><span class="w">            </span><span class="kt">int</span><span class="w"> </span><span class="n">prod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">product</span><span class="p">.</span><span class="n">front</span><span class="p">();</span>
+</span><span id="__span-23-28"><a href="#__codelineno-23-28" id="__codelineno-23-28" name="__codelineno-23-28"></a><span class="w">            </span><span class="n">product</span><span class="p">.</span><span class="n">pop</span><span class="p">();</span>
+</span><span id="__span-23-29"><a href="#__codelineno-23-29" id="__codelineno-23-29" name="__codelineno-23-29"></a><span class="w">            </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Consumer "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">id</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">" consumed "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">prod</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+</span><span id="__span-23-30"><a href="#__codelineno-23-30" id="__codelineno-23-30" name="__codelineno-23-30"></a><span class="w">        </span><span class="p">}</span>
+</span><span id="__span-23-31"><a href="#__codelineno-23-31" id="__codelineno-23-31" name="__codelineno-23-31"></a><span class="w">        </span><span class="n">lck</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
+</span><span id="__span-23-32"><a href="#__codelineno-23-32" id="__codelineno-23-32" name="__codelineno-23-32"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-23-33"><a href="#__codelineno-23-33" id="__codelineno-23-33" name="__codelineno-23-33"></a><span class="p">}</span>
+</span><span id="__span-23-34"><a href="#__codelineno-23-34" id="__codelineno-23-34" name="__codelineno-23-34"></a>
+</span><span id="__span-23-35"><a href="#__codelineno-23-35" id="__codelineno-23-35" name="__codelineno-23-35"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-36"><a href="#__codelineno-23-36" id="__codelineno-23-36" name="__codelineno-23-36"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">producers</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span id="__span-23-37"><a href="#__codelineno-23-37" id="__codelineno-23-37" name="__codelineno-23-37"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">consumers</span><span class="p">[</span><span class="mi">2</span><span class="p">];</span>
+</span><span id="__span-23-38"><a href="#__codelineno-23-38" id="__codelineno-23-38" name="__codelineno-23-38"></a>
+</span><span id="__span-23-39"><a href="#__codelineno-23-39" id="__codelineno-23-39" name="__codelineno-23-39"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-40"><a href="#__codelineno-23-40" id="__codelineno-23-40" name="__codelineno-23-40"></a><span class="w">        </span><span class="n">producers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">producer</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-23-41"><a href="#__codelineno-23-41" id="__codelineno-23-41" name="__codelineno-23-41"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-23-42"><a href="#__codelineno-23-42" id="__codelineno-23-42" name="__codelineno-23-42"></a>
+</span><span id="__span-23-43"><a href="#__codelineno-23-43" id="__codelineno-23-43" name="__codelineno-23-43"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-44"><a href="#__codelineno-23-44" id="__codelineno-23-44" name="__codelineno-23-44"></a><span class="w">        </span><span class="n">consumers</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="p">(</span><span class="n">consumer</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+</span><span id="__span-23-45"><a href="#__codelineno-23-45" id="__codelineno-23-45" name="__codelineno-23-45"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-23-46"><a href="#__codelineno-23-46" id="__codelineno-23-46" name="__codelineno-23-46"></a>
+</span><span id="__span-23-47"><a href="#__codelineno-23-47" id="__codelineno-23-47" name="__codelineno-23-47"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">2</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-23-48"><a href="#__codelineno-23-48" id="__codelineno-23-48" name="__codelineno-23-48"></a><span class="w">        </span><span class="n">producers</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">join</span><span class="p">();</span>
+</span><span id="__span-23-49"><a href="#__codelineno-23-49" id="__codelineno-23-49" name="__codelineno-23-49"></a><span class="w">        </span><span class="n">consumers</span><span class="p">[</span><span class="n">i</span><span class="p">].</span><span class="n">join</span><span class="p">();</span>
+</span><span id="__span-23-50"><a href="#__codelineno-23-50" id="__codelineno-23-50" name="__codelineno-23-50"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-23-51"><a href="#__codelineno-23-51" id="__codelineno-23-51" name="__codelineno-23-51"></a>
+</span><span id="__span-23-52"><a href="#__codelineno-23-52" id="__codelineno-23-52" name="__codelineno-23-52"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</span><span id="__span-23-53"><a href="#__codelineno-23-53" id="__codelineno-23-53" name="__codelineno-23-53"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="lambda-expression">lambda expression</h2>
+<blockquote>
+<p>C++11</p>
+</blockquote>
+<p><span>Lambda<span class="heti-spacing"> </span></span>表达式就是一个“匿名函数”。它允许你在代码中原地（on-the-spot）定义一个临时的函数，而不需要专门去写一个单独的<span><span class="heti-spacing"> </span>void functionName() { ... }</span></p>
+<p>语法规则：</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-24-1"><a href="#__codelineno-24-1" id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="p">[</span><span class="w"> </span><span class="n">捕获列表</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">参数列表</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">返回值类型</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">函数体</span><span class="w"> </span><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li><strong><span>[] (<span class="heti-spacing"> </span></span>捕获列表<span><span class="heti-spacing"> </span>)</span></strong>：最灵魂的部分，它决定了<span class="heti-skip"><span class="heti-spacing"> </span>Lambda<span class="heti-spacing"> </span></span>内部能否使用外部的局部变量</li>
+<li><strong><span>[x] (<span class="heti-spacing"> </span></span>按值捕获<span><span class="heti-spacing"> </span>)</span></strong>：把变量<span><span class="heti-spacing"> </span>x</span> <strong>拷贝</strong>一份进<span><span class="heti-spacing"> </span>Lambda</span>，内部修改不影响外部</li>
+<li><strong><span>[&amp;x] (<span class="heti-spacing"> </span></span>按引用捕获<span><span class="heti-spacing"> </span>)</span></strong>：把<span class="heti-skip"><span class="heti-spacing"> </span>x<span class="heti-spacing"> </span></span>的<strong>引用</strong>传进去，内部修改会影响外部</li>
+<li><strong>[=]</strong>：按值捕获外部<strong>所有</strong>可见的局部变量</li>
+<li><strong>[&amp;]</strong>：按引用捕获外部<strong>所有</strong>可见的局部变量</li>
+<li><strong><span>() (<span class="heti-spacing"> </span></span>参数列表<span><span class="heti-spacing"> </span>)</span></strong>：跟普通函数一样。如果没有参数，可以省略</li>
+<li><strong><span>-&gt;<span class="heti-spacing"> </span></span>返回值</strong>：指定返回类型（如<span><span class="heti-spacing"> </span>-&gt; int</span><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。通常可以省略，编译器会自动推导。</li>
+<li><strong><span>{} (<span class="heti-spacing"> </span></span>函数体<span><span class="heti-spacing"> </span>)</span></strong>：具体的逻辑代码</li>
+</ul>
+<p>Example：
+</p><div class="language-cpp highlight"><pre><span></span><code><span id="__span-25-1"><a href="#__codelineno-25-1" id="__codelineno-25-1" name="__codelineno-25-1"></a><span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-2"><a href="#__codelineno-25-2" id="__codelineno-25-2" name="__codelineno-25-2"></a><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">clientSock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</span><span id="__span-25-3"><a href="#__codelineno-25-3" id="__codelineno-25-3" name="__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a href="#__codelineno-25-4" id="__codelineno-25-4" name="__codelineno-25-4"></a><span class="w">    </span><span class="c1">// 原地定义逻辑</span>
+</span><span id="__span-25-5"><a href="#__codelineno-25-5" id="__codelineno-25-5" name="__codelineno-25-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">t</span><span class="p">([</span><span class="n">clientSock</span><span class="p">]()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-25-6"><a href="#__codelineno-25-6" id="__codelineno-25-6" name="__codelineno-25-6"></a><span class="w">        </span><span class="n">LOG</span><span class="p">(</span><span class="n">INFO</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Handling client on socket: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">clientSock</span><span class="p">;</span>
+</span><span id="__span-25-7"><a href="#__codelineno-25-7" id="__codelineno-25-7" name="__codelineno-25-7"></a><span class="w">        </span><span class="c1">// 这里可以直接写 recv/send</span>
+</span><span id="__span-25-8"><a href="#__codelineno-25-8" id="__codelineno-25-8" name="__codelineno-25-8"></a><span class="w">    </span><span class="p">});</span>
+</span><span id="__span-25-9"><a href="#__codelineno-25-9" id="__codelineno-25-9" name="__codelineno-25-9"></a>
+</span><span id="__span-25-10"><a href="#__codelineno-25-10" id="__codelineno-25-10" name="__codelineno-25-10"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">detach</span><span class="p">();</span>
+</span><span id="__span-25-11"><a href="#__codelineno-25-11" id="__codelineno-25-11" name="__codelineno-25-11"></a><span class="p">}</span>
+</span></code></pre></div>
+<!-- 标题计数器 -->
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  回到页面顶部
+</button>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: C++" class="md-footer__link md-footer__link--prev" href="../">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                上一页
+              </span>
+<div class="md-ellipsis">
+                C++
+              </div>
+</div>
+</a>
+<a aria-label="下一页: Python" class="md-footer__link md-footer__link--next" href="../../python/">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                下一页
+              </span>
+<div class="md-ellipsis">
+                Python
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2024-2025 <a href="https://github.com/Ader817" rel="noopener" target="_blank">Ader817</a>
+</div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "header.autohide", "navigation.tabs", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.tracking", "navigation.prune", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+<script src="../../../assets/javascripts/katex.js"></script>
+<script src="../../../assets/javascripts/toc.js"></script>
+<script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+<script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+</body>
+</html>

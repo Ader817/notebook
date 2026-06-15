@@ -191,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tools/venv/">
+<a class="md-tabs__link" href="../../../tools/">
           
   
     
@@ -211,7 +211,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../Misc/softmax.md">
+<a class="md-tabs__link" href="../../../misc/softmax/">
           
   
     
@@ -320,7 +320,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../tools/venv/">
+<a class="md-nav__link" href="../../../tools/">
 <span class="md-ellipsis">
     Tools
     
@@ -347,8 +347,35 @@
             AI
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../notes/">
+<span class="md-ellipsis">
+    AI Notes
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../agent/">
+<span class="md-ellipsis">
+    Agent
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../cs224n/">
+<span class="md-ellipsis">
+    CS224N
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_2" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../">
 <span class="md-ellipsis">
@@ -356,12 +383,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+<label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_9_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_9_2">
+<nav aria-expanded="true" aria-labelledby="__nav_9_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_9_5">
 <span class="md-nav__icon md-icon"></span>
             EECS498
           </label>
@@ -400,12 +427,172 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Lec 5: Neural Networks
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Lec 5: Neural Networks
     
   </span>
 </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#feature-transform">
+<span class="md-ellipsis">
+      Feature Transform
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#from-linear-to-neural-networks">
+<span class="md-ellipsis">
+      From Linear to Neural Networks
+    </span>
+</a>
+<nav aria-label="From Linear to Neural Networks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#为什么需要激活函数">
+<span class="md-ellipsis">
+      为什么需要激活函数
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#activation-functions">
+<span class="md-ellipsis">
+      Activation Functions
+    </span>
+</a>
+<nav aria-label="Activation Functions" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sigmoid">
+<span class="md-ellipsis">
+      Sigmoid
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tanh">
+<span class="md-ellipsis">
+      Tanh
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#relu">
+<span class="md-ellipsis">
+      ReLU
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#leaky-relu">
+<span class="md-ellipsis">
+      Leaky ReLU
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#elu">
+<span class="md-ellipsis">
+      ELU
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fully-connected-neural-networks">
+<span class="md-ellipsis">
+      Fully-Connected Neural Networks
+    </span>
+</a>
+<nav aria-label="Fully-Connected Neural Networks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#template-matching-视角">
+<span class="md-ellipsis">
+      Template Matching 视角
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#universal-approximation">
+<span class="md-ellipsis">
+      Universal Approximation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convexity-and-non-convex-optimization">
+<span class="md-ellipsis">
+      Convexity and Non-Convex Optimization
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biological-inspiration">
+<span class="md-ellipsis">
+      Biological Inspiration
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#depth-vs-width">
+<span class="md-ellipsis">
+      Depth vs. Width
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#neural-networks-in-practice">
+<span class="md-ellipsis">
+      Neural Networks in Practice
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ch6/">
@@ -550,7 +737,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../Misc/softmax.md">
+<a class="md-nav__link" href="../../../misc/softmax/">
 <span class="md-ellipsis">
     Misc
     
@@ -576,6 +763,157 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#feature-transform">
+<span class="md-ellipsis">
+      Feature Transform
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#from-linear-to-neural-networks">
+<span class="md-ellipsis">
+      From Linear to Neural Networks
+    </span>
+</a>
+<nav aria-label="From Linear to Neural Networks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#为什么需要激活函数">
+<span class="md-ellipsis">
+      为什么需要激活函数
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#activation-functions">
+<span class="md-ellipsis">
+      Activation Functions
+    </span>
+</a>
+<nav aria-label="Activation Functions" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sigmoid">
+<span class="md-ellipsis">
+      Sigmoid
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tanh">
+<span class="md-ellipsis">
+      Tanh
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#relu">
+<span class="md-ellipsis">
+      ReLU
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#leaky-relu">
+<span class="md-ellipsis">
+      Leaky ReLU
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#elu">
+<span class="md-ellipsis">
+      ELU
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#fully-connected-neural-networks">
+<span class="md-ellipsis">
+      Fully-Connected Neural Networks
+    </span>
+</a>
+<nav aria-label="Fully-Connected Neural Networks" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#template-matching-视角">
+<span class="md-ellipsis">
+      Template Matching 视角
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#universal-approximation">
+<span class="md-ellipsis">
+      Universal Approximation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convexity-and-non-convex-optimization">
+<span class="md-ellipsis">
+      Convexity and Non-Convex Optimization
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#biological-inspiration">
+<span class="md-ellipsis">
+      Biological Inspiration
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#depth-vs-width">
+<span class="md-ellipsis">
+      Depth vs. Width
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#neural-networks-in-practice">
+<span class="md-ellipsis">
+      Neural Networks in Practice
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -589,6 +927,219 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
 </a>
 <h1 id="lec-5-neural-networks">Lec 5: Neural Networks</h1>
+<h2 id="overview">Overview</h2>
+<p>前三讲已经建立了整个监督学习的基本骨架：线性分类器 → 损失函数 → 梯度下降优化。</p>
+<p>但线性分类器有一个根本局限：它只能在像素空间做线性划分，面对复杂的类内变化往往无能为力。</p>
+<p>本讲讨论两个问题：</p>
+<ul>
+<li>在进入神经网络之前，能否先对输入特征做一些变换让线性模型更好用<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>（特征变换）</li>
+<li>如果允许堆叠多层，我们能得到什么<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>（神经网络）</li>
+</ul>
+<h2 id="feature-transform">Feature Transform</h2>
+<p>线性分类器的公式是：</p>
+<div class="arithmatex">\[
+f(x, W) = Wx + b
+\]</div>
+<p><span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>直接是展平后的像素向量。像素本身并不是描述图像内容最好的表示方式。</p>
+<p>一种缓解思路是先对输入<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>做特征变换<span><span class="heti-spacing"> </span><span class="arithmatex">\(\phi(x)\)</span></span>，然后在变换后的空间里做线性分类：</p>
+<div class="arithmatex">\[
+f(\phi(x), W) = W\phi(x) + b
+\]</div>
+<p>常见的人工特征：</p>
+<ul>
+<li><strong>颜色直方图</strong>（Color Histogram<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：统计图像中各颜色出现的频率，抛弃空间信息，但对颜色分布敏感</li>
+<li><strong>HOG（Histogram of Oriented Gradients）</strong>：统计局部区域内边缘方向的分布，捕捉物体轮廓和形状，抛弃颜色信息</li>
+<li><strong>词袋模型（Bag of Words）</strong>：将图像视为一组视觉<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>词<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>的集合</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">特征变换的本质</p>
+<p>特征变换把原始输入映射到一个更适合线性分类的空间。如果变换选得好，线性模型就能处理原本线性不可分的问题。</p>
+<p>但这些人工特征依赖领域专家设计，神经网络的思路是让模型自己学习好的特征表示。</p>
+</div>
+<h2 id="from-linear-to-neural-networks">From Linear to Neural Networks</h2>
+<p>线性分类器的表达能力有限，最直接的扩展思路是：把多个线性变换堆叠起来，并在中间加入非线性激活。</p>
+<p>一个两层神经网络可以写作：</p>
+<div class="arithmatex">\[
+f = W_2 \max(0, W_1 x + b_1) + b_2
+\]</div>
+<p>其中：</p>
+<ul>
+<li><span class="arithmatex">\(W_1 \in \mathbb{R}^{H \times D}\)</span>，<span class="arithmatex">\(b_1 \in \mathbb{R}^H\)</span>：第一层权重与偏置</li>
+<li><span class="arithmatex">\(W_2 \in \mathbb{R}^{C \times H}\)</span>，<span class="arithmatex">\(b_2 \in \mathbb{R}^C\)</span>：第二层权重与偏置</li>
+<li><span><span class="arithmatex">\(H\)</span><span class="heti-spacing"> </span></span>是隐藏层大小（hidden size）</li>
+<li><span><span class="arithmatex">\(\max(0, \cdot)\)</span><span class="heti-spacing"> </span></span>是激活函数<span><span class="heti-spacing"> </span>ReLU</span></li>
+</ul>
+<p>用变量名更清晰地写：</p>
+<div class="arithmatex">\[
+h = \max(0, W_1 x + b_1), \quad s = W_2 h + b_2
+\]</div>
+<p><span><span class="arithmatex">\(h\)</span><span class="heti-spacing"> </span></span>是隐藏层（hidden layer<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，<span><span class="arithmatex">\(s\)</span><span class="heti-spacing"> </span></span>是输出分数。</p>
+<h3 id="为什么需要激活函数">为什么需要激活函数</h3>
+<p>如果没有激活函数，两层线性变换等价于一层：</p>
+<div class="arithmatex">\[
+W_2(W_1 x) = (W_2 W_1) x = W x
+\]</div>
+<p>无论叠多少层，结果仍然是线性分类器，表达能力没有提升。</p>
+<p>引入非线性激活后，模型才能学习复杂的非线性决策边界。</p>
+<h2 id="activation-functions">Activation Functions</h2>
+<p>常见激活函数如下：</p>
+<h3 id="sigmoid">Sigmoid</h3>
+<div class="arithmatex">\[
+\sigma(x) = \frac{1}{1 + e^{-x}}
+\]</div>
+<ul>
+<li>输出范围：<span class="arithmatex">\((0, 1)\)</span>，可以解释为概率</li>
+<li>缺点：当<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>过大或过小时梯度接近<span><span class="heti-spacing"> </span>0</span>（<strong>梯度消失</strong><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>；输出不以<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>为中心</li>
+</ul>
+<h3 id="tanh">Tanh</h3>
+<div class="arithmatex">\[
+\tanh(x) = \frac{e^x - e^{-x}}{e^x + e^{-x}}
+\]</div>
+<ul>
+<li>输出范围：<span class="arithmatex">\((-1, 1)\)</span>，以<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>为中心</li>
+<li>缺点：梯度消失问题依然存在</li>
+</ul>
+<h3 id="relu">ReLU</h3>
+<div class="arithmatex">\[
+\text{ReLU}(x) = \max(0, x)
+\]</div>
+<ul>
+<li>计算简单，收敛快</li>
+<li>缺点：<span><span class="arithmatex">\(x &lt; 0\)</span><span class="heti-spacing"> </span></span>时梯度为<span><span class="heti-spacing"> </span>0</span>，可能出现 <strong>dead ReLU</strong>（某些神经元永远不激活）</li>
+</ul>
+<h3 id="leaky-relu">Leaky ReLU</h3>
+<div class="arithmatex">\[
+\text{LeakyReLU}(x) = \max(\alpha x, x), \quad \alpha = 0.01
+\]</div>
+<ul>
+<li>解决<span class="heti-skip"><span class="heti-spacing"> </span>dead ReLU<span class="heti-spacing"> </span></span>问题，<span><span class="arithmatex">\(x &lt; 0\)</span><span class="heti-spacing"> </span></span>时仍有微小梯度</li>
+</ul>
+<h3 id="elu">ELU</h3>
+<div class="arithmatex">\[
+\text{ELU}(x) = \begin{cases} x &amp; x \geq 0 \\ \alpha(e^x - 1) &amp; x &lt; 0 \end{cases}
+\]</div>
+<ul>
+<li>比<span class="heti-skip"><span class="heti-spacing"> </span>ReLU<span class="heti-spacing"> </span></span>更平滑，负半轴有限输出</li>
+<li>计算略贵（指数运算）</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">实践建议</p>
+<ul>
+<li>默认使用<span><span class="heti-spacing"> </span>ReLU</span></li>
+<li>如果出现大量<span><span class="heti-spacing"> </span>dead ReLU</span>，尝试<span><span class="heti-spacing"> </span>Leaky ReLU</span></li>
+<li>不要用<span class="heti-skip"><span class="heti-spacing"> </span>Sigmoid<span class="heti-spacing"> </span></span>或<span class="heti-skip"><span class="heti-spacing"> </span>Tanh<span class="heti-spacing"> </span></span>作为中间层激活函数（梯度消失）</li>
+</ul>
+</div>
+<h2 id="fully-connected-neural-networks">Fully-Connected Neural Networks</h2>
+<p>将输入层、若干隐藏层、输出层串联，每层均为线性变换<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>激活函数，这样的结构叫做：</p>
+<ul>
+<li>全连接网络（Fully-Connected Neural Network）</li>
+<li>或多层感知机（Multi-Layer Perceptron, MLP）</li>
+</ul>
+<p>一个<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(L\)</span><span class="heti-spacing"> </span></span>层的<span class="heti-skip"><span class="heti-spacing"> </span>MLP<span class="heti-spacing"> </span></span>可以写成：</p>
+<div class="arithmatex">\[
+h_0 = x, \quad h_l = f_l(W_l h_{l-1} + b_l), \quad l = 1, \dots, L-1, \quad s = W_L h_{L-1} + b_L
+\]</div>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f_l\)</span><span class="heti-spacing"> </span></span>是第<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(l\)</span><span class="heti-spacing"> </span></span>层的激活函数，最后一层通常不加激活。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3072</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+</span><span id="__span-0-8"><a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="template-matching-视角"><span>Template Matching<span class="heti-spacing"> </span></span>视角</h3>
+<p><span><span class="arithmatex">\(W_1\)</span><span class="heti-spacing"> </span></span>的每一行可以看作一个<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>模板<span><span class="heti-spacing"> </span>"</span>。与线性分类器不同，神经网络的隐藏层可以<strong>为一个类别学习多个模板</strong>，<span><span class="arithmatex">\(W_2\)</span><span class="heti-spacing"> </span></span>再把它们组合成最终预测。</p>
+<p>这种表示方式叫做<strong>分布式表示（distributed representation）</strong>。</p>
+<h2 id="universal-approximation">Universal Approximation</h2>
+<p>理论上，一个足够宽的两层神经网络可以逼近任意连续函数（万能逼近定理，Universal Approximation Theorem<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
+<p>直觉上：你可以把很多<span class="heti-skip"><span class="heti-spacing"> </span>ReLU<span class="heti-spacing"> </span></span>折线拼接起来逼近任何形状。</p>
+<div class="admonition warning">
+<p class="admonition-title">逼近能力 ≠ 具体可学习</p>
+<p>万能逼近定理说的是<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>存在这样的网络<span><span class="heti-spacing"> </span>"</span>，但不保证用梯度下降能学出来，也不告诉你需要多宽。</p>
+<p>这个性质本身并没有<span class="heti-skip"><span class="heti-spacing"> </span>kNN<span class="heti-spacing"> </span></span>强（<span>kNN<span class="heti-spacing"> </span></span>也能逼近任意函数<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，所以不能单靠它来证明神经网络好。</p>
+</div>
+<h2 id="convexity-and-non-convex-optimization">Convexity and Non-Convex Optimization</h2>
+<p>理解神经网络优化的一个重要问题是：损失曲面是不是凸的？</p>
+<p>对线性分类器配上<span><span class="heti-spacing"> </span>Softmax / SVM loss</span>，可以证明优化是<strong>凸问题</strong>，局部最优即全局最优。</p>
+<p>对任意层数的神经网络，<strong>目前没有证明其损失曲面是凸的</strong>。这意味着：</p>
+<ul>
+<li>可能有很多局部极小值</li>
+<li>梯度下降不保证找到全局最优</li>
+<li>甚至不保证收敛</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">实践中的现实</p>
+<p>尽管理论保证缺失，实践中神经网络仍然能通过<span class="heti-skip"><span class="heti-spacing"> </span>SGD<span class="heti-spacing"> </span></span>和各种技巧找到足够好的解。</p>
+<p>很多局部最小值在损失值上接近全局最优，真正危险的反而是大量的<strong>鞍点</strong>（梯度为零但不是最优<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
+</div>
+<h2 id="biological-inspiration">Biological Inspiration</h2>
+<p>神经网络的名称来自对生物神经元的粗浅类比：</p>
+<ul>
+<li>神经元接收来自多个突触的输入信号，加权求和，再通过激活函数决定是否<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>激发<span><span class="heti-spacing"> </span>"</span></li>
+<li>人工神经元：<span class="arithmatex">\(y = f(w^T x + b)\)</span></li>
+</ul>
+<p>这个类比帮助理解直觉，但不应该过分强调。现代深度学习的工程细节和生物神经科学差距很大。</p>
+<h2 id="depth-vs-width">Depth vs. Width</h2>
+<p>拥有更多层的网络（deeper）和拥有更宽隐藏层的网络（wider）在理论上都能增加表达能力。</p>
+<p>但在实践中：</p>
+<ul>
+<li>更深的网络往往具有更强的<strong>层级特征提取</strong>能力，浅层学边缘、深层学语义</li>
+<li>增加深度通常比增加宽度更参数高效</li>
+<li>深层网络训练更难（梯度消失<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>爆炸<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，需要更多技巧辅助</li>
+</ul>
+<h2 id="neural-networks-in-practice">Neural Networks in Practice</h2>
+<p>用<span class="heti-skip"><span class="heti-spacing"> </span>PyTorch<span class="heti-spacing"> </span></span>定义和训练一个简单的<span><span class="heti-spacing"> </span>MLP</span>：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
+</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="c1"># 定义网络</span>
+</span><span id="__span-1-6"><a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+</span><span id="__span-1-7"><a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+</span><span id="__span-1-8"><a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="mi">32</span> <span class="o">*</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+</span><span id="__span-1-9"><a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+</span><span id="__span-1-10"><a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+</span><span id="__span-1-11"><a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+</span><span id="__span-1-12"><a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+</span><span id="__span-1-13"><a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="p">)</span>
+</span><span id="__span-1-14"><a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+</span><span id="__span-1-16"><a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+</span><span id="__span-1-17"><a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a>
+</span><span id="__span-1-18"><a href="#__codelineno-1-18" id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="c1"># 训练一步</span>
+</span><span id="__span-1-19"><a href="#__codelineno-1-19" id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-1-20"><a href="#__codelineno-1-20" id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X_batch</span><span class="p">)</span>
+</span><span id="__span-1-21"><a href="#__codelineno-1-21" id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">y_batch</span><span class="p">)</span>
+</span><span id="__span-1-22"><a href="#__codelineno-1-22" id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-1-23"><a href="#__codelineno-1-23" id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span></code></pre></div>
+<h2 id="main-takeaways">Main Takeaways</h2>
+<ul>
+<li>人工特征变换可以在一定程度上改善线性模型</li>
+<li>神经网络通过堆叠线性变换<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>非线性激活，获得比线性模型强得多的表达能力</li>
+<li>激活函数的引入是神经网络非线性化的关键</li>
+<li><span>ReLU<span class="heti-spacing"> </span></span>是实践中最常用的激活函数</li>
+<li>万能逼近定理保证了表达能力的上限，但不保证训练效果</li>
+<li>神经网络优化问题通常是非凸的，但实践中往往仍能找到好的解</li>
+</ul>
+<h2 id="terms">Terms</h2>
+<div class="admonition info">
+<p class="admonition-title">术语小结</p>
+<ul>
+<li><strong>MLP（Multi-Layer Perceptron）</strong>：多层感知机，全连接神经网络</li>
+<li><strong>Hidden Layer</strong>：隐藏层，中间层</li>
+<li><strong>Activation Function</strong>：激活函数，为网络引入非线性</li>
+<li><strong>ReLU</strong>：<span class="arithmatex">\(\max(0, x)\)</span>，最常用的激活函数</li>
+<li><strong>Dead ReLU</strong>：负输入时梯度为零、永远不更新的神经元</li>
+<li><strong>Universal Approximation</strong>：足够宽的两层网络可以逼近任意连续函数</li>
+<li><strong>Distributed Representation</strong>：分布式表示，多个神经元共同表达同一概念</li>
+<li><strong>Depth</strong>：网络层数</li>
+<li><strong>Width</strong>：每层神经元数量</li>
+</ul>
+</div>
 <!-- 标题计数器 -->
 </article>
 </div>

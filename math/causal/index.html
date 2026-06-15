@@ -7,7 +7,7 @@
 <meta content="Ader" name="author"/>
 <link href="https://ader817.github.io/notebook/math/causal/" rel="canonical"/>
 <link href="../pas/ch8/" rel="prev"/>
-<link href="../../tools/venv/" rel="next"/>
+<link href="ch1/" rel="next"/>
 <link href="../../assets/images/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
 <title>因果推断 - Ader's notebook</title>
@@ -191,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../tools/venv/">
+<a class="md-tabs__link" href="../../tools/">
           
   
     
@@ -211,7 +211,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../Misc/softmax.md">
+<a class="md-tabs__link" href="../../misc/softmax/">
           
   
     
@@ -330,6 +330,15 @@
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../matrix/">
+<span class="md-ellipsis">
+    Matrix
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="../pas/">
 <span class="md-ellipsis">
     概率论与数理统计
@@ -339,7 +348,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_7_3" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_7_4" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
@@ -347,13 +356,88 @@
     
   </span>
 </a>
+<label class="md-nav__link md-nav__link--active" for="__nav_7_4" id="__nav_7_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_7_3_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_7_3">
+<nav aria-expanded="true" aria-labelledby="__nav_7_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_7_4">
 <span class="md-nav__icon md-icon"></span>
             因果推断
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch1/">
+<span class="md-ellipsis">
+    Ch 1：因果推断的动机
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch2/">
+<span class="md-ellipsis">
+    Ch 2：潜在结果框架（Potential Outcomes Framework）
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch3/">
+<span class="md-ellipsis">
+    Ch 3：识别假设
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch4/">
+<span class="md-ellipsis">
+    Ch 4：因果图（Causal Graphs / DAGs）
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch5/">
+<span class="md-ellipsis">
+    Ch 5：估计方法
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch6/">
+<span class="md-ellipsis">
+    Ch 6：工具变量（Instrumental Variables, IV）
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch7/">
+<span class="md-ellipsis">
+    Ch 7：断点回归（Regression Discontinuity, RD）
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch8/">
+<span class="md-ellipsis">
+    Ch 8：差分中差分（Difference-in-Differences, DiD）
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="ch9/">
+<span class="md-ellipsis">
+    Ch 9：结构因果模型（Structural Causal Model, SCM）
+    
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -361,7 +445,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../tools/venv/">
+<a class="md-nav__link" href="../../tools/">
 <span class="md-ellipsis">
     Tools
     
@@ -379,7 +463,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../Misc/softmax.md">
+<a class="md-nav__link" href="../../misc/softmax/">
 <span class="md-ellipsis">
     Misc
     
@@ -405,6 +489,19 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#目录">
+<span class="md-ellipsis">
+      目录
+    </span>
+</a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -430,6 +527,53 @@
 <li><a href="https://www.bilibili.com/video/BV1sJ41177sg">因果推断入门（Introduction to Causal Inference）</a></li>
 </ul>
 </div>
+<h2 id="目录">目录</h2>
+<table>
+<thead>
+<tr>
+<th>章节</th>
+<th>主题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="ch1/">Ch 1</a></td>
+<td>因果推断的动机：相关<span class="heti-skip"><span class="heti-spacing"> </span>vs<span class="heti-spacing"> </span></span>因果</td>
+</tr>
+<tr>
+<td><a href="ch2/">Ch 2</a></td>
+<td>潜在结果框架（Potential Outcomes）</td>
+</tr>
+<tr>
+<td><a href="ch3/">Ch 3</a></td>
+<td>识别假设（<span>SUTVA /<span class="heti-spacing"> </span></span>可忽略性<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>正值性）</td>
+</tr>
+<tr>
+<td><a href="ch4/">Ch 4</a></td>
+<td>因果图与<span><span class="heti-spacing"> </span>DAG</span>（<span>d-<span class="heti-spacing"> </span></span>分离、后门准则、<span>do<span class="heti-spacing"> </span></span>算子）</td>
+</tr>
+<tr>
+<td><a href="ch5/">Ch 5</a></td>
+<td>估计方法（回归<span class="heti-skip"><span class="heti-spacing"> </span>/ IPW /<span class="heti-spacing"> </span></span>双重稳健<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>匹配）</td>
+</tr>
+<tr>
+<td><a href="ch6/">Ch 6</a></td>
+<td>工具变量（IV / 2SLS / LATE）</td>
+</tr>
+<tr>
+<td><a href="ch7/">Ch 7</a></td>
+<td>断点回归（Sharp &amp; Fuzzy RDD）</td>
+</tr>
+<tr>
+<td><a href="ch8/">Ch 8</a></td>
+<td>差分中差分（DiD / TWFE / Staggered DiD）</td>
+</tr>
+<tr>
+<td><a href="ch9/">Ch 9</a></td>
+<td>结构因果模型（<span>SCM /<span class="heti-spacing"> </span></span>因果层级<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>反事实）</td>
+</tr>
+</tbody>
+</table>
 <!-- 标题计数器 -->
 </article>
 </div>
@@ -455,13 +599,13 @@
               </div>
 </div>
 </a>
-<a aria-label="下一页: venv" class="md-footer__link md-footer__link--next" href="../../tools/venv/">
+<a aria-label="下一页: Ch 1：因果推断的动机" class="md-footer__link md-footer__link--next" href="ch1/">
 <div class="md-footer__title">
 <span class="md-footer__direction">
                 下一页
               </span>
 <div class="md-ellipsis">
-                venv
+                Ch 1：因果推断的动机
               </div>
 </div>
 <div class="md-footer__button md-icon">

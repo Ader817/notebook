@@ -6,6 +6,8 @@
 <meta content="Ader's notebook" name="description"/>
 <meta content="Ader" name="author"/>
 <link href="https://ader817.github.io/notebook/misc/softmax/" rel="canonical"/>
+<link href="../../ai/eecs498/ch22/" rel="prev"/>
+<link href="../../writeups/" rel="next"/>
 <link href="../../assets/images/favicon.ico" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
 <title>Softmax - Ader's notebook</title>
@@ -189,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../tools/venv/">
+<a class="md-tabs__link" href="../../tools/">
           
   
     
@@ -208,8 +210,8 @@
 
         </a>
 </li>
-<li class="md-tabs__item">
-<a class="md-tabs__link" href="../../Misc/softmax.md">
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="./">
           
   
     
@@ -318,7 +320,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../tools/venv/">
+<a class="md-nav__link" href="../../tools/">
 <span class="md-ellipsis">
     Tools
     
@@ -335,14 +337,150 @@
 <span class="md-nav__icon md-icon"></span>
 </a>
 </li>
-<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../Misc/softmax.md">
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_10" type="checkbox"/>
+<label class="md-nav__link" for="__nav_10" id="__nav_10_label" tabindex="">
 <span class="md-ellipsis">
     Misc
     
   </span>
 <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-expanded="true" aria-labelledby="__nav_10_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_10">
+<span class="md-nav__icon md-icon"></span>
+            Misc
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Softmax
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    Softmax
+    
+  </span>
 </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#1-softmax函数的原理">
+<span class="md-ellipsis">
+      1. Softmax函数的原理
+    </span>
+</a>
+<nav aria-label="1. Softmax函数的原理" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#核心思想">
+<span class="md-ellipsis">
+      核心思想
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数学公式">
+<span class="md-ellipsis">
+      数学公式
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#实现中的注意事项数值稳定性">
+<span class="md-ellipsis">
+      实现中的注意事项：数值稳定性
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-softmax函数的应用">
+<span class="md-ellipsis">
+      2. Softmax函数的应用
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#3-核心推导softmax与交叉熵损失的反向传播">
+<span class="md-ellipsis">
+      3. 核心推导：Softmax与交叉熵损失的反向传播
+    </span>
+</a>
+<nav aria-label="3. 核心推导：Softmax与交叉熵损失的反向传播" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#31-设定与目标">
+<span class="md-ellipsis">
+      3.1 设定与目标
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#32-链式法则的应用">
+<span class="md-ellipsis">
+      3.2 链式法则的应用
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#33-计算组件偏导数">
+<span class="md-ellipsis">
+      3.3 计算组件偏导数
+    </span>
+</a>
+<nav aria-label="3.3 计算组件偏导数" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#损失对softmax输出的偏导-partial-l--partial-y_k">
+<span class="md-ellipsis">
+      损失对Softmax输出的偏导 (\(\partial L / \partial y_k\))
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#softmax输出对输入的偏导-partial-y_k--partial-a_i">
+<span class="md-ellipsis">
+      Softmax输出对输入的偏导 (\(\partial y_k / \partial a_i\))
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#34-组合与化简">
+<span class="md-ellipsis">
+      3.4 组合与化简
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#35-结论与直觉">
+<span class="md-ellipsis">
+      3.5 结论与直觉
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
 <a class="md-nav__link" href="../../writeups/">
@@ -635,6 +773,34 @@ $$</p>
 </button>
 </main>
 <footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Lec 22: Conclustion" class="md-footer__link md-footer__link--prev" href="../../ai/eecs498/ch22/">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                上一页
+              </span>
+<div class="md-ellipsis">
+                Lec 22: Conclustion
+              </div>
+</div>
+</a>
+<a aria-label="下一页: Writeups" class="md-footer__link md-footer__link--next" href="../../writeups/">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                下一页
+              </span>
+<div class="md-ellipsis">
+                Writeups
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+</div>
+</a>
+</nav>
 <div class="md-footer-meta md-typeset">
 <div class="md-footer-meta__inner md-grid">
 <div class="md-copyright">

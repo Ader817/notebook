@@ -191,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tools/venv/">
+<a class="md-tabs__link" href="../../../tools/">
           
   
     
@@ -211,7 +211,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../Misc/softmax.md">
+<a class="md-tabs__link" href="../../../misc/softmax/">
           
   
     
@@ -320,7 +320,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../tools/venv/">
+<a class="md-nav__link" href="../../../tools/">
 <span class="md-ellipsis">
     Tools
     
@@ -347,8 +347,35 @@
             AI
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../notes/">
+<span class="md-ellipsis">
+    AI Notes
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../agent/">
+<span class="md-ellipsis">
+    Agent
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../cs224n/">
+<span class="md-ellipsis">
+    CS224N
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_2" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../">
 <span class="md-ellipsis">
@@ -356,12 +383,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+<label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_9_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_9_2">
+<nav aria-expanded="true" aria-labelledby="__nav_9_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_9_5">
 <span class="md-nav__icon md-icon"></span>
             EECS498
           </label>
@@ -416,12 +443,161 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Lec 7: Convolutional Networks
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Lec 7: Convolutional Networks
     
   </span>
 </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#motivation-why-convolution">
+<span class="md-ellipsis">
+      Motivation: Why Convolution?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convolution-operation">
+<span class="md-ellipsis">
+      Convolution Operation
+    </span>
+</a>
+<nav aria-label="Convolution Operation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#单通道卷积">
+<span class="md-ellipsis">
+      单通道卷积
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#多通道卷积">
+<span class="md-ellipsis">
+      多通道卷积
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#output-size">
+<span class="md-ellipsis">
+      Output Size
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#padding">
+<span class="md-ellipsis">
+      Padding
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stride">
+<span class="md-ellipsis">
+      Stride
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-convolution">
+<span class="md-ellipsis">
+      1×1 Convolution
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pooling-layer">
+<span class="md-ellipsis">
+      Pooling Layer
+    </span>
+</a>
+<nav aria-label="Pooling Layer" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#max-pooling">
+<span class="md-ellipsis">
+      Max Pooling
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#average-pooling">
+<span class="md-ellipsis">
+      Average Pooling
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#receptive-field">
+<span class="md-ellipsis">
+      Receptive Field
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convnet-architecture">
+<span class="md-ellipsis">
+      ConvNet Architecture
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convolution-as-feature-learning">
+<span class="md-ellipsis">
+      Convolution as Feature Learning
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#batch-normalization简介">
+<span class="md-ellipsis">
+      Batch Normalization（简介）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ch8/">
@@ -550,7 +726,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../Misc/softmax.md">
+<a class="md-nav__link" href="../../../misc/softmax/">
 <span class="md-ellipsis">
     Misc
     
@@ -576,6 +752,146 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#motivation-why-convolution">
+<span class="md-ellipsis">
+      Motivation: Why Convolution?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convolution-operation">
+<span class="md-ellipsis">
+      Convolution Operation
+    </span>
+</a>
+<nav aria-label="Convolution Operation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#单通道卷积">
+<span class="md-ellipsis">
+      单通道卷积
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#多通道卷积">
+<span class="md-ellipsis">
+      多通道卷积
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#output-size">
+<span class="md-ellipsis">
+      Output Size
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#padding">
+<span class="md-ellipsis">
+      Padding
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stride">
+<span class="md-ellipsis">
+      Stride
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#11-convolution">
+<span class="md-ellipsis">
+      1×1 Convolution
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pooling-layer">
+<span class="md-ellipsis">
+      Pooling Layer
+    </span>
+</a>
+<nav aria-label="Pooling Layer" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#max-pooling">
+<span class="md-ellipsis">
+      Max Pooling
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#average-pooling">
+<span class="md-ellipsis">
+      Average Pooling
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#receptive-field">
+<span class="md-ellipsis">
+      Receptive Field
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convnet-architecture">
+<span class="md-ellipsis">
+      ConvNet Architecture
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convolution-as-feature-learning">
+<span class="md-ellipsis">
+      Convolution as Feature Learning
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#batch-normalization简介">
+<span class="md-ellipsis">
+      Batch Normalization（简介）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -589,6 +905,225 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
 </a>
 <h1 id="lec-7-convolutional-networks">Lec 7: Convolutional Networks</h1>
+<h2 id="overview">Overview</h2>
+<p>前两讲介绍了神经网络的结构（线性层<span class="heti-skip"><span class="heti-spacing"> </span>+<span class="heti-spacing"> </span></span>激活函数）和训练方式（反向传播<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。但对于图像任务，全连接网络（MLP）存在明显的不足：</p>
+<ul>
+<li><strong>参数量爆炸</strong>：<span>CIFAR-10<span class="heti-spacing"> </span></span>图像展平后有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(3072\)</span><span class="heti-spacing"> </span></span>维，一层隐藏层有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(1000\)</span><span class="heti-spacing"> </span></span>个神经元，就需要<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(&gt; 300\)</span><span class="heti-spacing"> </span></span>万参数；ImageNet（<span class="arithmatex">\(224 \times 224 \times 3\)</span>）则需要数亿参数</li>
+<li><strong>丢失空间结构</strong>：展平为向量后，像素之间的空间相邻关系完全丢失</li>
+</ul>
+<p>本讲的核心思路：图像有两个天然的结构——<strong>局部性（locality）</strong>和<strong>平移不变性（translation invariance）</strong>。卷积（Convolution）正是对这两个结构的利用。</p>
+<h2 id="motivation-why-convolution">Motivation: Why Convolution?</h2>
+<p>图像中的模式（边缘、纹理、物体）具有以下特点：</p>
+<ol>
+<li><strong>局部性（Locality）</strong>：边缘等低级特征只取决于局部像素，不需要全局感知</li>
+<li><strong>平移不变性（Translation Invariance）</strong>：猫不管出现在图像哪个位置，用于检测猫的特征应该是相同的</li>
+</ol>
+<p>全连接层对图像每个位置都学一套独立的权重，既浪费参数，又无法共享跨位置的特征检测器。</p>
+<p><strong>卷积层</strong>的解决方案：用<strong>同一个小滤波器（filter/kernel）</strong>在图像的所有位置滑动，实现参数共享和局部感受野。</p>
+<h2 id="convolution-operation">Convolution Operation</h2>
+<h3 id="单通道卷积">单通道卷积</h3>
+<p>设输入图像大小为<span><span class="heti-spacing"> </span><span class="arithmatex">\(H \times W\)</span></span>，滤波器大小为<span><span class="heti-spacing"> </span><span class="arithmatex">\(F \times F\)</span></span>，则：</p>
+<div class="arithmatex">\[
+\text{output}[i, j] = \sum_{m=0}^{F-1} \sum_{n=0}^{F-1} \text{input}[i+m, j+n] \cdot \text{filter}[m, n] + b
+\]</div>
+<p>滤波器在图像上的每个位置做<strong>内积（dot product）</strong>，输出一个数值，汇集为<strong>特征图（feature map）</strong>。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1"># 单个卷积层：输入 1 通道，输出 1 张特征图，3×3 滤波器</span>
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="n">conv</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="c1"># 输入: (batch, 1, H, W) → 输出: (batch, 1, H, W)</span>
+</span></code></pre></div>
+<h3 id="多通道卷积">多通道卷积</h3>
+<p>实际图像有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(C\)</span><span class="heti-spacing"> </span></span>个输入通道（如<span class="heti-skip"><span class="heti-spacing"> </span>RGB<span class="heti-spacing"> </span></span>图像<span><span class="heti-spacing"> </span><span class="arithmatex">\(C = 3\)</span></span><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，滤波器也要对应有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(C\)</span><span class="heti-spacing"> </span></span>个通道：</p>
+<ul>
+<li>滤波器形状：<span class="arithmatex">\(C \times F \times F\)</span></li>
+<li>用<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(K\)</span><span class="heti-spacing"> </span></span>个不同滤波器 → 输出<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(K\)</span><span class="heti-spacing"> </span></span>张特征图</li>
+</ul>
+<div class="arithmatex">\[
+\text{output}[k, i, j] = \sum_{c=0}^{C-1} \sum_{m=0}^{F-1} \sum_{n=0}^{F-1} \text{input}[c, i+m, j+n] \cdot W_k[c, m, n] + b_k
+\]</div>
+<p>所以一个卷积层的参数量是：<span class="arithmatex">\(K \times C \times F \times F + K\)</span>（<span><span class="arithmatex">\(K\)</span><span class="heti-spacing"> </span></span>个偏置）</p>
+<div class="admonition info">
+<p class="admonition-title">参数量对比</p>
+<p>全连接层：<span><span class="arithmatex">\(H \times W \times C \to H \times W \times K\)</span><span class="heti-spacing"> </span></span>需要<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\((H \cdot W \cdot C) \times (H \cdot W \cdot K)\)</span><span class="heti-spacing"> </span></span>个参数。</p>
+<p>卷积层：同样从<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(C\)</span><span class="heti-spacing"> </span></span>通道到<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(K\)</span><span class="heti-spacing"> </span></span>通道，只需要<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(K \times C \times F^2\)</span><span class="heti-spacing"> </span></span>个参数（<span class="arithmatex">\(F \ll H\)</span><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，<strong>参数共享</strong>节省了巨量参数。</p>
+</div>
+<h2 id="output-size">Output Size</h2>
+<p>卷积输出的空间尺寸由四个超参数决定：</p>
+<table>
+<thead>
+<tr>
+<th>超参数</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="arithmatex">\(F\)</span>（kernel size）</td>
+<td>滤波器大小</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(P\)</span>（padding）</td>
+<td>在输入周围填补的像素数</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(S\)</span>（stride）</td>
+<td>滤波器每次滑动的步长</td>
+</tr>
+<tr>
+<td><span class="arithmatex">\(K\)</span>（num filters）</td>
+<td>滤波器数量，即输出通道数</td>
+</tr>
+</tbody>
+</table>
+<p>输入大小为<span><span class="heti-spacing"> </span><span class="arithmatex">\(W_\text{in} \times H_\text{in}\)</span></span>，输出大小：</p>
+<div class="arithmatex">\[
+W_\text{out} = \frac{W_\text{in} - F + 2P}{S} + 1
+\]</div>
+<div class="arithmatex">\[
+H_\text{out} = \frac{H_\text{in} - F + 2P}{S} + 1
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">常用设置</p>
+<ul>
+<li><span class="arithmatex">\(F = 3, P = 1, S = 1\)</span>：输出与输入<strong>同尺寸</strong>（same padding）</li>
+<li><span class="arithmatex">\(F = 3, P = 0, S = 1\)</span>：输出每边各缩小<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>像素</li>
+<li><span class="arithmatex">\(F = 3, P = 1, S = 2\)</span>：输出尺寸减半（下采样）</li>
+</ul>
+</div>
+<h2 id="padding">Padding</h2>
+<p><strong>零填充（zero-padding）</strong>在输入边界补<span><span class="heti-spacing"> </span>0</span>，目的：</p>
+<ol>
+<li>控制输出尺寸（避免每层都缩小）</li>
+<li>让边界区域也能完整参与卷积计算</li>
+</ol>
+<p>常见填充方式：</p>
+<ul>
+<li><code>padding='valid'</code>（无填充<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：输出<span class="heti-skip"><span class="heti-spacing"> </span>$&lt; $<span class="heti-spacing"> </span></span>输入</li>
+<li><code>padding='same'</code>（保持尺寸<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：输出<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(=\)</span><span class="heti-spacing"> </span></span>输入</li>
+</ul>
+<h2 id="stride">Stride</h2>
+<p><strong>步长（stride）</strong> <span><span class="arithmatex">\(S &gt; 1\)</span><span class="heti-spacing"> </span></span>时，滤波器每次跳跃<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(S\)</span><span class="heti-spacing"> </span></span>个像素，输出尺寸缩小（用于下采样<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
+<p>等效于卷积后再做均匀间隔的采样。</p>
+<h2 id="11-convolution">1×1 Convolution</h2>
+<p><span><span class="arithmatex">\(1 \times 1\)</span><span class="heti-spacing"> </span></span>卷积看似没有空间汇聚，但它对<strong>通道维度</strong>做了线性变换：</p>
+<div class="arithmatex">\[
+\text{output}[k, i, j] = \sum_{c=0}^{C-1} \text{input}[c, i, j] \cdot W_k[c] + b_k
+\]</div>
+<p>用途：</p>
+<ul>
+<li><strong>通道升降维</strong>：用较少的<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(K\)</span><span class="heti-spacing"> </span></span>实现通道压缩（降维<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，减少后续计算量</li>
+<li><strong>增加非线性</strong>：<span><span class="arithmatex">\(1 \times 1\)</span><span class="heti-spacing"> </span></span>卷积后接<span><span class="heti-spacing"> </span>ReLU</span>，增加表达能力</li>
+<li><span>GoogLeNet/Inception<span class="heti-spacing"> </span></span>模块广泛使用<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(1 \times 1\)</span><span class="heti-spacing"> </span></span>卷积</li>
+</ul>
+<h2 id="pooling-layer">Pooling Layer</h2>
+<p><strong>池化层（Pooling Layer）</strong>对特征图做空间下采样，减少特征图尺寸和参数量，同时引入一定程度的平移不变性。</p>
+<p>池化层<strong>没有可学习参数</strong>。</p>
+<h3 id="max-pooling">Max Pooling</h3>
+<p>在每个<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(F \times F\)</span><span class="heti-spacing"> </span></span>窗口内取最大值：</p>
+<div class="arithmatex">\[
+\text{output}[i, j] = \max_{0 \leq m, n &lt; F} \text{input}[i \cdot S + m, j \cdot S + n]
+\]</div>
+<p>最常用：<span class="arithmatex">\(F = 2, S = 2\)</span>，将特征图尺寸减半。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">pool</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="c1"># (batch, C, H, W) → (batch, C, H//2, W//2)</span>
+</span></code></pre></div>
+<h3 id="average-pooling">Average Pooling</h3>
+<p>在窗口内取平均值，常用于网络末端（Global Average Pooling）将空间维度压缩为<span><span class="heti-spacing"> </span><span class="arithmatex">\(1 \times 1\)</span></span>：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">gap</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">AdaptiveAvgPool2d</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1"># (batch, C, H, W) → (batch, C, 1, 1)</span>
+</span></code></pre></div>
+<h2 id="receptive-field">Receptive Field</h2>
+<p><strong>感受野（Receptive Field）</strong>是输出特征图中某个神经元所对应的输入像素范围。</p>
+<p>每经过一层<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(F \times F\)</span><span class="heti-spacing"> </span></span>的卷积（stride=1<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，感受野增大<span><span class="heti-spacing"> </span><span class="arithmatex">\(F - 1\)</span></span>。经过<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(L\)</span><span class="heti-spacing"> </span></span>层后感受野为：</p>
+<div class="arithmatex">\[
+\text{RF} = 1 + L \times (F - 1)
+\]</div>
+<p>若使用<span class="heti-skip"><span class="heti-spacing"> </span>stride<span class="heti-spacing"> </span></span>或<span><span class="heti-spacing"> </span>pooling</span>，感受野增长更快。</p>
+<div class="admonition info">
+<p class="admonition-title">为什么用小卷积核堆叠？</p>
+<p>两层<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(3 \times 3\)</span><span class="heti-spacing"> </span></span>卷积的感受野等于一层<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(5 \times 5\)</span><span class="heti-spacing"> </span></span>卷积，但参数量更少（<span class="arithmatex">\(2 \times 3^2 = 18 &lt; 5^2 = 25\)</span><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，且多一次非线性变换，表达能力更强。</p>
+<p>这也是<span class="heti-skip"><span class="heti-spacing"> </span>VGGNet<span class="heti-spacing"> </span></span>全用<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(3 \times 3\)</span><span class="heti-spacing"> </span></span>卷积的原因。</p>
+</div>
+<h2 id="convnet-architecture">ConvNet Architecture</h2>
+<p>典型的卷积神经网络由以下模块堆叠而成：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>输入图像
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>  → [Conv → BN → ReLU] × N    # 特征提取
+</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>  → [MaxPool]                  # 空间下采样
+</span><span id="__span-3-4"><a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>  → ...重复若干次               # 更高层特征
+</span><span id="__span-3-5"><a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>  → Flatten / Global Avg Pool  # 空间维度压缩
+</span><span id="__span-3-6"><a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>  → FC → Softmax               # 分类
+</span></code></pre></div>
+<p>用<span class="heti-skip"><span class="heti-spacing"> </span>PyTorch<span class="heti-spacing"> </span></span>定义一个简单的<span><span class="heti-spacing"> </span>ConvNet</span>：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="k">class</span><span class="w"> </span><span class="nc">SimpleCNN</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span><span id="__span-4-4"><a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_classes</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+</span><span id="__span-4-5"><a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="__span-4-6"><a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+</span><span id="__span-4-7"><a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># 3→32 通道</span>
+</span><span id="__span-4-8"><a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+</span><span id="__span-4-9"><a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>                           <span class="c1"># H,W 减半</span>
+</span><span id="__span-4-10"><a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># 32→64 通道</span>
+</span><span id="__span-4-11"><a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+</span><span id="__span-4-12"><a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>                           <span class="c1"># H,W 再减半</span>
+</span><span id="__span-4-13"><a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>        <span class="p">)</span>
+</span><span id="__span-4-14"><a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+</span><span id="__span-4-15"><a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">(),</span>
+</span><span id="__span-4-16"><a href="#__codelineno-4-16" id="__codelineno-4-16" name="__codelineno-4-16"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span> <span class="o">*</span> <span class="mi">8</span> <span class="o">*</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+</span><span id="__span-4-17"><a href="#__codelineno-4-17" id="__codelineno-4-17" name="__codelineno-4-17"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+</span><span id="__span-4-18"><a href="#__codelineno-4-18" id="__codelineno-4-18" name="__codelineno-4-18"></a>            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="n">num_classes</span><span class="p">),</span>
+</span><span id="__span-4-19"><a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a>        <span class="p">)</span>
+</span><span id="__span-4-20"><a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a>
+</span><span id="__span-4-21"><a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span><span id="__span-4-22"><a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">classifier</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">features</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</span></code></pre></div>
+<h2 id="convolution-as-feature-learning">Convolution as Feature Learning</h2>
+<p>卷积网络每层的滤波器都在学习不同层次的视觉特征：</p>
+<ul>
+<li><strong>第<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>层</strong>：边缘、颜色斑块等低级特征</li>
+<li><strong>中间层</strong>：纹理、局部形状</li>
+<li><strong>深层</strong>：物体局部（眼睛、轮子）乃至整体语义</li>
+</ul>
+<p>这种<strong>层级特征（hierarchical features）</strong>的自动学习是<span class="heti-skip"><span class="heti-spacing"> </span>CNN<span class="heti-spacing"> </span></span>强大的根本原因。</p>
+<h2 id="batch-normalization简介">Batch Normalization（简介）</h2>
+<p>卷积层后通常接<strong>批标准化（Batch Normalization）</strong>：</p>
+<div class="arithmatex">\[
+\hat{x} = \frac{x - \mu_B}{\sigma_B + \epsilon}, \quad y = \gamma \hat{x} + \beta
+\]</div>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\mu_B, \sigma_B\)</span><span class="heti-spacing"> </span></span>是当前<span class="heti-skip"><span class="heti-spacing"> </span>mini-batch<span class="heti-spacing"> </span></span>的均值和标准差，<span><span class="arithmatex">\(\gamma, \beta\)</span><span class="heti-spacing"> </span></span>是可学习的缩放和平移参数。</p>
+<p>作用：
+- 稳定训练，允许更大的学习率
+- 轻度正则化效果
+- 使网络对权重初始化不那么敏感</p>
+<h2 id="main-takeaways">Main Takeaways</h2>
+<ul>
+<li>卷积层通过参数共享和局部连接，高效处理图像的空间结构</li>
+<li>输出尺寸公式：<span class="arithmatex">\((W - F + 2P) / S + 1\)</span></li>
+<li>多通道卷积：<span><span class="arithmatex">\(K\)</span><span class="heti-spacing"> </span></span>个<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(C \times F \times F\)</span><span class="heti-spacing"> </span></span>的滤波器 → <span><span class="arithmatex">\(K\)</span><span class="heti-spacing"> </span></span>张特征图</li>
+<li>池化层（Max Pooling）做空间下采样，无可学习参数</li>
+<li><span><span class="arithmatex">\(1 \times 1\)</span><span class="heti-spacing"> </span></span>卷积用于通道升降维</li>
+<li>小卷积核堆叠比大卷积核参数更少、非线性更强</li>
+<li><span>ConvNet<span class="heti-spacing"> </span></span>自动学习层级视觉特征</li>
+</ul>
+<h2 id="terms">Terms</h2>
+<div class="admonition info">
+<p class="admonition-title">术语小结</p>
+<ul>
+<li><strong>Convolution（卷积）</strong>：滤波器在输入上滑动做内积，提取局部特征</li>
+<li><strong>Filter / Kernel（滤波器<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>卷积核）</strong>：卷积层的可学习参数，形状<span><span class="heti-spacing"> </span><span class="arithmatex">\(C \times F \times F\)</span></span></li>
+<li><strong>Feature Map（特征图）</strong>：卷积层的输出，每个滤波器产生一张</li>
+<li><strong>Padding（填充）</strong>：在输入边界补零，控制输出尺寸</li>
+<li><strong>Stride（步长）</strong>：滤波器每次移动的像素数，<span><span class="arithmatex">\(S &gt; 1\)</span><span class="heti-spacing"> </span></span>实现下采样</li>
+<li><strong>Receptive Field（感受野）</strong>：某个输出神经元对应的输入区域大小</li>
+<li><strong>Parameter Sharing（参数共享）</strong>：同一滤波器在所有位置共享权重</li>
+<li><strong>Max Pooling（最大池化）</strong>：在局部窗口取最大值，做空间下采样</li>
+<li><strong>Global Average Pooling（全局平均池化）</strong>：将整个特征图压缩为一个数值</li>
+<li><strong>1×1 Convolution</strong>：对通道维度做线性变换，用于升降维</li>
+<li><strong>Batch Normalization（批标准化）</strong>：对每个<span class="heti-skip"><span class="heti-spacing"> </span>mini-batch<span class="heti-spacing"> </span></span>标准化激活值，稳定训练</li>
+</ul>
+</div>
 <!-- 标题计数器 -->
 </article>
 </div>

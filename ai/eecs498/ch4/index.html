@@ -191,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tools/venv/">
+<a class="md-tabs__link" href="../../../tools/">
           
   
     
@@ -211,7 +211,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../Misc/softmax.md">
+<a class="md-tabs__link" href="../../../misc/softmax/">
           
   
     
@@ -320,7 +320,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../tools/venv/">
+<a class="md-nav__link" href="../../../tools/">
 <span class="md-ellipsis">
     Tools
     
@@ -347,8 +347,35 @@
             AI
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../notes/">
+<span class="md-ellipsis">
+    AI Notes
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../agent/">
+<span class="md-ellipsis">
+    Agent
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../cs224n/">
+<span class="md-ellipsis">
+    CS224N
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_2" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../">
 <span class="md-ellipsis">
@@ -356,12 +383,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+<label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_9_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_9_2">
+<nav aria-expanded="true" aria-labelledby="__nav_9_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_9_5">
 <span class="md-nav__icon md-icon"></span>
             EECS498
           </label>
@@ -392,12 +419,258 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Lec 4: Optimization
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Lec 4: Optimization
     
   </span>
 </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optimization-as-searching">
+<span class="md-ellipsis">
+      Optimization as Searching
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gradient">
+<span class="md-ellipsis">
+      Gradient
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#numerical-gradient">
+<span class="md-ellipsis">
+      Numerical Gradient
+    </span>
+</a>
+<nav aria-label="Numerical Gradient" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#numerical-gradient-的用途">
+<span class="md-ellipsis">
+      Numerical Gradient 的用途
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#analytic-gradient">
+<span class="md-ellipsis">
+      Analytic Gradient
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gradient-descent">
+<span class="md-ellipsis">
+      Gradient Descent
+    </span>
+</a>
+<nav aria-label="Gradient Descent" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#learning-rate">
+<span class="md-ellipsis">
+      Learning Rate
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#full-batch-gradient-descent">
+<span class="md-ellipsis">
+      Full Batch Gradient Descent
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stochastic-gradient-descent">
+<span class="md-ellipsis">
+      Stochastic Gradient Descent
+    </span>
+</a>
+<nav aria-label="Stochastic Gradient Descent" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#为什么-sgd-更常用">
+<span class="md-ellipsis">
+      为什么 SGD 更常用
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#problems-of-sgd">
+<span class="md-ellipsis">
+      Problems of SGD
+    </span>
+</a>
+<nav aria-label="Problems of SGD" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zig-zag-problem">
+<span class="md-ellipsis">
+      Zig-Zag Problem
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#saddle-point">
+<span class="md-ellipsis">
+      Saddle Point
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#noisy-gradient">
+<span class="md-ellipsis">
+      Noisy Gradient
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#momentum">
+<span class="md-ellipsis">
+      Momentum
+    </span>
+</a>
+<nav aria-label="Momentum" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#momentum-的效果">
+<span class="md-ellipsis">
+      Momentum 的效果
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nesterov-momentum">
+<span class="md-ellipsis">
+      Nesterov Momentum
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adaptive-learning-rate-methods">
+<span class="md-ellipsis">
+      Adaptive Learning Rate Methods
+    </span>
+</a>
+<nav aria-label="Adaptive Learning Rate Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adagrad">
+<span class="md-ellipsis">
+      AdaGrad
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rmsprop">
+<span class="md-ellipsis">
+      RMSProp
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adam">
+<span class="md-ellipsis">
+      Adam
+    </span>
+</a>
+<nav aria-label="Adam" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adam-的实践特点">
+<span class="md-ellipsis">
+      Adam 的实践特点
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#first-order-and-second-order-methods">
+<span class="md-ellipsis">
+      First-Order and Second-Order Methods
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convex-and-non-convex-optimization">
+<span class="md-ellipsis">
+      Convex and Non-Convex Optimization
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-hyperparameters-matter">
+<span class="md-ellipsis">
+      What Hyperparameters Matter
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optimization-in-practice">
+<span class="md-ellipsis">
+      Optimization in Practice
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ch5/">
@@ -550,7 +823,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../Misc/softmax.md">
+<a class="md-nav__link" href="../../../misc/softmax/">
 <span class="md-ellipsis">
     Misc
     
@@ -576,6 +849,243 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optimization-as-searching">
+<span class="md-ellipsis">
+      Optimization as Searching
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gradient">
+<span class="md-ellipsis">
+      Gradient
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#numerical-gradient">
+<span class="md-ellipsis">
+      Numerical Gradient
+    </span>
+</a>
+<nav aria-label="Numerical Gradient" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#numerical-gradient-的用途">
+<span class="md-ellipsis">
+      Numerical Gradient 的用途
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#analytic-gradient">
+<span class="md-ellipsis">
+      Analytic Gradient
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gradient-descent">
+<span class="md-ellipsis">
+      Gradient Descent
+    </span>
+</a>
+<nav aria-label="Gradient Descent" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#learning-rate">
+<span class="md-ellipsis">
+      Learning Rate
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#full-batch-gradient-descent">
+<span class="md-ellipsis">
+      Full Batch Gradient Descent
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#stochastic-gradient-descent">
+<span class="md-ellipsis">
+      Stochastic Gradient Descent
+    </span>
+</a>
+<nav aria-label="Stochastic Gradient Descent" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#为什么-sgd-更常用">
+<span class="md-ellipsis">
+      为什么 SGD 更常用
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#problems-of-sgd">
+<span class="md-ellipsis">
+      Problems of SGD
+    </span>
+</a>
+<nav aria-label="Problems of SGD" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#zig-zag-problem">
+<span class="md-ellipsis">
+      Zig-Zag Problem
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#saddle-point">
+<span class="md-ellipsis">
+      Saddle Point
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#noisy-gradient">
+<span class="md-ellipsis">
+      Noisy Gradient
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#momentum">
+<span class="md-ellipsis">
+      Momentum
+    </span>
+</a>
+<nav aria-label="Momentum" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#momentum-的效果">
+<span class="md-ellipsis">
+      Momentum 的效果
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#nesterov-momentum">
+<span class="md-ellipsis">
+      Nesterov Momentum
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adaptive-learning-rate-methods">
+<span class="md-ellipsis">
+      Adaptive Learning Rate Methods
+    </span>
+</a>
+<nav aria-label="Adaptive Learning Rate Methods" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adagrad">
+<span class="md-ellipsis">
+      AdaGrad
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#rmsprop">
+<span class="md-ellipsis">
+      RMSProp
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adam">
+<span class="md-ellipsis">
+      Adam
+    </span>
+</a>
+<nav aria-label="Adam" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adam-的实践特点">
+<span class="md-ellipsis">
+      Adam 的实践特点
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#first-order-and-second-order-methods">
+<span class="md-ellipsis">
+      First-Order and Second-Order Methods
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#convex-and-non-convex-optimization">
+<span class="md-ellipsis">
+      Convex and Non-Convex Optimization
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-hyperparameters-matter">
+<span class="md-ellipsis">
+      What Hyperparameters Matter
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#optimization-in-practice">
+<span class="md-ellipsis">
+      Optimization in Practice
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -589,6 +1099,407 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
 </a>
 <h1 id="lec-4-optimization">Lec 4: Optimization</h1>
+<h2 id="overview">Overview</h2>
+<p>上一讲我们已经有了模型和损失函数：</p>
+<ul>
+<li>用线性分类器输出类别分数</li>
+<li>用<span class="heti-skip"><span class="heti-spacing"> </span>SVM loss<span class="heti-spacing"> </span></span>或<span class="heti-skip"><span class="heti-spacing"> </span>Softmax loss<span class="heti-spacing"> </span></span>衡量参数好坏</li>
+<li>用正则化控制模型复杂度</li>
+</ul>
+<p>但还缺最关键的一步：</p>
+<p>已知损失函数<span><span class="heti-spacing"> </span><span class="arithmatex">\(L(W)\)</span></span>，怎样找到一组让损失尽可能小的参数<span><span class="heti-spacing"> </span><span class="arithmatex">\(W\)</span></span>？</p>
+<p>这就是最优化（Optimization）问题。</p>
+<p>从形式上看，我们要解决的是：</p>
+<div class="arithmatex">\[
+W^* = \arg\min_W L(W)
+\]</div>
+<p>第四讲主要讨论：</p>
+<ul>
+<li>为什么“瞎猜参数”不可行</li>
+<li>梯度为什么能提供下降方向</li>
+<li>如何用梯度下降迭代优化参数</li>
+<li>为什么要用随机梯度下降（SGD）</li>
+<li><span>SGD<span class="heti-spacing"> </span></span>为什么还不够，以及<span class="heti-skip"><span class="heti-spacing"> </span>momentum / RMSProp / Adam<span class="heti-spacing"> </span></span>等改进方法</li>
+</ul>
+<h2 id="optimization-as-searching">Optimization as Searching</h2>
+<p>最直接的思路是随机搜索：</p>
+<ol>
+<li>随机初始化一组参数</li>
+<li>计算损失</li>
+<li>再随机改一点参数</li>
+<li>如果损失变小就接受，否则丢弃</li>
+</ol>
+<p>这种方法理论上能用，但几乎没有实用价值。因为参数空间通常极其巨大。</p>
+<p>例如在线性分类器里，若输入是<span class="heti-skip"><span class="heti-spacing"> </span>CIFAR-10<span class="heti-spacing"> </span></span>图像，则参数维度大约是：</p>
+<div class="arithmatex">\[
+3072 \times 10 = 30720
+\]</div>
+<p>这还只是一个很浅的模型。对于神经网络，参数量通常是百万级、千万级甚至更多。</p>
+<p>所以我们需要利用损失函数的局部结构，而不是盲目试探。</p>
+<h2 id="gradient">Gradient</h2>
+<p>对多元函数来说，梯度（gradient）给出函数在当前位置增长最快的方向。</p>
+<p>若损失函数为<span><span class="heti-spacing"> </span><span class="arithmatex">\(L(W)\)</span></span>，则：</p>
+<div class="arithmatex">\[
+\nabla_W L
+\]</div>
+<p>表示损失对参数各维度的偏导数组成的向量。</p>
+<p>因为梯度指向最陡上升方向，所以：</p>
+<ul>
+<li>沿着梯度方向移动，损失通常会变大</li>
+<li>沿着负梯度方向移动，损失通常会变小</li>
+</ul>
+<p>这就是梯度下降（Gradient Descent）的核心直觉。</p>
+<div class="admonition info">
+<p class="admonition-title">梯度的直观理解</p>
+<p>你可以把损失函数想成一片山地地形图，当前位置的梯度就是“最陡上坡方向”。</p>
+<p>如果我们想走到低谷，就应该朝反方向走。</p>
+</div>
+<h2 id="numerical-gradient">Numerical Gradient</h2>
+<p>如果暂时不会手推导数，可以先用数值方法近似梯度。</p>
+<p>对于一维函数<span><span class="heti-spacing"> </span><span class="arithmatex">\(f(x)\)</span></span>，导数可以近似写成：</p>
+<div class="arithmatex">\[
+f'(x) \approx \frac{f(x+h) - f(x-h)}{2h}
+\]</div>
+<p>这叫做<span><span class="heti-spacing"> </span>centered difference</span>，比单边差分更稳定。</p>
+<p>对于高维参数向量<span><span class="heti-spacing"> </span><span class="arithmatex">\(W\)</span></span>，我们可以对每个维度分别做这样的微小扰动，估计每个偏导数。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">eval_numerical_gradient</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>    <span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>    <span class="n">it</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">nditer</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">flags</span><span class="o">=</span><span class="p">[</span><span class="s1">'multi_index'</span><span class="p">],</span> <span class="n">op_flags</span><span class="o">=</span><span class="p">[</span><span class="s1">'readwrite'</span><span class="p">])</span>
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>    <span class="k">while</span> <span class="ow">not</span> <span class="n">it</span><span class="o">.</span><span class="n">finished</span><span class="p">:</span>
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="n">it</span><span class="o">.</span><span class="n">multi_index</span>
+</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>        <span class="n">old_value</span> <span class="o">=</span> <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span>
+</span><span id="__span-0-8"><a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>
+</span><span id="__span-0-9"><a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>        <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_value</span> <span class="o">+</span> <span class="n">h</span>
+</span><span id="__span-0-10"><a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a>        <span class="n">fxph</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-0-11"><a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a>        <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_value</span> <span class="o">-</span> <span class="n">h</span>
+</span><span id="__span-0-12"><a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a>        <span class="n">fxmh</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-0-13"><a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a>        <span class="n">x</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_value</span>
+</span><span id="__span-0-14"><a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a>        <span class="n">grad</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">fxph</span> <span class="o">-</span> <span class="n">fxmh</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
+</span><span id="__span-0-16"><a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a>        <span class="n">it</span><span class="o">.</span><span class="n">iternext</span><span class="p">()</span>
+</span><span id="__span-0-17"><a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a>
+</span><span id="__span-0-18"><a href="#__codelineno-0-18" id="__codelineno-0-18" name="__codelineno-0-18"></a>    <span class="k">return</span> <span class="n">grad</span>
+</span></code></pre></div>
+<h3 id="numerical-gradient-的用途"><span>Numerical Gradient<span class="heti-spacing"> </span></span>的用途</h3>
+<ul>
+<li>适合建立直觉</li>
+<li>适合检查你手写梯度是否正确</li>
+<li>不适合真正训练模型</li>
+</ul>
+<p>原因是它太慢了。若参数有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(D\)</span><span class="heti-spacing"> </span></span>维，那么一次梯度计算通常需要约<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(2D\)</span><span class="heti-spacing"> </span></span>次前向计算。</p>
+<h2 id="analytic-gradient">Analytic Gradient</h2>
+<p>真正训练时，我们希望直接推导梯度公式，也就是解析梯度（analytic gradient<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
+<p>后面的反向传播（Lecture 6）本质上就是一种高效计算解析梯度的方法。</p>
+<p>所以第四讲可以先把它理解成：</p>
+<ul>
+<li><span>Numerical gradient<span class="heti-spacing"> </span></span>用于验证</li>
+<li><span>Analytic gradient<span class="heti-spacing"> </span></span>用于训练</li>
+</ul>
+<h2 id="gradient-descent">Gradient Descent</h2>
+<p>有了梯度以后，最基本的更新规则是：</p>
+<div class="arithmatex">\[
+W \leftarrow W - \eta \nabla_W L
+\]</div>
+<p>其中：</p>
+<ul>
+<li><span><span class="arithmatex">\(\eta\)</span><span class="heti-spacing"> </span></span>是学习率（learning rate）</li>
+<li><span><span class="arithmatex">\(\nabla_W L\)</span><span class="heti-spacing"> </span></span>是当前参数处的梯度</li>
+</ul>
+<p>学习率控制每次更新走多远。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="n">w</span> <span class="o">=</span> <span class="n">initialize_weights</span><span class="p">()</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>    <span class="n">dw</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>    <span class="n">w</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">dw</span>
+</span></code></pre></div>
+<h3 id="learning-rate">Learning Rate</h3>
+<p>学习率是最重要的超参数之一。</p>
+<ul>
+<li>太小：每一步都走得很慢，收敛极慢</li>
+<li>太大：容易来回震荡，甚至直接发散</li>
+</ul>
+<p>所以优化的难点并不只是“知道往哪走”，还包括“每次走多远”。</p>
+<h2 id="full-batch-gradient-descent">Full Batch Gradient Descent</h2>
+<p>如果数据集有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(N\)</span><span class="heti-spacing"> </span></span>个样本，总损失通常写成：</p>
+<div class="arithmatex">\[
+L(W) = \frac{1}{N} \sum_{i=1}^{N} L_i(W) + \lambda R(W)
+\]</div>
+<p>对应梯度为：</p>
+<div class="arithmatex">\[
+\nabla_W L(W) = \frac{1}{N} \sum_{i=1}^{N} \nabla_W L_i(W) + \lambda \nabla_W R(W)
+\]</div>
+<p>这意味着每次更新前，都需要对整个训练集做一遍前向和反向计算。</p>
+<p>如果数据集很大，这会非常昂贵。</p>
+<h2 id="stochastic-gradient-descent">Stochastic Gradient Descent</h2>
+<p>因此实际中更常用随机梯度下降（Stochastic Gradient Descent, SGD<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
+<p>它并不是每次都看全部数据，而是每次随机采样一个小批量（mini-batch）来近似整体梯度：</p>
+<div class="arithmatex">\[
+\nabla_W L(W) \approx \frac{1}{B} \sum_{i \in \mathcal{B}} \nabla_W L_i(W) + \lambda \nabla_W R(W)
+\]</div>
+<p>其中：</p>
+<ul>
+<li><span><span class="arithmatex">\(\mathcal{B}\)</span><span class="heti-spacing"> </span></span>是当前<span><span class="heti-spacing"> </span>batch</span></li>
+<li><span><span class="arithmatex">\(B\)</span><span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>batch size</span></li>
+</ul>
+<p>对应伪代码：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="n">w</span> <span class="o">=</span> <span class="n">initialize_weights</span><span class="p">()</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>    <span class="n">X_batch</span><span class="p">,</span> <span class="n">y_batch</span> <span class="o">=</span> <span class="n">sample_batch</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">batch_size</span><span class="p">)</span>
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>    <span class="n">dw</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">loss_fn</span><span class="p">,</span> <span class="n">X_batch</span><span class="p">,</span> <span class="n">y_batch</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span>
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>    <span class="n">w</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">dw</span>
+</span></code></pre></div>
+<h3 id="为什么-sgd-更常用">为什么<span class="heti-skip"><span class="heti-spacing"> </span>SGD<span class="heti-spacing"> </span></span>更常用</h3>
+<ul>
+<li>每次更新更快</li>
+<li>可以更频繁地更新参数</li>
+<li>占用内存更少</li>
+<li>对大数据集更现实</li>
+</ul>
+<p>虽然每次梯度更<span><span class="heti-spacing"> </span>noisy</span>，但总体上通常足够有效。</p>
+<h2 id="problems-of-sgd">Problems of SGD</h2>
+<p><span>SGD<span class="heti-spacing"> </span></span>很重要，但它并不完美。</p>
+<h3 id="zig-zag-problem">Zig-Zag Problem</h3>
+<p>如果损失曲面在某个方向很陡，在另一个方向很平缓，那么<span class="heti-skip"><span class="heti-spacing"> </span>SGD<span class="heti-spacing"> </span></span>容易出现锯齿形震荡。</p>
+<p>直观上看：</p>
+<ul>
+<li>在陡峭方向上容易来回摆动</li>
+<li>在平坦方向上推进很慢</li>
+</ul>
+<p>这会严重降低收敛速度。</p>
+<h3 id="saddle-point">Saddle Point</h3>
+<p>高维优化里，鞍点（saddle point）比局部极小值更常见。</p>
+<p>鞍点的特点是：</p>
+<ul>
+<li>某些方向上像山谷</li>
+<li>某些方向上像山峰</li>
+<li>梯度可能很小，但并不是真正的最优点</li>
+</ul>
+<p><span>SGD<span class="heti-spacing"> </span></span>在这些区域里容易停滞或推进很慢。</p>
+<h3 id="noisy-gradient">Noisy Gradient</h3>
+<p>由于<span class="heti-skip"><span class="heti-spacing"> </span>batch<span class="heti-spacing"> </span></span>只是全数据的一小部分，估计出的梯度含有噪声。</p>
+<p>这既有坏处，也有好处：</p>
+<ul>
+<li>坏处：路径抖动、不稳定</li>
+<li>好处：有时能帮助逃离某些糟糕区域</li>
+</ul>
+<h2 id="momentum">Momentum</h2>
+<p>为了减少来回震荡、提升收敛速度，我们可以给<span class="heti-skip"><span class="heti-spacing"> </span>SGD<span class="heti-spacing"> </span></span>加上动量（momentum<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
+<p>直觉上，把参数更新想成一个带惯性的球：</p>
+<ul>
+<li>如果一直朝同一方向下坡，就越滚越快</li>
+<li>如果某个方向来回震荡，更新会被平滑掉</li>
+</ul>
+<p>更新规则通常写作：</p>
+<div class="arithmatex">\[
+v \leftarrow \rho v - \eta \nabla_W L
+\]</div>
+<div class="arithmatex">\[
+W \leftarrow W + v
+\]</div>
+<p>其中：</p>
+<ul>
+<li><span><span class="arithmatex">\(v\)</span><span class="heti-spacing"> </span></span>是速度项</li>
+<li><span><span class="arithmatex">\(\rho\)</span><span class="heti-spacing"> </span></span>是动量系数，常取<span class="heti-skip"><span class="heti-spacing"> </span>0.9<span class="heti-spacing"> </span></span>或<span><span class="heti-spacing"> </span>0.99</span></li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="n">dw</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</span><span id="__span-3-4"><a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>    <span class="n">v</span> <span class="o">=</span> <span class="n">momentum</span> <span class="o">*</span> <span class="n">v</span> <span class="o">-</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">dw</span>
+</span><span id="__span-3-5"><a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="n">w</span> <span class="o">+=</span> <span class="n">v</span>
+</span></code></pre></div>
+<h3 id="momentum-的效果"><span>Momentum<span class="heti-spacing"> </span></span>的效果</h3>
+<ul>
+<li>加速沿一致方向的移动</li>
+<li>抑制高曲率方向上的震荡</li>
+<li>有时能帮助越过浅局部坑或鞍点</li>
+</ul>
+<h2 id="nesterov-momentum">Nesterov Momentum</h2>
+<p><span>Nesterov momentum<span class="heti-spacing"> </span></span>可以理解为对普通<span class="heti-skip"><span class="heti-spacing"> </span>momentum<span class="heti-spacing"> </span></span>的一个小改进：</p>
+<p>它不是在当前位置算梯度，而是先朝当前速度方向“看一眼”，再在前瞻位置计算梯度。</p>
+<p>这个想法会让更新对前方地形更敏感，方向通常更准确。</p>
+<p>可以把它理解成：</p>
+<ul>
+<li>普通<span><span class="heti-spacing"> </span>momentum</span>：先冲，再纠正</li>
+<li>Nesterov momentum：先预判，再冲</li>
+</ul>
+<p>课程里知道这个直觉即可，真正实现时一般直接用框架提供的优化器。</p>
+<h2 id="adaptive-learning-rate-methods">Adaptive Learning Rate Methods</h2>
+<p>除了给更新加惯性，还有一类方法会为不同参数自动调整步长。</p>
+<p>直觉是：</p>
+<ul>
+<li>某个维度梯度一直很大，说明这个方向更新要更谨慎</li>
+<li>某个维度梯度一直很小，说明这个方向可以走得更快</li>
+</ul>
+<h3 id="adagrad">AdaGrad</h3>
+<p><span>AdaGrad<span class="heti-spacing"> </span></span>会累计历史梯度平方：</p>
+<div class="arithmatex">\[
+G_t = G_{t-1} + g_t^2
+\]</div>
+<p>再用它缩放当前梯度：</p>
+<div class="arithmatex">\[
+W_{t+1} = W_t - \frac{\eta}{\sqrt{G_t} + \epsilon} g_t
+\]</div>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(g_t\)</span><span class="heti-spacing"> </span></span>是当前梯度。</p>
+<p>优点是能自适应调整不同维度的学习率。</p>
+<p>缺点也很明显：</p>
+<ul>
+<li>历史平方梯度只增不减</li>
+<li>训练到后面步长可能越来越小</li>
+<li>最终几乎不再更新</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="n">grad_squared</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>    <span class="n">dw</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</span><span id="__span-4-4"><a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>    <span class="n">grad_squared</span> <span class="o">+=</span> <span class="n">dw</span> <span class="o">*</span> <span class="n">dw</span>
+</span><span id="__span-4-5"><a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>    <span class="n">w</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">dw</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">grad_squared</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-7</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="rmsprop">RMSProp</h3>
+<p><span>RMSProp<span class="heti-spacing"> </span></span>可以看作“带遗忘机制的<span><span class="heti-spacing"> </span>AdaGrad</span>”。</p>
+<p>它不再无限累计所有历史梯度平方，而是做指数滑动平均：</p>
+<div class="arithmatex">\[
+G_t = \beta G_{t-1} + (1 - \beta) g_t^2
+\]</div>
+<p>然后更新：</p>
+<div class="arithmatex">\[
+W_{t+1} = W_t - \frac{\eta}{\sqrt{G_t} + \epsilon} g_t
+\]</div>
+<p>这样可以避免<span class="heti-skip"><span class="heti-spacing"> </span>AdaGrad<span class="heti-spacing"> </span></span>后期学习率过小的问题。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="n">cache</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-5-2"><a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">for</span> <span class="n">step</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_steps</span><span class="p">):</span>
+</span><span id="__span-5-3"><a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>    <span class="n">dw</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</span><span id="__span-5-4"><a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a>    <span class="n">cache</span> <span class="o">=</span> <span class="n">decay_rate</span> <span class="o">*</span> <span class="n">cache</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">decay_rate</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">dw</span> <span class="o">*</span> <span class="n">dw</span><span class="p">)</span>
+</span><span id="__span-5-5"><a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a>    <span class="n">w</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">dw</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cache</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-7</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="adam">Adam</h2>
+<p><span>Adam<span class="heti-spacing"> </span></span>是目前最常用的优化器之一，可以看作<span class="heti-skip"><span class="heti-spacing"> </span>momentum<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>RMSProp<span class="heti-spacing"> </span></span>的结合。</p>
+<p>它同时维护：</p>
+<ul>
+<li>一阶矩估计：梯度的滑动平均</li>
+<li>二阶矩估计：梯度平方的滑动平均</li>
+</ul>
+<p>公式写作：</p>
+<div class="arithmatex">\[
+m_t = \beta_1 m_{t-1} + (1-\beta_1) g_t
+\]</div>
+<div class="arithmatex">\[
+v_t = \beta_2 v_{t-1} + (1-\beta_2) g_t^2
+\]</div>
+<p>由于初始化时<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(m_t, v_t\)</span><span class="heti-spacing"> </span></span>都偏向<span><span class="heti-spacing"> </span>0</span>，还需要偏差修正：</p>
+<div class="arithmatex">\[
+\hat{m}_t = \frac{m_t}{1-\beta_1^t}, \quad \hat{v}_t = \frac{v_t}{1-\beta_2^t}
+\]</div>
+<p>最后更新：</p>
+<div class="arithmatex">\[
+W_{t+1} = W_t - \frac{\eta}{\sqrt{\hat{v}_t} + \epsilon} \hat{m}_t
+\]</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="n">m</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-6-2"><a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a><span class="n">v</span> <span class="o">=</span> <span class="mi">0</span>
+</span><span id="__span-6-3"><a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">num_steps</span> <span class="o">+</span> <span class="mi">1</span><span class="p">):</span>
+</span><span id="__span-6-4"><a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="n">dw</span> <span class="o">=</span> <span class="n">compute_gradient</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+</span><span id="__span-6-5"><a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="n">m</span> <span class="o">=</span> <span class="n">beta1</span> <span class="o">*</span> <span class="n">m</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">beta1</span><span class="p">)</span> <span class="o">*</span> <span class="n">dw</span>
+</span><span id="__span-6-6"><a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="n">v</span> <span class="o">=</span> <span class="n">beta2</span> <span class="o">*</span> <span class="n">v</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">beta2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">dw</span> <span class="o">*</span> <span class="n">dw</span><span class="p">)</span>
+</span><span id="__span-6-7"><a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a>    <span class="n">m_unbias</span> <span class="o">=</span> <span class="n">m</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">beta1</span> <span class="o">**</span> <span class="n">t</span><span class="p">)</span>
+</span><span id="__span-6-8"><a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a>    <span class="n">v_unbias</span> <span class="o">=</span> <span class="n">v</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">beta2</span> <span class="o">**</span> <span class="n">t</span><span class="p">)</span>
+</span><span id="__span-6-9"><a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a>    <span class="n">w</span> <span class="o">-=</span> <span class="n">learning_rate</span> <span class="o">*</span> <span class="n">m_unbias</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">v_unbias</span><span class="p">)</span> <span class="o">+</span> <span class="mf">1e-7</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="adam-的实践特点"><span>Adam<span class="heti-spacing"> </span></span>的实践特点</h3>
+<ul>
+<li>通常开箱即用效果很好</li>
+<li>对学习率没有纯<span class="heti-skip"><span class="heti-spacing"> </span>SGD<span class="heti-spacing"> </span></span>那么敏感</li>
+<li>在很多任务里收敛更快</li>
+</ul>
+<p>常见默认值是：</p>
+<ul>
+<li><span class="arithmatex">\(\beta_1 = 0.9\)</span></li>
+<li><span class="arithmatex">\(\beta_2 = 0.999\)</span></li>
+<li><span class="arithmatex">\(\epsilon = 10^{-8}\)</span></li>
+</ul>
+<h2 id="first-order-and-second-order-methods">First-Order and Second-Order Methods</h2>
+<p>前面这些方法基本都只用到一阶导数，也就是梯度，因此叫一阶方法（first-order methods<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
+<p>另一类方法会利用二阶导数信息，例如<span class="heti-skip"><span class="heti-spacing"> </span>Hessian<span class="heti-spacing"> </span></span>矩阵，用来刻画曲率。</p>
+<p>二阶方法理论上能：</p>
+<ul>
+<li>更准确地估计地形</li>
+<li>选择更合理的下降方向</li>
+<li>在某些问题上收敛更快</li>
+</ul>
+<p>但在深度学习中，二阶方法通常不够实用，因为：</p>
+<ul>
+<li><span>Hessian<span class="heti-spacing"> </span></span>很大</li>
+<li>计算和存储代价都很高</li>
+<li>求逆更加昂贵</li>
+</ul>
+<p>因此大规模神经网络训练中通常还是以一阶方法为主。</p>
+<h2 id="convex-and-non-convex-optimization">Convex and Non-Convex Optimization</h2>
+<p>优化问题里一个非常重要的概念是凸性（convexity<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
+<p>如果一个函数是凸函数，那么它有很好的性质：</p>
+<ul>
+<li>局部最小值就是全局最小值</li>
+<li>优化理论更完整</li>
+<li>收敛分析更容易做</li>
+</ul>
+<p>线性分类器配合<span class="heti-skip"><span class="heti-spacing"> </span>SVM<span class="heti-spacing"> </span></span>或<span class="heti-skip"><span class="heti-spacing"> </span>Softmax loss<span class="heti-spacing"> </span></span>时，通常对应的是凸优化问题。</p>
+<p>但一旦进入神经网络，问题往往变成非凸优化：</p>
+<ul>
+<li>可能有很多局部极值</li>
+<li>可能有大量鞍点</li>
+<li>很难证明一定找到全局最优</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">深度学习中的现实</p>
+<p>我们通常无法保证找到全局最优解。</p>
+<p>但实践表明，只要优化方法、初始化和超参数选择合理，找到一个足够好的解通常就已经够用了。</p>
+</div>
+<h2 id="what-hyperparameters-matter">What Hyperparameters Matter</h2>
+<p>这一讲出现了很多优化相关超参数，最关键的包括：</p>
+<ul>
+<li>初始化方式</li>
+<li>学习率</li>
+<li>训练步数</li>
+<li>batch size</li>
+<li>正则化强度</li>
+<li><span>momentum<span class="heti-spacing"> </span></span>系数</li>
+<li><span>RMSProp / Adam<span class="heti-spacing"> </span></span>的衰减系数</li>
+</ul>
+<p>其中最敏感、最常需要调的是学习率。</p>
+<h2 id="optimization-in-practice">Optimization in Practice</h2>
+<p>从工程角度看，第四讲最重要的结论不是“记住多少公式”，而是建立下面这组经验：</p>
+<ul>
+<li>先确认<span class="heti-skip"><span class="heti-spacing"> </span>loss<span class="heti-spacing"> </span></span>能正常下降</li>
+<li>如果<span class="heti-skip"><span class="heti-spacing"> </span>loss<span class="heti-spacing"> </span></span>完全不动，先怀疑学习率太小、梯度实现错误或初始化不当</li>
+<li>如果<span class="heti-skip"><span class="heti-spacing"> </span>loss<span class="heti-spacing"> </span></span>爆炸，先怀疑学习率太大</li>
+<li>如果更新方向左右摇摆，考虑用<span><span class="heti-spacing"> </span>momentum</span></li>
+<li>如果不同维度尺度差异很大，自适应方法会更稳</li>
+<li>默认起步时，<span>Adam<span class="heti-spacing"> </span></span>往往比纯<span class="heti-skip"><span class="heti-spacing"> </span>SGD<span class="heti-spacing"> </span></span>更省事</li>
+</ul>
+<h2 id="main-takeaways">Main Takeaways</h2>
+<ul>
+<li><span>Optimization<span class="heti-spacing"> </span></span>的目标是最小化损失函数，找到更好的参数</li>
+<li>梯度给出局部最陡上升方向，因此负梯度是下降方向</li>
+<li><span>Numerical gradient<span class="heti-spacing"> </span></span>适合检查，<span>analytic gradient<span class="heti-spacing"> </span></span>适合训练</li>
+<li><span>Full batch gradient descent<span class="heti-spacing"> </span></span>太贵，所以实践中常用<span><span class="heti-spacing"> </span>mini-batch SGD</span></li>
+<li><span>SGD<span class="heti-spacing"> </span></span>会遇到震荡、鞍点和<span class="heti-skip"><span class="heti-spacing"> </span>noisy gradient<span class="heti-spacing"> </span></span>等问题</li>
+<li><span>Momentum<span class="heti-spacing"> </span></span>通过引入速度项改善优化轨迹</li>
+<li>AdaGrad、RMSProp、<span>Adam<span class="heti-spacing"> </span></span>会按维度自适应调整步长</li>
+<li>大规模深度学习通常依赖一阶优化方法</li>
+<li>线性模型优化通常是凸的，神经网络优化通常是非凸的</li>
+</ul>
+<h2 id="terms">Terms</h2>
+<div class="admonition info">
+<p class="admonition-title">术语小结</p>
+<ul>
+<li><span>Gradient:<span class="heti-spacing"> </span></span>损失函数对参数的偏导向量，给出最陡上升方向</li>
+<li><span>Learning Rate:<span class="heti-spacing"> </span></span>每次参数更新的步长</li>
+<li><span>Mini-batch:<span class="heti-spacing"> </span></span>一次用于估计梯度的一小批训练样本</li>
+<li><span>SGD:<span class="heti-spacing"> </span></span>使用随机小批量近似全数据梯度的优化方法</li>
+<li><span>Momentum:<span class="heti-spacing"> </span></span>给参数更新加入历史速度的优化技巧</li>
+<li><span>AdaGrad:<span class="heti-spacing"> </span></span>基于历史梯度平方自适应缩放学习率的方法</li>
+<li><span>RMSProp:<span class="heti-spacing"> </span></span>带遗忘机制的<span><span class="heti-spacing"> </span>AdaGrad</span></li>
+<li><span>Adam:<span class="heti-spacing"> </span></span>结合<span class="heti-skip"><span class="heti-spacing"> </span>momentum<span class="heti-spacing"> </span></span>与<span class="heti-skip"><span class="heti-spacing"> </span>RMSProp<span class="heti-spacing"> </span></span>的常用优化器</li>
+<li><span>Saddle Point:<span class="heti-spacing"> </span></span>梯度接近<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>但并非最优解的区域</li>
+<li><span>Convex Optimization:<span class="heti-spacing"> </span></span>局部最优等于全局最优的优化问题</li>
+</ul>
+</div>
 <!-- 标题计数器 -->
 </article>
 </div>

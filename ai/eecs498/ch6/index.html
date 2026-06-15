@@ -191,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tools/venv/">
+<a class="md-tabs__link" href="../../../tools/">
           
   
     
@@ -211,7 +211,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../Misc/softmax.md">
+<a class="md-tabs__link" href="../../../misc/softmax/">
           
   
     
@@ -320,7 +320,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../tools/venv/">
+<a class="md-nav__link" href="../../../tools/">
 <span class="md-ellipsis">
     Tools
     
@@ -347,8 +347,35 @@
             AI
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../notes/">
+<span class="md-ellipsis">
+    AI Notes
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../agent/">
+<span class="md-ellipsis">
+    Agent
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../cs224n/">
+<span class="md-ellipsis">
+    CS224N
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_2" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../">
 <span class="md-ellipsis">
@@ -356,12 +383,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+<label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_9_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_9_2">
+<nav aria-expanded="true" aria-labelledby="__nav_9_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_9_5">
 <span class="md-nav__icon md-icon"></span>
             EECS498
           </label>
@@ -408,12 +435,172 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Lec 6: Backpropagation
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Lec 6: Backpropagation
     
   </span>
 </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#computational-graph">
+<span class="md-ellipsis">
+      Computational Graph
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#forward-pass">
+<span class="md-ellipsis">
+      Forward Pass
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backward-pass">
+<span class="md-ellipsis">
+      Backward Pass
+    </span>
+</a>
+<nav aria-label="Backward Pass" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#链式法则chain-rule">
+<span class="md-ellipsis">
+      链式法则（Chain Rule）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#common-gate-patterns">
+<span class="md-ellipsis">
+      Common Gate Patterns
+    </span>
+</a>
+<nav aria-label="Common Gate Patterns" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#add-gate加法门">
+<span class="md-ellipsis">
+      Add Gate（加法门）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multiply-gate乘法门">
+<span class="md-ellipsis">
+      Multiply Gate（乘法门）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#max-gate最大值门">
+<span class="md-ellipsis">
+      Max Gate（最大值门）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#copy-gate复制门">
+<span class="md-ellipsis">
+      Copy Gate（复制门）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sigmoid-gate-shortcut">
+<span class="md-ellipsis">
+      Sigmoid Gate Shortcut
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vectorized-backpropagation">
+<span class="md-ellipsis">
+      Vectorized Backpropagation
+    </span>
+</a>
+<nav aria-label="Vectorized Backpropagation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#矩阵乘法反传">
+<span class="md-ellipsis">
+      矩阵乘法反传
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#向量化代码示例">
+<span class="md-ellipsis">
+      向量化代码示例
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backprop-through-a-neural-network">
+<span class="md-ellipsis">
+      Backprop Through a Neural Network
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#autograd-in-pytorch">
+<span class="md-ellipsis">
+      Autograd in PyTorch
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gradient-checking">
+<span class="md-ellipsis">
+      Gradient Checking
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ch7/">
@@ -550,7 +737,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../Misc/softmax.md">
+<a class="md-nav__link" href="../../../misc/softmax/">
 <span class="md-ellipsis">
     Misc
     
@@ -576,6 +763,157 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#computational-graph">
+<span class="md-ellipsis">
+      Computational Graph
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#forward-pass">
+<span class="md-ellipsis">
+      Forward Pass
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backward-pass">
+<span class="md-ellipsis">
+      Backward Pass
+    </span>
+</a>
+<nav aria-label="Backward Pass" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#链式法则chain-rule">
+<span class="md-ellipsis">
+      链式法则（Chain Rule）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#common-gate-patterns">
+<span class="md-ellipsis">
+      Common Gate Patterns
+    </span>
+</a>
+<nav aria-label="Common Gate Patterns" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#add-gate加法门">
+<span class="md-ellipsis">
+      Add Gate（加法门）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multiply-gate乘法门">
+<span class="md-ellipsis">
+      Multiply Gate（乘法门）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#max-gate最大值门">
+<span class="md-ellipsis">
+      Max Gate（最大值门）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#copy-gate复制门">
+<span class="md-ellipsis">
+      Copy Gate（复制门）
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sigmoid-gate-shortcut">
+<span class="md-ellipsis">
+      Sigmoid Gate Shortcut
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#vectorized-backpropagation">
+<span class="md-ellipsis">
+      Vectorized Backpropagation
+    </span>
+</a>
+<nav aria-label="Vectorized Backpropagation" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#矩阵乘法反传">
+<span class="md-ellipsis">
+      矩阵乘法反传
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#向量化代码示例">
+<span class="md-ellipsis">
+      向量化代码示例
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#backprop-through-a-neural-network">
+<span class="md-ellipsis">
+      Backprop Through a Neural Network
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#autograd-in-pytorch">
+<span class="md-ellipsis">
+      Autograd in PyTorch
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gradient-checking">
+<span class="md-ellipsis">
+      Gradient Checking
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -589,6 +927,256 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
 </a>
 <h1 id="lec-6-backpropagation">Lec 6: Backpropagation</h1>
+<h2 id="overview">Overview</h2>
+<p>上一讲我们有了神经网络的结构，但还需要一个方法高效地计算<strong>所有参数的梯度</strong>，才能用梯度下降做训练。</p>
+<p>对于一个几十层的深度网络，参数可能有几千万个。如果对每个参数都用数值梯度（前向传播两次<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，代价是不可接受的。</p>
+<p>解决方法是<strong>反向传播（Backpropagation）</strong>：利用链式法则，沿着计算图从输出到输入高效地反向计算梯度，每个参数只需<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(O(1)\)</span><span class="heti-spacing"> </span></span>额外工作。</p>
+<h2 id="computational-graph">Computational Graph</h2>
+<p>将计算过程用一个<strong>有向无环图（DAG）</strong>表示：</p>
+<ul>
+<li><strong>节点（node）</strong>：操作（加、乘、激活等）</li>
+<li><strong>边（edge）</strong>：数据（标量、向量、张量）</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">例子：<span class="arithmatex">\(f(x, y, z) = (x + y) \cdot z\)</span></p>
+<p>设<span><span class="heti-spacing"> </span><span class="arithmatex">\(q = x + y\)</span></span>，则<span><span class="heti-spacing"> </span><span class="arithmatex">\(f = q \cdot z\)</span></span>。</p>
+<p>计算图：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>x ──┐
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>     + ── q ──┐
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>y ──┘          × ── f
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>          z ──┘
+</span></code></pre></div>
+</div>
+<p>构建计算图之后，可以先做<strong>前向传播（Forward Pass）</strong>计算输出值，再做<strong>反向传播（Backward Pass）</strong>计算梯度。</p>
+<h2 id="forward-pass">Forward Pass</h2>
+<p>前向传播就是按照计算图的拓扑顺序，从输入到输出依次计算每个节点的值。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># f(x, y, z) = (x + y) * z</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="o">=</span> <span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span>
+</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="n">q</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>    <span class="c1"># q = 3</span>
+</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="n">f</span> <span class="o">=</span> <span class="n">q</span> <span class="o">*</span> <span class="n">z</span>    <span class="c1"># f = -12</span>
+</span></code></pre></div>
+<h2 id="backward-pass">Backward Pass</h2>
+<p>反向传播沿着计算图<strong>反向</strong>传递梯度。</p>
+<p>目标是计算<span><span class="heti-spacing"> </span><span class="arithmatex">\(\dfrac{\partial f}{\partial x}\)</span></span>、<span class="arithmatex">\(\dfrac{\partial f}{\partial y}\)</span>、<span class="arithmatex">\(\dfrac{\partial f}{\partial z}\)</span>。</p>
+<h3 id="链式法则chain-rule">链式法则（Chain Rule）</h3>
+<p>如果<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f = g(q)\)</span><span class="heti-spacing"> </span></span>且<span><span class="heti-spacing"> </span><span class="arithmatex">\(q = h(x)\)</span></span>，则：</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial x} = \frac{\partial f}{\partial q} \cdot \frac{\partial q}{\partial x}
+\]</div>
+<p>每个节点只需要知道：</p>
+<ol>
+<li><strong>上游梯度（upstream gradient）</strong>：<span class="arithmatex">\(\dfrac{\partial f}{\partial q}\)</span>，来自下一层的反传</li>
+<li><strong>局部梯度（local gradient）</strong>：<span class="arithmatex">\(\dfrac{\partial q}{\partial x}\)</span>，由当前节点的操作决定</li>
+</ol>
+<p><strong>下游梯度（downstream gradient）</strong> <span>=<span class="heti-spacing"> </span></span>上游梯度<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\times\)</span><span class="heti-spacing"> </span></span>局部梯度：</p>
+<div class="arithmatex">\[
+\frac{\partial f}{\partial x} = \underbrace{\frac{\partial f}{\partial q}}_{\text{upstream}} \cdot \underbrace{\frac{\partial q}{\partial x}}_{\text{local}}
+\]</div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># 继续上面的例子</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1"># 初始：df/df = 1</span>
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">dL_df</span> <span class="o">=</span> <span class="mf">1.0</span>
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1"># f = q * z，反传 × 门：</span>
+</span><span id="__span-2-6"><a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="n">dL_dq</span> <span class="o">=</span> <span class="n">dL_df</span> <span class="o">*</span> <span class="n">z</span>    <span class="c1"># = 1 * (-4) = -4</span>
+</span><span id="__span-2-7"><a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">dL_dz</span> <span class="o">=</span> <span class="n">dL_df</span> <span class="o">*</span> <span class="n">q</span>    <span class="c1"># = 1 * 3 = 3</span>
+</span><span id="__span-2-8"><a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="c1"># q = x + y，反传 + 门：</span>
+</span><span id="__span-2-10"><a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="n">dL_dx</span> <span class="o">=</span> <span class="n">dL_dq</span> <span class="o">*</span> <span class="mi">1</span>   <span class="c1"># = -4</span>
+</span><span id="__span-2-11"><a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="n">dL_dy</span> <span class="o">=</span> <span class="n">dL_dq</span> <span class="o">*</span> <span class="mi">1</span>   <span class="c1"># = -4</span>
+</span></code></pre></div>
+<h2 id="common-gate-patterns">Common Gate Patterns</h2>
+<p>计算图中有一些常见操作，它们的梯度形式有固定规律：</p>
+<h3 id="add-gate加法门">Add Gate（加法门）</h3>
+<div class="arithmatex">\[
+q = x + y \implies \frac{\partial q}{\partial x} = 1, \quad \frac{\partial q}{\partial y} = 1
+\]</div>
+<ul>
+<li>加法门<strong>均等地分发</strong>上游梯度给所有输入</li>
+</ul>
+<h3 id="multiply-gate乘法门">Multiply Gate（乘法门）</h3>
+<div class="arithmatex">\[
+q = x \cdot y \implies \frac{\partial q}{\partial x} = y, \quad \frac{\partial q}{\partial y} = x
+\]</div>
+<ul>
+<li>乘法门<strong>交换输入值</strong>作为对方的局部梯度</li>
+<li>如果某个输入非常大，对应的梯度也很大（梯度放大效应）</li>
+</ul>
+<h3 id="max-gate最大值门">Max Gate（最大值门）</h3>
+<div class="arithmatex">\[
+q = \max(x, y) \implies \frac{\partial q}{\partial x} = \mathbf{1}[x &gt; y], \quad \frac{\partial q}{\partial y} = \mathbf{1}[y &gt; x]
+\]</div>
+<ul>
+<li>上游梯度<strong>全部流向最大值对应的分支</strong>，其他分支梯度为<span><span class="heti-spacing"> </span>0</span></li>
+<li><span>ReLU<span class="heti-spacing"> </span></span>就是<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\max(0, x)\)</span><span class="heti-spacing"> </span></span>的特例</li>
+</ul>
+<h3 id="copy-gate复制门">Copy Gate（复制门）</h3>
+<p>如果一个节点的输出被使用了多次，其梯度是所有使用处梯度的<strong>累加</strong>：</p>
+<div class="arithmatex">\[
+\frac{\partial L}{\partial x} = \sum_k \frac{\partial L}{\partial z_k} \cdot \frac{\partial z_k}{\partial x}
+\]</div>
+<h2 id="sigmoid-gate-shortcut">Sigmoid Gate Shortcut</h2>
+<p><span>Sigmoid<span class="heti-spacing"> </span></span>函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\sigma(x) = \dfrac{1}{1 + e^{-x}}\)</span><span class="heti-spacing"> </span></span>的导数有一个优雅的形式：</p>
+<div class="arithmatex">\[
+\frac{d\sigma}{dx} = \sigma(x)(1 - \sigma(x))
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">推导验证</p>
+<div class="arithmatex">\[
+\frac{d\sigma}{dx} = \frac{e^{-x}}{(1 + e^{-x})^2} = \sigma(x) \cdot \frac{e^{-x}}{1 + e^{-x}} = \sigma(x)(1 - \sigma(x))
+\]</div>
+</div>
+<p>可以把<span class="heti-skip"><span class="heti-spacing"> </span>Sigmoid<span class="heti-spacing"> </span></span>里的一堆子操作打包成单个节点，直接用这个公式反传。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># Sigmoid 的前向 + 反向</span>
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">x</span> <span class="o">=</span> <span class="mf">1.0</span>
+</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a><span class="n">sig</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">torch</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">x_tensor</span><span class="p">))</span>
+</span><span id="__span-3-4"><a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="c1"># 反传：上游梯度 * sig * (1 - sig)</span>
+</span></code></pre></div>
+<h2 id="vectorized-backpropagation">Vectorized Backpropagation</h2>
+<p>当输入从标量扩展到向量<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>矩阵时，梯度计算也要扩展。</p>
+<p>设<span><span class="heti-spacing"> </span><span class="arithmatex">\(y = f(x)\)</span></span>，<span class="arithmatex">\(x \in \mathbb{R}^n\)</span>，<span class="arithmatex">\(y \in \mathbb{R}^m\)</span>，则<strong>雅可比矩阵（Jacobian Matrix）</strong>为：</p>
+<div class="arithmatex">\[
+J = \frac{\partial y}{\partial x} \in \mathbb{R}^{m \times n}, \quad J_{ij} = \frac{\partial y_i}{\partial x_j}
+\]</div>
+<p>链式法则向量形式：</p>
+<div class="arithmatex">\[
+\frac{\partial L}{\partial x} = J^T \cdot \frac{\partial L}{\partial y}
+\]</div>
+<div class="admonition warning">
+<p class="admonition-title">不显式构造<span><span class="heti-spacing"> </span>Jacobian</span></p>
+<p>对于一个大型网络，<span>Jacobian<span class="heti-spacing"> </span></span>矩阵可能是<span><span class="heti-spacing"> </span><span class="arithmatex">\(4096 \times 4096\)</span></span>，存储就不现实。</p>
+<p>实践中不会显式构造<span><span class="heti-spacing"> </span><span class="arithmatex">\(J\)</span></span>，而是直接计算<span><span class="heti-spacing"> </span><span class="arithmatex">\(J^T \cdot v\)</span></span>（矩阵向量积<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，这叫 <strong>vector-Jacobian product（VJP）</strong>。</p>
+</div>
+<h3 id="矩阵乘法反传">矩阵乘法反传</h3>
+<p>设<span><span class="heti-spacing"> </span><span class="arithmatex">\(Y = XW\)</span></span>，其中<span><span class="heti-spacing"> </span><span class="arithmatex">\(X \in \mathbb{R}^{N \times D}\)</span></span>，<span class="arithmatex">\(W \in \mathbb{R}^{D \times M}\)</span>，<span class="arithmatex">\(Y \in \mathbb{R}^{N \times M}\)</span>，则：</p>
+<div class="arithmatex">\[
+\frac{\partial L}{\partial X} = \frac{\partial L}{\partial Y} \cdot W^T, \quad \frac{\partial L}{\partial W} = X^T \cdot \frac{\partial L}{\partial Y}
+\]</div>
+<p>验证形状（维度对齐原则<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：</p>
+<ul>
+<li><span class="arithmatex">\(\dfrac{\partial L}{\partial X}\)</span>：形状应与<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(X\)</span><span class="heti-spacing"> </span></span>相同，即<span><span class="heti-spacing"> </span><span class="arithmatex">\(N \times D\)</span></span> ✓</li>
+<li><span class="arithmatex">\(\dfrac{\partial L}{\partial W}\)</span>：形状应与<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(W\)</span><span class="heti-spacing"> </span></span>相同，即<span><span class="heti-spacing"> </span><span class="arithmatex">\(D \times M\)</span></span> ✓</li>
+</ul>
+<div class="admonition info">
+<p class="admonition-title">记忆技巧</p>
+<p>对<span><span class="heti-spacing"> </span><span class="arithmatex">\(Y = XW\)</span></span>：</p>
+<ul>
+<li><span class="arithmatex">\(\dfrac{\partial L}{\partial X} = \dfrac{\partial L}{\partial Y} W^T\)</span>（上游梯度乘以<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(W\)</span><span class="heti-spacing"> </span></span>的转置）</li>
+<li><span class="arithmatex">\(\dfrac{\partial L}{\partial W} = X^T \dfrac{\partial L}{\partial Y}\)</span>（<span><span class="arithmatex">\(X\)</span><span class="heti-spacing"> </span></span>的转置乘以上游梯度）</li>
+</ul>
+<p>只要确保形状和原始矩阵一致，就不会搞错<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(W^T\)</span><span class="heti-spacing"> </span></span>在左还是右。</p>
+</div>
+<h3 id="向量化代码示例">向量化代码示例</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-4-4"><a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a><span class="n">w</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-4-5"><a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a><span class="n">y</span> <span class="o">=</span> <span class="n">x</span> <span class="o">@</span> <span class="n">w</span>                   <span class="c1"># (4, 5)</span>
+</span><span id="__span-4-6"><a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a><span class="n">loss</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</span><span id="__span-4-7"><a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-4-8"><a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>         <span class="c1"># (4, 3)</span>
+</span><span id="__span-4-10"><a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">w</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>         <span class="c1"># (3, 5)</span>
+</span></code></pre></div>
+<h2 id="backprop-through-a-neural-network">Backprop Through a Neural Network</h2>
+<p>把以上思想应用到两层神经网络：</p>
+<div class="arithmatex">\[
+s = W_2 \underbrace{\max(0, W_1 x)}_h
+\]</div>
+<p><strong>前向传播：</strong></p>
+<div class="arithmatex">\[
+h_1 = W_1 x + b_1, \quad h_2 = \max(0, h_1), \quad s = W_2 h_2 + b_2
+\]</div>
+<p><strong>反向传播：</strong></p>
+<div class="arithmatex">\[
+\frac{\partial L}{\partial s} \to \frac{\partial L}{\partial W_2}, \frac{\partial L}{\partial h_2} \to \frac{\partial L}{\partial h_1}\ (\text{ReLU gate}) \to \frac{\partial L}{\partial W_1}, \frac{\partial L}{\partial x}
+\]</div>
+<p>每一步都是<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>局部梯度<span class="heti-skip"><span class="heti-spacing"> </span>×<span class="heti-spacing"> </span></span>上游梯度<span><span class="heti-spacing"> </span>"</span>，链式法则自动处理层间传递。</p>
+<h2 id="autograd-in-pytorch">Autograd in PyTorch</h2>
+<p>现代深度学习框架（PyTorch、<span>JAX<span class="heti-spacing"> </span></span>等）自动构建计算图并执行反向传播。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-5-2"><a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+</span><span id="__span-5-3"><a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3072</span><span class="p">)</span>
+</span><span id="__span-5-5"><a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+</span><span id="__span-5-6"><a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">3072</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+</span><span id="__span-5-7"><a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(),</span>
+</span><span id="__span-5-8"><a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a>    <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span>
+</span><span id="__span-5-9"><a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a><span class="p">)</span>
+</span><span id="__span-5-10"><a href="#__codelineno-5-10" id="__codelineno-5-10" name="__codelineno-5-10"></a><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+</span><span id="__span-5-11"><a href="#__codelineno-5-11" id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">3</span><span class="p">])</span>
+</span><span id="__span-5-12"><a href="#__codelineno-5-12" id="__codelineno-5-12" name="__codelineno-5-12"></a>
+</span><span id="__span-5-13"><a href="#__codelineno-5-13" id="__codelineno-5-13" name="__codelineno-5-13"></a><span class="c1"># 前向传播（自动构建计算图）</span>
+</span><span id="__span-5-14"><a href="#__codelineno-5-14" id="__codelineno-5-14" name="__codelineno-5-14"></a><span class="n">scores</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-5-15"><a href="#__codelineno-5-15" id="__codelineno-5-15" name="__codelineno-5-15"></a><span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-5-16"><a href="#__codelineno-5-16" id="__codelineno-5-16" name="__codelineno-5-16"></a>
+</span><span id="__span-5-17"><a href="#__codelineno-5-17" id="__codelineno-5-17" name="__codelineno-5-17"></a><span class="c1"># 反向传播（自动计算所有梯度）</span>
+</span><span id="__span-5-18"><a href="#__codelineno-5-18" id="__codelineno-5-18" name="__codelineno-5-18"></a><span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-5-19"><a href="#__codelineno-5-19" id="__codelineno-5-19" name="__codelineno-5-19"></a>
+</span><span id="__span-5-20"><a href="#__codelineno-5-20" id="__codelineno-5-20" name="__codelineno-5-20"></a><span class="c1"># 查看梯度</span>
+</span><span id="__span-5-21"><a href="#__codelineno-5-21" id="__codelineno-5-21" name="__codelineno-5-21"></a><span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">param</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-5-22"><a href="#__codelineno-5-22" id="__codelineno-5-22" name="__codelineno-5-22"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">param</span><span class="o">.</span><span class="n">grad</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title"><span>PyTorch<span class="heti-spacing"> </span></span>的工作原理</p>
+<ul>
+<li>每次前向传播，<span>PyTorch<span class="heti-spacing"> </span></span>动态构建计算图（Dynamic Computation Graph）</li>
+<li><code>loss.backward()</code> 触发反向传播，沿图反向传递梯度</li>
+<li><code>.grad</code> 属性保存每个参数的梯度</li>
+<li><code>optimizer.step()</code> 用梯度更新参数</li>
+</ul>
+</div>
+<h2 id="gradient-checking">Gradient Checking</h2>
+<p>验证反向传播实现是否正确的方法：用数值梯度与解析梯度对比。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">grad_check</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">analytic_grad</span><span class="p">,</span> <span class="n">h</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">):</span>
+</span><span id="__span-6-2"><a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a>    <span class="n">num_grad</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-6-3"><a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">numel</span><span class="p">()):</span>
+</span><span id="__span-6-4"><a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>        <span class="n">old_val</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span><span id="__span-6-5"><a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>        <span class="n">x</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_val</span> <span class="o">+</span> <span class="n">h</span>
+</span><span id="__span-6-6"><a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a>        <span class="n">pos</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-6-7"><a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a>        <span class="n">x</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_val</span> <span class="o">-</span> <span class="n">h</span>
+</span><span id="__span-6-8"><a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a>        <span class="n">neg</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-6-9"><a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a>        <span class="n">x</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">old_val</span>
+</span><span id="__span-6-10"><a href="#__codelineno-6-10" id="__codelineno-6-10" name="__codelineno-6-10"></a>        <span class="n">num_grad</span><span class="o">.</span><span class="n">flat</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span><span class="n">pos</span> <span class="o">-</span> <span class="n">neg</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">h</span><span class="p">)</span>
+</span><span id="__span-6-11"><a href="#__codelineno-6-11" id="__codelineno-6-11" name="__codelineno-6-11"></a>
+</span><span id="__span-6-12"><a href="#__codelineno-6-12" id="__codelineno-6-12" name="__codelineno-6-12"></a>    <span class="n">rel_err</span> <span class="o">=</span> <span class="p">(</span><span class="n">analytic_grad</span> <span class="o">-</span> <span class="n">num_grad</span><span class="p">)</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span><span class="o">.</span><span class="n">max</span><span class="p">()</span> <span class="o">/</span> <span class="p">(</span>
+</span><span id="__span-6-13"><a href="#__codelineno-6-13" id="__codelineno-6-13" name="__codelineno-6-13"></a>        <span class="n">analytic_grad</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">+</span> <span class="n">num_grad</span><span class="o">.</span><span class="n">abs</span><span class="p">()</span> <span class="o">+</span> <span class="mf">1e-8</span>
+</span><span id="__span-6-14"><a href="#__codelineno-6-14" id="__codelineno-6-14" name="__codelineno-6-14"></a>    <span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+</span><span id="__span-6-15"><a href="#__codelineno-6-15" id="__codelineno-6-15" name="__codelineno-6-15"></a>    <span class="k">return</span> <span class="n">rel_err</span>  <span class="c1"># 应小于 1e-5</span>
+</span></code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">梯度检查的注意事项</p>
+<ul>
+<li>只在调试阶段使用，正常训练时关掉（太慢）</li>
+<li>用双精度（float64）以减少数值误差</li>
+<li>在问题规模的一小部分参数上检查，不要全部检查</li>
+</ul>
+</div>
+<h2 id="main-takeaways">Main Takeaways</h2>
+<ul>
+<li>反向传播<span class="heti-skip"><span class="heti-spacing"> </span>=<span class="heti-spacing"> </span></span>在计算图上按链式法则反向传递梯度</li>
+<li>每个节点只需要知道局部梯度和上游梯度，与其他节点无关</li>
+<li>加法门分发梯度，乘法门交换梯度，<span>Max<span class="heti-spacing"> </span></span>门路由梯度</li>
+<li>向量化后用<span class="heti-skip"><span class="heti-spacing"> </span>Jacobian<span class="heti-spacing"> </span></span>矩阵和<span class="heti-skip"><span class="heti-spacing"> </span>VJP<span class="heti-spacing"> </span></span>高效计算，不显式构造大<span><span class="heti-spacing"> </span>Jacobian</span></li>
+<li>矩阵乘法反传：<span class="arithmatex">\(\partial L / \partial X = (\partial L / \partial Y) W^T\)</span>，<span class="arithmatex">\(\partial L / \partial W = X^T (\partial L / \partial Y)\)</span></li>
+<li><span>PyTorch autograd<span class="heti-spacing"> </span></span>自动完成计算图构建与反向传播</li>
+</ul>
+<h2 id="terms">Terms</h2>
+<div class="admonition info">
+<p class="admonition-title">术语小结</p>
+<ul>
+<li><strong>Backpropagation（反向传播）</strong>：利用链式法则在计算图上高效计算梯度的算法</li>
+<li><strong>Computational Graph（计算图）</strong>：表示计算过程的有向无环图</li>
+<li><strong>Forward Pass（前向传播）</strong>：从输入到输出计算数值</li>
+<li><strong>Backward Pass（反向传播）</strong>：从输出到输入计算梯度</li>
+<li><strong>Local Gradient（局部梯度）</strong>：当前节点输出对输入的偏导数</li>
+<li><strong>Upstream Gradient（上游梯度）</strong>：损失对当前节点输出的梯度（来自更靠近损失的节点）</li>
+<li><strong>Downstream Gradient（下游梯度）</strong>：损失对当前节点输入的梯度（传给更靠近输入的节点）</li>
+<li><strong>Jacobian Matrix（雅可比矩阵）</strong>：向量函数对向量输入的偏导数矩阵</li>
+<li><strong>VJP（Vector-Jacobian Product）</strong>：上游梯度向量与<span class="heti-skip"><span class="heti-spacing"> </span>Jacobian<span class="heti-spacing"> </span></span>的乘积，实践中用来替代显式<span><span class="heti-spacing"> </span>Jacobian</span></li>
+<li><strong>Autograd</strong>：自动微分，框架自动完成计算图构建与梯度计算</li>
+<li><strong>Gradient Checking（梯度检查）</strong>：用数值梯度验证解析梯度正确性的调试技巧</li>
+</ul>
+</div>
 <!-- 标题计数器 -->
 </article>
 </div>

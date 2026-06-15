@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html class="no-js" lang="zh">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<meta content="Ader's notebook" name="description"/>
+<meta content="Ader" name="author"/>
+<link href="https://ader817.github.io/notebook/ai/cs224n/peft/" rel="canonical"/>
+<link href="../posttraining/" rel="prev"/>
+<link href="../rag-agents/" rel="next"/>
+<link href="../../../assets/images/favicon.ico" rel="icon"/>
+<meta content="mkdocs-1.6.1, mkdocs-material-9.6.7" name="generator"/>
+<title>PEFT - Ader's notebook</title>
+<link href="../../../assets/stylesheets/main.8608ea7d.min.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/palette.06af60db.min.css" rel="stylesheet"/>
+<style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1 7.775V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775m1.5 0c0 .066.026.13.073.177l6.25 6.25a.25.25 0 0 0 .354 0l5.025-5.025a.25.25 0 0 0 0-.354l-6.25-6.25a.25.25 0 0 0-.177-.073H2.75a.25.25 0 0 0-.25.25ZM6 5a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.5 1.75v11.5c0 .138.112.25.25.25h3.17a.75.75 0 0 1 0 1.5H2.75A1.75 1.75 0 0 1 1 13.25V1.75C1 .784 1.784 0 2.75 0h8.5C12.216 0 13 .784 13 1.75v7.736a.75.75 0 0 1-1.5 0V1.75a.25.25 0 0 0-.25-.25h-8.5a.25.25 0 0 0-.25.25m13.274 9.537zl-4.557 4.45a.75.75 0 0 1-1.055-.008l-1.943-1.95a.75.75 0 0 1 1.062-1.058l1.419 1.425 4.026-3.932a.75.75 0 1 1 1.048 1.074M4.75 4h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5M4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75M8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.5 4.5 0 0 1-.563-1.191 3.84 3.84 0 0 1-.05-2.063 4.65 4.65 0 0 1-2.025-.293.75.75 0 0 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.747.747 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.4 2.4 0 0 1-.507-.441 3.1 3.1 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19.01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768L6.7 5.527c-.814-.68-1.75-1.462-2.692-2.619a3.7 3.7 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 .018-1.042.75.75 0 0 1 1.042-.018L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8m8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13M6.92 6.085h.001a.749.749 0 1 1-1.342-.67c.169-.339.436-.701.849-.977C6.845 4.16 7.369 4 8 4a2.76 2.76 0 0 1 1.637.525c.503.377.863.965.863 1.725 0 .448-.115.83-.329 1.15-.205.307-.47.513-.692.662-.109.072-.22.138-.313.195l-.006.004a6 6 0 0 0-.26.16 1 1 0 0 0-.276.245.75.75 0 0 1-1.248-.832c.184-.264.42-.489.692-.661q.154-.1.313-.195l.007-.004c.1-.061.182-.11.258-.161a1 1 0 0 0 .277-.245C8.96 6.514 9 6.427 9 6.25a.61.61 0 0 0-.262-.525A1.27 1.27 0 0 0 8 5.5c-.369 0-.595.09-.74.187a1 1 0 0 0-.34.398M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0M9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M2.344 2.343za8 8 0 0 1 11.314 11.314A8.002 8.002 0 0 1 .234 10.089a8 8 0 0 1 2.11-7.746m1.06 10.253a6.5 6.5 0 1 0 9.108-9.275 6.5 6.5 0 0 0-9.108 9.275M6.03 4.97 8 6.94l1.97-1.97a.749.749 0 0 1 1.275.326.75.75 0 0 1-.215.734L9.06 8l1.97 1.97a.749.749 0 0 1-.326 1.275.75.75 0 0 1-.734-.215L8 9.06l-1.97 1.97a.749.749 0 0 1-1.275-.326.75.75 0 0 1 .215-.734L6.94 8 4.97 6.03a.75.75 0 0 1 .018-1.042.75.75 0 0 1 1.042-.018"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004zm1.047 1.074L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006-.004-.009-.006-.006-.008-.001q-.005 0-.009.004"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.5 3.5 0 0 1 2.441 0l.999-1a.748.748 0 0 1 1.265.332.75.75 0 0 1-.205.729l-.775.776c.616.63.995 1.493.995 2.444v.327q0 .15-.025.292c.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5q-.002.615-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A5 5 0 0 1 8 16a5 5 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5 5 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.7 1.7 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06m.53 6.28a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75ZM6.173 5h3.654A.17.17 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458Zm-2.4 6.565a.75.75 0 0 0 .633 1.153h9.534a.75.75 0 0 0 .633-1.153L12.225 10.5h-8.45ZM9.5 2.5h-3V6c0 .143-.04.283-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6Z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="M1.75 2.5h10.5a.75.75 0 0 1 0 1.5H1.75a.75.75 0 0 1 0-1.5m4 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5m0 5h8.5a.75.75 0 0 1 0 1.5h-8.5a.75.75 0 0 1 0-1.5M2.5 7.75v6a.75.75 0 0 1-1.5 0v-6a.75.75 0 0 1 1.5 0"/></svg>');}</style>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css?family=JetBrains+Mono,+LXGW+WenKai+Screen+GB+Screen:300,300i,400,400i,700,700i%7CJetBrains+Mono,+Consolas:400,400i,700,700i&amp;display=fallback" rel="stylesheet"/>
+<style>:root{--md-text-font:"JetBrains Mono, LXGW WenKai Screen GB Screen";--md-code-font:"JetBrains Mono, Consolas"}</style>
+<link href="../../../css/heti.css" rel="stylesheet"/>
+<link href="../../../assets/stylesheets/custom.css" rel="stylesheet"/>
+<link href="https://unpkg.com/katex@0/dist/katex.min.css" rel="stylesheet"/>
+<link href="https://gcore.jsdelivr.net/npm/lxgw-wenkai-screen-webfont@1.1.0/style.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&amp;display=swap" rel="stylesheet"/>
+<script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+</head>
+<body data-md-color-accent="indigo" data-md-color-primary="blue-grey" data-md-color-scheme="default" dir="ltr">
+<input autocomplete="off" class="md-toggle" data-md-toggle="drawer" id="__drawer" type="checkbox"/>
+<input autocomplete="off" class="md-toggle" data-md-toggle="search" id="__search" type="checkbox"/>
+<label class="md-overlay" for="__drawer"></label>
+<div data-md-component="skip">
+<a class="md-skip" href="#peft">
+          跳转至
+        </a>
+</div>
+<div data-md-component="announce">
+</div>
+<header class="md-header" data-md-component="header">
+<nav aria-label="页眉" class="md-header__inner md-grid">
+<a aria-label="Ader's notebook" class="md-header__button md-logo" data-md-component="logo" href="../../.." title="Ader's notebook">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
+</a>
+<label class="md-header__button md-icon" for="__drawer">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+</label>
+<div class="md-header__title" data-md-component="header-title">
+<div class="md-header__ellipsis">
+<div class="md-header__topic">
+<span class="md-ellipsis">
+            Ader's notebook
+          </span>
+</div>
+<div class="md-header__topic" data-md-component="header-topic">
+<span class="md-ellipsis">
+            
+              PEFT
+            
+          </span>
+</div>
+</div>
+</div>
+<form class="md-header__option" data-md-component="palette">
+<input aria-label="切换至夜间模式" class="md-option" data-md-color-accent="indigo" data-md-color-media="(prefers-color-scheme: light)" data-md-color-primary="blue-grey" data-md-color-scheme="default" id="__palette_0" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_1" hidden="" title="切换至夜间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+<input aria-label="切换至日间模式" class="md-option" data-md-color-accent="teal" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-primary="black" data-md-color-scheme="slate" id="__palette_1" name="__palette" type="radio"/>
+<label class="md-header__button md-icon" for="__palette_0" hidden="" title="切换至日间模式">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"></path></svg>
+</label>
+</form>
+<script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+<label class="md-header__button md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+</label>
+<div class="md-search" data-md-component="search" role="dialog">
+<label class="md-search__overlay" for="__search"></label>
+<div class="md-search__inner" role="search">
+<form class="md-search__form" name="search">
+<input aria-label="搜索" autocapitalize="off" autocomplete="off" autocorrect="off" class="md-search__input" data-md-component="search-query" name="query" placeholder="搜索" required="" spellcheck="false" type="text"/>
+<label class="md-search__icon md-icon" for="__search">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</label>
+<nav aria-label="查找" class="md-search__options">
+<a aria-label="分享" class="md-search__icon md-icon" data-clipboard="" data-clipboard-text="" data-md-component="search-share" href="javascript:void(0)" tabindex="-1" title="分享">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+</a>
+<button aria-label="清空当前内容" class="md-search__icon md-icon" tabindex="-1" title="清空当前内容" type="reset">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+</button>
+</nav>
+<div class="md-search__suggest" data-md-component="search-suggest"></div>
+</form>
+<div class="md-search__output">
+<div class="md-search__scrollwrap" data-md-scrollfix="" tabindex="0">
+<div class="md-search-result" data-md-component="search-result">
+<div class="md-search-result__meta">
+            正在初始化搜索引擎
+          </div>
+<ol class="md-search-result__list" role="presentation"></ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="md-header__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Ader817/notebook/" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+</div>
+</nav>
+</header>
+<div class="md-container" data-md-component="container">
+<nav aria-label="标签" class="md-tabs" data-md-component="tabs">
+<div class="md-grid">
+<ul class="md-tabs__list">
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../..">
+          
+  
+    
+  
+  Home
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../language/">
+          
+  
+    
+  
+  Language
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../algorithm/">
+          
+  
+    
+  
+  Algorithm
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../software/">
+          
+  
+    
+  
+  Software
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../system/">
+          
+  
+    
+  
+  System
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../web/">
+          
+  
+    
+  
+  Web
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../math/">
+          
+  
+    
+  
+  Math
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../tools/">
+          
+  
+    
+  
+  Tools
+
+        </a>
+</li>
+<li class="md-tabs__item md-tabs__item--active">
+<a class="md-tabs__link" href="../../">
+          
+  
+    
+  
+  AI
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../misc/softmax/">
+          
+  
+    
+  
+  Misc
+
+        </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../../writeups/">
+          
+  
+    
+  
+  Writeups
+
+        </a>
+</li>
+</ul>
+</div>
+</nav>
+<main class="md-main" data-md-component="main">
+<div class="md-main__inner md-grid">
+<div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="导航栏" class="md-nav md-nav--primary md-nav--lifted" data-md-level="0">
+<label class="md-nav__title" for="__drawer">
+<a aria-label="Ader's notebook" class="md-nav__button md-logo" data-md-component="logo" href="../../.." title="Ader's notebook">
+<svg viewbox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M.989 8 .064 2.68a1.342 1.342 0 0 1 1.85-1.462l13.402 5.744a1.13 1.13 0 0 1 0 2.076L1.913 14.782a1.343 1.343 0 0 1-1.85-1.463L.99 8Zm.603-5.288L2.38 7.25h4.87a.75.75 0 0 1 0 1.5H2.38l-.788 4.538L13.929 8Z"></path></svg>
+</a>
+    Ader's notebook
+  </label>
+<div class="md-nav__source">
+<a class="md-source" data-md-component="source" href="https://github.com/Ader817/notebook/" title="前往仓库">
+<div class="md-source__icon md-icon">
+<svg viewbox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"></path></svg>
+</div>
+<div class="md-source__repository">
+    Ader817/notebook
+  </div>
+</a>
+</div>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../..">
+<span class="md-ellipsis">
+    Home
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../language/">
+<span class="md-ellipsis">
+    Language
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../algorithm/">
+<span class="md-ellipsis">
+    Algorithm
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../software/">
+<span class="md-ellipsis">
+    Software
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../system/">
+<span class="md-ellipsis">
+    System
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../web/">
+<span class="md-ellipsis">
+    Web
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../math/">
+<span class="md-ellipsis">
+    Math
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../tools/">
+<span class="md-ellipsis">
+    Tools
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_9" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../../">
+<span class="md-ellipsis">
+    AI
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_9" id="__nav_9_label" tabindex="">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_9_label" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_9">
+<span class="md-nav__icon md-icon"></span>
+            AI
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../notes/">
+<span class="md-ellipsis">
+    AI Notes
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../agent/">
+<span class="md-ellipsis">
+    Agent
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_4" type="checkbox"/>
+<div class="md-nav__link md-nav__container">
+<a class="md-nav__link" href="../">
+<span class="md-ellipsis">
+    CS224N
+    
+  </span>
+</a>
+<label class="md-nav__link" for="__nav_9_4" id="__nav_9_4_label" tabindex="0">
+<span class="md-nav__icon md-icon"></span>
+</label>
+</div>
+<nav aria-expanded="true" aria-labelledby="__nav_9_4_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_9_4">
+<span class="md-nav__icon md-icon"></span>
+            CS224N
+          </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../word-vectors/">
+<span class="md-ellipsis">
+    Word Vectors
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../language-model/">
+<span class="md-ellipsis">
+    Language Model
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../attention/">
+<span class="md-ellipsis">
+    Attention
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../pretraining/">
+<span class="md-ellipsis">
+    Pretraining
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../posttraining/">
+<span class="md-ellipsis">
+    Posttraining
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--active">
+<input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    PEFT
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
+<a class="md-nav__link md-nav__link--active" href="./">
+<span class="md-ellipsis">
+    PEFT
+    
+  </span>
+</a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prompting">
+<span class="md-ellipsis">
+      Prompting
+    </span>
+</a>
+<nav aria-label="Prompting" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#chain-of-thought-prompting">
+<span class="md-ellipsis">
+      Chain-of-thought prompting
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#downsides-of-prompt-based-learning">
+<span class="md-ellipsis">
+      Downsides of prompt-based learning
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#from-fine-tuning-to-peft">
+<span class="md-ellipsis">
+      From fine-tuning to PEFT
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sparse-subnetworks-and-pruning">
+<span class="md-ellipsis">
+      Sparse Subnetworks and Pruning
+    </span>
+</a>
+<nav aria-label="Sparse Subnetworks and Pruning" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lottery-ticket-hypothesis">
+<span class="md-ellipsis">
+      Lottery Ticket Hypothesis
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lora">
+<span class="md-ellipsis">
+      LoRA
+    </span>
+</a>
+<nav aria-label="LoRA" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-lora-works">
+<span class="md-ellipsis">
+      Why LoRA works?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#qlora">
+<span class="md-ellipsis">
+      QLoRA
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prefix-tuning-and-prompt-tuning">
+<span class="md-ellipsis">
+      Prefix Tuning and Prompt Tuning
+    </span>
+</a>
+<nav aria-label="Prefix Tuning and Prompt Tuning" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prefix-tuning">
+<span class="md-ellipsis">
+      Prefix Tuning
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prompt-tuning">
+<span class="md-ellipsis">
+      Prompt Tuning
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adapters">
+<span class="md-ellipsis">
+      Adapters
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comparing-peft-methods">
+<span class="md-ellipsis">
+      Comparing PEFT methods
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-unified-view">
+<span class="md-ellipsis">
+      A unified view
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#other-efficient-adaptation-methods">
+<span class="md-ellipsis">
+      Other efficient adaptation methods
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary-of-peft">
+<span class="md-ellipsis">
+      Summary of PEFT
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../rag-agents/">
+<span class="md-ellipsis">
+    RAG and Language Agents
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../benchmark-evaluation/">
+<span class="md-ellipsis">
+    Benchmark and Evaluation
+    
+  </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../eecs498/">
+<span class="md-ellipsis">
+    EECS498
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../misc/softmax/">
+<span class="md-ellipsis">
+    Misc
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../../writeups/">
+<span class="md-ellipsis">
+    Writeups
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+<div class="md-sidebar__scrollwrap">
+<div class="md-sidebar__inner">
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prompting">
+<span class="md-ellipsis">
+      Prompting
+    </span>
+</a>
+<nav aria-label="Prompting" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#chain-of-thought-prompting">
+<span class="md-ellipsis">
+      Chain-of-thought prompting
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#downsides-of-prompt-based-learning">
+<span class="md-ellipsis">
+      Downsides of prompt-based learning
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#from-fine-tuning-to-peft">
+<span class="md-ellipsis">
+      From fine-tuning to PEFT
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#sparse-subnetworks-and-pruning">
+<span class="md-ellipsis">
+      Sparse Subnetworks and Pruning
+    </span>
+</a>
+<nav aria-label="Sparse Subnetworks and Pruning" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lottery-ticket-hypothesis">
+<span class="md-ellipsis">
+      Lottery Ticket Hypothesis
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#lora">
+<span class="md-ellipsis">
+      LoRA
+    </span>
+</a>
+<nav aria-label="LoRA" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#why-lora-works">
+<span class="md-ellipsis">
+      Why LoRA works?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#qlora">
+<span class="md-ellipsis">
+      QLoRA
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prefix-tuning-and-prompt-tuning">
+<span class="md-ellipsis">
+      Prefix Tuning and Prompt Tuning
+    </span>
+</a>
+<nav aria-label="Prefix Tuning and Prompt Tuning" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prefix-tuning">
+<span class="md-ellipsis">
+      Prefix Tuning
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#prompt-tuning">
+<span class="md-ellipsis">
+      Prompt Tuning
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#adapters">
+<span class="md-ellipsis">
+      Adapters
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#comparing-peft-methods">
+<span class="md-ellipsis">
+      Comparing PEFT methods
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#a-unified-view">
+<span class="md-ellipsis">
+      A unified view
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#other-efficient-adaptation-methods">
+<span class="md-ellipsis">
+      Other efficient adaptation methods
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary-of-peft">
+<span class="md-ellipsis">
+      Summary of PEFT
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</div>
+</div>
+</div>
+<div class="md-content" data-md-component="content">
+<article class="md-content__inner md-typeset">
+<a class="md-content__button md-icon" href="https://github.com/Ader817/notebook/edit/master/docs/ai/cs224n/peft.md" title="编辑此页">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20H6V4h7v5h5v3.1l2-2V8l-6-6H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h4zm10.2-7c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1z"></path></svg>
+</a>
+<a class="md-content__button md-icon" href="https://github.com/Ader817/notebook/raw/master/docs/ai/cs224n/peft.md" title="查看本页的源代码">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
+</a>
+<h1 id="peft">PEFT</h1>
+<p><span>PEFT<span class="heti-spacing"> </span></span>全称为 <strong>Parameter-Efficient Fine-Tuning</strong></p>
+<p>前面我们已经看到：</p>
+<ul>
+<li><span>pretraining<span class="heti-spacing"> </span></span>很贵，但可以训练出通用<span><span class="heti-spacing"> </span>base model</span></li>
+<li><span>posttraining<span class="heti-spacing"> </span></span>可以让模型更符合<span class="heti-skip"><span class="heti-spacing"> </span>instruction<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>human preferences</span></li>
+<li><span>full fine-tuning<span class="heti-spacing"> </span></span>可以把模型适配到具体任务</li>
+</ul>
+<p>但当模型越来越大时，<span>full fine-tuning<span class="heti-spacing"> </span></span>会变得越来越不现实</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>Full fine-tuning:<span class="heti-spacing"> </span></span>更新模型的所有参数</p>
+<p><span>PEFT:<span class="heti-spacing"> </span></span>冻结大部分<span><span class="heti-spacing"> </span>pretrained parameters</span>，只训练一小部分<span><span class="heti-spacing"> </span>task-specific parameters</span></p>
+</div>
+<h2 id="prompting">Prompting</h2>
+<p>在进入<span class="heti-skip"><span class="heti-spacing"> </span>PEFT<span class="heti-spacing"> </span></span>之前，课件先回顾了<span><span class="heti-spacing"> </span>prompting</span></p>
+<p><span>Prompting<span class="heti-spacing"> </span></span>的核心思想是：不更新模型参数，只通过输入文本的设计，让模型把任务理解成一个<span><span class="heti-spacing"> </span>sequence prediction problem</span></p>
+<p>常见<span class="heti-skip"><span class="heti-spacing"> </span>prompting<span class="heti-spacing"> </span></span>方式包括：</p>
+<ul>
+<li><strong>Zero-shot prompting</strong></li>
+<li>只写任务说明，不给示例</li>
+<li><strong>One-shot prompting</strong></li>
+<li>给一个输入输出示例</li>
+<li><strong>Few-shot prompting</strong></li>
+<li>给多个输入输出示例，让模型在<span class="heti-skip"><span class="heti-spacing"> </span>context<span class="heti-spacing"> </span></span>里模仿任务格式</li>
+</ul>
+<p>例如<span><span class="heti-spacing"> </span>few-shot translation</span>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>thanks -&gt; merci
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>hello -&gt; bonjour
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>mint -&gt; menthe
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>otter -&gt;
+</span></code></pre></div>
+<p>这里模型没有发生<span><span class="heti-spacing"> </span>gradient update</span>，只是根据<span class="heti-skip"><span class="heti-spacing"> </span>context<span class="heti-spacing"> </span></span>中的<span class="heti-skip"><span class="heti-spacing"> </span>pattern<span class="heti-spacing"> </span></span>继续生成</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span>Prompting<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>finetuning<span class="heti-spacing"> </span></span>的区别：</p>
+<ul>
+<li><span>prompting:<span class="heti-spacing"> </span></span>改输入，不改参数</li>
+<li><span>finetuning:<span class="heti-spacing"> </span></span>用训练数据更新模型参数</li>
+</ul>
+</div>
+<h3 id="chain-of-thought-prompting">Chain-of-thought prompting</h3>
+<p>一些复杂任务，尤其是<span><span class="heti-spacing"> </span>multi-step reasoning</span>，只靠普通<span class="heti-skip"><span class="heti-spacing"> </span>prompt<span class="heti-spacing"> </span></span>可能不够</p>
+<p><span>Chain-of-thought (CoT) prompting<span class="heti-spacing"> </span></span>的想法是：让模型先生成<span><span class="heti-spacing"> </span>reasoning steps</span>，再生成最终答案</p>
+<p>最简单的<span class="heti-skip"><span class="heti-spacing"> </span>zero-shot CoT prompt<span class="heti-spacing"> </span></span>是：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>Let's think step by step.
+</span></code></pre></div>
+<p>对于算术、数学文字题、逻辑推理等任务，<span>CoT<span class="heti-spacing"> </span></span>可以把一个复杂问题拆成中间步骤，降低一次性预测最终答案的难度</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>CoT<span class="heti-spacing"> </span></span>的作用不是显式改变模型参数，而是改变模型生成答案的路径。</p>
+<p>它让模型先生成<span><span class="heti-spacing"> </span>intermediate reasoning</span>，再基于<span class="heti-skip"><span class="heti-spacing"> </span>reasoning<span class="heti-spacing"> </span></span>得到<span><span class="heti-spacing"> </span>answer</span>。</p>
+</div>
+<h3 id="downsides-of-prompt-based-learning">Downsides of prompt-based learning</h3>
+<p><span>Prompting<span class="heti-spacing"> </span></span>虽然方便，但也有明显缺点：</p>
+<ul>
+<li><strong>Inefficiency</strong></li>
+<li><span>prompt<span class="heti-spacing"> </span></span>每次<span class="heti-skip"><span class="heti-spacing"> </span>inference<span class="heti-spacing"> </span></span>都要被重新处理</li>
+<li><span>few-shot examples<span class="heti-spacing"> </span></span>会占用<span><span class="heti-spacing"> </span>context window</span></li>
+<li><strong>Performance</strong></li>
+<li><span>prompting<span class="heti-spacing"> </span></span>通常不如<span class="heti-skip"><span class="heti-spacing"> </span>task-specific finetuning<span class="heti-spacing"> </span></span>稳定</li>
+<li><strong>Sensitivity</strong></li>
+<li>对<span class="heti-skip"><span class="heti-spacing"> </span>prompt wording, example order, formatting<span class="heti-spacing"> </span></span>都可能敏感</li>
+<li><strong>Unclear learning mechanism</strong></li>
+<li>有时<span class="heti-skip"><span class="heti-spacing"> </span>random labels<span class="heti-spacing"> </span></span>也能产生一定效果（例如<span class="heti-skip"><span class="heti-spacing"> </span>sentiment analysis<span class="heti-spacing"> </span></span>中<span class="heti-skip"><span class="heti-spacing"> </span>few-shot prompt<span class="heti-spacing"> </span></span>随意给一些<span><span class="heti-spacing"> </span>sentiment label)</span>，说明模型到底从<span class="heti-skip"><span class="heti-spacing"> </span>prompt<span class="heti-spacing"> </span></span>里学到了什么并不总是清楚</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span>Prompt engineering<span class="heti-spacing"> </span></span>的本质是“用输入控制模型行为”，但这种控制不一定稳定、可解释或高效。</p>
+</div>
+<h2 id="from-fine-tuning-to-peft">From fine-tuning to PEFT</h2>
+<p><span>Full fine-tuning<span class="heti-spacing"> </span></span>会更新所有模型参数，而对于一个大模型，如果每个<span class="heti-skip"><span class="heti-spacing"> </span>downstream task<span class="heti-spacing"> </span></span>都保存一份完整<span><span class="heti-spacing"> </span>fine-tuned checkpoint</span>，会带来很高成本：</p>
+<ul>
+<li>训练显存和计算成本高</li>
+<li>每个任务都要保存完整模型副本</li>
+<li>多任务部署困难</li>
+<li>环境和能源成本高</li>
+<li>开发门槛更集中在资源充足的组织</li>
+</ul>
+<p><span>PEFT<span class="heti-spacing"> </span></span>的目标是：尽量只训练很少的参数，同时接近<span class="heti-skip"><span class="heti-spacing"> </span>full fine-tuning<span class="heti-spacing"> </span></span>的效果</p>
+<p>可以把从三个视角理解<span class="heti-skip"><span class="heti-spacing"> </span>PEFT<span class="heti-spacing"> </span></span>的相关技术：</p>
+<ul>
+<li><strong>Parameter perspective</strong></li>
+<li>sparse subnetworks</li>
+<li>low-rank composition</li>
+<li><strong>Input perspective</strong></li>
+<li>prompt tuning</li>
+<li>prefix tuning</li>
+<li><strong>Function perspective</strong></li>
+<li>adapters</li>
+<li>task-specific modules</li>
+</ul>
+<h2 id="sparse-subnetworks-and-pruning">Sparse Subnetworks and Pruning</h2>
+<p>一种<span class="heti-skip"><span class="heti-spacing"> </span>PEFT<span class="heti-spacing"> </span></span>思路是：大模型参数很多，但不是所有参数对某个任务都同等重要</p>
+<p>因此我们可以通过<span class="heti-skip"><span class="heti-spacing"> </span>pruning<span class="heti-spacing"> </span></span>找到一个<span><span class="heti-spacing"> </span>sparse subnetwork</span></p>
+<p><img alt="peft-pruning-subnetwork-41" src="../assets/peft-pruning-subnetwork-41.png"/></p>
+<p><span>Pruning<span class="heti-spacing"> </span></span>可以看成给参数加一个<span><span class="heti-spacing"> </span>binary mask</span>：</p>
+<div class="arithmatex">\[
+b_i \in \{0,1\}
+\]</div>
+<p>如果<span><span class="heti-spacing"> </span><span class="arithmatex">\(b_i=1\)</span></span>，保留这个参数；如果<span><span class="heti-spacing"> </span><span class="arithmatex">\(b_i=0\)</span></span>，剪掉这个参数</p>
+<p>对参数向量<span><span class="heti-spacing"> </span><span class="arithmatex">\(\theta\)</span></span>，<span>pruned model<span class="heti-spacing"> </span></span>可以写成：</p>
+<div class="arithmatex">\[
+\theta' = \theta \circ b
+\]</div>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\circ\)</span><span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>element-wise product</span></p>
+<p>最常见的<span class="heti-skip"><span class="heti-spacing"> </span>pruning criterion<span class="heti-spacing"> </span></span>是 <strong>weight magnitude</strong></p>
+<ul>
+<li>权重绝对值小，说明它可能不重要</li>
+<li>先<span class="heti-skip"><span class="heti-spacing"> </span>prune<span class="heti-spacing"> </span></span>掉低<span><span class="heti-spacing"> </span>magnitude weights</span></li>
+<li>然后<span class="heti-skip"><span class="heti-spacing"> </span>retrain<span class="heti-spacing"> </span></span>剩下的参数</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span>Pruning<span class="heti-spacing"> </span></span>的直觉是：如果一个参数已经非常接近<span><span class="heti-spacing"> </span>0</span>，那么把它变成<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>对模型输出的影响可能较小。</p>
+</div>
+<h3 id="lottery-ticket-hypothesis">Lottery Ticket Hypothesis</h3>
+<p><span>Lottery Ticket Hypothesis<span class="heti-spacing"> </span></span>的核心观点是：</p>
+<blockquote>
+<p>一个<span class="heti-skip"><span class="heti-spacing"> </span>dense randomly-initialized model<span class="heti-spacing"> </span></span>里可能已经包含一些<span><span class="heti-spacing"> </span>sparse subnetworks</span>，这些<span class="heti-skip"><span class="heti-spacing"> </span>subnetworks<span class="heti-spacing"> </span></span>如果单独训练，也能达到和原模型接近的效果。</p>
+</blockquote>
+<p>这些<span class="heti-skip"><span class="heti-spacing"> </span>subnetworks<span class="heti-spacing"> </span></span>被称为 <strong>winning tickets</strong></p>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>pretrained models<span class="heti-spacing"> </span></span>中，也可以找到对特定任务有效的<span><span class="heti-spacing"> </span>sparse subnetwork</span></p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>Pruning / subnetwork<span class="heti-spacing"> </span></span>方法体现的是一种<span><span class="heti-spacing"> </span>sparsity inductive bias</span>：</p>
+<p>我们假设适配某个任务不一定需要更新整个<span><span class="heti-spacing"> </span>dense model</span>，而可能只需要保留或调整其中一部分连接。</p>
+</div>
+<h2 id="lora">LoRA</h2>
+<p><span>LoRA<span class="heti-spacing"> </span></span>全称为 <strong>Low-Rank Adaptation</strong></p>
+<p>它是目前最常用的<span class="heti-skip"><span class="heti-spacing"> </span>PEFT<span class="heti-spacing"> </span></span>方法之一</p>
+<p>先回顾<span><span class="heti-spacing"> </span>full fine-tuning</span></p>
+<p>给定<span class="heti-skip"><span class="heti-spacing"> </span>pretrained model<span class="heti-spacing"> </span></span>参数<span><span class="heti-spacing"> </span><span class="arithmatex">\(\phi_0\)</span></span>，<span>full fine-tuning<span class="heti-spacing"> </span></span>会学习一个完整的参数更新：</p>
+<div class="arithmatex">\[
+\phi_0
+\rightarrow
+\phi_0 + \Delta \phi
+\]</div>
+<p>问题是：</p>
+<div class="arithmatex">\[
+|\Delta \phi| = |\phi_0|
+\]</div>
+<p>如果模型有<span class="heti-skip"><span class="heti-spacing"> </span>175B<span class="heti-spacing"> </span></span>参数，那么每个任务都要学习并保存一个<span class="heti-skip"><span class="heti-spacing"> </span>175B<span class="heti-spacing"> </span></span>量级的参数更新，这非常昂贵</p>
+<p><span>LoRA<span class="heti-spacing"> </span></span>的核心假设是：<strong>模型在<span class="heti-skip"><span class="heti-spacing"> </span>downstream adaptation<span class="heti-spacing"> </span></span>中真正需要的参数更新具有<span><span class="heti-spacing"> </span>low intrinsic rank</span></strong></p>
+<p>也就是说，不需要直接学习完整的<span><span class="heti-spacing"> </span><span class="arithmatex">\(\Delta W\)</span></span>，而是用低秩分解表示它</p>
+<p><img alt="peft-lora-formula-48" src="../assets/peft-lora-formula-48.png"/></p>
+<p>对于<span><span class="heti-spacing"> </span>pretrained weight matrix</span>：</p>
+<div class="arithmatex">\[
+W_0 \in \mathbb{R}^{d\times k}
+\]</div>
+<p><span>full fine-tuning<span class="heti-spacing"> </span></span>会学习：</p>
+<div class="arithmatex">\[
+W = W_0 + \Delta W
+\]</div>
+<p><span>LoRA<span class="heti-spacing"> </span></span>约束：</p>
+<div class="arithmatex">\[
+\Delta W = \alpha BA
+\]</div>
+<p>其中：</p>
+<div class="arithmatex">\[
+B \in \mathbb{R}^{d\times r}
+\]</div>
+<div class="arithmatex">\[
+A \in \mathbb{R}^{r\times k}
+\]</div>
+<p>并且：</p>
+<div class="arithmatex">\[
+r \ll \min(d,k)
+\]</div>
+<p>因此：</p>
+<div class="arithmatex">\[
+W = W_0 + \alpha BA
+\]</div>
+<p>训练时：</p>
+<ul>
+<li>冻结<span><span class="heti-spacing"> </span><span class="arithmatex">\(W_0\)</span></span></li>
+<li>只训练<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(A\)</span><span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span><span class="arithmatex">\(B\)</span></span></li>
+<li><span><span class="arithmatex">\(r\)</span><span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>LoRA rank</span>，控制<span class="heti-skip"><span class="heti-spacing"> </span>trainable parameters<span class="heti-spacing"> </span></span>数量</li>
+<li><span><span class="arithmatex">\(\alpha\)</span><span class="heti-spacing"> </span></span>控制<span class="heti-skip"><span class="heti-spacing"> </span>task-specific update<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>scale</span></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>LoRA<span class="heti-spacing"> </span></span>的关键节省来自低秩分解：</p>
+<p>原本<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\Delta W\)</span><span class="heti-spacing"> </span></span>需要<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(d\times k\)</span><span class="heti-spacing"> </span></span>个参数</p>
+<p><span>LoRA<span class="heti-spacing"> </span></span>只需要<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(r(d+k)\)</span><span class="heti-spacing"> </span></span>个参数</p>
+<p>当<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(r \ll d,k\)</span><span class="heti-spacing"> </span></span>时，参数量会小很多。</p>
+</div>
+<h3 id="why-lora-works">Why LoRA works?</h3>
+<p><span>LoRA<span class="heti-spacing"> </span></span>的直觉是：虽然模型参数空间非常大，但一个具体任务所需的<span class="heti-skip"><span class="heti-spacing"> </span>adaptation<span class="heti-spacing"> </span></span>可能只落在一个低维子空间里</p>
+<p>因此我们不直接更新整个<span><span class="heti-spacing"> </span>matrix</span>，而是只学习一个<span><span class="heti-spacing"> </span>low-rank update direction</span></p>
+<p><span>LoRA<span class="heti-spacing"> </span></span>通常被加在<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>attention projection matrices<span class="heti-spacing"> </span></span>上，例如：</p>
+<ul>
+<li><span class="arithmatex">\(W_Q\)</span></li>
+<li><span class="arithmatex">\(W_K\)</span></li>
+<li><span class="arithmatex">\(W_V\)</span></li>
+<li><span class="arithmatex">\(W_O\)</span></li>
+</ul>
+<p>实际<span class="heti-skip"><span class="heti-spacing"> </span>forward<span class="heti-spacing"> </span></span>时可以写成：</p>
+<div class="arithmatex">\[
+h = W_0x + \alpha BAx
+\]</div>
+<p>推理时可以把<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(BA\)</span> merge<span class="heti-spacing"> </span></span>回原矩阵：</p>
+<div class="arithmatex">\[
+W_{\text{merged}} = W_0 + \alpha BA
+\]</div>
+<p>因此<span class="heti-skip"><span class="heti-spacing"> </span>LoRA<span class="heti-spacing"> </span></span>可以做到几乎没有额外<span><span class="heti-spacing"> </span>inference latency</span></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span>LoRA<span class="heti-spacing"> </span></span>的一个工程优势是：多个任务可以共享同一个<span><span class="heti-spacing"> </span>base model</span>，只保存各自的小<span><span class="heti-spacing"> </span>LoRA weights</span>。</p>
+<p>切换任务时加载不同的<span class="heti-skip"><span class="heti-spacing"> </span>LoRA adapter<span class="heti-spacing"> </span></span>即可。</p>
+</div>
+<h3 id="qlora">QLoRA</h3>
+<p><mark><span>QLoRA<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>LoRA<span class="heti-spacing"> </span></span>的进一步内存优化</mark></p>
+<p>核心做法是：</p>
+<ul>
+<li>把<span class="heti-skip"><span class="heti-spacing"> </span>base Transformer model quantize<span class="heti-spacing"> </span></span>到<span><span class="heti-spacing"> </span>4-bit precision</span></li>
+<li>冻结<span><span class="heti-spacing"> </span>quantized base model</span></li>
+<li>在上面训练<span><span class="heti-spacing"> </span>LoRA parameters</span></li>
+<li>使用<span class="heti-skip"><span class="heti-spacing"> </span>paged optimizer<span class="heti-spacing"> </span></span>处理显存峰值</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>LoRA<span class="heti-spacing"> </span></span>减少<span><span class="heti-spacing"> </span>trainable parameters</span></p>
+<p><span>QLoRA<span class="heti-spacing"> </span></span>进一步减少<span class="heti-skip"><span class="heti-spacing"> </span>frozen base model<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>memory footprint</span></p>
+<p>因此<span class="heti-skip"><span class="heti-spacing"> </span>QLoRA<span class="heti-spacing"> </span></span>让在较小硬件上<span class="heti-skip"><span class="heti-spacing"> </span>finetune<span class="heti-spacing"> </span></span>大模型变得更可行。</p>
+</div>
+<h2 id="prefix-tuning-and-prompt-tuning">Prefix Tuning and Prompt Tuning</h2>
+<p><span>LoRA<span class="heti-spacing"> </span></span>是从<span class="heti-skip"><span class="heti-spacing"> </span>parameter matrix<span class="heti-spacing"> </span></span>的角度做<span><span class="heti-spacing"> </span>adaptation</span></p>
+<p>另一类方法是从<span class="heti-skip"><span class="heti-spacing"> </span>input perspective<span class="heti-spacing"> </span></span>出发：不改模型主体，而是在输入前面加一些<span><span class="heti-spacing"> </span>learnable virtual tokens</span></p>
+<h3 id="prefix-tuning">Prefix Tuning</h3>
+<p><span>Prefix tuning<span class="heti-spacing"> </span></span>会学习一段<span><span class="heti-spacing"> </span>continuous task-specific prefix</span></p>
+<p>这些<span class="heti-skip"><span class="heti-spacing"> </span>prefix<span class="heti-spacing"> </span></span>不是自然语言<span><span class="heti-spacing"> </span>token</span>，而是可学习向量</p>
+<p>模型主体参数冻结，训练时只更新<span><span class="heti-spacing"> </span>prefix parameters</span>，包括输入层<span><span class="heti-spacing"> </span>embedding</span>，<span>attention<span class="heti-spacing"> </span></span>层的<span><span class="heti-spacing"> </span>prefix</span></p>
+<p>可以理解成：</p>
+<div class="arithmatex">\[
+\text{learnable prefix} + \text{input tokens}
+\rightarrow
+\text{frozen LM}
+\rightarrow
+\text{output}
+\]</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span>Prefix tuning<span class="heti-spacing"> </span></span>相当于给每个任务学一个“软提示”，这个提示不一定能被人类读懂，但模型可以利用它改变自己的行为。</p>
+</div>
+<h3 id="prompt-tuning">Prompt Tuning</h3>
+<p><span>Prompt tuning<span class="heti-spacing"> </span></span>更直接：在输入前<span class="heti-skip"><span class="heti-spacing"> </span>prepend<span class="heti-spacing"> </span></span>一些<span><span class="heti-spacing"> </span>virtual tokens</span>，只学习这些<span class="heti-skip"><span class="heti-spacing"> </span>virtual tokens<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>embeddings</span></p>
+<p><img alt="peft-prefix-tuning-57" src="../assets/peft-prefix-tuning-57.png"/></p>
+<p>和手写<span class="heti-skip"><span class="heti-spacing"> </span>prompt<span class="heti-spacing"> </span></span>的区别是：</p>
+<ul>
+<li><span>manual prompt<span class="heti-spacing"> </span></span>是离散文本，例如 <code>Let's think step by step</code></li>
+<li><span>prompt tuning<span class="heti-spacing"> </span></span>学到的是连续向量，不一定对应真实词</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>Prompt tuning<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>trainable parameters<span class="heti-spacing"> </span></span>很少，但<span class="heti-skip"><span class="heti-spacing"> </span>capacity<span class="heti-spacing"> </span></span>也有限。</p>
+<p>课件中提到，<span>prompt tuning<span class="heti-spacing"> </span></span>往往在模型足够大时才效果更好。</p>
+</div>
+<h2 id="adapters">Adapters</h2>
+<p><span>Adapters<span class="heti-spacing"> </span></span>是从<span class="heti-skip"><span class="heti-spacing"> </span>function perspective<span class="heti-spacing"> </span></span>做<span><span class="heti-spacing"> </span>adaptation</span></p>
+<p>核心思想是：在<span class="heti-skip"><span class="heti-spacing"> </span>pretrained model<span class="heti-spacing"> </span></span>的层之间插入小的<span><span class="heti-spacing"> </span>task-specific modules</span>，同时冻结原模型参数</p>
+<p><img alt="peft-adapter-formula-60" src="../assets/peft-adapter-formula-60.png"/></p>
+<p>一个典型<span class="heti-skip"><span class="heti-spacing"> </span>adapter<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>bottleneck<span class="heti-spacing"> </span></span>结构：</p>
+<ol>
+<li>Down-projection</li>
+<li>Nonlinearity</li>
+<li>Up-projection</li>
+</ol>
+<p>设输入<span class="heti-skip"><span class="heti-spacing"> </span>hidden state<span class="heti-spacing"> </span></span>为：</p>
+<div class="arithmatex">\[
+x\in \mathbb{R}^d
+\]</div>
+<p>down-projection：</p>
+<div class="arithmatex">\[
+W^D \in \mathbb{R}^{k\times d}
+\]</div>
+<p>up-projection：</p>
+<div class="arithmatex">\[
+W^U \in \mathbb{R}^{d\times k}
+\]</div>
+<p>其中<span><span class="heti-spacing"> </span><span class="arithmatex">\(k \ll d\)</span></span></p>
+<p>adapter function：</p>
+<div class="arithmatex">\[
+f_\phi(x)
+=
+W^U
+\left(
+\sigma(W^D x)
+\right)
+\]</div>
+<p>通常还会通过<span class="heti-skip"><span class="heti-spacing"> </span>residual connection<span class="heti-spacing"> </span></span>加回原<span><span class="heti-spacing"> </span>hidden state</span>：</p>
+<div class="arithmatex">\[
+h' = h + f_\phi(h)
+\]</div>
+<p><img alt="peft-adapter-structure-61" src="../assets/peft-adapter-structure-61.png"/></p>
+<p><span>Adapters<span class="heti-spacing"> </span></span>通常插入在：</p>
+<ul>
+<li><span>multi-head attention<span class="heti-spacing"> </span></span>之后</li>
+<li><span>feed-forward layer<span class="heti-spacing"> </span></span>之后</li>
+<li>或者两处都插入</li>
+</ul>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span>Adapter<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>LoRA<span class="heti-spacing"> </span></span>的区别：</p>
+<ul>
+<li><span>LoRA<span class="heti-spacing"> </span></span>修改的是已有<span class="heti-skip"><span class="heti-spacing"> </span>weight matrix<span class="heti-spacing"> </span></span>的更新方式</li>
+<li><span>Adapter<span class="heti-spacing"> </span></span>是额外插入新的小模块</li>
+</ul>
+<p>因此<span class="heti-skip"><span class="heti-spacing"> </span>adapter<span class="heti-spacing"> </span></span>可能带来一点<span><span class="heti-spacing"> </span>inference latency</span>，而<span class="heti-skip"><span class="heti-spacing"> </span>LoRA merge<span class="heti-spacing"> </span></span>后通常没有额外延迟。</p>
+</div>
+<h2 id="comparing-peft-methods">Comparing PEFT methods</h2>
+<p>不同<span class="heti-skip"><span class="heti-spacing"> </span>PEFT<span class="heti-spacing"> </span></span>方法的<span class="heti-skip"><span class="heti-spacing"> </span>tradeoff<span class="heti-spacing"> </span></span>不一样，大致可以这样理解：</p>
+<p><img alt="peft-unifying-view-66" src="../assets/peft-unifying-view-66.png"/></p>
+<ul>
+<li><strong>Prompt tuning</strong></li>
+<li>参数最少</li>
+<li>部署灵活</li>
+<li><span>capacity<span class="heti-spacing"> </span></span>较低，性能可能弱</li>
+<li><strong>Prefix tuning</strong></li>
+<li>比<span class="heti-skip"><span class="heti-spacing"> </span>prompt tuning<span class="heti-spacing"> </span></span>更强一些</li>
+<li>仍然从<span class="heti-skip"><span class="heti-spacing"> </span>input side<span class="heti-spacing"> </span></span>控制模型</li>
+<li><strong>LoRA</strong></li>
+<li>参数效率高</li>
+<li>性能强</li>
+<li>可以<span><span class="heti-spacing"> </span>merge</span>，推理延迟低</li>
+<li>实践中非常常用</li>
+<li><strong>Adapters</strong></li>
+<li>表达能力较强</li>
+<li>需要插入额外模块</li>
+<li>可能增加推理开销</li>
+<li><strong>Pruning / subnetworks</strong></li>
+<li>强调<span><span class="heti-spacing"> </span>sparsity</span></li>
+<li>可以减少模型规模</li>
+<li>训练和选择<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>可能复杂</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>PEFT<span class="heti-spacing"> </span></span>不是单一方法，而是一组<span><span class="heti-spacing"> </span>adaptation strategies</span>。</p>
+<p>它们共同目标是：用更少的<span class="heti-skip"><span class="heti-spacing"> </span>trainable parameters<span class="heti-spacing"> </span></span>接近<span class="heti-skip"><span class="heti-spacing"> </span>full fine-tuning<span class="heti-spacing"> </span></span>的效果。</p>
+</div>
+<h2 id="a-unified-view">A unified view</h2>
+<p>课件中提到，<span>LoRA, prefix tuning, adapters<span class="heti-spacing"> </span></span>等方法可以从统一视角理解：</p>
+<blockquote>
+<p>它们都在修改模型中间的<span><span class="heti-spacing"> </span>hidden representation</span></p>
+</blockquote>
+<p>只不过修改方式不同：</p>
+<ul>
+<li><span>LoRA<span class="heti-spacing"> </span></span>通过<span class="heti-skip"><span class="heti-spacing"> </span>low-rank parameter update<span class="heti-spacing"> </span></span>间接改变<span><span class="heti-spacing"> </span>hidden states</span></li>
+<li><span>prompt / prefix tuning<span class="heti-spacing"> </span></span>通过<span class="heti-skip"><span class="heti-spacing"> </span>input-side virtual tokens<span class="heti-spacing"> </span></span>改变<span><span class="heti-spacing"> </span>hidden states</span></li>
+<li><span>adapters<span class="heti-spacing"> </span></span>通过额外<span class="heti-skip"><span class="heti-spacing"> </span>function module<span class="heti-spacing"> </span></span>改变<span><span class="heti-spacing"> </span>hidden states</span></li>
+<li><span>pruning<span class="heti-spacing"> </span></span>通过<span class="heti-skip"><span class="heti-spacing"> </span>sparse mask<span class="heti-spacing"> </span></span>改变可用参数子网络</li>
+</ul>
+<p>因此可以把<span class="heti-skip"><span class="heti-spacing"> </span>PEFT<span class="heti-spacing"> </span></span>看成：</p>
+<div class="arithmatex">\[
+h
+\rightarrow
+h + \Delta h_{\text{task}}
+\]</div>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\Delta h_{\text{task}}\)</span><span class="heti-spacing"> </span></span>由少量<span class="heti-skip"><span class="heti-spacing"> </span>task-specific parameters<span class="heti-spacing"> </span></span>控制</p>
+<h2 id="other-efficient-adaptation-methods">Other efficient adaptation methods</h2>
+<p>课件最后还提到一些其他方向：</p>
+<ul>
+<li><strong>Knowledge distillation</strong></li>
+<li>用大模型作为<span><span class="heti-spacing"> </span>teacher</span>，训练一个更小的<span><span class="heti-spacing"> </span>student model</span></li>
+<li>目标是让<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>模仿<span class="heti-skip"><span class="heti-spacing"> </span>teacher<span class="heti-spacing"> </span></span>的输出或中间表示</li>
+<li><strong>Gist tokens</strong></li>
+<li>学习把长<span class="heti-skip"><span class="heti-spacing"> </span>prompt<span class="heti-spacing"> </span></span>压缩到少量<span><span class="heti-spacing"> </span>tokens</span></li>
+<li><strong>ReFT</strong></li>
+<li>在<span class="heti-skip"><span class="heti-spacing"> </span>representation<span class="heti-spacing"> </span></span>层面直接做<span><span class="heti-spacing"> </span>intervention / adaptation</span></li>
+</ul>
+<p>这些方法的共同目标仍然是：降低<span class="heti-skip"><span class="heti-spacing"> </span>adaptation<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>deployment<span class="heti-spacing"> </span></span>成本</p>
+<h2 id="summary-of-peft">Summary of PEFT</h2>
+<p>可以把这一章的主线总结成：</p>
+<ul>
+<li><span>Prompting<span class="heti-spacing"> </span></span>不更新参数，只通过输入控制模型行为，但对<span class="heti-skip"><span class="heti-spacing"> </span>wording<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>examples<span class="heti-spacing"> </span></span>很敏感</li>
+<li><span>Chain-of-thought prompting<span class="heti-spacing"> </span></span>通过生成中间推理步骤改善<span><span class="heti-spacing"> </span>reasoning</span></li>
+<li><span>Full fine-tuning<span class="heti-spacing"> </span></span>对大模型成本很高，因此需要<span><span class="heti-spacing"> </span>parameter-efficient adaptation</span></li>
+<li><span>Pruning<span class="heti-spacing"> </span></span>用<span class="heti-skip"><span class="heti-spacing"> </span>binary mask<span class="heti-spacing"> </span></span>找<span><span class="heti-spacing"> </span>sparse subnetwork</span></li>
+<li><span>LoRA<span class="heti-spacing"> </span></span>冻结<span><span class="heti-spacing"> </span>pretrained weights</span>，只训练<span><span class="heti-spacing"> </span>low-rank update matrices <span class="arithmatex">\(A,B\)</span></span></li>
+<li><span>QLoRA<span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>LoRA<span class="heti-spacing"> </span></span>基础上量化<span><span class="heti-spacing"> </span>base model</span>，进一步降低显存需求</li>
+<li><span>Prefix tuning / prompt tuning<span class="heti-spacing"> </span></span>学习<span><span class="heti-spacing"> </span>virtual tokens</span>，从<span class="heti-skip"><span class="heti-spacing"> </span>input side<span class="heti-spacing"> </span></span>适配<span><span class="heti-spacing"> </span>frozen LM</span></li>
+<li><span>Adapters<span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>层中插入小的<span><span class="heti-spacing"> </span>bottleneck modules</span></li>
+<li>不同<span class="heti-skip"><span class="heti-spacing"> </span>PEFT<span class="heti-spacing"> </span></span>方法在参数量、性能、推理延迟、部署灵活性之间有不同<span><span class="heti-spacing"> </span>tradeoff</span></li>
+</ul>
+<!-- 标题计数器 -->
+</article>
+</div>
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+</div>
+<button class="md-top md-icon" data-md-component="top" hidden="" type="button">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  回到页面顶部
+</button>
+</main>
+<footer class="md-footer">
+<nav aria-label="页脚" class="md-footer__inner md-grid">
+<a aria-label="上一页: Posttraining" class="md-footer__link md-footer__link--prev" href="../posttraining/">
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+</div>
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                上一页
+              </span>
+<div class="md-ellipsis">
+                Posttraining
+              </div>
+</div>
+</a>
+<a aria-label="下一页: RAG and Language Agents" class="md-footer__link md-footer__link--next" href="../rag-agents/">
+<div class="md-footer__title">
+<span class="md-footer__direction">
+                下一页
+              </span>
+<div class="md-ellipsis">
+                RAG and Language Agents
+              </div>
+</div>
+<div class="md-footer__button md-icon">
+<svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"></path></svg>
+</div>
+</a>
+</nav>
+<div class="md-footer-meta md-typeset">
+<div class="md-footer-meta__inner md-grid">
+<div class="md-copyright">
+<div class="md-copyright__highlight">
+      Copyright © 2024-2025 <a href="https://github.com/Ader817" rel="noopener" target="_blank">Ader817</a>
+</div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" rel="noopener" target="_blank">
+      Material for MkDocs
+    </a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+<div class="md-dialog" data-md-component="dialog">
+<div class="md-dialog__inner md-typeset"></div>
+</div>
+<script id="__config" type="application/json">{"base": "../../..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "content.code.annotate", "header.autohide", "navigation.tabs", "navigation.top", "navigation.footer", "navigation.indexes", "navigation.tracking", "navigation.prune", "search.share", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+<script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+<script src="../../../assets/javascripts/katex.js"></script>
+<script src="../../../assets/javascripts/toc.js"></script>
+<script src="https://unpkg.com/katex@0/dist/katex.min.js"></script>
+<script src="https://unpkg.com/katex@0/dist/contrib/auto-render.min.js"></script>
+</body>
+</html>

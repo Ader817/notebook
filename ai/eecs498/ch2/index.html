@@ -191,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tools/venv/">
+<a class="md-tabs__link" href="../../../tools/">
           
   
     
@@ -211,7 +211,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../Misc/softmax.md">
+<a class="md-tabs__link" href="../../../misc/softmax/">
           
   
     
@@ -320,7 +320,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../tools/venv/">
+<a class="md-nav__link" href="../../../tools/">
 <span class="md-ellipsis">
     Tools
     
@@ -347,8 +347,35 @@
             AI
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../notes/">
+<span class="md-ellipsis">
+    AI Notes
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../agent/">
+<span class="md-ellipsis">
+    Agent
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../cs224n/">
+<span class="md-ellipsis">
+    CS224N
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_2" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../">
 <span class="md-ellipsis">
@@ -356,12 +383,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+<label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_9_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_9_2">
+<nav aria-expanded="true" aria-labelledby="__nav_9_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_9_5">
 <span class="md-nav__icon md-icon"></span>
             EECS498
           </label>
@@ -600,7 +627,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../Misc/softmax.md">
+<a class="md-nav__link" href="../../../misc/softmax/">
 <span class="md-ellipsis">
     Misc
     
@@ -802,6 +829,9 @@
 </ul>
 <p>三者的关系类似于教科书和课后作业、模拟考试、正式高考之间的关系。</p>
 </div>
+<blockquote>
+<p>训练集、验证集、测试集</p>
+</blockquote>
 <p>使用单一的验证集（一次模拟考）有一个问题：模型在这次模拟考上表现好，可能只是运气（比如这套模拟题恰好是它擅长的类型<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。为了得到对“学习策略”更可靠的评估，就有了<strong>交叉验证<span><span class="heti-spacing"> </span>(Cross-Validation)</span></strong></p>
 <p><img alt="" src="../image/ch2/image-4.png"/></p>
 <p>这种方法可以更全面地评估模型的性能，减少由于单次验证集划分带来的偶然性影响。</p>

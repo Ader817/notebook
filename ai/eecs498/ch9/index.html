@@ -191,7 +191,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../tools/venv/">
+<a class="md-tabs__link" href="../../../tools/">
           
   
     
@@ -211,7 +211,7 @@
         </a>
 </li>
 <li class="md-tabs__item">
-<a class="md-tabs__link" href="../../../Misc/softmax.md">
+<a class="md-tabs__link" href="../../../misc/softmax/">
           
   
     
@@ -320,7 +320,7 @@
 </a>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../tools/venv/">
+<a class="md-nav__link" href="../../../tools/">
 <span class="md-ellipsis">
     Tools
     
@@ -347,8 +347,35 @@
             AI
           </label>
 <ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../notes/">
+<span class="md-ellipsis">
+    AI Notes
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../agent/">
+<span class="md-ellipsis">
+    Agent
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
+<li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
+<a class="md-nav__link" href="../../cs224n/">
+<span class="md-ellipsis">
+    CS224N
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</a>
+</li>
 <li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_2" type="checkbox"/>
+<input checked="" class="md-nav__toggle md-toggle" id="__nav_9_5" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../">
 <span class="md-ellipsis">
@@ -356,12 +383,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_9_2" id="__nav_9_2_label" tabindex="0">
+<label class="md-nav__link" for="__nav_9_5" id="__nav_9_5_label" tabindex="0">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="true" aria-labelledby="__nav_9_2_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_9_2">
+<nav aria-expanded="true" aria-labelledby="__nav_9_5_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_9_5">
 <span class="md-nav__icon md-icon"></span>
             EECS498
           </label>
@@ -432,12 +459,183 @@
 </li>
 <li class="md-nav__item md-nav__item--active">
 <input class="md-nav__toggle md-toggle" id="__toc" type="checkbox"/>
+<label class="md-nav__link md-nav__link--active" for="__toc">
+<span class="md-ellipsis">
+    Lec 9: Hardware and Software
+    
+  </span>
+<span class="md-nav__icon md-icon"></span>
+</label>
 <a class="md-nav__link md-nav__link--active" href="./">
 <span class="md-ellipsis">
     Lec 9: Hardware and Software
     
   </span>
 </a>
+<nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deep-learning-hardware">
+<span class="md-ellipsis">
+      Deep Learning Hardware
+    </span>
+</a>
+<nav aria-label="Deep Learning Hardware" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cpu-vs-gpu">
+<span class="md-ellipsis">
+      CPU vs GPU
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gpu-内存层级">
+<span class="md-ellipsis">
+      GPU 内存层级
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tputensor-processing-unit">
+<span class="md-ellipsis">
+      TPU（Tensor Processing Unit）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数值格式">
+<span class="md-ellipsis">
+      数值格式
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deep-learning-software">
+<span class="md-ellipsis">
+      Deep Learning Software
+    </span>
+</a>
+<nav aria-label="Deep Learning Software" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pytorch-vs-tensorflow">
+<span class="md-ellipsis">
+      PyTorch vs TensorFlow
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pytorch-核心组件">
+<span class="md-ellipsis">
+      PyTorch 核心组件
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#静态图-vs-动态图">
+<span class="md-ellipsis">
+      静态图 vs 动态图
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-loading">
+<span class="md-ellipsis">
+      Data Loading
+    </span>
+</a>
+<nav aria-label="Data Loading" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pytorch-dataloader">
+<span class="md-ellipsis">
+      PyTorch DataLoader
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数据预处理流水线">
+<span class="md-ellipsis">
+      数据预处理流水线
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#computational-graphs-and-memory">
+<span class="md-ellipsis">
+      Computational Graphs and Memory
+    </span>
+</a>
+<nav aria-label="Computational Graphs and Memory" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#前向传播的内存消耗">
+<span class="md-ellipsis">
+      前向传播的内存消耗
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#梯度检查点gradient-checkpointing">
+<span class="md-ellipsis">
+      梯度检查点（Gradient Checkpointing）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#模型并行-vs-数据并行">
+<span class="md-ellipsis">
+      模型并行 vs 数据并行
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#profiling-and-optimization">
+<span class="md-ellipsis">
+      Profiling and Optimization
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="../ch10/">
@@ -550,7 +748,7 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--pruned md-nav__item--nested">
-<a class="md-nav__link" href="../../../Misc/softmax.md">
+<a class="md-nav__link" href="../../../misc/softmax/">
 <span class="md-ellipsis">
     Misc
     
@@ -576,6 +774,168 @@
 <div class="md-sidebar__scrollwrap">
 <div class="md-sidebar__inner">
 <nav aria-label="目录" class="md-nav md-nav--secondary">
+<label class="md-nav__title" for="__toc">
+<span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+<ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#overview">
+<span class="md-ellipsis">
+      Overview
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deep-learning-hardware">
+<span class="md-ellipsis">
+      Deep Learning Hardware
+    </span>
+</a>
+<nav aria-label="Deep Learning Hardware" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#cpu-vs-gpu">
+<span class="md-ellipsis">
+      CPU vs GPU
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gpu-内存层级">
+<span class="md-ellipsis">
+      GPU 内存层级
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#tputensor-processing-unit">
+<span class="md-ellipsis">
+      TPU（Tensor Processing Unit）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数值格式">
+<span class="md-ellipsis">
+      数值格式
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#deep-learning-software">
+<span class="md-ellipsis">
+      Deep Learning Software
+    </span>
+</a>
+<nav aria-label="Deep Learning Software" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pytorch-vs-tensorflow">
+<span class="md-ellipsis">
+      PyTorch vs TensorFlow
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pytorch-核心组件">
+<span class="md-ellipsis">
+      PyTorch 核心组件
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#静态图-vs-动态图">
+<span class="md-ellipsis">
+      静态图 vs 动态图
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#data-loading">
+<span class="md-ellipsis">
+      Data Loading
+    </span>
+</a>
+<nav aria-label="Data Loading" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pytorch-dataloader">
+<span class="md-ellipsis">
+      PyTorch DataLoader
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#数据预处理流水线">
+<span class="md-ellipsis">
+      数据预处理流水线
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#computational-graphs-and-memory">
+<span class="md-ellipsis">
+      Computational Graphs and Memory
+    </span>
+</a>
+<nav aria-label="Computational Graphs and Memory" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#前向传播的内存消耗">
+<span class="md-ellipsis">
+      前向传播的内存消耗
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#梯度检查点gradient-checkpointing">
+<span class="md-ellipsis">
+      梯度检查点（Gradient Checkpointing）
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#模型并行-vs-数据并行">
+<span class="md-ellipsis">
+      模型并行 vs 数据并行
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#profiling-and-optimization">
+<span class="md-ellipsis">
+      Profiling and Optimization
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#main-takeaways">
+<span class="md-ellipsis">
+      Main Takeaways
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#terms">
+<span class="md-ellipsis">
+      Terms
+    </span>
+</a>
+</li>
+</ul>
 </nav>
 </div>
 </div>
@@ -589,6 +949,400 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
 </a>
 <h1 id="lec-9-hardware-and-software">Lec 9: Hardware and Software</h1>
+<h2 id="overview">Overview</h2>
+<p>深度学习的成功不只依赖算法，也依赖于<strong>硬件与软件生态的协同发展</strong>。</p>
+<p>本讲讨论三个问题：</p>
+<ol>
+<li>深度学习的计算发生在什么硬件上？<span>CPU vs GPU vs TPU<span class="heti-spacing"> </span></span>的区别是什么？</li>
+<li>深度学习框架（PyTorch / TensorFlow）做了什么，如何选择？</li>
+<li>在实际训练中，如何高效地组织数据和计算，让硬件跑满？</li>
+</ol>
+<h2 id="deep-learning-hardware">Deep Learning Hardware</h2>
+<h3 id="cpu-vs-gpu">CPU vs GPU</h3>
+<table>
+<thead>
+<tr>
+<th>特性</th>
+<th>CPU</th>
+<th>GPU</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>核数</td>
+<td>少（4～<span>64<span class="heti-spacing"> </span></span>核）</td>
+<td>多（数千<span class="heti-skip"><span class="heti-spacing"> </span>CUDA<span class="heti-spacing"> </span></span>核）</td>
+</tr>
+<tr>
+<td>每核频率</td>
+<td>高（3～5 GHz）</td>
+<td>低（~1 GHz）</td>
+</tr>
+<tr>
+<td>擅长任务</td>
+<td>串行、复杂逻辑</td>
+<td>大规模并行浮点计算</td>
+</tr>
+<tr>
+<td>内存带宽</td>
+<td>低（~50 GB/s）</td>
+<td>高（~900 GB/s，A100）</td>
+</tr>
+<tr>
+<td>典型用途</td>
+<td>数据预处理、控制流</td>
+<td>矩阵乘法、卷积</td>
+</tr>
+</tbody>
+</table>
+<p>深度学习的核心计算是矩阵乘法（GEMM<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，天然适合<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>的大规模并行架构。</p>
+<div class="admonition info">
+<p class="admonition-title">为什么<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>更快？</p>
+<p>训练一个<span class="heti-skip"><span class="heti-spacing"> </span>batch<span class="heti-spacing"> </span></span>时，每个样本的前向<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>反向传播在数学上相互独立，可以完全并行。</p>
+<p><span>CPU<span class="heti-spacing"> </span></span>的少量高频核无法充分利用这种并行性；<span>GPU<span class="heti-spacing"> </span></span>的数千个低频核则能同时处理整个<span><span class="heti-spacing"> </span>batch</span>。</p>
+</div>
+<h3 id="gpu-内存层级"><span>GPU<span class="heti-spacing"> </span></span>内存层级</h3>
+<p><span>GPU<span class="heti-spacing"> </span></span>的内存系统对性能至关重要：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>寄存器（Register）     &lt; 1 ns    每个 CUDA 核私有
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>  ↓
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>共享内存（Shared Mem） ~几 ns    同一线程块内共享
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>  ↓
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>L1/L2 Cache           ~几十 ns
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>  ↓
+</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a>全局内存（VRAM/HBM）   ~百 ns    所有核共享，容量大（A100: 80GB）
+</span><span id="__span-0-8"><a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>  ↓
+</span><span id="__span-0-9"><a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>主机内存（CPU RAM）     PCIe 传输  带宽瓶颈
+</span></code></pre></div>
+<p><strong>内存带宽</strong>往往是实际训练的瓶颈，而非浮点算力。</p>
+<h3 id="tputensor-processing-unit">TPU（Tensor Processing Unit）</h3>
+<p><span>Google<span class="heti-spacing"> </span></span>专为深度学习设计的<span><span class="heti-spacing"> </span>ASIC</span>：</p>
+<ul>
+<li>针对矩阵乘法做硬件级优化（脉动阵列，Systolic Array）</li>
+<li>比<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>在特定任务（<span>Transformer<span class="heti-spacing"> </span></span>训练）上快数倍</li>
+<li>能耗效率更高</li>
+</ul>
+<p><span>TPU<span class="heti-spacing"> </span></span>通过<span class="heti-skip"><span class="heti-spacing"> </span>Google Cloud / JAX<span class="heti-spacing"> </span></span>使用，<span>PyTorch<span class="heti-spacing"> </span></span>也逐步支持<span><span class="heti-spacing"> </span>TPU</span>。</p>
+<h3 id="数值格式">数值格式</h3>
+<p>降低数值精度可以成倍提升吞吐量：</p>
+<table>
+<thead>
+<tr>
+<th>格式</th>
+<th>位数</th>
+<th>精度</th>
+<th>典型用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FP64（double）</td>
+<td><span>64<span class="heti-spacing"> </span></span>位</td>
+<td>最高</td>
+<td>科学计算</td>
+</tr>
+<tr>
+<td>FP32（single）</td>
+<td><span>32<span class="heti-spacing"> </span></span>位</td>
+<td>标准</td>
+<td>训练默认</td>
+</tr>
+<tr>
+<td>FP16（half）</td>
+<td><span>16<span class="heti-spacing"> </span></span>位</td>
+<td>较低</td>
+<td>混合精度训练</td>
+</tr>
+<tr>
+<td>BF16</td>
+<td><span>16<span class="heti-spacing"> </span></span>位</td>
+<td>指数范围大</td>
+<td><span>Transformer<span class="heti-spacing"> </span></span>训练常用</td>
+</tr>
+<tr>
+<td>INT8</td>
+<td><span>8<span class="heti-spacing"> </span></span>位</td>
+<td>整数</td>
+<td>推理量化</td>
+</tr>
+</tbody>
+</table>
+<p><strong>混合精度训练（Mixed Precision Training）</strong>：前向传播和梯度计算用<span><span class="heti-spacing"> </span>FP16</span>，参数更新用<span class="heti-skip"><span class="heti-spacing"> </span>FP32<span class="heti-spacing"> </span></span>主备份，兼顾速度和稳定性。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.cuda.amp</span><span class="w"> </span><span class="kn">import</span> <span class="n">autocast</span><span class="p">,</span> <span class="n">GradScaler</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>
+</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="n">scaler</span> <span class="o">=</span> <span class="n">GradScaler</span><span class="p">()</span>
+</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
+</span><span id="__span-1-6"><a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a>    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-1-7"><a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a>    <span class="k">with</span> <span class="n">autocast</span><span class="p">():</span>               <span class="c1"># 前向传播用 FP16</span>
+</span><span id="__span-1-8"><a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>        <span class="n">loss</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-1-9"><a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>    <span class="n">scaler</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">loss</span><span class="p">)</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>  <span class="c1"># 反传时缩放梯度避免下溢</span>
+</span><span id="__span-1-10"><a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a>    <span class="n">scaler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">optimizer</span><span class="p">)</span>
+</span><span id="__span-1-11"><a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>    <span class="n">scaler</span><span class="o">.</span><span class="n">update</span><span class="p">()</span>
+</span></code></pre></div>
+<h2 id="deep-learning-software">Deep Learning Software</h2>
+<p>深度学习框架提供三个核心能力：</p>
+<ol>
+<li><strong>张量计算（Tensor Operations）</strong>：<span>GPU<span class="heti-spacing"> </span></span>加速的多维数组运算</li>
+<li><strong>自动微分（Autograd）</strong>：自动构建计算图并反传梯度</li>
+<li><strong>神经网络抽象（nn.Module）</strong>：层、优化器、<span>Loss<span class="heti-spacing"> </span></span>等模块化封装</li>
+</ol>
+<h3 id="pytorch-vs-tensorflow">PyTorch vs TensorFlow</h3>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>PyTorch</th>
+<th>TensorFlow</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计算图</td>
+<td>动态（Define-by-Run）</td>
+<td>静态（Define-and-Run，TF1）<span>/<span class="heti-spacing"> </span></span>动态（TF2 Eager）</td>
+</tr>
+<tr>
+<td>调试</td>
+<td>直接用<span class="heti-skip"><span class="heti-spacing"> </span>Python<span class="heti-spacing"> </span></span>调试器</td>
+<td><span>TF1<span class="heti-spacing"> </span></span>需要<span><span class="heti-spacing"> </span>Session</span>，<span>TF2<span class="heti-spacing"> </span></span>改善</td>
+</tr>
+<tr>
+<td>学术界</td>
+<td>主流</td>
+<td>逐渐减少</td>
+</tr>
+<tr>
+<td>工业部署</td>
+<td>TorchScript / ONNX</td>
+<td>TensorFlow Serving / TFLite</td>
+</tr>
+<tr>
+<td>生态</td>
+<td>HuggingFace、<span>Lightning<span class="heti-spacing"> </span></span>等</td>
+<td>Keras、<span>TFHub<span class="heti-spacing"> </span></span>等</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">现在学什么？</p>
+<p>学术研究和个人实践首选 <strong>PyTorch</strong>。工业部署中<span class="heti-skip"><span class="heti-spacing"> </span>TensorFlow / ONNX / TorchScript<span class="heti-spacing"> </span></span>也值得了解。</p>
+</div>
+<h3 id="pytorch-核心组件"><span>PyTorch<span class="heti-spacing"> </span></span>核心组件</h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span><span class="p">,</span> <span class="n">Dataset</span>
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1"># 1. 张量（Tensor）</span>
+</span><span id="__span-2-7"><a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>           <span class="c1"># CPU 张量</span>
+</span><span id="__span-2-8"><a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>                    <span class="c1"># 移到 GPU</span>
+</span><span id="__span-2-9"><a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s1">'cuda'</span><span class="p">)</span>                <span class="c1"># 等价写法</span>
+</span><span id="__span-2-10"><a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a><span class="c1"># 2. 自动微分</span>
+</span><span id="__span-2-12"><a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-2-13"><a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</span><span id="__span-2-14"><a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>                    <span class="c1"># 计算梯度</span>
+</span><span id="__span-2-15"><a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a><span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>                   <span class="c1"># dy/dx = 2x</span>
+</span><span id="__span-2-16"><a href="#__codelineno-2-16" id="__codelineno-2-16" name="__codelineno-2-16"></a>
+</span><span id="__span-2-17"><a href="#__codelineno-2-17" id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="c1"># 3. 模型定义</span>
+</span><span id="__span-2-18"><a href="#__codelineno-2-18" id="__codelineno-2-18" name="__codelineno-2-18"></a><span class="k">class</span><span class="w"> </span><span class="nc">MyNet</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span><span id="__span-2-19"><a href="#__codelineno-2-19" id="__codelineno-2-19" name="__codelineno-2-19"></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-2-20"><a href="#__codelineno-2-20" id="__codelineno-2-20" name="__codelineno-2-20"></a>        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="__span-2-21"><a href="#__codelineno-2-21" id="__codelineno-2-21" name="__codelineno-2-21"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">fc</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span><span id="__span-2-22"><a href="#__codelineno-2-22" id="__codelineno-2-22" name="__codelineno-2-22"></a>
+</span><span id="__span-2-23"><a href="#__codelineno-2-23" id="__codelineno-2-23" name="__codelineno-2-23"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+</span><span id="__span-2-24"><a href="#__codelineno-2-24" id="__codelineno-2-24" name="__codelineno-2-24"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-2-25"><a href="#__codelineno-2-25" id="__codelineno-2-25" name="__codelineno-2-25"></a>
+</span><span id="__span-2-26"><a href="#__codelineno-2-26" id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="c1"># 4. 训练循环</span>
+</span><span id="__span-2-27"><a href="#__codelineno-2-27" id="__codelineno-2-27" name="__codelineno-2-27"></a><span class="n">model</span> <span class="o">=</span> <span class="n">MyNet</span><span class="p">()</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</span><span id="__span-2-28"><a href="#__codelineno-2-28" id="__codelineno-2-28" name="__codelineno-2-28"></a><span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">)</span>
+</span><span id="__span-2-29"><a href="#__codelineno-2-29" id="__codelineno-2-29" name="__codelineno-2-29"></a><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+</span><span id="__span-2-30"><a href="#__codelineno-2-30" id="__codelineno-2-30" name="__codelineno-2-30"></a>
+</span><span id="__span-2-31"><a href="#__codelineno-2-31" id="__codelineno-2-31" name="__codelineno-2-31"></a><span class="k">for</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>
+</span><span id="__span-2-32"><a href="#__codelineno-2-32" id="__codelineno-2-32" name="__codelineno-2-32"></a>    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">cuda</span><span class="p">(),</span> <span class="n">y</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</span><span id="__span-2-33"><a href="#__codelineno-2-33" id="__codelineno-2-33" name="__codelineno-2-33"></a>    <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-2-34"><a href="#__codelineno-2-34" id="__codelineno-2-34" name="__codelineno-2-34"></a>    <span class="n">loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">model</span><span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-2-35"><a href="#__codelineno-2-35" id="__codelineno-2-35" name="__codelineno-2-35"></a>    <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-2-36"><a href="#__codelineno-2-36" id="__codelineno-2-36" name="__codelineno-2-36"></a>    <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="静态图-vs-动态图">静态图<span class="heti-skip"><span class="heti-spacing"> </span>vs<span class="heti-spacing"> </span></span>动态图</h3>
+<p><strong>动态图（Eager Mode）</strong>：每次前向传播时即时执行并构建计算图，<span>Python<span class="heti-spacing"> </span></span>控制流直接有效。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># 动态图：if 分支直接生效</span>
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="k">if</span> <span class="n">x</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-3-4"><a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>        <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span>
+</span><span id="__span-3-5"><a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>    <span class="k">return</span> <span class="n">x</span> <span class="o">*</span> <span class="o">-</span><span class="mi">1</span>
+</span></code></pre></div>
+<p><strong>静态图（Graph Mode / TorchScript）</strong>：先编译整个计算图，再重复执行，适合部署优化。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="c1"># TorchScript：将模型编译为静态图</span>
+</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="n">scripted</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">script</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">scripted</span><span class="p">,</span> <span class="s1">'model.pt'</span><span class="p">)</span>
+</span></code></pre></div>
+<h2 id="data-loading">Data Loading</h2>
+<p>训练时<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>的利用率常被<strong>数据加载</strong>拖慢：<span>GPU<span class="heti-spacing"> </span></span>还没算完，下一个<span class="heti-skip"><span class="heti-spacing"> </span>batch<span class="heti-spacing"> </span></span>的数据还没准备好。</p>
+<h3 id="pytorch-dataloader">PyTorch DataLoader</h3>
+<p><span>PyTorch<span class="heti-spacing"> </span></span>的 <code>DataLoader</code> 支持多进程预取（prefetch<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，在<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>计算当前<span class="heti-skip"><span class="heti-spacing"> </span>batch<span class="heti-spacing"> </span></span>时，提前在<span class="heti-skip"><span class="heti-spacing"> </span>CPU<span class="heti-spacing"> </span></span>上加载和预处理下一个<span><span class="heti-spacing"> </span>batch</span>：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">DataLoader</span>
+</span><span id="__span-5-2"><a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="c1"># num_workers &gt; 0：开启多进程数据加载</span>
+</span><span id="__span-5-4"><a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="c1"># pin_memory=True：使用固定内存，加速 CPU→GPU 传输</span>
+</span><span id="__span-5-5"><a href="#__codelineno-5-5" id="__codelineno-5-5" name="__codelineno-5-5"></a><span class="n">dataloader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+</span><span id="__span-5-6"><a href="#__codelineno-5-6" id="__codelineno-5-6" name="__codelineno-5-6"></a>    <span class="n">dataset</span><span class="p">,</span>
+</span><span id="__span-5-7"><a href="#__codelineno-5-7" id="__codelineno-5-7" name="__codelineno-5-7"></a>    <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span>
+</span><span id="__span-5-8"><a href="#__codelineno-5-8" id="__codelineno-5-8" name="__codelineno-5-8"></a>    <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-5-9"><a href="#__codelineno-5-9" id="__codelineno-5-9" name="__codelineno-5-9"></a>    <span class="n">num_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+</span><span id="__span-5-10"><a href="#__codelineno-5-10" id="__codelineno-5-10" name="__codelineno-5-10"></a>    <span class="n">pin_memory</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-5-11"><a href="#__codelineno-5-11" id="__codelineno-5-11" name="__codelineno-5-11"></a><span class="p">)</span>
+</span></code></pre></div>
+<div class="admonition info">
+<p class="admonition-title"><span>num_workers<span class="heti-spacing"> </span></span>如何选？</p>
+<p>经验法则<heti-adjacent class="heti-adjacent-half">：</heti-adjacent><code>num_workers = CPU 核数 / GPU 数</code>（通常<span><span class="heti-spacing"> </span>4</span>～8<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
+<p>太多反而会因进程切换开销降低效率；若数据已在<span class="heti-skip"><span class="heti-spacing"> </span>SSD<span class="heti-spacing"> </span></span>上，2～<span>4<span class="heti-spacing"> </span></span>通常足够。</p>
+</div>
+<h3 id="数据预处理流水线">数据预处理流水线</h3>
+<p>典型的<span class="heti-skip"><span class="heti-spacing"> </span>ImageNet<span class="heti-spacing"> </span></span>数据增强<span><span class="heti-spacing"> </span>pipeline</span>：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torchvision</span><span class="w"> </span><span class="kn">import</span> <span class="n">transforms</span>
+</span><span id="__span-6-2"><a href="#__codelineno-6-2" id="__codelineno-6-2" name="__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a href="#__codelineno-6-3" id="__codelineno-6-3" name="__codelineno-6-3"></a><span class="n">train_transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+</span><span id="__span-6-4"><a href="#__codelineno-6-4" id="__codelineno-6-4" name="__codelineno-6-4"></a>    <span class="n">transforms</span><span class="o">.</span><span class="n">RandomResizedCrop</span><span class="p">(</span><span class="mi">224</span><span class="p">),</span>     <span class="c1"># 随机裁剪并 resize</span>
+</span><span id="__span-6-5"><a href="#__codelineno-6-5" id="__codelineno-6-5" name="__codelineno-6-5"></a>    <span class="n">transforms</span><span class="o">.</span><span class="n">RandomHorizontalFlip</span><span class="p">(),</span>     <span class="c1"># 随机水平翻转</span>
+</span><span id="__span-6-6"><a href="#__codelineno-6-6" id="__codelineno-6-6" name="__codelineno-6-6"></a>    <span class="n">transforms</span><span class="o">.</span><span class="n">ColorJitter</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">),</span> <span class="c1"># 颜色抖动</span>
+</span><span id="__span-6-7"><a href="#__codelineno-6-7" id="__codelineno-6-7" name="__codelineno-6-7"></a>    <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>                 <span class="c1"># PIL → Tensor，归一化到 [0,1]</span>
+</span><span id="__span-6-8"><a href="#__codelineno-6-8" id="__codelineno-6-8" name="__codelineno-6-8"></a>    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span>                  <span class="c1"># 零均值单位方差</span>
+</span><span id="__span-6-9"><a href="#__codelineno-6-9" id="__codelineno-6-9" name="__codelineno-6-9"></a>        <span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span>
+</span><span id="__span-6-10"><a href="#__codelineno-6-10" id="__codelineno-6-10" name="__codelineno-6-10"></a>        <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">],</span>
+</span><span id="__span-6-11"><a href="#__codelineno-6-11" id="__codelineno-6-11" name="__codelineno-6-11"></a>    <span class="p">),</span>
+</span><span id="__span-6-12"><a href="#__codelineno-6-12" id="__codelineno-6-12" name="__codelineno-6-12"></a><span class="p">])</span>
+</span><span id="__span-6-13"><a href="#__codelineno-6-13" id="__codelineno-6-13" name="__codelineno-6-13"></a>
+</span><span id="__span-6-14"><a href="#__codelineno-6-14" id="__codelineno-6-14" name="__codelineno-6-14"></a><span class="n">val_transform</span> <span class="o">=</span> <span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">([</span>
+</span><span id="__span-6-15"><a href="#__codelineno-6-15" id="__codelineno-6-15" name="__codelineno-6-15"></a>    <span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+</span><span id="__span-6-16"><a href="#__codelineno-6-16" id="__codelineno-6-16" name="__codelineno-6-16"></a>    <span class="n">transforms</span><span class="o">.</span><span class="n">CenterCrop</span><span class="p">(</span><span class="mi">224</span><span class="p">),</span>
+</span><span id="__span-6-17"><a href="#__codelineno-6-17" id="__codelineno-6-17" name="__codelineno-6-17"></a>    <span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+</span><span id="__span-6-18"><a href="#__codelineno-6-18" id="__codelineno-6-18" name="__codelineno-6-18"></a>    <span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.485</span><span class="p">,</span> <span class="mf">0.456</span><span class="p">,</span> <span class="mf">0.406</span><span class="p">],</span>
+</span><span id="__span-6-19"><a href="#__codelineno-6-19" id="__codelineno-6-19" name="__codelineno-6-19"></a>                         <span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.229</span><span class="p">,</span> <span class="mf">0.224</span><span class="p">,</span> <span class="mf">0.225</span><span class="p">]),</span>
+</span><span id="__span-6-20"><a href="#__codelineno-6-20" id="__codelineno-6-20" name="__codelineno-6-20"></a><span class="p">])</span>
+</span></code></pre></div>
+<h2 id="computational-graphs-and-memory">Computational Graphs and Memory</h2>
+<h3 id="前向传播的内存消耗">前向传播的内存消耗</h3>
+<p>在训练时，前向传播需要<strong>保存所有中间激活值</strong>（供反传使用<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，这是显存占用的主要来源。</p>
+<p>一个典型<span class="heti-skip"><span class="heti-spacing"> </span>ResNet-50<span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>batch_size=32<span class="heti-spacing"> </span></span>时，激活值约占<span><span class="heti-spacing"> </span>~1.5 GB</span>。</p>
+<h3 id="梯度检查点gradient-checkpointing">梯度检查点（Gradient Checkpointing）</h3>
+<p>以<strong>时间换空间</strong>：不保存全部中间激活，在反传时重新计算所需的激活值。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.checkpoint</span><span class="w"> </span><span class="kn">import</span> <span class="n">checkpoint</span>
+</span><span id="__span-7-2"><a href="#__codelineno-7-2" id="__codelineno-7-2" name="__codelineno-7-2"></a>
+</span><span id="__span-7-3"><a href="#__codelineno-7-3" id="__codelineno-7-3" name="__codelineno-7-3"></a><span class="c1"># 用 checkpoint 包裹前向传播，节省约 60% 显存</span>
+</span><span id="__span-7-4"><a href="#__codelineno-7-4" id="__codelineno-7-4" name="__codelineno-7-4"></a><span class="n">out</span> <span class="o">=</span> <span class="n">checkpoint</span><span class="p">(</span><span class="n">model_segment</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+</span></code></pre></div>
+<p>代价：大约增加<span class="heti-skip"><span class="heti-spacing"> </span>~33%<span class="heti-spacing"> </span></span>的前向传播计算量。</p>
+<h3 id="模型并行-vs-数据并行">模型并行<span class="heti-skip"><span class="heti-spacing"> </span>vs<span class="heti-spacing"> </span></span>数据并行</h3>
+<table>
+<thead>
+<tr>
+<th>策略</th>
+<th>说明</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>数据并行（Data Parallel）</strong></td>
+<td>每张<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>存一个模型副本，各自处理不同<span><span class="heti-spacing"> </span>batch</span>，梯度汇总</td>
+<td>单机多<span><span class="heti-spacing"> </span>GPU</span>，最常用</td>
+</tr>
+<tr>
+<td><strong>模型并行（Model Parallel）</strong></td>
+<td>模型的不同层分布在不同<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>上</td>
+<td>模型太大，单<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>放不下</td>
+</tr>
+<tr>
+<td><strong>张量并行（Tensor Parallel）</strong></td>
+<td>每个矩阵乘法拆分到多个<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>上并行</td>
+<td>超大<span><span class="heti-spacing"> </span>Transformer</span>（<span>GPT<span class="heti-spacing"> </span></span>等）</td>
+</tr>
+</tbody>
+</table>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="c1"># PyTorch 数据并行（单机多 GPU）</span>
+</span><span id="__span-8-2"><a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">DataParallel</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+</span><span id="__span-8-3"><a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a>
+</span><span id="__span-8-4"><a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="c1"># 分布式数据并行（DDP，推荐）</span>
+</span><span id="__span-8-5"><a href="#__codelineno-8-5" id="__codelineno-8-5" name="__codelineno-8-5"></a><span class="kn">from</span><span class="w"> </span><span class="nn">torch.nn.parallel</span><span class="w"> </span><span class="kn">import</span> <span class="n">DistributedDataParallel</span> <span class="k">as</span> <span class="n">DDP</span>
+</span><span id="__span-8-6"><a href="#__codelineno-8-6" id="__codelineno-8-6" name="__codelineno-8-6"></a><span class="n">model</span> <span class="o">=</span> <span class="n">DDP</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">device_ids</span><span class="o">=</span><span class="p">[</span><span class="n">local_rank</span><span class="p">])</span>
+</span></code></pre></div>
+<h2 id="profiling-and-optimization">Profiling and Optimization</h2>
+<p>检查训练效率，找到瓶颈：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="c1"># PyTorch Profiler</span>
+</span><span id="__span-9-2"><a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">profiler</span><span class="o">.</span><span class="n">profile</span><span class="p">(</span>
+</span><span id="__span-9-3"><a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a>    <span class="n">activities</span><span class="o">=</span><span class="p">[</span>
+</span><span id="__span-9-4"><a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a>        <span class="n">torch</span><span class="o">.</span><span class="n">profiler</span><span class="o">.</span><span class="n">ProfilerActivity</span><span class="o">.</span><span class="n">CPU</span><span class="p">,</span>
+</span><span id="__span-9-5"><a href="#__codelineno-9-5" id="__codelineno-9-5" name="__codelineno-9-5"></a>        <span class="n">torch</span><span class="o">.</span><span class="n">profiler</span><span class="o">.</span><span class="n">ProfilerActivity</span><span class="o">.</span><span class="n">CUDA</span><span class="p">,</span>
+</span><span id="__span-9-6"><a href="#__codelineno-9-6" id="__codelineno-9-6" name="__codelineno-9-6"></a>    <span class="p">]</span>
+</span><span id="__span-9-7"><a href="#__codelineno-9-7" id="__codelineno-9-7" name="__codelineno-9-7"></a><span class="p">)</span> <span class="k">as</span> <span class="n">prof</span><span class="p">:</span>
+</span><span id="__span-9-8"><a href="#__codelineno-9-8" id="__codelineno-9-8" name="__codelineno-9-8"></a>    <span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-9-9"><a href="#__codelineno-9-9" id="__codelineno-9-9" name="__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a href="#__codelineno-9-10" id="__codelineno-9-10" name="__codelineno-9-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">prof</span><span class="o">.</span><span class="n">key_averages</span><span class="p">()</span><span class="o">.</span><span class="n">table</span><span class="p">(</span><span class="n">sort_by</span><span class="o">=</span><span class="s1">'cuda_time_total'</span><span class="p">))</span>
+</span></code></pre></div>
+<p>常见瓶颈及优化方向：</p>
+<table>
+<thead>
+<tr>
+<th>瓶颈</th>
+<th>诊断</th>
+<th>优化方法</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span>GPU<span class="heti-spacing"> </span></span>利用率低</td>
+<td><code>nvidia-smi</code> 显示<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>占用<span><span class="heti-spacing"> </span>&lt; 80%</span></td>
+<td>增大<span><span class="heti-spacing"> </span>batch size</span>，减少<span class="heti-skip"><span class="heti-spacing"> </span>CPU-GPU<span class="heti-spacing"> </span></span>同步</td>
+</tr>
+<tr>
+<td>数据加载慢</td>
+<td><span>Profiler<span class="heti-spacing"> </span></span>显示大量<span class="heti-skip"><span class="heti-spacing"> </span>CPU<span class="heti-spacing"> </span></span>等待</td>
+<td>增加 <code>num_workers</code>，使用更快存储</td>
+</tr>
+<tr>
+<td>显存不足</td>
+<td><span>OOM<span class="heti-spacing"> </span></span>报错</td>
+<td>减小<span><span class="heti-spacing"> </span>batch size</span>，gradient checkpointing，FP16</td>
+</tr>
+<tr>
+<td>通信开销大</td>
+<td>多<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>训练时<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>利用率周期性低</td>
+<td>使用<span class="heti-skip"><span class="heti-spacing"> </span>DDP<span class="heti-spacing"> </span></span>代替<span><span class="heti-spacing"> </span>DP</span>，增大<span><span class="heti-spacing"> </span>batch size</span></td>
+</tr>
+</tbody>
+</table>
+<h2 id="main-takeaways">Main Takeaways</h2>
+<ul>
+<li><span>GPU<span class="heti-spacing"> </span></span>通过大规模并行加速矩阵运算，是深度学习训练的核心硬件</li>
+<li><span>GPU<span class="heti-spacing"> </span></span>内存带宽往往是实际瓶颈，而非峰值算力</li>
+<li>混合精度训练（<span>FP16 + FP32<span class="heti-spacing"> </span></span>主备份）可以<span class="heti-skip"><span class="heti-spacing"> </span>2×<span class="heti-spacing"> </span></span>提速</li>
+<li><span>PyTorch<span class="heti-spacing"> </span></span>动态图便于调试；<span>TorchScript / ONNX<span class="heti-spacing"> </span></span>用于部署</li>
+<li><span>DataLoader<span class="heti-spacing"> </span></span>的多进程预取和<span class="heti-skip"><span class="heti-spacing"> </span>pin_memory<span class="heti-spacing"> </span></span>可以消除数据加载瓶颈</li>
+<li>训练时中间激活值是显存的主要占用；<span>Gradient Checkpointing<span class="heti-spacing"> </span></span>以算换存</li>
+<li>多<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>首选<span><span class="heti-spacing"> </span>DDP</span>（Distributed Data Parallel）</li>
+</ul>
+<h2 id="terms">Terms</h2>
+<div class="admonition info">
+<p class="admonition-title">术语小结</p>
+<ul>
+<li><strong>CUDA（Compute Unified Device Architecture）</strong>：<span>NVIDIA GPU<span class="heti-spacing"> </span></span>的并行计算平台</li>
+<li><strong>VRAM / HBM</strong>：<span>GPU<span class="heti-spacing"> </span></span>显存，高带宽内存（High Bandwidth Memory）</li>
+<li><strong>TPU（Tensor Processing Unit）</strong>：<span>Google<span class="heti-spacing"> </span></span>专为矩阵运算设计的<span class="heti-skip"><span class="heti-spacing"> </span>AI<span class="heti-spacing"> </span></span>加速芯片</li>
+<li><strong>Mixed Precision Training（混合精度训练）</strong>：<span>FP16<span class="heti-spacing"> </span></span>计算<span class="heti-skip"><span class="heti-spacing"> </span>+ FP32<span class="heti-spacing"> </span></span>参数维护，兼顾速度和稳定</li>
+<li><strong>BF16（Brain Float 16）</strong>：<span>Google<span class="heti-spacing"> </span></span>提出的<span class="heti-skip"><span class="heti-spacing"> </span>16<span class="heti-spacing"> </span></span>位浮点格式，指数位更多，数值范围与<span class="heti-skip"><span class="heti-spacing"> </span>FP32<span class="heti-spacing"> </span></span>相当</li>
+<li><strong>Autograd（自动微分）</strong>：框架自动构建计算图并计算梯度</li>
+<li><strong>TorchScript</strong>：将<span class="heti-skip"><span class="heti-spacing"> </span>PyTorch<span class="heti-spacing"> </span></span>模型编译为静态图，用于部署优化</li>
+<li><strong>DataLoader</strong>：<span>PyTorch<span class="heti-spacing"> </span></span>的数据加载器，支持多进程预取和批次采样</li>
+<li><strong>pin_memory</strong>：将<span class="heti-skip"><span class="heti-spacing"> </span>CPU<span class="heti-spacing"> </span></span>张量放在固定（非分页）内存中，加速<span><span class="heti-spacing"> </span>CPU</span>→<span>GPU<span class="heti-spacing"> </span></span>传输</li>
+<li><strong>num_workers</strong>：<span>DataLoader<span class="heti-spacing"> </span></span>使用的子进程数，用于并行数据加载</li>
+<li><strong>Gradient Checkpointing（梯度检查点）</strong>：减少显存占用，以重新计算替代存储中间激活</li>
+<li><strong>Data Parallel（数据并行）</strong>：每个<span class="heti-skip"><span class="heti-spacing"> </span>GPU<span class="heti-spacing"> </span></span>存一份模型，各处理不同<span class="heti-skip"><span class="heti-spacing"> </span>batch<span class="heti-spacing"> </span></span>后汇总梯度</li>
+<li><strong>DDP（Distributed Data Parallel）</strong>：<span>PyTorch<span class="heti-spacing"> </span></span>推荐的多<span class="heti-skip"><span class="heti-spacing"> </span>GPU /<span class="heti-spacing"> </span></span>多机训练方式</li>
+<li><strong>Profiler（性能分析器）</strong>：定位训练中<span class="heti-skip"><span class="heti-spacing"> </span>CPU/GPU<span class="heti-spacing"> </span></span>的时间消耗，找到性能瓶颈</li>
+</ul>
+</div>
 <!-- 标题计数器 -->
 </article>
 </div>
