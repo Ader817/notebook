@@ -1133,6 +1133,45 @@ A_i =
 </ul>
 <p><img alt="reasoning2-speculative-decoding-11" src="../assets/reasoning2-speculative-decoding-11.png"/></p>
 <p><span>Speculative decoding<span class="heti-spacing"> </span></span>本质上是一种<span><span class="heti-spacing"> </span>rejection sampling</span>。</p>
+<p>设<span class="heti-skip"><span class="heti-spacing"> </span>target model<span class="heti-spacing"> </span></span>为<span><span class="heti-spacing"> </span><span class="arithmatex">\(p_\theta\)</span></span>，<span>draft model<span class="heti-spacing"> </span></span>为<span><span class="heti-spacing"> </span><span class="arithmatex">\(q_\phi\)</span></span>。给定当前<span><span class="heti-spacing"> </span>prefix <span class="arithmatex">\(x\)</span></span>，<span>draft model<span class="heti-spacing"> </span></span>先自回归采样一段候选<span><span class="heti-spacing"> </span>tokens</span>：</p>
+<div class="arithmatex">\[
+\tilde{y}_{1:K} \sim q_\phi(\cdot \mid x)
+\]</div>
+<p><span>target model<span class="heti-spacing"> </span></span>用一次并行<span class="heti-skip"><span class="heti-spacing"> </span>forward<span class="heti-spacing"> </span></span>计算这些位置上的概率。对第<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(i\)</span><span class="heti-spacing"> </span></span>个<span><span class="heti-spacing"> </span>draft token <span class="arithmatex">\(\tilde{y}_i\)</span></span>，接受概率是：</p>
+<div class="arithmatex">\[
+a_i
+=
+\min\left(
+1,
+\frac{p_\theta(\tilde{y}_i \mid x, \tilde{y}_{&lt; i})}
+{q_\phi(\tilde{y}_i \mid x, \tilde{y}_{&lt; i})}
+\right)
+\]</div>
+<p>如果<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>被接受，就把它加入<span><span class="heti-spacing"> </span>prefix</span>，继续验证下一个<span><span class="heti-spacing"> </span>draft token</span>；如果在第<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(i\)</span><span class="heti-spacing"> </span></span>个位置被拒绝，则从<span class="heti-skip"><span class="heti-spacing"> </span>target<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>draft<span class="heti-spacing"> </span></span>的<strong>残差分布</strong>中重新采样：</p>
+<div class="arithmatex">\[
+p_{\text{res}}(v)
+=
+\frac{
+\left[p_\theta(v \mid x,\tilde{y}_{&lt; i}) - q_\phi(v \mid x,\tilde{y}_{&lt; i})\right]_+
+}{
+\sum_{v'}
+\left[p_\theta(v' \mid x,\tilde{y}_{&lt; i}) - q_\phi(v' \mid x,\tilde{y}_{&lt; i})\right]_+
+}
+\]</div>
+<p>其中<span><span class="heti-spacing"> </span><span class="arithmatex">\([z]_+ = \max(z,0)\)</span></span>。这个残差采样步骤保证：即使<span class="heti-skip"><span class="heti-spacing"> </span>draft token<span class="heti-spacing"> </span></span>被拒绝，最终输出仍然服从<span class="heti-skip"><span class="heti-spacing"> </span>target model<span class="heti-spacing"> </span></span>的分布，而不是<span class="heti-skip"><span class="heti-spacing"> </span>draft model<span class="heti-spacing"> </span></span>的分布。</p>
+<p>单步接受率可以写成两个分布的重叠程度：</p>
+<div class="arithmatex">\[
+\mathbb{P}(\text{accept})
+=
+\sum_v q_\phi(v)\min\left(1,\frac{p_\theta(v)}{q_\phi(v)}\right)
+=
+\sum_v \min(p_\theta(v), q_\phi(v))
+\]</div>
+<p>因此<span class="heti-skip"><span class="heti-spacing"> </span>speculative decoding<span class="heti-spacing"> </span></span>的速度收益来自两点：</p>
+<ul>
+<li><span>draft model<span class="heti-spacing"> </span></span>足够小，可以便宜地产生多个<span><span class="heti-spacing"> </span>candidate tokens</span></li>
+<li><span>draft distribution<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>target distribution<span class="heti-spacing"> </span></span>足够接近，使得较多<span class="heti-skip"><span class="heti-spacing"> </span>candidate tokens<span class="heti-spacing"> </span></span>被接受</li>
+</ul>
 <p>关键性质：</p>
 <ul>
 <li>输出分布仍然等价于<span><span class="heti-spacing"> </span>target model sampling</span></li>
@@ -1191,6 +1230,27 @@ A_i =
 <p><span>Standard knowledge distillation<span class="heti-spacing"> </span></span>通常是<span><span class="heti-spacing"> </span>teacher-centric</span>，因此对<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>来说是<span><span class="heti-spacing"> </span>off-policy</span>。</p>
 <p><span>On-policy distillation<span class="heti-spacing"> </span></span>则是<span><span class="heti-spacing"> </span>student-centric</span>：</p>
 <p><img alt="reasoning2-on-policy-distillation-30" src="../assets/reasoning2-on-policy-distillation-30.png"/></p>
+<p>先区分两种<span class="heti-skip"><span class="heti-spacing"> </span>KL<span class="heti-spacing"> </span></span>方向。设<span class="heti-skip"><span class="heti-spacing"> </span>teacher distribution<span class="heti-spacing"> </span></span>为<span><span class="heti-spacing"> </span><span class="arithmatex">\(p_T\)</span></span>，<span>student distribution<span class="heti-spacing"> </span></span>为<span><span class="heti-spacing"> </span><span class="arithmatex">\(p_S\)</span></span>。</p>
+<p><strong>Forward KL</strong> 是：</p>
+<div class="arithmatex">\[
+D_{\mathrm{KL}}(p_T \| p_S)
+=
+\sum_y p_T(y)\log\frac{p_T(y)}{p_S(y)}
+\]</div>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>distillation<span class="heti-spacing"> </span></span>里，最小化<span class="heti-skip"><span class="heti-spacing"> </span>forward KL<span class="heti-spacing"> </span></span>等价于最小化<span class="heti-skip"><span class="heti-spacing"> </span>teacher soft labels<span class="heti-spacing"> </span></span>下的<span><span class="heti-spacing"> </span>cross entropy</span>：</p>
+<div class="arithmatex">\[
+\mathcal{L}_{\mathrm{KD}}
+=
+-\mathbb{E}_{y\sim p_T}\log p_S(y)
+\]</div>
+<p><span>Forward KL<span class="heti-spacing"> </span></span>的直觉是 <strong>mass-covering</strong>：只要<span class="heti-skip"><span class="heti-spacing"> </span>teacher<span class="heti-spacing"> </span></span>认为某个<span class="heti-skip"><span class="heti-spacing"> </span>token / sequence<span class="heti-spacing"> </span></span>有概率，<span>student<span class="heti-spacing"> </span></span>就不能把它的概率压到<span><span class="heti-spacing"> </span>0</span>，否则惩罚会很大。因此<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>倾向于覆盖<span class="heti-skip"><span class="heti-spacing"> </span>teacher<span class="heti-spacing"> </span></span>的多个<span><span class="heti-spacing"> </span>modes</span>，保留更多多样性，但也可能把概率质量分散到不够<span class="heti-skip"><span class="heti-spacing"> </span>sharp<span class="heti-spacing"> </span></span>的区域。</p>
+<p><strong>Reverse KL</strong> 是：</p>
+<div class="arithmatex">\[
+D_{\mathrm{KL}}(p_S \| p_T)
+=
+\sum_y p_S(y)\log\frac{p_S(y)}{p_T(y)}
+\]</div>
+<p><span>Reverse KL<span class="heti-spacing"> </span></span>的直觉是 <strong>mode-seeking</strong>：惩罚<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>把概率放到<span class="heti-skip"><span class="heti-spacing"> </span>teacher<span class="heti-spacing"> </span></span>认为低概率的位置，因此<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>会更倾向于选择<span class="heti-skip"><span class="heti-spacing"> </span>teacher<span class="heti-spacing"> </span></span>分布中一个或少数几个高概率<span><span class="heti-spacing"> </span>modes</span>，而不是覆盖所有<span><span class="heti-spacing"> </span>modes</span>。这通常会让输出更<span><span class="heti-spacing"> </span>sharp</span>，但也可能牺牲<span><span class="heti-spacing"> </span>diversity</span>。</p>
 <p>区别可以粗略记成：</p>
 <ul>
 <li><strong>KD</strong><ul>
@@ -1214,12 +1274,98 @@ A_i =
 </ul>
 </li>
 </ul>
+<p>更形式化地说，<span>standard KD<span class="heti-spacing"> </span></span>常在<span class="heti-skip"><span class="heti-spacing"> </span>teacher / human prefix<span class="heti-spacing"> </span></span>上训练：</p>
+<div class="arithmatex">\[
+c_t = (x, y_{&lt; t}^{\text{gold or teacher}})
+\]</div>
+<div class="arithmatex">\[
+\mathcal{L}_{\mathrm{KD}}
+=
+\mathbb{E}_{c_t}
+\left[
+D_{\mathrm{KL}}
+\left(
+p_T(\cdot \mid c_t)
+\|
+p_S(\cdot \mid c_t)
+\right)
+\right]
+\]</div>
+<p>但<span class="heti-skip"><span class="heti-spacing"> </span>inference<span class="heti-spacing"> </span></span>时<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>看到的是自己生成出来的<span><span class="heti-spacing"> </span>prefix</span>。一旦<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>前面犯错，后续<span class="heti-skip"><span class="heti-spacing"> </span>context<span class="heti-spacing"> </span></span>就偏离<span><span class="heti-spacing"> </span>teacher-forced training distribution</span>，这就是<span><span class="heti-spacing"> </span>exposure bias / train-test mismatch</span>。</p>
+<p><span>On-policy distillation<span class="heti-spacing"> </span></span>改成让<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>先生成自己的<span><span class="heti-spacing"> </span>context</span>：</p>
+<div class="arithmatex">\[
+y_{&lt; t}^{S} \sim p_S(\cdot \mid x),
+\quad
+c_t^S = (x, y_{&lt; t}^{S})
+\]</div>
+<p>然后在这些<span class="heti-skip"><span class="heti-spacing"> </span>student-generated contexts<span class="heti-spacing"> </span></span>上向<span class="heti-skip"><span class="heti-spacing"> </span>teacher<span class="heti-spacing"> </span></span>查询<span><span class="heti-spacing"> </span>soft targets</span>，常见目标可以写成<span><span class="heti-spacing"> </span>reverse KL</span>：</p>
+<div class="arithmatex">\[
+\mathcal{L}_{\mathrm{on\text{-}policy}}
+=
+\mathbb{E}_{x,\,c_t^S}
+\left[
+D_{\mathrm{KL}}
+\left(
+p_S(\cdot \mid c_t^S)
+\|
+p_T(\cdot \mid c_t^S)
+\right)
+\right]
+\]</div>
+<p>训练流程可以理解为：</p>
+<ol>
+<li>从<span class="heti-skip"><span class="heti-spacing"> </span>prompt dataset<span class="heti-spacing"> </span></span>采样<span><span class="heti-spacing"> </span>prompts</span></li>
+<li>用当前<span><span class="heti-spacing"> </span>student rollout</span>，得到<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>自己会访问到的<span><span class="heti-spacing"> </span>prefixes</span></li>
+<li>在这些<span class="heti-skip"><span class="heti-spacing"> </span>prefixes<span class="heti-spacing"> </span></span>上调用<span><span class="heti-spacing"> </span>teacher</span>，得到<span><span class="heti-spacing"> </span>teacher logits / probabilities</span></li>
+<li>用<span class="heti-skip"><span class="heti-spacing"> </span>token-level dense signal<span class="heti-spacing"> </span></span>更新<span><span class="heti-spacing"> </span>student</span></li>
+<li>周期性重新生成<span><span class="heti-spacing"> </span>rollouts</span>，避免<span class="heti-skip"><span class="heti-spacing"> </span>data<span class="heti-spacing"> </span></span>变<span><span class="heti-spacing"> </span>stale</span></li>
+</ol>
 <p><span>On-policy distillation<span class="heti-spacing"> </span></span>的好处：</p>
 <ul>
 <li>减少<span><span class="heti-spacing"> </span>train-test mismatch</span></li>
 <li>让<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>学会从自己的错误上下文中恢复</li>
 <li>比<span class="heti-skip"><span class="heti-spacing"> </span>RL<span class="heti-spacing"> </span></span>便宜，因为有<span><span class="heti-spacing"> </span>dense teacher signal</span></li>
 <li>比普通<span class="heti-skip"><span class="heti-spacing"> </span>SFT<span class="heti-spacing"> </span></span>更接近真实推理时的<span><span class="heti-spacing"> </span>student distribution</span></li>
+</ul>
+<p>它和<span class="heti-skip"><span class="heti-spacing"> </span>RL<span class="heti-spacing"> </span></span>的关系也很接近：两者都让<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>在自己的状态分布上学习；区别是<span class="heti-skip"><span class="heti-spacing"> </span>RL<span class="heti-spacing"> </span></span>通常用<span class="heti-skip"><span class="heti-spacing"> </span>sparse reward<span class="heti-spacing"> </span></span>或<span><span class="heti-spacing"> </span>preference signal</span>，而<span class="heti-skip"><span class="heti-spacing"> </span>on-policy distillation<span class="heti-spacing"> </span></span>用<span class="heti-skip"><span class="heti-spacing"> </span>teacher<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>dense distribution<span class="heti-spacing"> </span></span>作为监督，因此梯度方差更低，也更容易训练小模型。</p>
+<p>这也是<span class="heti-skip"><span class="heti-spacing"> </span>slide<span class="heti-spacing"> </span></span>中说它是<span class="heti-skip"><span class="heti-spacing"> </span>SFT<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>RL "best of both worlds"<span class="heti-spacing"> </span></span>的原因：</p>
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>Sampling</th>
+<th>Reward / supervision signal</th>
+<th>GPU requirement</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Supervised fine-tuning</td>
+<td>Off-policy</td>
+<td>dense</td>
+<td>light</td>
+</tr>
+<tr>
+<td>Reinforcement learning</td>
+<td>On-policy</td>
+<td>sparse</td>
+<td>heavy</td>
+</tr>
+<tr>
+<td>On-policy distillation</td>
+<td>On-policy</td>
+<td>dense</td>
+<td>light</td>
+</tr>
+</tbody>
+</table>
+<p><span>SFT<span class="heti-spacing"> </span></span>的优势是<span><span class="heti-spacing"> </span>token-level dense supervision</span>，训练稳定且便宜；<span>RL<span class="heti-spacing"> </span></span>的优势是<span><span class="heti-spacing"> </span>on-policy</span>，模型在自己真实会访问的状态分布上学习，但<span class="heti-skip"><span class="heti-spacing"> </span>reward<span class="heti-spacing"> </span></span>往往<span><span class="heti-spacing"> </span>sparse</span>，训练也重。<span>On-policy distillation<span class="heti-spacing"> </span></span>试图组合两边的优点：让<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>生成自己的<span><span class="heti-spacing"> </span>contexts</span>，同时用<span class="heti-skip"><span class="heti-spacing"> </span>teacher logits<span class="heti-spacing"> </span></span>提供<span><span class="heti-spacing"> </span>dense supervision</span>。</p>
+<p>需要注意的<span><span class="heti-spacing"> </span>tradeoff</span>：</p>
+<ul>
+<li><span>teacher inference<span class="heti-spacing"> </span></span>成本仍然存在</li>
+<li><span>reverse KL / mode-seeking<span class="heti-spacing"> </span></span>可能降低<span><span class="heti-spacing"> </span>diversity</span></li>
+<li>如果<span class="heti-skip"><span class="heti-spacing"> </span>rollout<span class="heti-spacing"> </span></span>生成和训练之间延迟太大，仍然会出现<span><span class="heti-spacing"> </span>off-policy drift</span></li>
+<li><span>teacher<span class="heti-spacing"> </span></span>本身的错误和偏好会被<span class="heti-skip"><span class="heti-spacing"> </span>student<span class="heti-spacing"> </span></span>继承</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
