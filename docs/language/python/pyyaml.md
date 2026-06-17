@@ -1,8 +1,8 @@
 # PyYAML
 
-> [Official Documentation](https://wiki.python.org/python/YAML.html)(https://wiki.python.org/python/YAML.html)
+> [Official Documentation](https://wiki.python.org/python/YAML.html)
 >
-> [Python YAML tutorial](https://python.land/data-processing/python-yaml)(https://python.land/data-processing/python-yaml)
+> [Python YAML tutorial](https://python.land/data-processing/python-yaml)
 
 ## Install and importing PyYAML
 
@@ -30,7 +30,7 @@ prime_numbers: [2, 3, 5, 7, 11, 13, 17, 19]
 ...    prime_service = yaml.safe_load(file)
 
 >>> prime_service
-{'rest': 
+{'rest':
   { 'url': 'https://example.org/primenumbers/v1',
     'port': 8443
   },
@@ -40,7 +40,7 @@ prime_numbers: [2, 3, 5, 7, 11, 13, 17, 19]
 https://example.org/primenumbers/v1
 ```
 
-YAML 解析器返回一个最匹配数据的常规 Python 对象。在本例中，它是一个 Python 字典。这意味着可以使用所有常规字典功能，例如使用带默认值的 `get()` 
+YAML 解析器返回一个最匹配数据的常规 Python 对象。在本例中，它是一个 Python 字典。这意味着可以使用所有常规字典功能，例如使用带默认值的 `get()`
 
 !!! important
 

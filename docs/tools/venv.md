@@ -51,8 +51,8 @@ pip list # 查看当前环境安装的包（若仅显示基础包，说明激活
 ```
 
 ### 退出虚拟环境
-```Bash
-deactivate  # 退出当前虚拟环境 
+```bash
+deactivate  # 退出当前虚拟环境
 ```
 
 ## 依赖管理和包操作
@@ -98,4 +98,3 @@ pip install -r requirements.txt
 ```bash
 which python
 ```
-

@@ -57,7 +57,7 @@ class C:
 
 !!! important
 
-    `@property` 是 python 自带的一个 decorater，它的作用是把一个方法变成一个能够像属性一样访问的东西，如下所示：
+    `@property` 是 Python 自带的一个 decorator，它的作用是把一个方法变成一个能够像属性一样访问的东西，如下所示：
 
     ```python
     class User:
@@ -69,7 +69,7 @@ class C:
     u.name   # 不用加 ()
     ```
 
-    在 dataclass decorater 中可以这么使用：
+    在 dataclass decorator 中可以这么使用：
 
     ```python
     from dataclasses import dataclass
@@ -94,8 +94,8 @@ dataclasses.**field**(***, *default=MISSING*, *default_factory=MISSING*, *init=T
 用于特化 dataclass 中的字段（不一定所有字段都要遵从 dataclass 的参数行为）
 
 - `default`: 字段的默认值
-  - 类定义时创建一次默认值
-  - 示例创建时直接复用这个值
+    - 类定义时创建一次默认值
+    - 示例创建时直接复用这个值
 - `default_factory`: 一个无参函数，用于生成默认值
-  - 类定义时保存一个函数
-  - 实例创建时调用函数生成新值
+    - 类定义时保存一个函数
+    - 实例创建时调用函数生成新值
