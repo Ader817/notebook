@@ -25,7 +25,9 @@ counter: True
 
 因为样本空间$S=\{X=x_1,X=x_2,\,...\,,X=x_n\,...\,\}$中各样本点两两不相容，所以：
 
-$$1=P(S)=\sum\limits_{i=1}^{+\infty}P\{X=x_i\}=\sum\limits_{i=1}^{+\infty}{p_i}$$
+$$
+1=P(S)=\sum\limits_{i=1}^{+\infty}P\{X=x_i\}=\sum\limits_{i=1}^{+\infty}{p_i}
+$$
 
 ---
 
@@ -148,7 +150,7 @@ $$
 1. $F(x)$单调不减；
 2. $0\leq F(x) \leq 1$且$F(-\infty)=0$，$F(+\infty)=1$；
 3. $F(x)$右连续，即$F(x+0)=F(x)$；
-   1. 不一定左连续，左极限得到的是$P\{X<x\}$，而不是$P\{X\leq x\}$；
+    1. 不一定左连续，左极限得到的是$P\{X<x\}$，而不是$P\{X\leq x\}$；
 4. $P(a<X\leq b)=F(b)-F(a)$；
 
 ---
@@ -349,23 +351,23 @@ P\{\frac{a-\mu}{\sigma}< \frac{X-\mu}{\sigma} < \frac{b-\mu}{\sigma} \}=\Phi(\fr
 !!! note "$Y=\sin X$，其中$X\sim U(0,\pi)$，求$f_Y(y)$。"
 
     解：
-    
+
     $F_Y(y)=P\{Y\leq y\}=P\{\sin X\leq y\}$
 
     ![](./assets/ch2/image-3.png)
 
     由上图可知，
-    
+
     $$
-    \begin{aligned}  
+    \begin{aligned}
     P\{\sin X\leq y\}&=P\{0\leq X\leq \arcsin y\}+P\{\pi-\arcsin y\leq X\leq \pi\}\\
     &=\frac{\arcsin y}{\pi}+\frac{\arcsin y}{\pi}\\
     &=\frac{2\arcsin y}{\pi}
-    \end{aligned}   
+    \end{aligned}
     $$
 
     于是，在$y\in(0,1)$时，$F_Y(y)=\frac{2\arcsin y}{\pi}$，$y\not\in(0,1)$时，$F_Y(y)=0$，则$Y$的密度函数为：
-    
+
     $$
     f_Y(y)=\begin{cases}
     \frac{2}{\pi\sqrt{1-y^2}}, & y\in(0,1) \\[1ex]

@@ -1,4 +1,4 @@
-# Softmax 
+# Softmax
 
 Softmax 函数是深度学习，尤其是在多分类问题中，一个至关重要的激活函数。它能够将一个包含任意实数的向量“压缩”成一个概率分布向量。
 
@@ -24,6 +24,7 @@ $$
 y_k = \frac{e^{a_k}}{\sum_{j=1}^{n} e^{a_j}}
 $$
 
+
 这个公式分为两步：
 1.  **分子 `e^{a_k}`**：使用指数函数 `exp()` 将所有输入分数转换为正数。指数函数还有一个很好的特性，就是它会放大输入之间的差异，使得分数高的元素在输出概率中占据更大的比重。
 
@@ -36,6 +37,7 @@ $$
 $$
 y_k = \frac{e^{a_k - C'}}{\sum_{j=1}^{n} e^{a_j - C'}} \quad \text{其中 } C' = \max(a_1, a_2, ..., a_n)
 $$
+
 
 这样可以保证指数函数的输入最大为0，有效避免了溢出问题。
 
@@ -72,6 +74,7 @@ $$
 \frac{\partial L}{\partial a_i} = \sum_{k=1}^{n} \frac{\partial L}{\partial y_k} \frac{\partial y_k}{\partial a_i}
 $$
 
+
 我们需要分别计算 `∂L/∂y_k` 和 `∂y_k/∂a_i`。
 
 ### 3.3 计算组件偏导数
@@ -82,6 +85,7 @@ $$
 $$
 \frac{\partial L}{\partial y_k} = \frac{\partial}{\partial y_k} (-t_k \log(y_k)) = -t_k \frac{1}{y_k} = -\frac{t_k}{y_k}
 $$
+
 
 #### Softmax输出对输入的偏导 ($\partial y_k / \partial a_i$)
 这部分需要分两种情况讨论：
@@ -98,6 +102,7 @@ $$
     \end{aligned}
     $$
 
+
 * **情况 2: `i ≠ k` (非对角线元素)**
     对 $y_k = \frac{e^{a_k}}{\sum_{j} e^{a_j}}$ 求关于 $a_i$ 的偏导。此时分子 $e^{a_k}$ 是常数。
 
@@ -109,6 +114,7 @@ $$
     \end{aligned}
     $$
 
+
 ### 3.4 组合与化简
 
 现在，我们将这些结果代入链式法则的求和公式中。我们将求和拆分为 `k=i` 和 `k≠i` 两部分：
@@ -117,11 +123,13 @@ $$
 \frac{\partial L}{\partial a_i} = \frac{\partial L}{\partial y_i}\frac{\partial y_i}{\partial a_i} + \sum_{k \neq i} \frac{\partial L}{\partial y_k}\frac{\partial y_k}{\partial a_i}
 $$
 
+
 代入我们求得的四个结果：
 
 $$
 = \left(-\frac{t_i}{y_i}\right) \cdot (y_i(1 - y_i)) + \sum_{k \neq i} \left(-\frac{t_k}{y_k}\right) \cdot (-y_k y_i)
 $$
+
 
 进行化简：
 
@@ -129,9 +137,11 @@ $$
 = -t_i(1 - y_i) + \sum_{k \neq i} t_k y_i
 $$
 
+
 $$
 = -t_i + t_i y_i + y_i \sum_{k \neq i} t_k
 $$
+
 
 将 $t_i y_i$ 移入求和项中：
 
@@ -139,9 +149,11 @@ $$
 = -t_i + y_i \left( t_i + \sum_{k \neq i} t_k \right)
 $$
 
+
 $$
 = -t_i + y_i \sum_{k=1}^{n} t_k
 $$
+
 
 由于 `t` 是 one-hot 向量，其所有元素之和 $\sum_{k=1}^{n} t_k$ 必然等于 1。因此：
 
@@ -149,10 +161,13 @@ $$
 = -t_i + y_i \cdot 1
 $$
 
+
 最终我们得到了一个极其简洁的结果：
+
 $$
 \frac{\partial L}{\partial a_i} = y_i - t_i
 $$
+
 
 ### 3.5 结论与直觉
 
@@ -161,6 +176,7 @@ $$
 $$
 \frac{\partial L}{\partial a} = y - t
 $$
+
 
 这个结果非常直观，其含义是 **梯度 = 预测概率 - 真实概率**。
 

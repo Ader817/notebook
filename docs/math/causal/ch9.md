@@ -7,10 +7,12 @@
 - $V$：**内生变量（endogenous variables）**，即可观测的随机变量
 - $U$：**外生变量（exogenous variables）**，即背景 / 噪声变量，可以不可观测
 - $F$：**结构方程集合（structural equations）**，每个 $V_i$ 对应一个方程：
-  $$
-  V_i = f_i(\text{Pa}(V_i), U_i)
-  $$
-  其中 $\text{Pa}(V_i)$ 是 $V_i$ 在 DAG 中的父节点集合
+
+    $$
+    V_i = f_i(\text{Pa}(V_i), U_i)
+    $$
+
+    其中 $\text{Pa}(V_i)$ 是 $V_i$ 在 DAG 中的父节点集合
 
 每个结构方程描述了"$V_i$ 的取值由哪些因素决定"，是**因果机制（causal mechanism）**的形式化表达。
 
@@ -56,6 +58,7 @@ $$
 P(V \mid do(X = x)) = \prod_{i: V_i \neq X} P(V_i \mid \text{Pa}(V_i)) \cdot \mathbf{1}[X = x]
 $$
 
+
 这叫**截断因式分解（Truncated Factorization）**。
 
 ## 反事实：个体层面推断
@@ -71,6 +74,7 @@ $$
 P(U \mid \text{evidence})
 $$
 
+
 ### Step 2：行动（Action）
 修改 SCM，令 $do(X' = x')$（假设的反事实干预）。
 
@@ -80,6 +84,7 @@ $$
 $$
 Y_{x'}(u) = f_Y(\text{Pa}(Y) \text{ under } do(X' = x'), u)
 $$
+
 
 !!! info "反事实的例子"
     - "如果我当时没有吸烟，现在会不会得肺癌？"（已知结果，询问不同干预）
@@ -101,6 +106,7 @@ $$
 $$
 X = U_X, \quad Y = \alpha X + U_Y, \quad U_X \sim N(0,1), \quad U_Y \sim N(0,1)
 $$
+
 
 - **观测分布**：$P(Y \mid X = x) = N(\alpha x, 1)$
 - **干预分布**：$P(Y \mid do(X = x)) = N(\alpha x, 1)$（此处两者恰好相同，因为没有混淆）

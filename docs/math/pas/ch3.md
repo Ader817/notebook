@@ -32,10 +32,10 @@ counter: True
 
 !!! note ""
 
-      - 联合分布函数 $F(x,y) = P(X \leq x, Y \leq y)$ 是二元函数
-      - 边际分布函数 $F_X(x) = P(X \leq x) = lim_{y \rightarrow + \infty}F(x,y)$ 是关于 $x$ 的一元函数
-      - 条件分布函数 $F_{X \mid Y}(x \mid y) = P(X \leq x \mid Y=y)$ 是关于 $x$ 的一元函数
-      - $\lim_{\epsilon \rightarrow 0^+}P(X\leq x\mid y<Y\leq y+\epsilon)$ 也记为 $P(X \leq x \mid Y=y)$，请特别注意这个记号所带来的两种理解
+    - 联合分布函数 $F(x,y) = P(X \leq x, Y \leq y)$ 是二元函数
+    - 边际分布函数 $F_X(x) = P(X \leq x) = lim_{y \rightarrow + \infty}F(x,y)$ 是关于 $x$ 的一元函数
+    - 条件分布函数 $F_{X \mid Y}(x \mid y) = P(X \leq x \mid Y=y)$ 是关于 $x$ 的一元函数
+    - $\lim_{\epsilon \rightarrow 0^+}P(X\leq x\mid y<Y\leq y+\epsilon)$ 也记为 $P(X \leq x \mid Y=y)$，请特别注意这个记号所带来的两种理解
 
 #### 联合分布函数
 
@@ -54,7 +54,10 @@ $F(x,y)=P\{X\leq x,Y\leq y\}$为$(X,Y)$的**联合概率分布函数**，简称*
 
 $X$关于联合分布函数$F(x,y)$的**边际分布函数**定义为：
 
-$$F_X(x)=P\{X\leq x\}=P\{X\leq x ,Y<+\infty\}=F(x,+\infty)$$
+$$
+F_X(x)=P\{X\leq x\}=P\{X\leq x ,Y<+\infty\}=F(x,+\infty)
+$$
+
 
 - 对$y$来说同理
 
@@ -62,7 +65,10 @@ $$F_X(x)=P\{X\leq x\}=P\{X\leq x ,Y<+\infty\}=F(x,+\infty)$$
 
 $X=x_i$条件下$Y$的**条件概率分布函数**为：
 
-$$F_{Y|X}(y|x_i)=P\{Y\leq y | X = x_i\}$$
+$$
+F_{Y|X}(y|x_i)=P\{Y\leq y | X = x_i\}
+$$
+
 
 ## 二维连续型随机变量
 
@@ -70,7 +76,10 @@ $$F_{Y|X}(y|x_i)=P\{Y\leq y | X = x_i\}$$
 
 设二元随机变量$(X,Y)$的联合分布函数为$F(x,y)$，若存在二元函数$f(x,y)\geq0$，则对于任意的实数$x$，$y$有
 
-$$F(x,y)=\int_{-\infty}^x\int_{-\infty}^yf(u,v)\mathrm{d}u\mathrm{d}v$$
+$$
+F(x,y)=\int_{-\infty}^x\int_{-\infty}^yf(u,v)\mathrm{d}u\mathrm{d}v
+$$
+
 
 则称$(X,Y)$为**二元连续型随机变量（Bivariate Continuous Random Variable）**，称$f(x,y)$为$(X,Y)$的**联合概率密度函数（Joint Probability Density Function）**，简称为**联合密度函数**。 其具有以下性质：
 
@@ -82,71 +91,91 @@ $$F(x,y)=\int_{-\infty}^x\int_{-\infty}^yf(u,v)\mathrm{d}u\mathrm{d}v$$
 \partial x\partial y
 }=f(x,y)$；
 4. $(X,Y)$落入$xOy$平面任意区域$D$的概率为：$P\{(X,Y)\in D\}=\iint \limits_{D} f(x,y)\mathrm{d}x\mathrm{d}y$；
-   - 由于其几何意义为落在以$D$为底，以曲面$z=f(x,y)$为顶面的立体体积，所以当$D$面积为$0$时概率为$0$：
-   - `eg`：$P(X=1,Y=1)=0$，$P(X+Y=1)=0$，$P(X^2+Y^2=1)=0$；
+    - 由于其几何意义为落在以$D$为底，以曲面$z=f(x,y)$为顶面的立体体积，所以当$D$面积为$0$时概率为$0$：
+    - `eg`：$P(X=1,Y=1)=0$，$P(X+Y=1)=0$，$P(X^2+Y^2=1)=0$；
 
 ### 边际分布
 
 二位连续型随机变量$(X,Y)$中单个随机变量$X$的密度函数为$X$的**边际概率密度函数（Marginal Probability Density Function）**，简称**边际密度函数**。由于
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 F_X(x)&=P\{X\leq x\}=P\{X\leq x,Y<+\infty\}\\
 &=\int_{-\infty}^x\int_{-\infty}^{+\infty}f(x,y)\mathrm{d}y\mathrm{d}x\\
 &=\int_{-\infty}^x[\int_{-\infty}^{+\infty}f(x,y)\mathrm{d}y]\mathrm{d}x
-\end{aligned}$$
+\end{aligned}
+$$
 
 所以：
 
-$$f_X(x)=\int_{-\infty}^{+\infty}f(x,y)\mathrm{d}y$$
+$$
+f_X(x)=\int_{-\infty}^{+\infty}f(x,y)\mathrm{d}y
+$$
+
 
 同理：
 
-$$f_Y(y)=\int_{-\infty}^{+\infty}f(x,y)\mathrm{d}x$$
+$$
+f_Y(y)=\int_{-\infty}^{+\infty}f(x,y)\mathrm{d}x
+$$
+
 
 ### 条件分布
 
-设$(X,Y)$为二元连续型随机变量，对给定的$x$，若$P\{x<X\leq x+\delta\}>0$，则称对任意的$y$有：
+设$(X,Y)$为二元连续型随机变量，对给定的$x$，若$P\{x < X \leq x+\delta\}>0$，则称对任意的$y$有：
 
-$$F_{Y|X}(y|x)=\lim\limits_{\delta\rightarrow 0^+}P\{Y\leq y|x<X\leq x+\delta\}$$
+$$
+F_{Y|X}(y|x)=\lim\limits_{\delta\rightarrow 0^+}P\{Y\leq y|x < X \leq x+\delta\}
+$$
+
 
 为$Y$在$X=x$的条件下的**条件分布函数**。
 
 !!! note "一般地"
 
-      设$(X,Y)$为二元随机变量，对给定的$x$，若极限：
+    设$(X,Y)$为二元随机变量，对给定的$x$，若极限：
 
-      $$\lim\limits_{\delta\rightarrow 0^+} P \{Y\leq y|x-\delta<X\leq x+\delta \}=\lim\limits_{\delta\rightarrow 0^+}P\{Y\leq y|x-\delta<X\leq x+\delta\}
-      $$
+    $$
+    \lim\limits_{\delta\rightarrow 0^+} P \{Y\leq y|x-\delta < X \leq x+\delta \}=\lim\limits_{\delta\rightarrow 0^+}P\{Y\leq y|x-\delta < X \leq x+\delta\}
+    $$
 
-      对任意的$y$都存在，则称$Y$在$X=x$的条件下服从**条件分布函数**
+    对任意的$y$都存在，则称$Y$在$X=x$的条件下服从**条件分布函数**
 
 由于对二维连续性随机变量$(X,Y)$有：
 
-$$\begin{aligned}
-F_{Y|X}(y|x)&=\lim\limits_{\delta\rightarrow 0^+}P\{Y\leq y|x<X\leq x+\delta\}\\
-&=\lim\limits_{\delta\rightarrow 0^+}\frac{P\{Y\leq y,x<X\leq x+\delta\}}{P\{x<X\leq x+\delta\}}\\
+$$
+\begin{aligned}
+F_{Y|X}(y|x)&=\lim\limits_{\delta\rightarrow 0^+}P\{Y\leq y|x < X \leq x+\delta\}\\
+&=\lim\limits_{\delta\rightarrow 0^+}\frac{P\{Y\leq y,x < X \leq x+\delta\}}{P\{x < X \leq x+\delta\}}\\
 &=\lim\limits_{\delta\rightarrow 0^+}\frac{F(x+\delta,y)-F(x,y)}{F_X(x+\delta)-F_X(x)}\\
 &=\lim\limits_{\delta\rightarrow 0^+}\frac{(F(x+\delta,y)-F(x,y))/\delta}{(F_X(x+\delta)-F_X(x))/\delta}\\
-\end{aligned}$$
+\end{aligned}
+$$
 
 且
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 \lim\limits_{\delta\rightarrow 0^+}\frac{F(x+\delta,y)-F(x,y)}{\delta}
 &=\frac{\partial F(x,y)}{\partial x}\\
 &=\frac{\partial}{\partial x}\int_{-\infty}^x[\int_{-\infty}^{y}f(u,v)\mathrm{d}v]\mathrm{d}u\\
 &=\int_{-\infty}^yf(x,v)\mathrm{d}v\\
 \lim\limits_{\delta\rightarrow 0^+}\frac{F_X(x+\delta)-F_X(x)}{\delta}
 &=f_X(x)\\
-\end{aligned}$$
+\end{aligned}
+$$
 
 所以：
 
-$$F_{Y|X}(y|x)=\int_{-\infty}^y\frac{f(x,v)}{f_X(x)}\mathrm{d}v$$
+$$
+F_{Y|X}(y|x)=\int_{-\infty}^y\frac{f(x,v)}{f_X(x)}\mathrm{d}v
+$$
 
 我们由此可给出二维连续型随机变量的**条件概率密度函数**：
 
-$$f_{Y|X}(y|x)=\frac{f(x,y)}{f_X(x)}$$
+$$
+f_{Y|X}(y|x)=\frac{f(x,y)}{f_X(x)}
+$$
 
 ## 二元均匀分布和二元正态分布
 
@@ -154,12 +183,14 @@ $$f_{Y|X}(y|x)=\frac{f(x,y)}{f_X(x)}$$
 
 如果二元随机变量$(X,Y)$在二维有界区间$D$上取值，且具有联合密度函数
 
-$$f(x,y)=\left\{
+$$
+f(x,y)=\left\{
 \begin{aligned}
 &\frac{1}{\text{D的面积}},&(x,y)\in D,\\
 &0,&\text{其他}.
 \end{aligned}
-\right.$$
+\right.
+$$
 
 则称$(X,Y)$服从$D$上的**均匀分布**。
 
@@ -169,8 +200,9 @@ $$f(x,y)=\left\{
 
 如果二元随机变量$(X,Y)$具有联合密度函数
 
-$$f(x,y)=\frac{1}{2\pi\sigma_1\sigma_
-2\sqrt{1-\rho^2}}\exp\{\frac{-1}{2(1-\rho^2)}[\frac{(x-\mu)^2}{\sigma_1^2}-2\rho\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}]\}$$
+$$
+f(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\{\frac{-1}{2(1-\rho^2)}[\frac{(x-\mu)^2}{\sigma_1^2}-2\rho\frac{(x-\mu_1)(y-\mu_2)}{\sigma_1\sigma_2}+\frac{(y-\mu_2)^2}{\sigma_2^2}]\}
+$$
 
 ，且有$|\mu_1|<+\infty,|\mu_2|<+\infty,\sigma_1>0,\sigma_2>0,|\rho|<1$
 
@@ -191,18 +223,22 @@ $$f(x,y)=\frac{1}{2\pi\sigma_1\sigma_
 
 !!! note "二维正态分布的两个条件分布"
 
-    $$\begin{aligned}
+    $$
+    \begin{aligned}
     f_{Y|X}(y|x)&=\frac{f(x,y)}{f_X(x)}\\
     &=\frac{1}{\sqrt{2\pi}\sqrt{1-\rho^2}\sigma_2}\exp\{-\frac{1}{2(1-\rho^2)\sigma_2^2}[y-(\mu_2+\rho\frac{\sigma_2}{\sigma_1}(x-\mu_1))]^2\}\\
     f_{X|Y}(x|y)&=\frac{f(x,y)}{f_Y(y)}\\
     &=\frac{1}{\sqrt{2\pi}\sqrt{1-\rho^2}\sigma_1}\exp\{-\frac{1}{2(1-\rho^2)\sigma_1^2}[x-(\mu_1+\rho\frac{\sigma_1}{\sigma_2}(y-\mu_2))]^2\}\\
-    \end{aligned}$$
+    \end{aligned}
+    $$
 
 ## 随机变量的独立性
 
 如果对于任意的两个实数集合$D_1,D_2$，有
 
-$$P\{X\in D_1,Y\in D_2\}=P\{X\in D_1\}·P\{Y\in D_2\}$$
+$$
+P\{X\in D_1,Y\in D_2\}=P\{X\in D_1\}·P\{Y\in D_2\}
+$$
 
 则称随机变量$X,Y$**相互独立**，即$X,Y$**独立**。
 
@@ -225,13 +261,17 @@ $n$ 维随机变量独立性相关定理：
 
 这里讨论连续型，离散型只需把积分符号换成求和符号即可，当$X$和$Y$相互独立时，$Z=X+Y$的条件下：
 
-1. $$\begin{aligned}
-   F_Z(z) &= \iint \limits_{x+y\leq z}f(x,y)\mathrm{d}x\mathrm{d}y\\
-   &=\int_{-\infty}^{+\infty}[\int_{-\infty}^{z-x}f(x,y)\mathrm{d}y]\mathrm{d}x \quad u=x+y\\
-   &= \int_{-\infty}^{+\infty}[\int_{-\infty}^{z}f(x,u-x)\mathrm{d}u]\mathrm{d}x\\
-   &=\int_{-\infty}^{z}[\int_{-\infty}^{+\infty}f(x,u-x)\mathrm{d}x]\mathrm{d}u\\
-   &=\int_{-\infty}^{z}f_Z(u)\mathrm{d}y
-   \end{aligned}$$
+1. 分布函数公式：
+
+    $$
+    \begin{aligned}
+    F_Z(z) &= \iint \limits_{x+y\leq z}f(x,y)\mathrm{d}x\mathrm{d}y\\
+    &=\int_{-\infty}^{+\infty}[\int_{-\infty}^{z-x}f(x,y)\mathrm{d}y]\mathrm{d}x \quad u=x+y\\
+    &= \int_{-\infty}^{+\infty}[\int_{-\infty}^{z}f(x,u-x)\mathrm{d}u]\mathrm{d}x\\
+    &=\int_{-\infty}^{z}[\int_{-\infty}^{+\infty}f(x,u-x)\mathrm{d}x]\mathrm{d}u\\
+    &=\int_{-\infty}^{z}f_Z(u)\mathrm{d}y
+    \end{aligned}
+    $$
 
 2. 其密度函数公式：
     - $f_Z(z)=\int_{-\infty}^{+\infty}f(z-y,y)\mathrm{d}y=\int_{-\infty} ^ {+\infty}f(x,z-x)\mathrm{d}x$（$x$，$y$是对称的）
@@ -353,4 +393,3 @@ $$
 $$
 F_N(t) = 1- \Pi _{i=1} ^n [1-F_i(t)]
 $$
-

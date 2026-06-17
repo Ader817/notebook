@@ -48,7 +48,9 @@ $$
 !!! info "随机实验的黄金标准"
     完全随机化实验（RCT）中，$T$ 与 $(Y(0), Y(1))$ **无条件**独立：
 
-    $$(Y(1), Y(0)) \perp T$$
+    $$
+    (Y(1), Y(0)) \perp T
+    $$
 
     关联差 = ATE，不存在选择偏差。这就是随机对照实验被称为"黄金标准"的原因。
 
@@ -91,7 +93,7 @@ $$
 这步推导的关键：
 
 $$
-\mathbb{E}[Y(1)] \overset{\text{SUTVA}}{=} \mathbb{E}[Y \mid T=1] \quad \text{(仅在 RCT 中)} 
+\mathbb{E}[Y(1)] \overset{\text{SUTVA}}{=} \mathbb{E}[Y \mid T=1] \quad \text{(仅在 RCT 中)}
 $$
 
 在观测数据下要先条件在 $X$ 上：

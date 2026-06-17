@@ -73,7 +73,7 @@ counter: True
 
 ## 条件概率
 
-如果 $P(B)>0$，那么**定义**在 $B$ 发生的条件下 $A$ 发生的**条件概率(contidional probability)**为：<br />$P(A|B)=\frac{P(AB)}{P(B)}$
+如果 $P(B)>0$，那么**定义**在 $B$ 发生的条件下 $A$ 发生的**条件概率(conditional probability)**为：<br />$P(A|B)=\frac{P(AB)}{P(B)}$
 
 条件概率是在**新的样本空间下的概率度量**，它满足概率的定义和性质。
 
@@ -88,7 +88,7 @@ counter: True
 - **乘法公式**：当 $P(A)\not=0\;\,\;P(B)\not=0$ 时，有 $P(AB)=P(A)*P(B|A)=P(B)*P(A|B)$；
 - **全概率公式**：$P(A)=\sum\limits_{j=1}^nP(B_j)P(A|B_j)$；
 - **贝叶斯公式**：$P(B_k|A)=\frac{P(B_kA)}{P(A)}=\frac{P(B_k)P(A|B_k)}{\sum\limits_{j=1}^nP(B_j)P(A|B_j)}$；
-  - 其中，我们称 $P(B_j)$ 这种事先知道的概率为**先验概率**；而 $P(B_j|A)$ 这种，当事件 $A$ 发生后需要修正 $B_j$ 的概率成为**后验概率**。
+    - 其中，我们称 $P(B_j)$ 这种事先知道的概率为**先验概率**；而 $P(B_j|A)$ 这种，当事件 $A$ 发生后需要修正 $B_j$ 的概率成为**后验概率**。
 
 ---
 
