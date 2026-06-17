@@ -307,6 +307,54 @@ Speculative decoding 的问题背景是：
 
 Speculative decoding 本质上是一种 rejection sampling。
 
+设 target model 为 $p_\theta$，draft model 为 $q_\phi$。给定当前 prefix $x$，draft model 先自回归采样一段候选 tokens：
+
+$$
+\tilde{y}_{1:K} \sim q_\phi(\cdot \mid x)
+$$
+
+target model 用一次并行 forward 计算这些位置上的概率。对第 $i$ 个 draft token $\tilde{y}_i$，接受概率是：
+
+$$
+a_i
+=
+\min\left(
+1,
+\frac{p_\theta(\tilde{y}_i \mid x, \tilde{y}_{< i})}
+{q_\phi(\tilde{y}_i \mid x, \tilde{y}_{< i})}
+\right)
+$$
+
+如果 token 被接受，就把它加入 prefix，继续验证下一个 draft token；如果在第 $i$ 个位置被拒绝，则从 target 和 draft 的**残差分布**中重新采样：
+
+$$
+p_{\text{res}}(v)
+=
+\frac{
+\left[p_\theta(v \mid x,\tilde{y}_{< i}) - q_\phi(v \mid x,\tilde{y}_{< i})\right]_+
+}{
+\sum_{v'}
+\left[p_\theta(v' \mid x,\tilde{y}_{< i}) - q_\phi(v' \mid x,\tilde{y}_{< i})\right]_+
+}
+$$
+
+其中 $[z]_+ = \max(z,0)$。这个残差采样步骤保证：即使 draft token 被拒绝，最终输出仍然服从 target model 的分布，而不是 draft model 的分布。
+
+单步接受率可以写成两个分布的重叠程度：
+
+$$
+\mathbb{P}(\text{accept})
+=
+\sum_v q_\phi(v)\min\left(1,\frac{p_\theta(v)}{q_\phi(v)}\right)
+=
+\sum_v \min(p_\theta(v), q_\phi(v))
+$$
+
+因此 speculative decoding 的速度收益来自两点：
+
+- draft model 足够小，可以便宜地产生多个 candidate tokens
+- draft distribution 和 target distribution 足够接近，使得较多 candidate tokens 被接受
+
 关键性质：
 
 - 输出分布仍然等价于 target model sampling
@@ -365,6 +413,36 @@ On-policy distillation 则是 student-centric：
 
 ![reasoning2-on-policy-distillation-30](./assets/reasoning2-on-policy-distillation-30.png)
 
+先区分两种 KL 方向。设 teacher distribution 为 $p_T$，student distribution 为 $p_S$。
+
+**Forward KL** 是：
+
+$$
+D_{\mathrm{KL}}(p_T \| p_S)
+=
+\sum_y p_T(y)\log\frac{p_T(y)}{p_S(y)}
+$$
+
+在 distillation 里，最小化 forward KL 等价于最小化 teacher soft labels 下的 cross entropy：
+
+$$
+\mathcal{L}_{\mathrm{KD}}
+=
+-\mathbb{E}_{y\sim p_T}\log p_S(y)
+$$
+
+Forward KL 的直觉是 **mass-covering**：只要 teacher 认为某个 token / sequence 有概率，student 就不能把它的概率压到 0，否则惩罚会很大。因此 student 倾向于覆盖 teacher 的多个 modes，保留更多多样性，但也可能把概率质量分散到不够 sharp 的区域。
+
+**Reverse KL** 是：
+
+$$
+D_{\mathrm{KL}}(p_S \| p_T)
+=
+\sum_y p_S(y)\log\frac{p_S(y)}{p_T(y)}
+$$
+
+Reverse KL 的直觉是 **mode-seeking**：惩罚 student 把概率放到 teacher 认为低概率的位置，因此 student 会更倾向于选择 teacher 分布中一个或少数几个高概率 modes，而不是覆盖所有 modes。这通常会让输出更 sharp，但也可能牺牲 diversity。
+
 区别可以粗略记成：
 
 - **KD**
@@ -382,12 +460,85 @@ On-policy distillation 则是 student-centric：
     - mode-seeking
     - on-policy
 
+更形式化地说，standard KD 常在 teacher / human prefix 上训练：
+
+$$
+c_t = (x, y_{< t}^{\text{gold or teacher}})
+$$
+
+$$
+\mathcal{L}_{\mathrm{KD}}
+=
+\mathbb{E}_{c_t}
+\left[
+D_{\mathrm{KL}}
+\left(
+p_T(\cdot \mid c_t)
+\|
+p_S(\cdot \mid c_t)
+\right)
+\right]
+$$
+
+但 inference 时 student 看到的是自己生成出来的 prefix。一旦 student 前面犯错，后续 context 就偏离 teacher-forced training distribution，这就是 exposure bias / train-test mismatch。
+
+On-policy distillation 改成让 student 先生成自己的 context：
+
+$$
+y_{< t}^{S} \sim p_S(\cdot \mid x),
+\quad
+c_t^S = (x, y_{< t}^{S})
+$$
+
+然后在这些 student-generated contexts 上向 teacher 查询 soft targets，常见目标可以写成 reverse KL：
+
+$$
+\mathcal{L}_{\mathrm{on\text{-}policy}}
+=
+\mathbb{E}_{x,\,c_t^S}
+\left[
+D_{\mathrm{KL}}
+\left(
+p_S(\cdot \mid c_t^S)
+\|
+p_T(\cdot \mid c_t^S)
+\right)
+\right]
+$$
+
+训练流程可以理解为：
+
+1. 从 prompt dataset 采样 prompts
+2. 用当前 student rollout，得到 student 自己会访问到的 prefixes
+3. 在这些 prefixes 上调用 teacher，得到 teacher logits / probabilities
+4. 用 token-level dense signal 更新 student
+5. 周期性重新生成 rollouts，避免 data 变 stale
+
 On-policy distillation 的好处：
 
 - 减少 train-test mismatch
 - 让 student 学会从自己的错误上下文中恢复
 - 比 RL 便宜，因为有 dense teacher signal
 - 比普通 SFT 更接近真实推理时的 student distribution
+
+它和 RL 的关系也很接近：两者都让 student 在自己的状态分布上学习；区别是 RL 通常用 sparse reward 或 preference signal，而 on-policy distillation 用 teacher 的 dense distribution 作为监督，因此梯度方差更低，也更容易训练小模型。
+
+这也是 slide 中说它是 SFT 和 RL "best of both worlds" 的原因：
+
+| 方法 | Sampling | Reward / supervision signal | GPU requirement |
+| --- | --- | --- | --- |
+| Supervised fine-tuning | Off-policy | dense | light |
+| Reinforcement learning | On-policy | sparse | heavy |
+| On-policy distillation | On-policy | dense | light |
+
+SFT 的优势是 token-level dense supervision，训练稳定且便宜；RL 的优势是 on-policy，模型在自己真实会访问的状态分布上学习，但 reward 往往 sparse，训练也重。On-policy distillation 试图组合两边的优点：让 student 生成自己的 contexts，同时用 teacher logits 提供 dense supervision。
+
+需要注意的 tradeoff：
+
+- teacher inference 成本仍然存在
+- reverse KL / mode-seeking 可能降低 diversity
+- 如果 rollout 生成和训练之间延迟太大，仍然会出现 off-policy drift
+- teacher 本身的错误和偏好会被 student 继承
 
 !!! important
 
