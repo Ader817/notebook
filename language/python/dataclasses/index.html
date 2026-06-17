@@ -580,7 +580,7 @@
 </span></code></pre></div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><code>@property</code> 是<span class="heti-skip"><span class="heti-spacing"> </span>python<span class="heti-spacing"> </span></span>自带的一个<span><span class="heti-spacing"> </span>decorater</span>，它的作用是把一个方法变成一个能够像属性一样访问的东西，如下所示：</p>
+<p><code>@property</code> 是<span class="heti-skip"><span class="heti-spacing"> </span>Python<span class="heti-spacing"> </span></span>自带的一个<span><span class="heti-spacing"> </span>decorator</span>，它的作用是把一个方法变成一个能够像属性一样访问的东西，如下所示：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">User</span><span class="p">:</span>
 </span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="nd">@property</span>
 </span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">name</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -589,7 +589,7 @@
 </span><span id="__span-3-6"><a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="n">u</span> <span class="o">=</span> <span class="n">User</span><span class="p">()</span>
 </span><span id="__span-3-7"><a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="n">u</span><span class="o">.</span><span class="n">name</span>   <span class="c1"># 不用加 ()</span>
 </span></code></pre></div>
-<p>在<span class="heti-skip"><span class="heti-spacing"> </span>dataclass decorater<span class="heti-spacing"> </span></span>中可以这么使用：</p>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>dataclass decorator<span class="heti-spacing"> </span></span>中可以这么使用：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">dataclasses</span><span class="w"> </span><span class="kn">import</span> <span class="n">dataclass</span>
 </span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>
 </span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a><span class="nd">@dataclass</span>
@@ -609,12 +609,16 @@
 <p>dataclasses.<strong>field</strong>(<em>*</em>, <em>default=MISSING</em>, <em>default_factory=MISSING</em>, <em>init=True</em>, <em>repr=True</em>, <em>hash=None</em>, <em>compare=True</em>, <em>metadata=None</em>, <em>kw_only=MISSING</em>, <em>doc=None</em>)<a href="https://docs.python.org/3/library/dataclasses.html#dataclasses.field">¶</a></p>
 <p>用于特化<span class="heti-skip"><span class="heti-spacing"> </span>dataclass<span class="heti-spacing"> </span></span>中的字段（不一定所有字段都要遵从<span class="heti-skip"><span class="heti-spacing"> </span>dataclass<span class="heti-spacing"> </span></span>的参数行为）</p>
 <ul>
-<li><code>default</code><span>:<span class="heti-spacing"> </span></span>字段的默认值</li>
+<li><code>default</code><span>:<span class="heti-spacing"> </span></span>字段的默认值<ul>
 <li>类定义时创建一次默认值</li>
 <li>示例创建时直接复用这个值</li>
-<li><code>default_factory</code><span>:<span class="heti-spacing"> </span></span>一个无参函数，用于生成默认值</li>
+</ul>
+</li>
+<li><code>default_factory</code><span>:<span class="heti-spacing"> </span></span>一个无参函数，用于生成默认值<ul>
 <li>类定义时保存一个函数</li>
 <li>实例创建时调用函数生成新值</li>
+</ul>
+</li>
 </ul>
 <!-- 标题计数器 -->
 </article>

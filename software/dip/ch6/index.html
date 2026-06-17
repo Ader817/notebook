@@ -757,34 +757,38 @@ a_n &amp; =\dfrac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos(nx)dx\\
 b_n &amp; =\dfrac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin(nx)dx
 \end{align*}
 \]</div>
-<p>简谐振动<span><span class="heti-spacing"> </span>: <span class="arithmatex">\(y=A\sin(\omega t+\phi)\)</span></span> </p>
+<p>简谐振动<span><span class="heti-spacing"> </span>: <span class="arithmatex">\(y=A\sin(\omega t+\phi)\)</span></span></p>
 <p>物理学上可以将一个周期运动分成若干个简谐振动的叠加：</p>
-<div class="arithmatex">\[y=\sum\limits_{k=1}^n y_k=\sum\limits_{k=1}^n A_k\sin(k\omega t+\phi)\]</div>
+<div class="arithmatex">\[
+y=\sum\limits_{k=1}^n y_k=\sum\limits_{k=1}^n A_k\sin(k\omega t+\phi)
+\]</div>
 <div class="admonition note">
 <p><img alt="" src="../images/ch6/image.png"/></p>
 </div>
 <h3 id="complex-numbers">Complex Numbers</h3>
 <p><img alt="" src="../images/ch6/image-1.png" width="50%"/></p>
-<p>复数<span class="heti-skip"><span class="heti-spacing"> </span>(a+bj)<span class="heti-spacing"> </span></span>可以采用 <strong>Magnitude-Phase</strong><span>(i.e.,vector)<span class="heti-spacing"> </span></span>的形式表示，即<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x=|x|e^{j\phi(x)}\)</span>,<span class="heti-spacing"> </span></span>其中 <strong>幅度</strong> <span>(Magnitude)<span class="heti-spacing"> </span></span>记作<span><span class="heti-spacing"> </span><span class="arithmatex">\(|x|=\sqrt{a^2+b^2}\)</span>,</span> <strong>相位</strong> <span>(Phase)<span class="heti-spacing"> </span></span>记作<span><span class="heti-spacing"> </span><span class="arithmatex">\(\phi(x)=\tan^{-1}(b/a)\)</span></span> </p>
-<p>在这种表示下，复数乘法可以写作<span><span class="heti-spacing"> </span><span class="arithmatex">\(xy=|x|e^{j\phi(x)}\cdot |y|e^{j\phi(y)}=|x||y|e^{j(\phi(x)+\phi(y))}\)</span></span> </p>
-<p>共轭复数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x^* = a-jb\)</span>,<span class="heti-spacing"> </span></span>它满足<span><span class="heti-spacing"> </span><span class="arithmatex">\(|x|=|x^*|,\phi(x)=-\phi(x),xx^*=|x|^2\)</span></span> </p>
-<p><strong>Euler Formula</strong>: </p>
-<div class="arithmatex">\[e^{j\theta}=\cos(\theta)+j\sin(\theta)\]</div>
-<p>它满足<span><span class="heti-spacing"> </span><span class="arithmatex">\(|e^{j\theta}|=1, phi(e^{j\theta})=\theta,sin(\theta)=\dfrac{1}{2j}(e^{j\theta}-e^{-j\theta}),cos(\theta)=\dfrac{1}{2}(e^{j\theta}+e^{-j\theta})\)</span></span> </p>
+<p>复数<span class="heti-skip"><span class="heti-spacing"> </span>(a+bj)<span class="heti-spacing"> </span></span>可以采用 <strong>Magnitude-Phase</strong><span>(i.e.,vector)<span class="heti-spacing"> </span></span>的形式表示，即<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x=|x|e^{j\phi(x)}\)</span>,<span class="heti-spacing"> </span></span>其中 <strong>幅度</strong> <span>(Magnitude)<span class="heti-spacing"> </span></span>记作<span><span class="heti-spacing"> </span><span class="arithmatex">\(|x|=\sqrt{a^2+b^2}\)</span>,</span> <strong>相位</strong> <span>(Phase)<span class="heti-spacing"> </span></span>记作<span><span class="heti-spacing"> </span><span class="arithmatex">\(\phi(x)=\tan^{-1}(b/a)\)</span></span></p>
+<p>在这种表示下，复数乘法可以写作<span><span class="heti-spacing"> </span><span class="arithmatex">\(xy=|x|e^{j\phi(x)}\cdot |y|e^{j\phi(y)}=|x||y|e^{j(\phi(x)+\phi(y))}\)</span></span></p>
+<p>共轭复数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x^* = a-jb\)</span>,<span class="heti-spacing"> </span></span>它满足<span><span class="heti-spacing"> </span><span class="arithmatex">\(|x|=|x^*|,\phi(x)=-\phi(x),xx^*=|x|^2\)</span></span></p>
+<p><strong>Euler Formula</strong>:</p>
+<div class="arithmatex">\[
+e^{j\theta}=\cos(\theta)+j\sin(\theta)
+\]</div>
+<p>它满足<span><span class="heti-spacing"> </span><span class="arithmatex">\(|e^{j\theta}|=1, phi(e^{j\theta})=\theta,sin(\theta)=\dfrac{1}{2j}(e^{j\theta}-e^{-j\theta}),cos(\theta)=\dfrac{1}{2}(e^{j\theta}+e^{-j\theta})\)</span></span></p>
 <h3 id="fourier-transform_1">Fourier Transform</h3>
 <p>傅里叶变换是复傅里叶系数在给定区间上的一个推广。</p>
-<p>傅里叶分析指频率区域分析，其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>较小时为低频， <span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>较大时为高频。  </p>
-<p>注意到正弦波和余弦波都是无限长的，这是傅里叶分析的一个不足，因此小波<span class="heti-skip"><span class="heti-spacing"> </span>(wavelet)<span class="heti-spacing"> </span></span>分析比特定信号的分析更好。  </p>
+<p>傅里叶分析指频率区域分析，其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>较小时为低频， <span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>较大时为高频。</p>
+<p>注意到正弦波和余弦波都是无限长的，这是傅里叶分析的一个不足，因此小波<span class="heti-skip"><span class="heti-spacing"> </span>(wavelet)<span class="heti-spacing"> </span></span>分析比特定信号的分析更好。</p>
 <div class="admonition note">
 <p class="admonition-title">example</p>
 <p><img alt="" src="../images/ch6/image-2.png" width="70%"/></p>
 </div>
 <p>对于非周期函数<span class="heti-skip"><span class="heti-spacing"> </span>,<span class="heti-spacing"> </span></span>如果函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f(x)\)</span><span class="heti-spacing"> </span></span>只在区间<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\([−\pi,\pi]\)</span><span class="heti-spacing"> </span></span>上<span class="heti-skip"><span class="heti-spacing"> </span>,<span class="heti-spacing"> </span></span>也可展开成傅氏级数<span><span class="heti-spacing"> </span>.</span></p>
-<p>周期延拓  </p>
+<p>周期延拓</p>
 <div class="arithmatex">\[
 \begin{align*}
 F(x)=\left\{\begin{matrix}
-&amp; f(x) ,x \in(-\pi,\pi] \\  
+&amp; f(x) ,x \in(-\pi,\pi] \\
 &amp; f(x-2k\pi) ,x\in ((2k-1)\pi,(2k+1)\pi], k=\pm 1 ,\pm 2,\ldots \end{matrix}\right.
 \end{align*}
 \]</div>
@@ -814,10 +818,14 @@ F(x)=\left\{\begin{matrix}
 </ul>
 <h3 id="discrete-fourier-transform-dft">Discrete Fourier Transform (DFT)</h3>
 <p>记<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(N\)</span><span class="heti-spacing"> </span></span>为频率的数目，<span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>为采样点的数目</p>
-<p>Forward DFT  </p>
-<div class="arithmatex">\[F(u)=\sum\limits_{x=0}^{N-1}f(x)e^{-\frac{j2\pi ux}{N}}, u=0,1,\ldots,N-1\]</div>
-<p>Inverse DFT  </p>
-<div class="arithmatex">\[f(x)=\dfrac{1}{N}\sum\limits_{u=0}^{N-1}f(u)e^{\frac{j2\pi ux}{N}}, x=0,1,\ldots,N-1\]</div>
+<p>Forward DFT</p>
+<div class="arithmatex">\[
+F(u)=\sum\limits_{x=0}^{N-1}f(x)e^{-\frac{j2\pi ux}{N}}, u=0,1,\ldots,N-1
+\]</div>
+<p>Inverse DFT</p>
+<div class="arithmatex">\[
+f(x)=\dfrac{1}{N}\sum\limits_{u=0}^{N-1}f(u)e^{\frac{j2\pi ux}{N}}, x=0,1,\ldots,N-1
+\]</div>
 <h3 id="fast-fourier-transformfft">Fast Fourier Transform(FFT)</h3>
 <div class="admonition quote">
 <p class="admonition-title">Link</p>
@@ -836,12 +844,16 @@ F(x)=\left\{\begin{matrix}
 </ul>
 <h4 id="fft-principle">FFT Principle</h4>
 <p><span>DFT<span class="heti-spacing"> </span></span>的式子为</p>
-<div class="arithmatex">\[F(k)=\sum\limits_{n=0}^{N-1}f(n)e^{-\frac{j2\pi kn}{N}}\]</div>
+<div class="arithmatex">\[
+F(k)=\sum\limits_{n=0}^{N-1}f(n)e^{-\frac{j2\pi kn}{N}}
+\]</div>
 <p>我们记<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(W_N^{n,k}=e^{-j2\pi nk/N}\)</span><span class="heti-spacing"> </span></span>则有</p>
 <blockquote>
 <p>其实这里的<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(W_N^{n,k}\)</span><span class="heti-spacing"> </span></span>类似单位根<span><span class="heti-spacing"> </span><span class="arithmatex">\(w_n^k = e^{\frac{k}{n} 2 \pi i}\)</span></span></p>
 </blockquote>
-<div class="arithmatex">\[F(k)=\sum\limits_{n=0}^{N-1}f(n)W_N^{n,k}\]</div>
+<div class="arithmatex">\[
+F(k)=\sum\limits_{n=0}^{N-1}f(n)W_N^{n,k}
+\]</div>
 <p>假定<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(N\)</span><span class="heti-spacing"> </span></span>为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(2\)</span><span class="heti-spacing"> </span></span>的正整数幂：<span><span class="arithmatex">\(N=2^H\Rightarrow N=2M\)</span>,<span class="heti-spacing"> </span></span>将原式子分为奇数项和偶数项</p>
 <div class="arithmatex">\[
 \begin{align*}
@@ -852,12 +864,16 @@ W_{2M}^{2n+1,k} &amp; = e^{-j2\pi \cdot (2n+1)k/2M} = e^{-j2\pi nk/M} \cdot e^{-
 F(k) &amp; = \left[\sum\limits_{n=0}^{M-1}f(2n)W_M^{n,k}+\sum\limits_{n=0}^{M-1}f(2n+1)W_M^{n,k}W_{2M}^k\right], k=0,1,\ldots,M-1
 \end{align*}
 \]</div>
-<p>令<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\left\{\begin{matrix} F_e(k) &amp; = \sum\limits_{n=0}^{M-1}f(2n)W_M^{n,k} \\ F_o(k) &amp; = \sum\limits_{n=0}^{M-1}f(2n+1)W_M^{n,k} \end{matrix}\right.\)</span><span class="heti-spacing"> </span></span>那么 </p>
-<div class="arithmatex">\[F(k)=\lfloor F_e(k)+F_o(k)W_{2M}^k \rfloor\]</div>
+<p>令<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\left\{\begin{matrix} F_e(k) &amp; = \sum\limits_{n=0}^{M-1}f(2n)W_M^{n,k} \\ F_o(k) &amp; = \sum\limits_{n=0}^{M-1}f(2n+1)W_M^{n,k} \end{matrix}\right.\)</span><span class="heti-spacing"> </span></span>那么</p>
+<div class="arithmatex">\[
+F(k)=\lfloor F_e(k)+F_o(k)W_{2M}^k \rfloor
+\]</div>
 <p>如果<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(e, o\)</span><span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(2\)</span><span class="heti-spacing"> </span></span>的幂次，还可以继续递归下去</p>
-<p>对于<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(k=M,M+1\ldots,2M-1\)</span><span class="heti-spacing"> </span></span>的情况，我们可以利用先前使用过的更小范围的<span class="heti-skip"><span class="heti-spacing"> </span>k<span class="heti-spacing"> </span></span>值来表示  </p>
-<p>类似地，同理有 </p>
-<div class="arithmatex">\[F(k+M)=\lfloor F_e(k)-F_o(k)W_{2M}^k\rfloor\]</div>
+<p>对于<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(k=M,M+1\ldots,2M-1\)</span><span class="heti-spacing"> </span></span>的情况，我们可以利用先前使用过的更小范围的<span class="heti-skip"><span class="heti-spacing"> </span>k<span class="heti-spacing"> </span></span>值来表示</p>
+<p>类似地，同理有</p>
+<div class="arithmatex">\[
+F(k+M)=\lfloor F_e(k)-F_o(k)W_{2M}^k\rfloor
+\]</div>
 <p>意义：对一个长度为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(N\)</span><span class="heti-spacing"> </span></span>的序列进行傅立叶变换可以通过将其分成两半计算，对第一部分的计算需要通过计算两个长度为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(N/2\)</span><span class="heti-spacing"> </span></span>长度序列的傅立叶变换式进行，然后利用这两个长度为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(N/2\)</span><span class="heti-spacing"> </span></span>的序列可以得到第二部分的值。</p>
 <h2 id="extending-ft-in-2d">Extending FT in 2D</h2>
 <p><img alt="" src="../images/ch6/image-7.png"/></p>
@@ -890,13 +906,13 @@ F(k) &amp; = \left[\sum\limits_{n=0}^{M-1}f(2n)W_M^{n,k}+\sum\limits_{n=0}^{M-1}
 <div class="admonition example">
 <p class="admonition-title">Magnitude VS Phase</p>
 <p><img alt="" src="../images/ch6/image-12.png" width="70%"/></p>
-<p>如果我们只用振幅<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>相位作为信息重建图像，会得到什么样的结果？  </p>
+<p>如果我们只用振幅<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>相位作为信息重建图像，会得到什么样的结果？</p>
 <ul>
-<li>利用振幅  </li>
+<li>利用振幅</li>
 </ul>
 <p><img alt="" src="../images/ch6/image-13.png" width="25%"/></p>
 <ul>
-<li>利用相位  </li>
+<li>利用相位</li>
 </ul>
 <p><img alt="" src="../images/ch6/image-14.png" width="25%"/></p>
 <p>相位传递了图像更多的结构信息！</p>

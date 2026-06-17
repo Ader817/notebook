@@ -506,6 +506,59 @@
       Pretraining Decoders
     </span>
 </a>
+<nav aria-label="Pretraining Decoders" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#finetune-decoder-for-classification">
+<span class="md-ellipsis">
+      Finetune decoder for classification
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#finetune-decoder-for-generation">
+<span class="md-ellipsis">
+      Finetune decoder for generation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gpt">
+<span class="md-ellipsis">
+      GPT
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#in-context-learning">
+<span class="md-ellipsis">
+      In-context Learning
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scaling-laws">
+<span class="md-ellipsis">
+      Scaling Laws
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-does-pretraining-teach">
+<span class="md-ellipsis">
+      What does pretraining teach?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary-of-pretraining">
+<span class="md-ellipsis">
+      Summary of Pretraining
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -538,6 +591,14 @@
 <a class="md-nav__link" href="../benchmark-evaluation/">
 <span class="md-ellipsis">
     Benchmark and Evaluation
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reasoning/">
+<span class="md-ellipsis">
+    Reasoning
     
   </span>
 </a>
@@ -666,6 +727,59 @@
       Pretraining Decoders
     </span>
 </a>
+<nav aria-label="Pretraining Decoders" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#finetune-decoder-for-classification">
+<span class="md-ellipsis">
+      Finetune decoder for classification
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#finetune-decoder-for-generation">
+<span class="md-ellipsis">
+      Finetune decoder for generation
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#gpt">
+<span class="md-ellipsis">
+      GPT
+    </span>
+</a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#in-context-learning">
+<span class="md-ellipsis">
+      In-context Learning
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#scaling-laws">
+<span class="md-ellipsis">
+      Scaling Laws
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#what-does-pretraining-teach">
+<span class="md-ellipsis">
+      What does pretraining teach?
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary-of-pretraining">
+<span class="md-ellipsis">
+      Summary of Pretraining
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -760,27 +874,31 @@
 <p><img alt="pretraining-paradigm-19" src="../assets/pretraining-paradigm-19.png"/></p>
 <p><span>Pretraining / Finetuning<span class="heti-spacing"> </span></span>可以分成两步：</p>
 <ol>
-<li><strong>Pretrain</strong></li>
+<li><strong>Pretrain</strong><ul>
 <li>使用大量<span><span class="heti-spacing"> </span>unlabeled text</span></li>
 <li>学习通用语言结构和参数初始化</li>
 <li>训练任务通常是<span class="heti-skip"><span class="heti-spacing"> </span>language modeling<span class="heti-spacing"> </span></span>或<span><span class="heti-spacing"> </span>reconstruct corrupted input</span></li>
-<li><strong>Finetune</strong></li>
+</ul>
+</li>
+<li><strong>Finetune</strong><ul>
 <li>使用具体<span class="heti-skip"><span class="heti-spacing"> </span>downstream task<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>labeled data</span></li>
 <li>数据量通常小很多</li>
 <li>在预训练参数基础上继续训练，让模型适应具体任务</li>
+</ul>
+</li>
 </ol>
-<p>以<span class="heti-skip"><span class="heti-spacing"> </span>language modeling pretraining<span class="heti-spacing"> </span></span>为例，模型学习：
-$$
+<p>以<span class="heti-skip"><span class="heti-spacing"> </span>language modeling pretraining<span class="heti-spacing"> </span></span>为例，模型学习：</p>
+<div class="arithmatex">\[
 p_\theta(w_t \mid w_1,\dots,w_{t-1})
-$$</p>
-<p>训练目标是最大化真实文本的概率，等价于最小化<span><span class="heti-spacing"> </span>negative log-likelihood</span>：
-$$
+\]</div>
+<p>训练目标是最大化真实文本的概率，等价于最小化<span><span class="heti-spacing"> </span>negative log-likelihood</span>：</p>
+<div class="arithmatex">\[
 J(\theta)
 =
 -
 \sum_t
-\log p_\theta(w_t \mid w_{&lt;t})
-$$</p>
+\log p_\theta(w_t \mid w_{&lt; t})
+\]</div>
 <p><span>pretrain<span class="heti-spacing"> </span></span>完后，保存模型参数，然后在下游任务上继续训练</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -790,25 +908,31 @@ $$</p>
 <h2 id="model-pretraining-three-ways">Model pretraining three ways</h2>
 <p>不同<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>架构适合不同的预训练方式：</p>
 <ul>
-<li><strong>Encoder</strong></li>
+<li><strong>Encoder</strong><ul>
 <li>可以看到<span><span class="heti-spacing"> </span>bidirectional context</span></li>
 <li>适合做<span class="heti-skip"><span class="heti-spacing"> </span>classification, tagging, retrieval, NLU<span class="heti-spacing"> </span></span>等理解类任务</li>
 <li>代表模型：BERT</li>
-<li><strong>Encoder-Decoder</strong></li>
+</ul>
+</li>
+<li><strong>Encoder-Decoder</strong><ul>
 <li><span>encoder<span class="heti-spacing"> </span></span>负责理解输入，<span>decoder<span class="heti-spacing"> </span></span>负责生成输出</li>
 <li>适合<span class="heti-skip"><span class="heti-spacing"> </span>seq2seq<span class="heti-spacing"> </span></span>任务</li>
 <li>代表模型：T5</li>
-<li><strong>Decoder</strong></li>
+</ul>
+</li>
+<li><strong>Decoder</strong><ul>
 <li>使用<span><span class="heti-spacing"> </span>causal mask</span>，只能看<span><span class="heti-spacing"> </span>left context</span></li>
 <li>最自然的目标就是<span><span class="heti-spacing"> </span>language modeling</span></li>
 <li>适合<span><span class="heti-spacing"> </span>autoregressive generation</span></li>
 <li>代表模型：GPT</li>
 </ul>
+</li>
+</ul>
 <h2 id="pretraining-encoders">Pretraining Encoders</h2>
 <p><span>Encoder<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>self-attention<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>bidirectional<span class="heti-spacing"> </span></span>的，每个位置都能看到左右两边的<span><span class="heti-spacing"> </span>token</span></p>
 <p>这就导致它不能直接做普通<span><span class="heti-spacing"> </span>language modeling</span>：</p>
 <div class="arithmatex">\[
-p_\theta(w_t \mid w_{&lt;t})
+p_\theta(w_t \mid w_{&lt; t})
 \]</div>
 <p>因为<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>在表示<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(w_t\)</span><span class="heti-spacing"> </span></span>的时候已经看到了未来<span><span class="heti-spacing"> </span>token</span>，如果还让它预测下一个词，就会发生信息泄漏</p>
 <p>因此<span class="heti-skip"><span class="heti-spacing"> </span>BERT<span class="heti-spacing"> </span></span>使用 <strong>Masked Language Modeling (MLM)</strong>：</p>
@@ -816,32 +940,32 @@ p_\theta(w_t \mid w_{&lt;t})
 <p>随机<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>掉输入中的一部分<span><span class="heti-spacing"> </span>token</span>，让<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>根据双向上下文预测被<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>token</span></p>
 </blockquote>
 <p><img alt="pretraining-encoder-mlm-objective-26" src="../assets/pretraining-encoder-mlm-objective-26.png"/></p>
-<p>设原始输入是：
-$$
+<p>设原始输入是：</p>
+<div class="arithmatex">\[
 x = (x_1,\dots,x_T)
-$$
-mask 后的输入是：
-$$
+\]</div>
+<p><span>mask<span class="heti-spacing"> </span></span>后的输入是：</p>
+<div class="arithmatex">\[
 \tilde{x}
-$$
-encoder 输出 hidden states：
-$$
+\]</div>
+<p><span>encoder<span class="heti-spacing"> </span></span>输出<span><span class="heti-spacing"> </span>hidden states</span>：</p>
+<div class="arithmatex">\[
 h_1,\dots,h_T = \text{Encoder}(\tilde{x})
-$$
-对于被 mask 的位置 <span class="arithmatex">\(i\)</span>，用 hidden state 预测原 token：
-$$
+\]</div>
+<p>对于被<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>的位置<span><span class="heti-spacing"> </span><span class="arithmatex">\(i\)</span></span>，用<span class="heti-skip"><span class="heti-spacing"> </span>hidden state<span class="heti-spacing"> </span></span>预测原<span><span class="heti-spacing"> </span>token</span>：</p>
+<div class="arithmatex">\[
 p_\theta(x_i\mid \tilde{x})
 =
 \text{softmax}(Ah_i+b)
-$$
-loss 只在被 mask 的位置上计算：
-$$
+\]</div>
+<p><span>loss<span class="heti-spacing"> </span></span>只在被<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>的位置上计算：</p>
+<div class="arithmatex">\[
 J(\theta)
 =
 -
 \sum_{i\in M}
 \log p_\theta(x_i\mid \tilde{x})
-$$</p>
+\]</div>
 <p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(M\)</span><span class="heti-spacing"> </span></span>是被<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>的位置集合</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -854,10 +978,12 @@ $$</p>
 <p><span>BERT<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>MLM<span class="heti-spacing"> </span></span>细节：</p>
 <ul>
 <li>随机选择<span class="heti-skip"><span class="heti-spacing"> </span>15%<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>subword tokens<span class="heti-spacing"> </span></span>来预测</li>
-<li>对被选中的<span><span class="heti-spacing"> </span>token</span>：</li>
+<li>对被选中的<span><span class="heti-spacing"> </span>token</span>：<ul>
 <li><span>80%<span class="heti-spacing"> </span></span>替换成 <code>[MASK]</code></li>
 <li><span>10%<span class="heti-spacing"> </span></span>替换成<span><span class="heti-spacing"> </span>random token</span></li>
 <li><span>10%<span class="heti-spacing"> </span></span>保持原<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>不变，但仍然要求模型预测它</li>
+</ul>
+</li>
 </ul>
 <p>为什么不总是替换成 <code>[MASK]</code>？</p>
 <p>因为<span class="heti-skip"><span class="heti-spacing"> </span>finetuning<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>test time<span class="heti-spacing"> </span></span>通常不会出现 <code>[MASK]</code>，如果模型只在 <code>[MASK]</code> 位置上学习表示，<span>pretraining<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>finetuning<span class="heti-spacing"> </span></span>之间会产生<span><span class="heti-spacing"> </span>mismatch</span></p>
@@ -884,13 +1010,17 @@ $$</p>
 <h3 id="extensions-of-bert">Extensions of BERT</h3>
 <p>课件中提到两个常见扩展：</p>
 <ul>
-<li><strong>RoBERTa</strong></li>
+<li><strong>RoBERTa</strong><ul>
 <li>更长时间训练</li>
 <li>更多数据</li>
 <li>去掉<span><span class="heti-spacing"> </span>Next Sentence Prediction</span></li>
-<li><strong>SpanBERT</strong></li>
+</ul>
+</li>
+<li><strong>SpanBERT</strong><ul>
 <li>不只是<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>单个<span><span class="heti-spacing"> </span>token</span>，而是<span class="heti-skip"><span class="heti-spacing"> </span>mask<span class="heti-spacing"> </span></span>连续<span><span class="heti-spacing"> </span>span</span></li>
 <li>任务更难，也更接近很多需要短语级理解的任务</li>
+</ul>
+</li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -916,14 +1046,14 @@ $$</p>
 <div class="arithmatex">\[
 \text{Original: Thank you for inviting me to your party last week.}
 \]</div>
-<p>corrupted input:
-$$
-\text{Thank you <x> me to your party <y> week.}
-$$</y></x></p>
-<p>target:
-$$
-\text{<x> for inviting <y> last <z>}
-$$</z></y></x></p>
+<p>corrupted input:</p>
+<div class="arithmatex">\[
+\text{Thank you &lt;X&gt; me to your party &lt;Y&gt; week.}
+\]</div>
+<p>target:</p>
+<div class="arithmatex">\[
+\text{&lt;X&gt; for inviting &lt;Y&gt; last &lt;Z&gt;}
+\]</div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p><span>T5<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>span corruption<span class="heti-spacing"> </span></span>本质上是一个<span><span class="heti-spacing"> </span>denoising objective</span>：</p>
@@ -940,9 +1070,165 @@ $$</z></y></x></p>
 <p>这样<span class="heti-skip"><span class="heti-spacing"> </span>classification, translation, summarization, QA<span class="heti-spacing"> </span></span>都可以统一成“输入一段文本，输出一段文本”</p>
 <h2 id="pretraining-decoders">Pretraining Decoders</h2>
 <p><span>Decoder-only Transformer<span class="heti-spacing"> </span></span>使用<span><span class="heti-spacing"> </span>causal mask</span>，只能<span><span class="heti-spacing"> </span>attend to past tokens</span></p>
-<p>因此它最自然的<span class="heti-skip"><span class="heti-spacing"> </span>pretraining objective<span class="heti-spacing"> </span></span>就是<span><span class="heti-spacing"> </span>language modeling</span>：
-$$
-p_\theta(w_t \mid w_{</p>
+<p>因此它最自然的<span class="heti-skip"><span class="heti-spacing"> </span>pretraining objective<span class="heti-spacing"> </span></span>就是<span><span class="heti-spacing"> </span>language modeling</span>：</p>
+<div class="arithmatex">\[
+p_\theta(w_t \mid w_{&lt; t})
+\]</div>
+<p>也就是：</p>
+<div class="arithmatex">\[
+p_\theta(w_1,\dots,w_T)
+=
+\prod_{t=1}^{T}
+p_\theta(w_t\mid w_{&lt; t})
+\]</div>
+<h3 id="finetune-decoder-for-classification">Finetune decoder for classification</h3>
+<p>如果下游任务是分类任务，可以把整段输入喂给<span><span class="heti-spacing"> </span>pretrained decoder</span>，然后取最后一个<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>hidden state<span class="heti-spacing"> </span></span>做分类</p>
+<p><img alt="pretraining-decoder-classification-40" src="../assets/pretraining-decoder-classification-40.png"/></p>
+<p>形式上：</p>
+<div class="arithmatex">\[
+h_1,\dots,h_T
+=
+\text{Decoder}(w_1,\dots,w_T)
+\]</div>
+<div class="arithmatex">\[
+y
+\sim
+\text{softmax}(Ah_T+b)
+\]</div>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(A,b\)</span><span class="heti-spacing"> </span></span>是下游任务新增的<span class="heti-skip"><span class="heti-spacing"> </span>classifier<span class="heti-spacing"> </span></span>参数，通常是随机初始化的</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>这里<span class="heti-skip"><span class="heti-spacing"> </span>pretrained decoder<span class="heti-spacing"> </span></span>提供语言表示能力，而最后的<span class="heti-skip"><span class="heti-spacing"> </span>linear classifier<span class="heti-spacing"> </span></span>需要从下游<span class="heti-skip"><span class="heti-spacing"> </span>labeled data<span class="heti-spacing"> </span></span>中学习。</p>
+</div>
+<h3 id="finetune-decoder-for-generation">Finetune decoder for generation</h3>
+<p>如果下游任务本身就是生成序列，例如<span class="heti-skip"><span class="heti-spacing"> </span>dialogue<span class="heti-spacing"> </span></span>或<span><span class="heti-spacing"> </span>summarization</span>，那么<span class="heti-skip"><span class="heti-spacing"> </span>decoder-only model<span class="heti-spacing"> </span></span>可以更自然地继续使用<span><span class="heti-spacing"> </span>language modeling head</span></p>
+<p><img alt="pretraining-decoder-generation-41" src="../assets/pretraining-decoder-generation-41.png"/></p>
+<p>例如<span class="heti-skip"><span class="heti-spacing"> </span>summarization<span class="heti-spacing"> </span></span>可以写成：</p>
+<div class="arithmatex">\[
+\text{document + prompt}
+\rightarrow
+\text{summary}
+\]</div>
+<p>模型继续预测：</p>
+<div class="arithmatex">\[
+w_t
+\sim
+\text{softmax}(Ah_{t-1}+b)
+\]</div>
+<p>这时<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(A,b\)</span><span class="heti-spacing"> </span></span>也来自<span><span class="heti-spacing"> </span>language modeling pretraining</span>，因此输出层本身也已经被预训练过</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>对于生成任务，<span>pretrained decoder<span class="heti-spacing"> </span></span>的优势很直接：<span>pretraining<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>finetuning<span class="heti-spacing"> </span></span>都在做<span><span class="heti-spacing"> </span>next-token prediction</span>，只是条件文本和目标文本变了。</p>
+</div>
+<h3 id="gpt">GPT</h3>
+<p><span>GPT<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>decoder-only pretraining<span class="heti-spacing"> </span></span>的代表</p>
+<p><img alt="pretraining-gpt-42" src="../assets/pretraining-gpt-42.png"/></p>
+<p>课件中<span class="heti-skip"><span class="heti-spacing"> </span>GPT-1<span class="heti-spacing"> </span></span>的设置：</p>
+<ul>
+<li>Transformer decoder</li>
+<li>12 layers</li>
+<li>117M parameters</li>
+<li>hidden size 768</li>
+<li>FFN hidden size 3072</li>
+<li>BPE with 40,000 merges</li>
+<li>使用<span class="heti-skip"><span class="heti-spacing"> </span>BooksCorpus<span class="heti-spacing"> </span></span>训练</li>
+</ul>
+<p>对于一些分类任务，<span>GPT<span class="heti-spacing"> </span></span>会把输入格式化成一个<span><span class="heti-spacing"> </span>token sequence</span>，然后在特殊<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>的表示上做分类</p>
+<p>例如<span><span class="heti-spacing"> </span>natural language inference</span>：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a>[START] premise [DELIM] hypothesis [EXTRACT]
+</span></code></pre></div>
+<p>然后把<span class="heti-skip"><span class="heti-spacing"> </span>classifier<span class="heti-spacing"> </span></span>接在<code>[EXTRACT]</code><span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>hidden state<span class="heti-spacing"> </span></span>上</p>
+<h2 id="in-context-learning">In-context Learning</h2>
+<p>当<span class="heti-skip"><span class="heti-spacing"> </span>decoder language model<span class="heti-spacing"> </span></span>变得非常大时，它不一定需要<span class="heti-skip"><span class="heti-spacing"> </span>gradient update<span class="heti-spacing"> </span></span>才能适配一个任务</p>
+<p>如果我们在<span class="heti-skip"><span class="heti-spacing"> </span>prompt<span class="heti-spacing"> </span></span>里给出几个输入输出示例，模型可能会根据这些<span class="heti-skip"><span class="heti-spacing"> </span>examples<span class="heti-spacing"> </span></span>推断接下来要做什么，这叫 <strong>in-context learning</strong></p>
+<p><img alt="pretraining-in-context-47" src="../assets/pretraining-in-context-47.png"/></p>
+<p>例如<span class="heti-skip"><span class="heti-spacing"> </span>prompt<span class="heti-spacing"> </span></span>中给出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>thanks -&gt; merci
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>hello -&gt; bonjour
+</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>mint -&gt; menthe
+</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a>otter -&gt;
+</span></code></pre></div>
+<p>模型可能继续生成：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>loutre
+</span></code></pre></div>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>In-context learning<span class="heti-spacing"> </span></span>没有更新模型参数。</p>
+<p>它只是把<span class="heti-skip"><span class="heti-spacing"> </span>examples<span class="heti-spacing"> </span></span>放进当前<span><span class="heti-spacing"> </span>context</span>，让<span class="heti-skip"><span class="heti-spacing"> </span>decoder<span class="heti-spacing"> </span></span>根据<span class="heti-skip"><span class="heti-spacing"> </span>prefix<span class="heti-spacing"> </span></span>的条件分布继续生成。</p>
+</div>
+<p>这和<span class="heti-skip"><span class="heti-spacing"> </span>finetuning<span class="heti-spacing"> </span></span>的区别是：</p>
+<ul>
+<li><span>finetuning:<span class="heti-spacing"> </span></span>用<span class="heti-skip"><span class="heti-spacing"> </span>labeled data<span class="heti-spacing"> </span></span>更新参数</li>
+<li><span>in-context learning:<span class="heti-spacing"> </span></span>不更新参数，只改变输入<span><span class="heti-spacing"> </span>prompt</span></li>
+</ul>
+<h2 id="scaling-laws">Scaling Laws</h2>
+<p>课件中还强调了<span class="heti-skip"><span class="heti-spacing"> </span>scaling<span class="heti-spacing"> </span></span>的重要性：随着<span class="heti-skip"><span class="heti-spacing"> </span>model size, dataset size, compute<span class="heti-spacing"> </span></span>增大，<span>language model<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>perplexity / loss<span class="heti-spacing"> </span></span>通常会稳定下降</p>
+<p><img alt="pretraining-scaling-laws-49" src="../assets/pretraining-scaling-laws-49.png"/></p>
+<p>粗略来说，大<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的训练成本和下面两个因素强相关：</p>
+<div class="arithmatex">\[
+\text{training cost}
+\propto
+\text{number of parameters}
+\times
+\text{number of training tokens}
+\]</div>
+<p>所以不是参数越大越好，还要考虑<span class="heti-skip"><span class="heti-spacing"> </span>data<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>compute<span class="heti-spacing"> </span></span>的分配</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span>Compute-aware scaling<span class="heti-spacing"> </span></span>的核心问题是：</p>
+<p>给定固定训练预算，应该把<span class="heti-skip"><span class="heti-spacing"> </span>compute<span class="heti-spacing"> </span></span>用在更大的<span class="heti-skip"><span class="heti-spacing"> </span>model<span class="heti-spacing"> </span></span>上，还是更多的<span class="heti-skip"><span class="heti-spacing"> </span>training tokens<span class="heti-spacing"> </span></span>上？</p>
+<p>如果模型太大但数据不够，可能并不是最优；更小但训练<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>更多的模型有时反而效果更好。</p>
+</div>
+<h2 id="what-does-pretraining-teach">What does pretraining teach?</h2>
+<p><span>Pretraining<span class="heti-spacing"> </span></span>的任务看起来只是“预测缺失<span><span class="heti-spacing"> </span>token</span>”或“预测下一个<span><span class="heti-spacing"> </span>token</span>”，但为了做好这些任务，模型会被迫学习很多语言和世界知识</p>
+<p>例如：</p>
+<ul>
+<li><code>Stanford University is located in ___, California.</code><ul>
+<li>factual knowledge</li>
+</ul>
+</li>
+<li><code>I put ___ fork down on the table.</code><ul>
+<li>syntax</li>
+</ul>
+</li>
+<li><code>The woman walked across the street, checking for traffic over ___ shoulder.</code><ul>
+<li>coreference</li>
+</ul>
+</li>
+<li><code>I went to the ocean to see the fish, turtles, seals, and ___.</code><ul>
+<li>lexical semantics / topic</li>
+</ul>
+</li>
+<li><code>The movie was ___.</code><ul>
+<li>sentiment</li>
+</ul>
+</li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>Pretraining<span class="heti-spacing"> </span></span>并不是显式告诉模型<span><span class="heti-spacing"> </span>grammar, sentiment, coreference rules</span>。</p>
+<p>这些能力是模型为了降低<span><span class="heti-spacing"> </span>language modeling / reconstruction loss</span>，从大规模文本统计中间接学出来的。</p>
+</div>
+<p>但<span class="heti-skip"><span class="heti-spacing"> </span>pretraining<span class="heti-spacing"> </span></span>也会带来问题：</p>
+<ul>
+<li>模型可能记住训练数据中的内容</li>
+<li>训练数据可能包含<span class="heti-skip"><span class="heti-spacing"> </span>copyrighted material<span class="heti-spacing"> </span></span>或<span><span class="heti-spacing"> </span>private information</span></li>
+<li>模型会学习并放大数据中的<span><span class="heti-spacing"> </span>bias</span>，例如<span class="heti-skip"><span class="heti-spacing"> </span>racism, sexism<span class="heti-spacing"> </span></span>等</li>
+</ul>
+<p>因此<span class="heti-skip"><span class="heti-spacing"> </span>pretraining<span class="heti-spacing"> </span></span>的效果很强，但它不是免费且无风险的：数据来源、隐私、版权、公平性都需要被认真考虑</p>
+<h2 id="summary-of-pretraining">Summary of Pretraining</h2>
+<p>可以把这一章的主线总结成：</p>
+<ul>
+<li><span>Subword modeling<span class="heti-spacing"> </span></span>解决固定<span class="heti-skip"><span class="heti-spacing"> </span>word vocabulary<span class="heti-spacing"> </span></span>和 <code>UNK</code> 的问题</li>
+<li><span>Pretraining<span class="heti-spacing"> </span></span>从静态<span class="heti-skip"><span class="heti-spacing"> </span>word embeddings<span class="heti-spacing"> </span></span>发展到<span><span class="heti-spacing"> </span>whole-model pretraining</span></li>
+<li><span>Pretraining / finetuning paradigm<span class="heti-spacing"> </span></span>用大量无标注数据学习通用能力，再用少量标注数据适配任务</li>
+<li><span>Encoder-only model<span class="heti-spacing"> </span></span>使用<span><span class="heti-spacing"> </span>MLM</span>，代表是<span><span class="heti-spacing"> </span>BERT</span></li>
+<li><span>Encoder-decoder model<span class="heti-spacing"> </span></span>常用<span><span class="heti-spacing"> </span>denoising / span corruption</span>，代表是<span><span class="heti-spacing"> </span>T5</span></li>
+<li><span>Decoder-only model<span class="heti-spacing"> </span></span>使用<span><span class="heti-spacing"> </span>language modeling</span>，代表是<span><span class="heti-spacing"> </span>GPT</span></li>
+<li>大模型可以通过<span class="heti-skip"><span class="heti-spacing"> </span>prompt<span class="heti-spacing"> </span></span>做<span><span class="heti-spacing"> </span>in-context learning</span></li>
+<li><span>Scaling laws<span class="heti-spacing"> </span></span>说明<span class="heti-skip"><span class="heti-spacing"> </span>model size, data size, compute<span class="heti-spacing"> </span></span>对效果有可预测影响</li>
+<li><span>Pretraining<span class="heti-spacing"> </span></span>会学习很多有用语言规律，也会继承和放大训练数据中的风险</li>
+</ul>
 <!-- 标题计数器 -->
 </article>
 </div>

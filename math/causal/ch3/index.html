@@ -689,7 +689,9 @@ T_i = t \implies Y_i^{\text{obs}} = Y_i(t)
 <div class="admonition info">
 <p class="admonition-title">随机实验的黄金标准</p>
 <p>完全随机化实验（RCT）中，<span><span class="arithmatex">\(T\)</span><span class="heti-spacing"> </span></span>与<span><span class="heti-spacing"> </span><span class="arithmatex">\((Y(0), Y(1))\)</span></span> <strong>无条件</strong>独立：</p>
-<div class="arithmatex">\[(Y(1), Y(0)) \perp T\]</div>
+<div class="arithmatex">\[
+(Y(1), Y(0)) \perp T
+\]</div>
 <p>关联差<span><span class="heti-spacing"> </span>= ATE</span>，不存在选择偏差。这就是随机对照实验被称为<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>黄金标准<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>的原因。</p>
 </div>
 <p>在观测研究中，可忽略性通常只能<strong>有条件地</strong>（给定协变量<span><span class="heti-spacing"> </span><span class="arithmatex">\(X\)</span></span>）成立，我们称之为<strong>条件可忽略性（Conditional Ignorability）</strong>。</p>
@@ -720,7 +722,7 @@ T_i = t \implies Y_i^{\text{obs}} = Y_i(t)
 \]</div>
 <p>这步推导的关键：</p>
 <div class="arithmatex">\[
-\mathbb{E}[Y(1)] \overset{\text{SUTVA}}{=} \mathbb{E}[Y \mid T=1] \quad \text{(仅在 RCT 中)} 
+\mathbb{E}[Y(1)] \overset{\text{SUTVA}}{=} \mathbb{E}[Y \mid T=1] \quad \text{(仅在 RCT 中)}
 \]</div>
 <p>在观测数据下要先条件在<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(X\)</span><span class="heti-spacing"> </span></span>上：</p>
 <div class="arithmatex">\[

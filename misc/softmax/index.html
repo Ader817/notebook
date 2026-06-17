@@ -754,10 +754,10 @@ y_k = \frac{e^{a_k - C'}}{\sum_{j=1}^{n} e^{a_j - C'}} \quad \text{其中 } C' =
 <div class="arithmatex">\[
 = -t_i + y_i \cdot 1
 \]</div>
-<p>最终我们得到了一个极其简洁的结果：
-$$
+<p>最终我们得到了一个极其简洁的结果：</p>
+<div class="arithmatex">\[
 \frac{\partial L}{\partial a_i} = y_i - t_i
-$$</p>
+\]</div>
 <h3 id="35-结论与直觉"><span>3.5<span class="heti-spacing"> </span></span>结论与直觉</h3>
 <p>这个推导的最终结果非常优美。对于<span class="heti-skip"><span class="heti-spacing"> </span>"Softmax-with-Cross-Entropy-Loss"<span class="heti-spacing"> </span></span>这一整个计算层，它反向传播的梯度就是：</p>
 <div class="arithmatex">\[

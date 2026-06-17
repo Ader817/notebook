@@ -510,6 +510,14 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reasoning/">
+<span class="md-ellipsis">
+    Reasoning
+    
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -619,10 +627,10 @@
 <h1 id="word-vectors">Word Vectors</h1>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p>A word's meaning is given by the words that frequently apper close-by</p>
+<p>A word's meaning is given by the words that frequently appear close-by</p>
 <ul>
 <li>"You shall know a word by the company it keeps"</li>
-<li>One of the most successful ideas of modern statisticla NLP!</li>
+<li>One of the most successful ideas of modern statistical NLP!</li>
 </ul>
 </div>
 <p><img alt="image-20260427143357831" src="../assets/image-20260427143357831.png"/></p>
@@ -635,10 +643,14 @@
 <h3 id="overview">Overview</h3>
 <p><span>Word2Vec<span class="heti-spacing"> </span></span>存在两种模型，分别为：</p>
 <ul>
-<li>CBOW (Continuous Bag of Words)</li>
+<li>CBOW (Continuous Bag of Words)<ul>
 <li>Predict center word from (bag of) context words</li>
-<li>SG (Skip-grams)</li>
-<li>Predict context ("outside") words (position idependent) given center word</li>
+</ul>
+</li>
+<li>SG (Skip-grams)<ul>
+<li>Predict context ("outside") words (position independent) given center word</li>
+</ul>
+</li>
 </ul>
 <p>其中<span class="heti-skip"><span class="heti-spacing"> </span>Skip-grams<span class="heti-spacing"> </span></span>的思想大致如下：</p>
 <p><img alt="image-20260427150752312" src="../assets/image-20260427150752312.png"/></p>
@@ -662,11 +674,11 @@
 <p class="admonition-title">Tip</p>
 <p><span><span class="arithmatex">\(U(w)\)</span><span class="heti-spacing"> </span></span>是词<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(w\)</span><span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>unigram distribution</span>，也就是这个词在语料中的原始出现概率但是把它变成：<span><span class="arithmatex">\(U(w)^{3/4}\)</span><span class="heti-spacing"> </span></span>之后，所有词的值加起来通常不再等于<span><span class="heti-spacing"> </span>1</span>，所以需要除以一个<span><span class="heti-spacing"> </span><span class="arithmatex">\(Z\)</span></span>，这个<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(Z\)</span><span class="heti-spacing"> </span></span>定义为：<span>$ Z = \sum_{w \in V} U(w)^{3/4} $<span class="heti-spacing"> </span></span>也就是把词表里所有词的<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(U(w)^{3/4}\)</span><span class="heti-spacing"> </span></span>加起来</p>
 </div>
-<p>此外可以发现，在<span class="heti-skip"><span class="heti-spacing"> </span>Negative Sampling<span class="heti-spacing"> </span></span>中使用诸如<span class="heti-skip"><span class="heti-spacing"> </span>SGD<span class="heti-spacing"> </span></span>的梯度更新方法来更新<span class="heti-skip"><span class="heti-spacing"> </span>Word2Vec<span class="heti-spacing"> </span></span>的两个<span class="heti-skip"><span class="heti-spacing"> </span>embedding<span class="heti-spacing"> </span></span>矩阵时
-$$
-V \in \mathbb{R}^{|V|\times d} \
+<p>此外可以发现，在<span class="heti-skip"><span class="heti-spacing"> </span>Negative Sampling<span class="heti-spacing"> </span></span>中使用诸如<span class="heti-skip"><span class="heti-spacing"> </span>SGD<span class="heti-spacing"> </span></span>的梯度更新方法来更新<span class="heti-skip"><span class="heti-spacing"> </span>Word2Vec<span class="heti-spacing"> </span></span>的两个<span class="heti-skip"><span class="heti-spacing"> </span>embedding<span class="heti-spacing"> </span></span>矩阵时</p>
+<div class="arithmatex">\[
+V \in \mathbb{R}^{|V|\times d} \\
 U \in \mathbb{R}^{|V|\times d}
-$$</p>
+\]</div>
 <p>由于每次训练只涉及少量词，梯度的更新是稀疏的，因此在工程程实现时，要利用这个稀疏性，只更新<span class="heti-skip"><span class="heti-spacing"> </span>embedding<span class="heti-spacing"> </span></span>矩阵中的少数几行，而不是更新整个矩阵</p>
 <h2 id="co-occurrence-matrix">Co-occurrence Matrix</h2>
 <p>前面<span class="heti-skip"><span class="heti-spacing"> </span>Word2Vec<span class="heti-spacing"> </span></span>的训练过程主要是：</p>
@@ -704,12 +716,12 @@ $$</p>
 <p><img alt="image-20260427172005539" src="../assets/image-20260427172005539.png"/></p>
 <p>如表格，如果我们想要区分<span class="heti-skip"><span class="heti-spacing"> </span>ice<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>steam</span>，<strong>共现概率的比值是一个很好的统计量</strong></p>
 <p>由于<span class="heti-skip"><span class="heti-spacing"> </span>solid<span class="heti-spacing"> </span></span>更常出现在<span class="heti-skip"><span class="heti-spacing"> </span>ice<span class="heti-spacing"> </span></span>附近，而不是<span class="heti-skip"><span class="heti-spacing"> </span>steam<span class="heti-spacing"> </span></span>附近；<span>gas<span class="heti-spacing"> </span></span>更常出现在<span class="heti-skip"><span class="heti-spacing"> </span>steam<span class="heti-spacing"> </span></span>附近，而不是<span class="heti-skip"><span class="heti-spacing"> </span>ice<span class="heti-spacing"> </span></span>附近；因此<span class="heti-skip"><span class="heti-spacing"> </span>solid<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>gas<span class="heti-spacing"> </span></span>都是区分<span class="heti-skip"><span class="heti-spacing"> </span>ice<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>steam<span class="heti-spacing"> </span></span>的语义特征</p>
-<p>而<span class="heti-skip"><span class="heti-spacing"> </span>Glove<span class="heti-spacing"> </span></span>就希望将这种<span class="heti-skip"><span class="heti-spacing"> </span>ratio<span class="heti-spacing"> </span></span>编码进词向量差里：
-$$
+<p>而<span class="heti-skip"><span class="heti-spacing"> </span>Glove<span class="heti-spacing"> </span></span>就希望将这种<span class="heti-skip"><span class="heti-spacing"> </span>ratio<span class="heti-spacing"> </span></span>编码进词向量差里：</p>
+<div class="arithmatex">\[
 w_x \cdot (w_{\text{ice}} - w_{\text{steam}})
 =
 \log \frac{P(x|\text{ice})}{P(x|\text{steam})}
-$$</p>
+\]</div>
 <ul>
 <li>这样，任意上下文词<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>和这个差向量做点积，就能判断<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>更偏向 <code>ice</code> 还是 <code>steam</code></li>
 <li>而反之，<code>ice</code> 和 <code>steam</code> 的含义又是由它们的各种上下文词<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>决定的，因此 <code>ice</code> 和 <code>steam</code> 的差向量就潜移默化的编码了“固态”与“气态”的语义差异</li>

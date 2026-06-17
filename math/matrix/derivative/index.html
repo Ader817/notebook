@@ -447,10 +447,10 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
 </a>
 <h1 id="矩阵求导">矩阵求导</h1>
-<p>对于
-$$
+<p>对于</p>
+<div class="arithmatex">\[
 \mathbf{y} = \mathbf{W} \mathbf{x}
-$$</p>
+\]</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>矩阵求导存在两种形式<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>分母表达式和分子表达式</p>
@@ -458,18 +458,22 @@ $$</p>
 <p>分子表达式（Numerator Layout）<span>: <span class="arithmatex">\(\frac{\partial \mathbf{y}}{\partial \mathbf{x}} = \mathbf{W}\)</span><span class="heti-spacing"> </span></span>偏导结果的行数和分子行数相同</p>
 </div>
 <p>我们习惯使用列向量而非行向量，默认使用<strong>分母表达式</strong>：</p>
-<p>这是为了<span class="heti-skip"><span class="heti-spacing"> </span>BP<span class="heti-spacing"> </span></span>算法形式的方便和简洁性，这样<span class="heti-skip"><span class="heti-spacing"> </span>L<span class="heti-spacing"> </span></span>关于<span class="heti-skip"><span class="heti-spacing"> </span>W<span class="heti-spacing"> </span></span>的偏导也是一个行数和<span class="heti-skip"><span class="heti-spacing"> </span>W<span class="heti-spacing"> </span></span>一样的向量
-$$
-\underbracket{\mathbf{W}<em r_d="R^D">\text{new}}</em>} = \underbracket{\mathbf{W}<em>{R^D} - \underbracket{\alpha \nabla</em>\mathbf{W} \mathcal{L}}_{R^D}
-$$</p>
+<p>这是为了<span class="heti-skip"><span class="heti-spacing"> </span>BP<span class="heti-spacing"> </span></span>算法形式的方便和简洁性，这样<span class="heti-skip"><span class="heti-spacing"> </span>L<span class="heti-spacing"> </span></span>关于<span class="heti-skip"><span class="heti-spacing"> </span>W<span class="heti-spacing"> </span></span>的偏导也是一个行数和<span class="heti-skip"><span class="heti-spacing"> </span>W<span class="heti-spacing"> </span></span>一样的向量</p>
+<div class="arithmatex">\[
+\underbrace{\mathbf{W}_{\text{new}}}_{\mathbb{R}^D}
+=
+\underbrace{\mathbf{W}}_{\mathbb{R}^D}
+-
+\underbrace{\alpha \nabla_{\mathbf{W}} \mathcal{L}}_{\mathbb{R}^D}
+\]</div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p><span>W<span class="heti-spacing"> </span></span>是二维矩阵，但是在对<span class="heti-skip"><span class="heti-spacing"> </span>W<span class="heti-spacing"> </span></span>求导时，我们默认把<span class="heti-skip"><span class="heti-spacing"> </span>W<span class="heti-spacing"> </span></span>拉平成一个长向量，因为求导本质是在对<strong>矩阵的各元素</strong>逐一求导</p>
-<p>也就是：
-$$
+<p>也就是：</p>
+<div class="arithmatex">\[
 \mathbf{W} \in \mathbb{R}^{m \times n} \quad \Rightarrow \quad \text{vec}(\mathbf{W}) \in \mathbb{R}^{mn}
-$$
-所以分母布局本质上是在说：</p>
+\]</div>
+<p>所以分母布局本质上是在说：</p>
 <p>分母是输入变量，结果的形状和分母形状保持一致</p>
 </div>
 <p>在分母表达式下，链式求导过程就是这样的：</p>
@@ -485,7 +489,7 @@ y = f(\underbrace{g(\underbrace{h(x)}_{q})}_k)
 y = (Ax-b)^T(Ax-b) \quad \text{set} \; z = Ax -b
 \\
 \begin{aligned}
-\Rightarrow \frac{\partial y}{\partial x} &amp;= \frac{\partial z}{\partial x} \cdot 
+\Rightarrow \frac{\partial y}{\partial x} &amp;= \frac{\partial z}{\partial x} \cdot
 \frac{\partial y}{\partial z}
 \\
 &amp;= A^T \cdot (2z)
@@ -495,61 +499,61 @@ y = (Ax-b)^T(Ax-b) \quad \text{set} \; z = Ax -b
 \]</div>
 <p>由于分子表达式和分母表达式互为转置，所以想写分子表达式只要给结果加个转置即可</p>
 </div>
-<p>以神经网络中的最简单的前向传播和反向传播为例：
-$$
+<p>以神经网络中的最简单的前向传播和反向传播为例：</p>
+<div class="arithmatex">\[
 \mathbf{x} \xrightarrow{\mathbf{y = Wx}} \mathbf{y} \xrightarrow{\mathcal L = \text{f}(\mathbf{y})} \mathcal{L}
-$$</p>
-<p>设
-$$
+\]</div>
+<p>设</p>
+<div class="arithmatex">\[
 \mathbf{W} \in \mathbb{R}^{m \times n}, \quad \mathbf{x} \in \mathbb{R}^{n}, \quad \mathbf{y} \in \mathbb{R}^{m}
-$$
-可以证明损失函数 <span class="arithmatex">\(\mathcal L\)</span> 关于 <span class="arithmatex">\(\mathbf{x}\)</span> 和 <span class="arithmatex">\(\mathbf{W}\)</span> 的梯度。</p>
-<p>先看<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\mathcal L\)</span><span class="heti-spacing"> </span></span>关于<span><span class="heti-spacing"> </span><span class="arithmatex">\(\mathbf{x}\)</span></span>：
-$$
+\]</div>
+<p>可以证明损失函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\mathcal L\)</span><span class="heti-spacing"> </span></span>关于<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\mathbf{x}\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\mathbf{W}\)</span><span class="heti-spacing"> </span></span>的梯度。</p>
+<p>先看<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\mathcal L\)</span><span class="heti-spacing"> </span></span>关于<span><span class="heti-spacing"> </span><span class="arithmatex">\(\mathbf{x}\)</span></span>：</p>
+<div class="arithmatex">\[
 \frac{\partial\mathcal{L}}{\partial \mathbf{x}}
 =
 \frac{\partial \mathbf{y}}{\partial\mathbf{x}}\frac{\partial{\mathcal{L}}}{\partial \mathbf{y}}
-$$
-从分量角度看，
-$$
+\]</div>
+<p>从分量角度看，</p>
+<div class="arithmatex">\[
 \begin{aligned}
-\left(\frac{\partial \mathcal{L}}{\partial \mathbf{x}}\right)<em i="1">j
+\left(\frac{\partial \mathcal{L}}{\partial \mathbf{x}}\right)_j
 &amp;=
-\frac{\partial \mathcal{L}}{\partial x_j} \
+\frac{\partial \mathcal{L}}{\partial x_j} \\
 &amp;=
-\sum</em> \
+\sum_{i=1}^{m}\frac{\partial y_i}{\partial x_j}\frac{\partial \mathcal{L}}{\partial y_i} \\
 &amp;=
 \sum_{i=1}^{m}w_{ij}\frac{\partial \mathcal{L}}{\partial y_i}
 \end{aligned}
-$$
-这正是矩阵乘法}^{m}\frac{\partial y_i}{\partial x_j}\frac{\partial \mathcal{L}}{\partial y_i<span class="arithmatex">\(\mathbf{W}^\top \frac{\partial \mathcal{L}}{\partial \mathbf{y}}\)</span>的第 <span class="arithmatex">\(j\)</span> 个分量，因此
-$$
+\]</div>
+<p>这正是矩阵乘法<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\mathbf{W}^\top \frac{\partial \mathcal{L}}{\partial \mathbf{y}}\)</span><span class="heti-spacing"> </span></span>的第<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(j\)</span><span class="heti-spacing"> </span></span>个分量，因此</p>
+<div class="arithmatex">\[
 \frac{\partial\mathcal{L}}{\partial \mathbf{x}}
 =
 \mathbf{W}^\top \frac{\partial{\mathcal{L}}}{\partial \mathbf{y}}
-$$</p>
-<p>再看<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\mathcal L\)</span><span class="heti-spacing"> </span></span>关于<span><span class="heti-spacing"> </span><span class="arithmatex">\(\mathbf{W}\)</span></span>：
-$$
-\left(\frac{\partial \mathcal{L}}{\partial \mathbf{W}}\right)<em ij="ij">{ij}
+\]</div>
+<p>再看<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\mathcal L\)</span><span class="heti-spacing"> </span></span>关于<span><span class="heti-spacing"> </span><span class="arithmatex">\(\mathbf{W}\)</span></span>：</p>
+<div class="arithmatex">\[
+\left(\frac{\partial \mathcal{L}}{\partial \mathbf{W}}\right)_{ij}
 =
-\frac{\partial \mathcal{L}}{\partial w</em>
+\frac{\partial \mathcal{L}}{\partial w_{ij}}
 =
 \sum_{k=1}^{m}\frac{\partial y_k}{\partial w_{ij}}\frac{\partial \mathcal{L}}{\partial y_k}
-$$
-由于 }<span class="arithmatex">\(w_{ij}\)</span> 只会影响 <span class="arithmatex">\(y_i\)</span>，因此可以写成：
-$$
+\]</div>
+<p>由于<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(w_{ij}\)</span><span class="heti-spacing"> </span></span>只会影响<span><span class="heti-spacing"> </span><span class="arithmatex">\(y_i\)</span></span>，因此可以写成：</p>
+<div class="arithmatex">\[
 \begin{aligned}
 \left(\frac{\partial \mathcal{L}}{\partial \mathbf{W}}\right)_{ij}
 &amp;=
 x_j\frac{\partial \mathcal{L}}{\partial y_i}
 \end{aligned}
-$$
-而外积<span class="arithmatex">\(\frac{\partial \mathcal{L}}{\partial \mathbf{y}}\mathbf{x}^\top\)</span>的第 <span class="arithmatex">\((i,j)\)</span> 个元素恰好是<span class="arithmatex">\(\frac{\partial \mathcal{L}}{\partial y_i}x_j\)</span>，所以
-$$
+\]</div>
+<p>而外积<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\frac{\partial \mathcal{L}}{\partial \mathbf{y}}\mathbf{x}^\top\)</span><span class="heti-spacing"> </span></span>的第<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\((i,j)\)</span><span class="heti-spacing"> </span></span>个元素恰好是<span><span class="heti-spacing"> </span><span class="arithmatex">\(\frac{\partial \mathcal{L}}{\partial y_i}x_j\)</span></span>，所以</p>
+<div class="arithmatex">\[
 \frac{\partial \mathcal{L}}{\partial \mathbf{W}}
 =
 \frac{\partial \mathcal{L}}{\partial \mathbf{y}}\mathbf{x}^\top
-$$</p>
+\]</div>
 <p>最终得到<span class="heti-skip"><span class="heti-spacing"> </span>BP<span class="heti-spacing"> </span></span>中最常用的两条结果：</p>
 <div class="arithmatex">\[
 \frac{\partial\mathcal{L}}{\partial \mathbf{x}} = \mathbf{W}^\top \frac{\partial\mathcal{L}}{\partial \mathbf{y}}

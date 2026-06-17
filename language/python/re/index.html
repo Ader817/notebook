@@ -482,7 +482,7 @@
 </li>
 <li>
 <p>元字符：</p>
-</li>
+<ul>
 <li>
 <p><code>.</code>：匹配任意单个字符（默认不匹配换行<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，加上<span class="heti-skip"><span class="heti-spacing"> </span>DOTALL flag<span class="heti-spacing"> </span></span>后可以匹配包括换行符在内的所有字符</p>
 </li>
@@ -504,37 +504,37 @@
 <li>
 <p><code>\S</code>：匹配非空白字符</p>
 </li>
+</ul>
+</li>
 <li>
 <p>字符集：</p>
-</li>
-<li>
-<p><code>[abc]</code>：匹配中括号中<span><span class="heti-spacing"> </span>a</span>、b、<span>c<span class="heti-spacing"> </span></span>任一字符</p>
-</li>
-<li>
-<p><code>[^abc]</code>：<code>^</code> 放在中括号里表示非</p>
+<ul>
+<li><code>[abc]</code>：匹配中括号中<span><span class="heti-spacing"> </span>a</span>、b、<span>c<span class="heti-spacing"> </span></span>任一字符</li>
+<li><code>[^abc]</code>：<code>^</code> 放在中括号里表示非</li>
+</ul>
 </li>
 <li>
 <p>重复次数：</p>
-</li>
-<li>
-<p><code>*</code>：前一个模式出现<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>次或多次</p>
-</li>
+<ul>
+<li><code>*</code>：前一个模式出现<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>次或多次</li>
 <li><code>+</code>：前一个模式出现<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>次或多次</li>
 <li><code>?</code>：前一个模式出现<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>次或一次<span class="heti-skip"><span class="heti-spacing"> </span>(<span class="heti-spacing"> </span></span><code>*?</code>表示非贪婪匹配<span><span class="heti-spacing"> </span>)</span></li>
 <li><code>{n}</code>：前一个模式恰好出现<span class="heti-skip"><span class="heti-spacing"> </span>n<span class="heti-spacing"> </span></span>次</li>
 <li><code>{n,}</code>：前一个模式出现至少<span class="heti-skip"><span class="heti-spacing"> </span>n<span class="heti-spacing"> </span></span>次</li>
 <li><code>{n,m}</code>：前一个模式出现<span class="heti-skip"><span class="heti-spacing"> </span>n<span class="heti-spacing"> </span></span>到<span class="heti-skip"><span class="heti-spacing"> </span>m<span class="heti-spacing"> </span></span>次</li>
 </ul>
+</li>
+</ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>在字符集 <code>[]</code> 外面，要匹配这些特殊符号例如 <code>+</code>，<code>?</code> 需要加 <code>\</code> 进行转义，但是在字符集内部，这些字符就失去了作为重复次数的特殊含义，就不需要转义了</p>
 </div>
 <ul>
-<li>其他符号：</li>
+<li>其他符号：<ul>
 <li><code>^</code>：匹配字符串开头</li>
 <li><code>$</code>：匹配字符串结尾</li>
 <li><code>|</code>：或运算：例如 <code>r"cat|dog"</code></li>
-<li><code>()</code>：分组<ul>
+<li><code>()</code>：分组</li>
 <li><span>re<span class="heti-spacing"> </span></span>通常返回的是<span class="heti-skip"><span class="heti-spacing"> </span>match<span class="heti-spacing"> </span></span>对象，可以通过<span class="heti-skip"><span class="heti-spacing"> </span>match.group(0)<span class="heti-spacing"> </span></span>返回匹配到的完整文本，group(1)、<span>group(2) ...<span class="heti-spacing"> </span></span>依次返回第一个、第二个<span class="heti-skip"><span class="heti-spacing"> </span>...<span class="heti-spacing"> </span></span>个分组结果</li>
 </ul>
 </li>

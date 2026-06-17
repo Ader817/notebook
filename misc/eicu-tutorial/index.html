@@ -658,15 +658,12 @@
 </span><span id="__span-0-24"><a href="#__codelineno-0-24" id="__codelineno-0-24" name="__codelineno-0-24"></a>└──<span class="w"> </span>vitalperiodic.ipynb
 </span></code></pre></div>
 <p><code>notebooks/</code> 中包含使用<span class="heti-skip"><span class="heti-spacing"> </span>eicu<span class="heti-spacing"> </span></span>数据库的示例，示例中主要是通过 <strong>pandas</strong>, <strong>matplotlib</strong>, <strong>sqlite3</strong>, <strong>psycopg2</strong> 库对数据进行简单的处理和绘图展示</p>
-<ul>
-<li>
-<p><code>notebooks/demo</code> 中的几个<span class="heti-skip"><span class="heti-spacing"> </span>ipynb<span class="heti-spacing"> </span></span>作为简单的学习示例供使用者学习<span class="heti-skip"><span class="heti-spacing"> </span>eicu<span class="heti-spacing"> </span></span>数据库的表格及其处理，文件中还会列举出几个问题帮助思考。</p>
-<p>使用前需要从<a href="https://physionet.org/content/eicu-crd-demo/2.0.1/"><span class="heti-skip"><span class="heti-spacing"> </span>https://physionet.org/content/eicu-crd-demo/2.0.1/<span class="heti-spacing"> </span></span></a>中下载一个 <strong>eICU Database demo</strong> （完整数据库中有超过<span class="heti-skip"><span class="heti-spacing"> </span>20<span class="heti-spacing"> </span></span>万例入院患者的数据，<span>demo<span class="heti-spacing"> </span></span>中只有<span class="heti-skip"><span class="heti-spacing"> </span>2500<span class="heti-spacing"> </span></span>余例数据，包含所有表格的<span class="heti-skip"><span class="heti-spacing"> </span>.csv<span class="heti-spacing"> </span></span>文件以及对<span class="heti-skip"><span class="heti-spacing"> </span>csv<span class="heti-spacing"> </span></span>进行整理制作的<span class="heti-skip"><span class="heti-spacing"> </span>.sqlite3<span class="heti-spacing"> </span></span>文件）放在 <code>demo/</code> 下</p>
-</li>
-<li>
-<p>其他部分的<span class="heti-skip"><span class="heti-spacing"> </span>ipynb<span class="heti-spacing"> </span></span>分别是对<span class="heti-skip"><span class="heti-spacing"> </span>==<span class="heti-spacing"> </span></span>完整数据库<span class="heti-skip"><span class="heti-spacing"> </span>==<span class="heti-spacing"> </span></span>中的不同表格的数据处理示例，需要获取完整的数据库（使用可以参考<a href="https://eicu-crd.mit.edu/eicutables/vitalperiodic/"><span><span class="heti-spacing"> </span>https://eicu-crd.mit.edu/eicutables/vitalperiodic/</span></a>）</p>
-</li>
-</ul>
+<div class="language-text highlight"><pre><span></span><code>- `notebooks/demo` 中的几个 ipynb 作为简单的学习示例供使用者学习 eicu 数据库的表格及其处理，文件中还会列举出几个问题帮助思考。
+
+使用前需要从 https://physionet.org/content/eicu-crd-demo/2.0.1/ 中下载一个 **eICU Database demo** （完整数据库中有超过 20 万例入院患者的数据，demo 中只有 2500 余例数据，包含所有表格的 .csv 文件以及对 csv 进行整理制作的 .sqlite3 文件）放在 `demo/` 下
+
+- 其他部分的 ipynb 分别是对==完整数据库==中的不同表格的数据处理示例，需要获取完整的数据库（使用可以参考 https://eicu-crd.mit.edu/eicutables/vitalperiodic/）
+</code></pre></div>
 <h2 id="2-tables">2 Tables</h2>
 <h3 id="21-overview">2.1 Overview</h3>
 <div class="admonition quote">
@@ -950,7 +947,7 @@
 <li>肝功能：ALT、AST、TBili</li>
 <li>肾功能：Creatinine、BUN</li>
 <li>血糖：Glucose</li>
-<li>炎症标志物：WBC </li>
+<li>炎症标志物：WBC</li>
 </ul>
 <p>示例：</p>
 <table>
@@ -1088,7 +1085,7 @@
 <p>原始数据（raw CSV） <span>-&gt;<span class="heti-spacing"> </span></span>清洗合并后的<span class="heti-skip"><span class="heti-spacing"> </span>pandas DataFrame -&gt;<span class="heti-spacing"> </span></span>时间序列矩阵、诊断特征矩阵（numpy arrays） -&gt; PyTorch Dataset / Tensor（模型输入）<span>-&gt;<span class="heti-spacing"> </span></span>模型输出（<span>logit /<span class="heti-spacing"> </span></span>概率）</p>
 <h3 id="32-yaib">3.2 YAIB</h3>
 <blockquote>
-<p>YAIB: <a href="https://github.com/rvandewater/YAIB#">https://github.com/rvandewater/YAIB#</a>"&gt;<a href="https://github.com/rvandewater/YAIB#">https://github.com/rvandewater/YAIB#</a></p>
+<p>YAIB: <a href="https://github.com/rvandewater/YAIB">https://github.com/rvandewater/YAIB</a></p>
 </blockquote>
 <p>🧪Yet Another ICU Benchmark: a holistic framework for the standardization of clinical prediction model experiments. Provide custom datasets, cohorts, prediction tasks, endpoints, preprocessing, and models. Paper: <a href="https://arxiv.org/abs/2306.05109">https://arxiv.org/abs/2306.05109</a></p>
 <p><strong>TBD</strong></p>

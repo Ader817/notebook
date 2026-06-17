@@ -607,25 +607,35 @@
 </ul>
 <h2 id="cot">CoT</h2>
 <ul>
-<li>CoT (Chain of Thought)</li>
-<li>Few-Shot-CoT</li>
 <li>
-<p>Zero-Shot-CoT (simply adding "Let's think step by step")</p>
+<p>CoT (Chain of Thought)</p>
+<ul>
+<li>Few-Shot-CoT</li>
+<li>Zero-Shot-CoT (simply adding "Let's think step by step")</li>
+</ul>
 </li>
 <li>
 <p>Self-Consistency</p>
-</li>
+<ul>
 <li>one improved version of CoT</li>
 <li>Sample a diverse set of reasoning paths</li>
-<li>Marginialize out reasoning paths to aggregate final answers</li>
-<li>LtM (Least-to-Most Prompting)</li>
+<li>Marginalize out reasoning paths to aggregate final answers</li>
+</ul>
+</li>
+<li>LtM (Least-to-Most Prompting)<ul>
 <li>one improved version of CoT</li>
 <li>intended to address the issue of insufficient generalization ability in CoT</li>
 <li>Problem Reducing -&gt; Sequentially Solve Subquestions</li>
-<li>ToT (Tree of Thoughts)</li>
+</ul>
+</li>
+<li>ToT (Tree of Thoughts)<ul>
 <li><img alt="image-20260409153952664" src="../assets/image-20260409153952664.png"/></li>
-<li>Step-Back Prompting</li>
-<li>Abstraction first to find the basic priciples or concepts behinid the problem -&gt; Reasoning with the principles</li>
+</ul>
+</li>
+<li>Step-Back Prompting<ul>
+<li>Abstraction first to find the basic principles or concepts behind the problem -&gt; Reasoning with the principles</li>
+</ul>
+</li>
 </ul>
 <h2 id="rag">RAG</h2>
 <p>General-purpose language models still have certain limitations when handling knowledge-intensive tasks, such as delayed knowledge updates, generation of false information, and references to non-existent sources, which is what we refer to as hallucination.</p>
@@ -635,7 +645,7 @@
 <p>No need to integrate outer knowledge, GKP generate knowledge from LLM with few-shot, and integrate it with the original question as the new augmented prompt</p>
 <p><img alt="image-20260409162753937" src="../assets/image-20260409162753937.png"/></p>
 <h2 id="ape">APE</h2>
-<p>APE (Automatic Prompt Engineer): Using LLM to automatically generate, evaluate, and optimize prompts </p>
+<p>APE (Automatic Prompt Engineer): Using LLM to automatically generate, evaluate, and optimize prompts</p>
 <p>The main processes are:</p>
 <ol>
 <li>Proposal</li>

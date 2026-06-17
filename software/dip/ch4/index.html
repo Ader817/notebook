@@ -774,9 +774,9 @@
 <div class="admonition abstract">
 <p class="admonition-title">Abstract</p>
 <ul>
-<li>Simple geometric transform  </li>
-<li>Interpolation  </li>
-<li>Warp and morph  </li>
+<li>Simple geometric transform</li>
+<li>Interpolation</li>
+<li>Warp and morph</li>
 <li>Application</li>
 </ul>
 </div>
@@ -787,12 +787,14 @@
 <p></p><center><img alt="" src="../images/ch4/image.png"/></center>
 </div>
 <p><span><span class="arithmatex">\(f(x,y)\)</span><span class="heti-spacing"> </span></span>表示输入图像， <span><span class="arithmatex">\(g(x,y)\)</span><span class="heti-spacing"> </span></span>表示输出图像。函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(a(x,y)\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(b(x,y)\)</span><span class="heti-spacing"> </span></span>唯一地描述了空间变换：</p>
-<div class="arithmatex">\[g(x',y')=f[a(x,y),b(x,y)]=f(x,y)\]</div>
+<div class="arithmatex">\[
+g(x',y')=f[a(x,y),b(x,y)]=f(x,y)
+\]</div>
 <p>对上式，简单做个补充解释：输出图像<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(g(x',y')\)</span><span class="heti-spacing"> </span></span>中的某个像素点<span><span class="heti-spacing"> </span><span class="arithmatex">\((x',y')\)</span></span>，其值<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(g(x',y')\)</span><span class="heti-spacing"> </span></span>与原图像<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f(x,y)\)</span><span class="heti-spacing"> </span></span>相同，且<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x',y'\)</span><span class="heti-spacing"> </span></span>是由坐标<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x,y\)</span><span class="heti-spacing"> </span></span>经过函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(a,b\)</span><span class="heti-spacing"> </span></span>变换而来。</p>
-<p>几何变换根据难易程度通常可以归结为两类：  </p>
+<p>几何变换根据难易程度通常可以归结为两类：</p>
 <ul>
 <li><strong>简单变换</strong>——变换过程（各个像素变换前后的位置）以及变换参数可知时的变换，如图像的<em>平移、镜像、转置、旋转、缩放、错切变换</em>等。</li>
-<li><strong>一般变换</strong>——变换过程不是一目了然，变换参数难以测量时的变换。通常情况下，对图像畸变进行校正时，需要用到较为复杂的变换公式。  </li>
+<li><strong>一般变换</strong>——变换过程不是一目了然，变换参数难以测量时的变换。通常情况下，对图像畸变进行校正时，需要用到较为复杂的变换公式。</li>
 </ul>
 <h2 id="简单变换--simple-geometric-transform">简单变换<span><span class="heti-spacing"> </span>| Simple geometric transform</span></h2>
 <h3 id="translation">Translation</h3>
@@ -808,8 +810,8 @@
 </blockquote>
 <p>平移后的景物与原图像相同，但“画布”一定是扩大了，否则就会丢失信息。</p>
 <h3 id="rotation">Rotation</h3>
-<p>绕原点旋转<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\theta\)</span><span class="heti-spacing"> </span></span>角，得到新图像的过程  </p>
-<div class="arithmatex">\[  
+<p>绕原点旋转<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\theta\)</span><span class="heti-spacing"> </span></span>角，得到新图像的过程</p>
+<div class="arithmatex">\[
 \left\{ \begin{matrix} x^{'}=x\cos\theta - y\sin\theta\\ y^{'}=x\sin\theta + y\cos\theta \end{matrix} \right.
 \]</div>
 <div class="arithmatex">\[
@@ -858,7 +860,7 @@
 <p class="admonition-title">Example</p>
 <p></p><center><img alt="" src="../images/ch4/image-4.png" width="70%"/></center>
 </div>
-<p>假设剪切变换的参数为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(d_x\)</span><span class="heti-spacing"> </span></span>或者<span><span class="heti-spacing"> </span><span class="arithmatex">\(d_y\)</span></span>，那么可以用数学公式表现为  </p>
+<p>假设剪切变换的参数为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(d_x\)</span><span class="heti-spacing"> </span></span>或者<span><span class="heti-spacing"> </span><span class="arithmatex">\(d_y\)</span></span>，那么可以用数学公式表现为</p>
 <ul>
 <li><strong>Shear on x-axis:</strong> <span class="arithmatex">\(\left\{ \begin{matrix} a(x,y)=x+d_xy\\ b(x,y)=y \end{matrix} \right.\)</span></li>
 <li><strong>Shear on y-axis:</strong> <span class="arithmatex">\(\left\{ \begin{matrix} a(x,y)=x\\ b(x,y)=y+d_yx \end{matrix} \right.\)</span></li>
@@ -867,7 +869,7 @@
 <div class="arithmatex">\[
 \left( \begin{matrix} 1 &amp;  0  \\ d_x &amp; 1 \end{matrix} \right);
 \left( \begin{matrix} 1 &amp;  d_y  \\ 0 &amp; 1 \end{matrix} \right);
-\left( \begin{matrix} 1 &amp;  d_y  \\ d_x &amp; 1 \end{matrix} \right)  
+\left( \begin{matrix} 1 &amp;  d_y  \\ d_x &amp; 1 \end{matrix} \right)
 \]</div>
 <blockquote>
 <p>当然若两个坐标同时受剪切，图像面积就发生变化，上面的平行四边形拉伸压缩的类比就不太恰当了</p>
@@ -903,9 +905,11 @@
 </div>
 <p>最近邻插值法有局限性。当图像中包含明显的几何结构时，结果不能保持一致性和平滑性。</p>
 <h3 id="线性插值--linear-interpolation">线性插值<span><span class="heti-spacing"> </span>| Linear interpolation</span></h3>
-<p>对于一维的线性插值，假设在<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x_1\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x_2\)</span><span class="heti-spacing"> </span></span>处的灰度值分别为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(g_1\)</span><span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span><span class="arithmatex">\(g_2\)</span></span> ，那么<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x_3\)</span><span class="heti-spacing"> </span></span>处的灰度值<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(g_3\)</span><span class="heti-spacing"> </span></span>为：  </p>
-<div class="arithmatex">\[g_3=\dfrac{g_2-g_1}{x_2-x_1}(x_3-x_1)+g_1\]</div>
-<p>但我们图像是二维的（行列<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，因此需要二维插值。  </p>
+<p>对于一维的线性插值，假设在<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x_1\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x_2\)</span><span class="heti-spacing"> </span></span>处的灰度值分别为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(g_1\)</span><span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span><span class="arithmatex">\(g_2\)</span></span> ，那么<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x_3\)</span><span class="heti-spacing"> </span></span>处的灰度值<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(g_3\)</span><span class="heti-spacing"> </span></span>为：</p>
+<div class="arithmatex">\[
+g_3=\dfrac{g_2-g_1}{x_2-x_1}(x_3-x_1)+g_1
+\]</div>
+<p>但我们图像是二维的（行列<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，因此需要二维插值。</p>
 <p>在二维情况下，称之为 “双线性插值”。</p>
 <div class="admonition question">
 <p>已知图像的正方形网格上四个点<span><span class="heti-spacing"> </span>A</span>、B、C、<span>D<span class="heti-spacing"> </span></span>的灰度，求<span class="heti-skip"><span class="heti-spacing"> </span>P<span class="heti-spacing"> </span></span>点的灰度。</p>
@@ -920,20 +924,20 @@
 <p>在实现时，我们可以同样可以用<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>维的线性插值来实现双线性插值。只要先进行每行的插值，再进行每列的插值，我们就可以对整个图像进行插值运算。这样子也可以并行计算<span><span class="heti-spacing"> </span>.</span></p>
 <p>例如，对上图中。我们可以通过多次<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>维的线性插值来进行双线性插值：首先将<span><span class="heti-spacing"> </span>A</span>、 <span>B<span class="heti-spacing"> </span></span>连线进行插值计算求出<span class="heti-skip"><span class="heti-spacing"> </span>Q<span class="heti-spacing"> </span></span>点灰度值，再将<span><span class="heti-spacing"> </span>C</span>、 <span>D<span class="heti-spacing"> </span></span>两点连线进行插值计算求出<span class="heti-skip"><span class="heti-spacing"> </span>R<span class="heti-spacing"> </span></span>点灰度值，最后将<span><span class="heti-spacing"> </span>Q</span>、 <span>R<span class="heti-spacing"> </span></span>连线进行插值计算求出<span class="heti-skip"><span class="heti-spacing"> </span>P<span class="heti-spacing"> </span></span>点灰度值。</p>
 <h3 id="径向基函数插值--rbf-interpolation">径向基函数插值<span><span class="heti-spacing"> </span>| RBF interpolation</span></h3>
-<p><span class="arithmatex">\(G(x)=\sum\limits_{i=1}^n w_iG(c_i)\)</span> where <span class="arithmatex">\(w_i=\dfrac{\phi(||x-c_i||)}{\sum\limits_{i=1}^n\phi(||x-c_i||)}\)</span>  </p>
+<p><span class="arithmatex">\(G(x)=\sum\limits_{i=1}^n w_iG(c_i)\)</span> where <span class="arithmatex">\(w_i=\dfrac{\phi(||x-c_i||)}{\sum\limits_{i=1}^n\phi(||x-c_i||)}\)</span></p>
 <p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>可以是一个标量，也可以是一个向量，也就是说既可以是一维插值，也可以是二维、多维插值，取决于<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>的维度。</p>
 <p><img alt="" src="../images/ch4/image-8.png"/></p>
 <p>常用的核函数：</p>
 <ul>
-<li>Gaussian: <span class="arithmatex">\(\phi(r)=exp\{-\dfrac{e^2}{2\sigma^2}\}\)</span>  </li>
-<li>Multiquadrics: <span class="arithmatex">\(\phi(r)=\sqrt{1+\dfrac{r^2}{\sigma^2}}\)</span>  </li>
-<li>Linear: <span class="arithmatex">\(\phi(r)=r\)</span>  </li>
+<li>Gaussian: <span class="arithmatex">\(\phi(r)=exp\{-\dfrac{e^2}{2\sigma^2}\}\)</span></li>
+<li>Multiquadrics: <span class="arithmatex">\(\phi(r)=\sqrt{1+\dfrac{r^2}{\sigma^2}}\)</span></li>
+<li>Linear: <span class="arithmatex">\(\phi(r)=r\)</span></li>
 <li>Cubic: <span class="arithmatex">\(\phi(r)=r^3\)</span></li>
 <li>Thinplate: <span class="arithmatex">\(\phi(r)=r^2\ln(r+1)\)</span></li>
 </ul>
 <h2 id="warp-and-morph">Warp and Morph</h2>
-<p><span>Warp:<span class="heti-spacing"> </span></span>只改变像素的位置  </p>
-<p><span>Morph:<span class="heti-spacing"> </span></span>不仅改变位置，还要改变颜色  </p>
+<p><span>Warp:<span class="heti-spacing"> </span></span>只改变像素的位置</p>
+<p><span>Morph:<span class="heti-spacing"> </span></span>不仅改变位置，还要改变颜色</p>
 <h3 id="image-morph">Image Morph</h3>
 <p>这里讨论的<span class="heti-skip"><span class="heti-spacing"> </span>Morph<span class="heti-spacing"> </span></span>变形不同于一般的几何变换<span><span class="heti-spacing"> </span>(Warp)</span></p>
 <p><span>Morph<span class="heti-spacing"> </span></span>变形指景物的形体变化，它是使一幅图像逐步变化到另一幅图像的处理方法。这是一种较复杂的二维图像处理，需要对各像素点的<strong>颜色、位置</strong>作变换。</p>
@@ -1002,21 +1006,25 @@
 </div>
 <p>分析和利用图像的亮度比例信息，将源图像中的表情自然地转移到目标图像上。我们可以应用<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(v_{B'}=v_{B}+v_{A'}-v_A\)</span>,<span class="heti-spacing"> </span></span>但它没有考虑光照模型的影响，导致结果中的表情细节（如局部纹理、光影）丢失，从而使生成的目标表情图像显得不够自然</p>
 </div>
-<p>为此，我们需要引入光照模型<span><span class="heti-spacing"> </span>(Lambertian model).</span> </p>
+<p>为此，我们需要引入光照模型<span><span class="heti-spacing"> </span>(Lambertian model).</span></p>
 <h3 id="光照模型--lambertian-model">光照模型<span><span class="heti-spacing"> </span>| Lambertian model</span></h3>
 <p>假设空间中<span class="heti-skip"><span class="heti-spacing"> </span>m<span class="heti-spacing"> </span></span>为点光源，曲面亮度如下：</p>
-<div class="arithmatex">\[I=\rho\sum\limits_{1\leq i\leq m} S_iI_in_i\cdot l_i\equiv \rho E(n) \]</div>
+<div class="arithmatex">\[
+I=\rho\sum\limits_{1\leq i\leq m} S_iI_in_i\cdot l_i\equiv \rho E(n)
+\]</div>
 <div class="arithmatex">\[
 \text{where} \;
-S_i = 
-\begin{cases} 
-0, &amp; \text{cannot be seen} \\ 
+S_i =
+\begin{cases}
+0, &amp; \text{cannot be seen} \\
 1, &amp; \text{otherwise}
 \end{cases}
 \]</div>
-<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(l_i\)</span><span class="heti-spacing"> </span></span>第<span class="heti-skip"><span class="heti-spacing"> </span>i<span class="heti-spacing"> </span></span>个光源照过来的角度，<span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>表示当前这个曲面的法向量，所以<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n\cdot l_i\)</span><span class="heti-spacing"> </span></span>相当于余弦关系<span class="heti-skip"><span class="heti-spacing"> </span>; <span class="arithmatex">\(I_i\)</span><span class="heti-spacing"> </span></span>表示第<span class="heti-skip"><span class="heti-spacing"> </span>i<span class="heti-spacing"> </span></span>个光源的亮度；<span><span class="arithmatex">\(S_i\)</span><span class="heti-spacing"> </span></span>表示曲面能不能被第<span class="heti-skip"><span class="heti-spacing"> </span>i<span class="heti-spacing"> </span></span>个点光源照到<span class="heti-skip"><span class="heti-spacing"> </span>; <span class="arithmatex">\(\rho\)</span><span class="heti-spacing"> </span></span>表示曲面的材质  </p>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(l_i\)</span><span class="heti-spacing"> </span></span>第<span class="heti-skip"><span class="heti-spacing"> </span>i<span class="heti-spacing"> </span></span>个光源照过来的角度，<span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>表示当前这个曲面的法向量，所以<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n\cdot l_i\)</span><span class="heti-spacing"> </span></span>相当于余弦关系<span class="heti-skip"><span class="heti-spacing"> </span>; <span class="arithmatex">\(I_i\)</span><span class="heti-spacing"> </span></span>表示第<span class="heti-skip"><span class="heti-spacing"> </span>i<span class="heti-spacing"> </span></span>个光源的亮度；<span><span class="arithmatex">\(S_i\)</span><span class="heti-spacing"> </span></span>表示曲面能不能被第<span class="heti-skip"><span class="heti-spacing"> </span>i<span class="heti-spacing"> </span></span>个点光源照到<span class="heti-skip"><span class="heti-spacing"> </span>; <span class="arithmatex">\(\rho\)</span><span class="heti-spacing"> </span></span>表示曲面的材质</p>
 <p><strong>Expression ratio image(ERI)</strong><span>:<span class="heti-spacing"> </span></span>由于对同一个对象变换前后的材质是一样的，所以<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\rho\)</span><span class="heti-spacing"> </span></span>一样，可以得到：</p>
-<div class="arithmatex">\[\dfrac{I'}{I}=\dfrac{E(n')}{E(n)}\]</div>
+<div class="arithmatex">\[
+\dfrac{I'}{I}=\dfrac{E(n')}{E(n)}
+\]</div>
 <p><span>ERI<span class="heti-spacing"> </span></span>是因为曲面变形所导致的亮度的变化；不依赖于材质的。</p>
 <p>假设在对应的点都有相同的法向量，材质不同，相同的形变</p>
 <table>
@@ -1063,11 +1071,13 @@ S_i =
 </tbody>
 </table>
 <p>由刚刚的推导可得</p>
-<div class="arithmatex">\[I_b^{'}=\dfrac{I_a^{'}}{I_a}I_b\]</div>
+<div class="arithmatex">\[
+I_b^{'}=\dfrac{I_a^{'}}{I_a}I_b
+\]</div>
 <p><strong>Algorithm:</strong></p>
 <ul>
 <li>Step 1: Mark feature points</li>
-<li><span>Step 2:<span class="heti-spacing"> </span></span>对每一个特征点<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(v_b\)</span> in <span class="arithmatex">\(B\)</span>, warp it: <span class="arithmatex">\(v_{b'}=v_b+v_{a'}-v_a\)</span>,<span class="heti-spacing"> </span></span>令<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(B_g\)</span><span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(B\)</span><span class="heti-spacing"> </span></span>变形后的图像  </li>
+<li><span>Step 2:<span class="heti-spacing"> </span></span>对每一个特征点<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(v_b\)</span> in <span class="arithmatex">\(B\)</span>, warp it: <span class="arithmatex">\(v_{b'}=v_b+v_{a'}-v_a\)</span>,<span class="heti-spacing"> </span></span>令<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(B_g\)</span><span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(B\)</span><span class="heti-spacing"> </span></span>变形后的图像</li>
 <li><span>Step 3:<span class="heti-spacing"> </span></span>用<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(B_g\)</span><span class="heti-spacing"> </span></span>对齐<span><span class="heti-spacing"> </span><span class="arithmatex">\(A\)</span></span> ，<span class="arithmatex">\(A'\)</span>，直到每个像素都能找到另外两种图像上的对应点</li>
 <li><span>Step 4:<span class="heti-spacing"> </span></span>计算<span><span class="heti-spacing"> </span>ratio image <span class="arithmatex">\(\Re=\dfrac{A'}{A}\)</span></span></li>
 <li>Step 5: <span class="arithmatex">\(B' = \Re \cdot B_g\)</span></li>

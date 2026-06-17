@@ -706,7 +706,7 @@
 </blockquote>
 <h2 id="q1">Q1</h2>
 <blockquote>
-<p><span>Transformer<span class="heti-spacing"> </span></span>为何使用多头注意力机制<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>（为什么不使用一个头） </p>
+<p><span>Transformer<span class="heti-spacing"> </span></span>为何使用多头注意力机制<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>（为什么不使用一个头）</p>
 </blockquote>
 <p>单头注意力只能在一个表示子空间中计算词与词之间的关系。而自然语言中，一个词和其他词的关联是<strong>多维度的</strong>，例如句子：<em>"The animal didn't cross the street because <strong>it</strong> was too tired."</em>中</p>
 <ul>
@@ -717,74 +717,74 @@
 <p>单个注意力头很难在同一组<span class="heti-skip"><span class="heti-spacing"> </span>Q/K/V<span class="heti-spacing"> </span></span>权重中同时捕捉这些不同类型的关系</p>
 <h2 id="q2">Q2</h2>
 <blockquote>
-<p><span>Transformer<span class="heti-spacing"> </span></span>为什么<span class="heti-skip"><span class="heti-spacing"> </span>Q<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>K<span class="heti-spacing"> </span></span>使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？ （注意和第一个问题的区别） </p>
+<p><span>Transformer<span class="heti-spacing"> </span></span>为什么<span class="heti-skip"><span class="heti-spacing"> </span>Q<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>K<span class="heti-spacing"> </span></span>使用不同的权重矩阵生成，为何不能使用同一个值进行自身的点乘？ （注意和第一个问题的区别）</p>
 </blockquote>
 <p>最重要的原因是打破对称性：如果<span><span class="heti-spacing"> </span>Q = K</span>（使用同一权重矩阵<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，那么注意力矩阵<span><span class="heti-spacing"> </span>A = softmax(QQ^T /</span> √<span>d)<span class="heti-spacing"> </span></span>会是对称矩阵，即 <code>A[i][j] = A[j][i]</code> ，这意味着<span class="heti-skip"><span class="heti-spacing"> </span>token i<span class="heti-spacing"> </span></span>对<span class="heti-skip"><span class="heti-spacing"> </span>token j<span class="heti-spacing"> </span></span>的注意力，将永远等于<span class="heti-skip"><span class="heti-spacing"> </span>token j<span class="heti-spacing"> </span></span>对<span class="heti-skip"><span class="heti-spacing"> </span>token i<span class="heti-spacing"> </span></span>的注意力，但是语言的语义往往是不对称的</p>
 <p>例如<heti-adjacent class="heti-adjacent-quarter">：</heti-adjacent>“猫”追“老鼠”中<heti-adjacent class="heti-adjacent-quarter">，</heti-adjacent>“追”应该强烈的关注主语”猫“，而”猫“不一定需要同等程度地关注”追“</p>
 <h2 id="q3">Q3</h2>
 <blockquote>
-<p>为什么在进行<span class="heti-skip"><span class="heti-spacing"> </span>softmax<span class="heti-spacing"> </span></span>之前需要对<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>进行<span><span class="heti-spacing"> </span>scaled</span>（为什么除以<span class="heti-skip"><span class="heti-spacing"> </span>dk<span class="heti-spacing"> </span></span>的平方根<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，并使用公式推导行讲解 </p>
+<p>为什么在进行<span class="heti-skip"><span class="heti-spacing"> </span>softmax<span class="heti-spacing"> </span></span>之前需要对<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>进行<span><span class="heti-spacing"> </span>scaled</span>（为什么除以<span class="heti-skip"><span class="heti-spacing"> </span>dk<span class="heti-spacing"> </span></span>的平方根<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，并使用公式推导行讲解</p>
 </blockquote>
 <p>核心原因是：<strong><span>attention score<span class="heti-spacing"> </span></span>的方差会随着向量维度的增长而增加，从而导致<span class="heti-skip"><span class="heti-spacing"> </span>softmax<span class="heti-spacing"> </span></span>结果的不稳定性</strong></p>
-<p>设<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>key<span class="heti-spacing"> </span></span>向量的每个分量独立同分布：
-$$
+<p>设<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>key<span class="heti-spacing"> </span></span>向量的每个分量独立同分布：</p>
+<div class="arithmatex">\[
 q_i \sim \mathcal{N}(0, 1), \quad k_i \sim \mathcal{N}(0, 1), \quad i = 1, 2, \dots, d_k
-$$
-各分量之间相互独立。</p>
-<p>点积定义为：
-$$
+\]</div>
+<p>各分量之间相互独立。</p>
+<p>点积定义为：</p>
+<div class="arithmatex">\[
 z = q \cdot k = \sum_{i=1}^{d_k} q_i k_i
-$$
-<strong>计算期望：</strong>
-$$
+\]</div>
+<p><strong>计算期望：</strong></p>
+<div class="arithmatex">\[
 \mathbb{E}[q_i k_i] = \mathbb{E}[q_i] \cdot \mathbb{E}[k_i] = 0 \cdot 0 = 0
-$$
-<strong>计算方差：</strong></p>
-<p>由于各项独立，先算单项的方差：
-$$
+\]</div>
+<p><strong>计算方差：</strong></p>
+<p>由于各项独立，先算单项的方差：</p>
+<div class="arithmatex">\[
 \text{Var}(q_i k_i) = \mathbb{E}[q_i^2 k_i^2] - (\mathbb{E}[q_i k_i])^2
-$$
-因此总方差：
-$$
+\]</div>
+<p>因此总方差：</p>
+<div class="arithmatex">\[
 \text{Var}(z) = \sum_{i=1}^{d_k} \text{Var}(q_i k_i) = d_k
-$$
-可以发现点积 z 的标准差为 <span class="arithmatex">\(d_k\)</span>，随维度线性放大</p>
+\]</div>
+<p>可以发现点积<span class="heti-skip"><span class="heti-spacing"> </span>z<span class="heti-spacing"> </span></span>的标准差为<span><span class="heti-spacing"> </span><span class="arithmatex">\(d_k\)</span></span>，随维度线性放大</p>
 <p>而高方差会导致<span class="heti-skip"><span class="heti-spacing"> </span>softmax<span class="heti-spacing"> </span></span>的饱和：</p>
-<p>对于序列中的<span class="heti-skip"><span class="heti-spacing"> </span>n<span class="heti-spacing"> </span></span>个<span><span class="heti-spacing"> </span>token</span>，注意力分数向量为：
-$$
+<p>对于序列中的<span class="heti-skip"><span class="heti-spacing"> </span>n<span class="heti-spacing"> </span></span>个<span><span class="heti-spacing"> </span>token</span>，注意力分数向量为：</p>
+<div class="arithmatex">\[
 \mathbf{z} = [z_1, z_2, \dots, z_n], \quad z_j = q \cdot k_j
-$$
-当 <span class="arithmatex">\(d_k\)</span> 很大时，各 <span class="arithmatex">\(z_j\)</span> 的数值量级为 <span class="arithmatex">\(\sqrt{d_k}\)</span>，softmax 为：
-$$
+\]</div>
+<p>当<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(d_k\)</span><span class="heti-spacing"> </span></span>很大时，各<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(z_j\)</span><span class="heti-spacing"> </span></span>的数值量级为<span><span class="heti-spacing"> </span><span class="arithmatex">\(\sqrt{d_k}\)</span></span>，<span>softmax<span class="heti-spacing"> </span></span>为：</p>
+<div class="arithmatex">\[
 \text{softmax}(z_j) = \frac{e^{z_j}}{\sum_{l} e^{z_l}}
-$$
-设某个 <span class="arithmatex">\(z_j\)</span> 比其他值大，例如：
-$$
+\]</div>
+<p>设某个<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(z_j\)</span><span class="heti-spacing"> </span></span>比其他值大，例如：</p>
+<div class="arithmatex">\[
 \mathbf{z} = [\underbrace{30}_{\text{最大}}, 1, 2, 1]
-$$
-softmax 输出趋近于 one-hot，<strong>梯度几乎为零</strong>：
-$$
+\]</div>
+<p><span>softmax<span class="heti-spacing"> </span></span>输出趋近于<span><span class="heti-spacing"> </span>one-hot</span>，<strong>梯度几乎为零</strong>：</p>
+<div class="arithmatex">\[
 \frac{\partial \text{softmax}(z_j)}{\partial z_j} = s_j(1 - s_j) \approx 1 \cdot 0 = 0
-$$
-这就是<strong>梯度消失</strong>，模型无法有效训练</p>
-<p>但是当我们将注意力分数除以<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\sqrt{d_k}\)</span><span class="heti-spacing"> </span></span>后，定义缩放后的分数：
-$$
+\]</div>
+<p>这就是<strong>梯度消失</strong>，模型无法有效训练</p>
+<p>但是当我们将注意力分数除以<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\sqrt{d_k}\)</span><span class="heti-spacing"> </span></span>后，定义缩放后的分数：</p>
+<div class="arithmatex">\[
 \tilde{z} = \frac{z}{\sqrt{d_k}} = \frac{q \cdot k}{\sqrt{d_k}}
-$$
-验证方差：
-$$
+\]</div>
+<p>验证方差：</p>
+<div class="arithmatex">\[
 \text{Var}\left(\frac{z}{\sqrt{d_k}}\right) = \frac{\text{Var}(z)}{(\sqrt{d_k})^2} = \frac{d_k}{d_k} = 1
-$$
-缩放后 $\tilde{z} \sim \mathcal{N}(0, 1) $，数值范围恢复正常，softmax 工作在 <strong>线性区</strong>：
-$$
+\]</div>
+<p>缩放后<span><span class="heti-spacing"> </span>$\tilde{z} \sim \mathcal{N}(0, 1) $</span>，数值范围恢复正常，<span>softmax<span class="heti-spacing"> </span></span>工作在 <strong>线性区</strong>：</p>
+<div class="arithmatex">\[
 \mathbf{\tilde{z}} = [1.2, -0.3, 0.8, -0.5]
-$$
-这样的注意力分数向量的结果就是合理的，梯度也会变为正常</p>
-<p>因此最后得到<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的缩放点积注意力：
-$$
+\]</div>
+<p>这样的注意力分数向量的结果就是合理的，梯度也会变为正常</p>
+<p>因此最后得到<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的缩放点积注意力：</p>
+<div class="arithmatex">\[
 \text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V
-$$
-整理一下思路，总结一下就是：</p>
+\]</div>
+<p>整理一下思路，总结一下就是：</p>
 <div class="arithmatex">\[
 \underbrace{d_k \uparrow}_{\text{维度增大}} \Rightarrow \underbrace{\text{Var}(q \cdot k) = d_k \uparrow}_{\text{点积方差爆炸}} \Rightarrow \underbrace{\text{softmax} \to \text{one-hot}}_{\text{注意力退化}} \Rightarrow \underbrace{\nabla \to 0}_{\text{梯度消失}}
 \\
@@ -809,7 +809,7 @@ $$
 <p><img alt="image-20260401202842227" src="../assets/image-20260401202842227.png"/></p>
 <h2 id="q6">Q6</h2>
 <blockquote>
-<p>大概讲一下<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>Encoder<span class="heti-spacing"> </span></span>模块？ </p>
+<p>大概讲一下<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>Encoder<span class="heti-spacing"> </span></span>模块？</p>
 </blockquote>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a>输入序列
 </span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>    │
@@ -838,28 +838,28 @@ $$
 </span></code></pre></div>
 <h2 id="q7">Q7</h2>
 <blockquote>
-<p>为何在获取输入词向量之后需要对矩阵乘以<span class="heti-skip"><span class="heti-spacing"> </span>embedding size<span class="heti-spacing"> </span></span>的开方？意义是什么？ </p>
+<p>为何在获取输入词向量之后需要对矩阵乘以<span class="heti-skip"><span class="heti-spacing"> </span>embedding size<span class="heti-spacing"> </span></span>的开方？意义是什么？</p>
 </blockquote>
-<p>原始<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>论文中明确提到：在<span class="heti-skip"><span class="heti-spacing"> </span>Embedding<span class="heti-spacing"> </span></span>层，将权重矩阵乘以<span><span class="heti-spacing"> </span><span class="arithmatex">\(\sqrt{d_\text{model}}\)</span></span>，即：
-$$
+<p>原始<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>论文中明确提到：在<span class="heti-skip"><span class="heti-spacing"> </span>Embedding<span class="heti-spacing"> </span></span>层，将权重矩阵乘以<span><span class="heti-spacing"> </span><span class="arithmatex">\(\sqrt{d_\text{model}}\)</span></span>，即：</p>
+<div class="arithmatex">\[
 \text{input} = \text{Embedding}(x) \times \sqrt{d_{\text{model}}} + \text{PE}
-$$
-核心原因是：Embedding 和 PE 的数值尺度不匹配</p>
-<p><strong><span>Positional Encoding<span class="heti-spacing"> </span></span>的值域是固定的：</strong>
-$$
+\]</div>
+<p>核心原因是：<span>Embedding<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>PE<span class="heti-spacing"> </span></span>的数值尺度不匹配</p>
+<p><strong><span>Positional Encoding<span class="heti-spacing"> </span></span>的值域是固定的：</strong></p>
+<div class="arithmatex">\[
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d}}\right) \in [-1, 1]
-$$
-PE 的每个分量都被限制在 <strong>[-1, 1]</strong> 之间，数值尺度固定。</p>
+\]</div>
+<p><span>PE<span class="heti-spacing"> </span></span>的每个分量都被限制在 <strong>[-1, 1]</strong> 之间，数值尺度固定。</p>
 <p><strong><span>Embedding<span class="heti-spacing"> </span></span>的值域在训练初期很小：</strong></p>
-<p>神经网络初始化时（如<span class="heti-skip"><span class="heti-spacing"> </span>Xavier<span class="heti-spacing"> </span></span>初始化<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，<span>embedding<span class="heti-spacing"> </span></span>权重通常满足：
-$$
+<p>神经网络初始化时（如<span class="heti-skip"><span class="heti-spacing"> </span>Xavier<span class="heti-spacing"> </span></span>初始化<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，<span>embedding<span class="heti-spacing"> </span></span>权重通常满足：</p>
+<div class="arithmatex">\[
 \text{Var}(\text{embedding}) \sim \frac{1}{d_{\text{model}}}
-$$
-标准差约为：
-$$
+\]</div>
+<p>标准差约为：</p>
+<div class="arithmatex">\[
 \sigma \sim \frac{1}{\sqrt{d_{\text{model}}}}
-$$
-当 d_model = 512 时，embedding 每个分量的标准差约为 <strong>0.044</strong>，远小于<span class="heti-skip"><span class="heti-spacing"> </span>PE<span class="heti-spacing"> </span></span>的数值范围。</p>
+\]</div>
+<p>当<span class="heti-skip"><span class="heti-spacing"> </span>d_model = 512<span class="heti-spacing"> </span></span>时，<span>embedding<span class="heti-spacing"> </span></span>每个分量的标准差约为 <strong>0.044</strong>，远小于<span class="heti-skip"><span class="heti-spacing"> </span>PE<span class="heti-spacing"> </span></span>的数值范围。</p>
 <p>不缩放会发生什么？例如：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a>Embedding 数值: ~0.044  （很小）
 </span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a>PE 数值:        ~[-1, 1] （相对很大）
@@ -872,32 +872,32 @@ $$
 <p>模型几乎只能看到位置信息，词义信息几乎消失。</p>
 <h2 id="q8">Q8</h2>
 <blockquote>
-<p>简单介绍一下<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的位置编码？有什么意义和优缺点？ </p>
+<p>简单介绍一下<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的位置编码？有什么意义和优缺点？</p>
 </blockquote>
 <p><span>Transformer<span class="heti-spacing"> </span></span>完全基于<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>机制，<span>attention<span class="heti-spacing"> </span></span>的计算本质是集合操作——打乱输入顺序不影响结果：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a>["我", "爱", "猫"]  和  ["猫", "爱", "我"]
 </span></code></pre></div>
 <p>对<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>来说，两者的输出完全相同（只是位置调换<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，但语义完全不同。所以必须显式地把位置信息注入到输入中</p>
-<p>原论文中采用的是正弦位置编码（Sinusoidal PE<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：
-$$
+<p>原论文中采用的是正弦位置编码（Sinusoidal PE<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：</p>
+<div class="arithmatex">\[
 PE_{(pos, 2i)} = \sin\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)
-\
+\\
 PE_{(pos, 2i+1)} = \cos\left(\frac{pos}{10000^{2i/d_{\text{model}}}}\right)
-$$
-其中 pos 是 token 在序列中的位置，i 是维度索引</p>
+\]</div>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span>pos<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>在序列中的位置，<span>i<span class="heti-spacing"> </span></span>是维度索引</p>
 <ul>
 <li>优点：作为绝对位置编码，使用正<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>余弦相较于直接用位置序号而言，编码值有界，并且能够泛化到未见长度；并且相比可学习的位置编码不需要训练</li>
 <li>缺点：无法直接建模相对位置的关系，只能依靠<span class="heti-skip"><span class="heti-spacing"> </span>W_k, W_q<span class="heti-spacing"> </span></span>来间接学习相对位置关系</li>
 </ul>
 <h2 id="q9">Q9</h2>
 <blockquote>
-<p>简单讲一下<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>中的残差结构以及意义。 </p>
+<p>简单讲一下<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>中的残差结构以及意义。</p>
 </blockquote>
-<p><span>Transformer<span class="heti-spacing"> </span></span>中每个子模块的输出都会套一个残差连接：
-$$
+<p><span>Transformer<span class="heti-spacing"> </span></span>中每个子模块的输出都会套一个残差连接：</p>
+<div class="arithmatex">\[
 \text{output} = \text{LayerNorm}(x + \text{Sublayer}(x))
-$$
-用图来看是这样：</p>
+\]</div>
+<p>用图来看是这样：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a>x ──────────────────────────────┐
 </span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a>│                               │
 </span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>▼                               │
@@ -912,33 +912,33 @@ $$
 </span><span id="__span-4-12"><a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a>          ▼
 </span><span id="__span-4-13"><a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a>        output
 </span></code></pre></div>
-<p>残差结构的主要意义就是解决深度网络的梯度消失问题。没有残差时，梯度需要逐层反向传播：
-$$
+<p>残差结构的主要意义就是解决深度网络的梯度消失问题。没有残差时，梯度需要逐层反向传播：</p>
+<div class="arithmatex">\[
 \frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} \cdot \frac{\partial \text{Sublayer}(x)}{\partial x}
-$$
-每经过一层都要乘一个雅可比矩阵，层数多了之后连乘结果趋近于 0，梯度消失。</p>
-<p>加入残差后：
-$$
+\]</div>
+<p>每经过一层都要乘一个雅可比矩阵，层数多了之后连乘结果趋近于<span><span class="heti-spacing"> </span>0</span>，梯度消失。</p>
+<p>加入残差后：</p>
+<div class="arithmatex">\[
 \frac{\partial L}{\partial x} = \frac{\partial L}{\partial y} \cdot \left(1 + \frac{\partial \text{Sublayer}(x)}{\partial x}\right)
-$$
-多了一个常数项 <strong>1</strong>，无论<span class="heti-skip"><span class="heti-spacing"> </span>Sublayer<span class="heti-spacing"> </span></span>的梯度多小，梯度都能通过这条<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>高速公路<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>直接回传到浅层：</p>
+\]</div>
+<p>多了一个常数项 <strong>1</strong>，无论<span class="heti-skip"><span class="heti-spacing"> </span>Sublayer<span class="heti-spacing"> </span></span>的梯度多小，梯度都能通过这条<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>高速公路<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="heti-spacing"> </span></span>直接回传到浅层：</p>
 <h2 id="q10">Q10</h2>
 <blockquote>
-<p>为什么<span class="heti-skip"><span class="heti-spacing"> </span>transformer<span class="heti-spacing"> </span></span>块使用<span class="heti-skip"><span class="heti-spacing"> </span>LayerNorm<span class="heti-spacing"> </span></span>而不是<span><span class="heti-spacing"> </span>BatchNorm</span>？<span>LayerNorm<span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的位置是哪里？ </p>
+<p>为什么<span class="heti-skip"><span class="heti-spacing"> </span>transformer<span class="heti-spacing"> </span></span>块使用<span class="heti-skip"><span class="heti-spacing"> </span>LayerNorm<span class="heti-spacing"> </span></span>而不是<span><span class="heti-spacing"> </span>BatchNorm</span>？<span>LayerNorm<span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>的位置是哪里？</p>
 </blockquote>
 <p>先看两者的归一化方向：</p>
 <p>输入矩阵<span><span class="heti-spacing"> </span>shape: [batch, seq_len, d_model]</span>
 - BatchNorm：沿 batch 方向归一化 （跨样本，同一特征维度）
 - LayerNorm：沿 d_model 方向归一化（同一样本，所有特征维度）</p>
 <p>用公式表示：</p>
-<p><strong>BatchNorm</strong>（对每个特征维度，跨<span class="heti-skip"><span class="heti-spacing"> </span>batch<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>seq<span class="heti-spacing"> </span></span>计算均值方差<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：
-$$
-\hat{x}<em b_t_d="b,t,d">{b,t,d} = \frac{x</em>
-$$
-} - \mu_d}{\sigma_d}, \quad \mu_d = \frac{1}{B \cdot T}\sum_{b,t} x_{b,t,d<strong>LayerNorm</strong>（对每个<span><span class="heti-spacing"> </span>token</span>，跨<span class="heti-skip"><span class="heti-spacing"> </span>d_model<span class="heti-spacing"> </span></span>计算均值方差<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：
-$$
-\hat{x}<em b_t_d="b,t,d">{b,t,d} = \frac{x</em>
-$$} - \mu_{b,t}}{\sigma_{b,t}}, \quad \mu_{b,t} = \frac{1}{D}\sum_{d} x_{b,t,d</p>
+<p><strong>BatchNorm</strong>（对每个特征维度，跨<span class="heti-skip"><span class="heti-spacing"> </span>batch<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>seq<span class="heti-spacing"> </span></span>计算均值方差<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：</p>
+<div class="arithmatex">\[
+\hat{x}_{b,t,d} = \frac{x_{b,t,d} - \mu_d}{\sigma_d}, \quad \mu_d = \frac{1}{B \cdot T}\sum_{b,t} x_{b,t,d}
+\]</div>
+<p><strong>LayerNorm</strong>（对每个<span><span class="heti-spacing"> </span>token</span>，跨<span class="heti-skip"><span class="heti-spacing"> </span>d_model<span class="heti-spacing"> </span></span>计算均值方差<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：</p>
+<div class="arithmatex">\[
+\hat{x}_{b,t,d} = \frac{x_{b,t,d} - \mu_{b,t}}{\sigma_{b,t}}, \quad \mu_{b,t} = \frac{1}{D}\sum_{d} x_{b,t,d}
+\]</div>
 <p>主要原因是<span class="heti-skip"><span class="heti-spacing"> </span>NLP<span class="heti-spacing"> </span></span>任务中，<span>batch<span class="heti-spacing"> </span></span>中的序列长度是不定的：</p>
 <p>例如：样本<span><span class="heti-spacing"> </span>1</span><heti-adjacent class="heti-adjacent-half">：</heti-adjacent>【我，爱，猫，PAD，PAD<heti-adjacent class="heti-adjacent-half">】</heti-adjacent>；样本<span><span class="heti-spacing"> </span>2</span><heti-adjacent class="heti-adjacent-half">：</heti-adjacent>【今，天，天，气，很，好<heti-adjacent class="heti-adjacent-half">】</heti-adjacent>（<span>PAD<span class="heti-spacing"> </span></span>也会被编码成一个向量<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，此时<span class="heti-skip"><span class="heti-spacing"> </span>BatchNorm<span class="heti-spacing"> </span></span>用<span class="heti-skip"><span class="heti-spacing"> </span>PAD<span class="heti-spacing"> </span></span>的值参与均值<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>方差的计算是没有意义的；而且自回归时需要逐<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>推理，<span>BatchNorm<span class="heti-spacing"> </span></span>无法处理<span class="heti-skip"><span class="heti-spacing"> </span>batch_size = 1<span class="heti-spacing"> </span></span>的情况</p>
 <h2 id="q11">Q11</h2>
@@ -967,30 +967,28 @@ $$} - \mu_{b,t}}{\sigma_{b,t}}, \quad \mu_{b,t} = \frac{1}{D}\sum_{d} x_{b,t,d</
 </ul>
 <h2 id="q12">Q12</h2>
 <blockquote>
-<p><span>Encoder<span class="heti-spacing"> </span></span>端和<span class="heti-skip"><span class="heti-spacing"> </span>Decoder<span class="heti-spacing"> </span></span>端是如何进行交互的<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>（在这里可以问一下关于<span class="heti-skip"><span class="heti-spacing"> </span>seq2seq<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>知识） </p>
+<p><span>Encoder<span class="heti-spacing"> </span></span>端和<span class="heti-skip"><span class="heti-spacing"> </span>Decoder<span class="heti-spacing"> </span></span>端是如何进行交互的<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>（在这里可以问一下关于<span class="heti-skip"><span class="heti-spacing"> </span>seq2seq<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>知识）</p>
 </blockquote>
 <p><span>Encoder<span class="heti-spacing"> </span></span>的输出以 <strong><span>K<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>V</span></strong> 的形式传入<span><span class="heti-spacing"> </span>Decoder</span>，这就是两者交互的核心</p>
 <p>每个<span class="heti-skip"><span class="heti-spacing"> </span>Decoder Block<span class="heti-spacing"> </span></span>包含三个子模块： Masked Self-Attention --&gt; Cross-Attention --&gt; FFN； <span>Encoder<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>Decoder<span class="heti-spacing"> </span></span>端的交互发生在<span class="heti-skip"><span class="heti-spacing"> </span>Cross-Attention<span class="heti-spacing"> </span></span>处</p>
 <h2 id="q13">Q13</h2>
 <blockquote>
-<p><span>Decoder<span class="heti-spacing"> </span></span>阶段的多头自注意力和<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>的多头自注意力有什么区别<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>（为什么需要<span class="heti-skip"><span class="heti-spacing"> </span>decoder<span class="heti-spacing"> </span></span>自注意力需要进行<span><span class="heti-spacing"> </span>sequence mask)</span> </p>
+<p><span>Decoder<span class="heti-spacing"> </span></span>阶段的多头自注意力和<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>的多头自注意力有什么区别<heti-adjacent class="heti-adjacent-half">？</heti-adjacent>（为什么需要<span class="heti-skip"><span class="heti-spacing"> </span>decoder<span class="heti-spacing"> </span></span>自注意力需要进行<span><span class="heti-spacing"> </span>sequence mask)</span></p>
 </blockquote>
 <p><span>Decoder<span class="heti-spacing"> </span></span>的多头自注意力机制是带掩码的；原因是在训练时，<span>Decoder<span class="heti-spacing"> </span></span>的输入是一整个<span><span class="heti-spacing"> </span>token sequence</span>，而每个<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>不应该看到位于它后面的<span><span class="heti-spacing"> </span>token</span></p>
 <h2 id="q14">Q14</h2>
 <blockquote>
-<p><span>Transformer<span class="heti-spacing"> </span></span>的并行化体现在哪个地方？<span>Decoder<span class="heti-spacing"> </span></span>端可以做并行化吗？ </p>
+<p><span>Transformer<span class="heti-spacing"> </span></span>的并行化体现在哪个地方？<span>Decoder<span class="heti-spacing"> </span></span>端可以做并行化吗？</p>
 </blockquote>
 <ul>
 <li>
 <p><span>Encoder<span class="heti-spacing"> </span></span>的并行化是完全并行的，<span>Encoder<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>Self-Attention<span class="heti-spacing"> </span></span>中，每个<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>Q,K,V<span class="heti-spacing"> </span></span>计算完全独立，可以同时进行</p>
-</li>
-<li>
-<p>整个<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>的计算就是一个大矩阵乘法：</p>
-</li>
-<li>
+<ul>
+<li>整个<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>的计算就是一个大矩阵乘法：</li>
+</ul>
 <div class="arithmatex">\[
-    QK^T = (XW_Q)(XW_K)^T
-    \]</div>
+QK^T = (XW_Q)(XW_K)^T
+\]</div>
 </li>
 <li>
 <p><span>Decoder<span class="heti-spacing"> </span></span>也类似，在训练时是可以并行的，因为目标序列已知，可以用<span class="heti-skip"><span class="heti-spacing"> </span>Causal Mask<span class="heti-spacing"> </span></span>模拟自回归；但是在推理过程是必须串行的，因为推理做的词语接龙过程天然就是串行的；但是推理过程每一步重复计算前一步<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>K</span>、<span>V<span class="heti-spacing"> </span></span>是一种浪费，所以就会引入<span class="heti-skip"><span class="heti-spacing"> </span>KV Cache<span class="heti-spacing"> </span></span>技术</p>
@@ -1002,10 +1000,12 @@ $$} - \mu_{b,t}}{\sigma_{b,t}}, \quad \mu_{b,t} = \frac{1}{D}\sum_{d} x_{b,t,d</
 </blockquote>
 <ul>
 <li>原论文的训练采用了<span class="heti-skip"><span class="heti-spacing"> </span>Warmup<span class="heti-spacing"> </span></span>的策略，让学习率随训练步数先上升后下降</li>
-<li><span>Droput<span class="heti-spacing"> </span></span>设置在了三个地方</li>
+<li><span>Dropout<span class="heti-spacing"> </span></span>设置在了三个地方<ul>
 <li><span>Embedding + PE<span class="heti-spacing"> </span></span>之后</li>
 <li>每个子模块的残差相加之前，也就是先<span class="heti-skip"><span class="heti-spacing"> </span>Dropout<span class="heti-spacing"> </span></span>再做残差连接</li>
 <li><span>Attention<span class="heti-spacing"> </span></span>注意力分数在<span class="heti-skip"><span class="heti-spacing"> </span>softmax<span class="heti-spacing"> </span></span>后，与<span class="heti-skip"><span class="heti-spacing"> </span>V<span class="heti-spacing"> </span></span>相乘前也会做<span><span class="heti-spacing"> </span>Dropout</span></li>
+</ul>
+</li>
 <li>测试的时候关掉<span class="heti-skip"><span class="heti-spacing"> </span>Dropout<span class="heti-spacing"> </span></span>即可，因为<span class="heti-skip"><span class="heti-spacing"> </span>Dropout<span class="heti-spacing"> </span></span>的随机性是训练专用的正则化手段，测试<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>推理时需要稳定确定的预测</li>
 </ul>
 <h2 id="q16">Q16</h2>

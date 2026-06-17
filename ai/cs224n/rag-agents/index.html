@@ -513,6 +513,14 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reasoning/">
+<span class="md-ellipsis">
+    Reasoning
+    
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -644,12 +652,18 @@
 <p><img alt="rag-retrieval-augmentation-13" src="../assets/rag-retrieval-augmentation-13.png"/></p>
 <p><span>RAG<span class="heti-spacing"> </span></span>的优点：</p>
 <ul>
-<li><strong>Dynamic</strong></li>
+<li><strong>Dynamic</strong><ul>
 <li>文档库可以更新，不一定要重新训练模型</li>
-<li><strong>Interpretable</strong></li>
+</ul>
+</li>
+<li><strong>Interpretable</strong><ul>
 <li><span>retrieved documents<span class="heti-spacing"> </span></span>可以作为<span><span class="heti-spacing"> </span>evidence / citation</span></li>
-<li><strong>Knowledge efficient</strong></li>
+</ul>
+</li>
+<li><strong>Knowledge efficient</strong><ul>
 <li>减少模型单纯依赖<span class="heti-skip"><span class="heti-spacing"> </span>parametric memory<span class="heti-spacing"> </span></span>的压力</li>
+</ul>
+</li>
 </ul>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -667,13 +681,17 @@
 \]</div>
 <p>其中：</p>
 <ul>
-<li><strong>Retriever</strong></li>
+<li><strong>Retriever</strong><ul>
 <li>找出和<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>最相关的<span><span class="heti-spacing"> </span>passages</span></li>
 <li>可以是<span><span class="heti-spacing"> </span>sparse retrieval</span>，例如<span><span class="heti-spacing"> </span>TF-IDF / BM25</span></li>
 <li>也可以是<span><span class="heti-spacing"> </span>dense retrieval</span>，例如<span><span class="heti-spacing"> </span>DPR / embedding search</span></li>
-<li><strong>Reader / Generator</strong></li>
+</ul>
+</li>
+<li><strong>Reader / Generator</strong><ul>
 <li>基于<span class="heti-skip"><span class="heti-spacing"> </span>retrieved passages<span class="heti-spacing"> </span></span>生成最终答案</li>
 <li>现在常用<span class="heti-skip"><span class="heti-spacing"> </span>instruction-tuned LLM<span class="heti-spacing"> </span></span>直接完成这一步</li>
+</ul>
+</li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -683,52 +701,84 @@
 <p><span>RAG<span class="heti-spacing"> </span></span>不是简单地“接上搜索引擎就解决<span><span class="heti-spacing"> </span>hallucination</span>”。</p>
 <p>几个常见问题：</p>
 <ul>
-<li><strong>Retriever recall</strong></li>
+<li><strong>Retriever recall</strong><ul>
 <li><span>relevant document<span class="heti-spacing"> </span></span>没被找回来，答案就会缺<span><span class="heti-spacing"> </span>evidence</span></li>
-<li><strong>Long-context utilization</strong></li>
+</ul>
+</li>
+<li><strong>Long-context utilization</strong><ul>
 <li>即使放入很多文档，模型也不一定真正使用关键信息</li>
-<li><strong>Citation hallucination</strong></li>
+</ul>
+</li>
+<li><strong>Citation hallucination</strong><ul>
 <li>模型可能生成看起来合理但并不支持答案的<span><span class="heti-spacing"> </span>citation</span></li>
-<li><strong>Context saturation</strong></li>
+</ul>
+</li>
+<li><strong>Context saturation</strong><ul>
 <li>加更多<span class="heti-skip"><span class="heti-spacing"> </span>retrieved passages<span class="heti-spacing"> </span></span>不一定持续提升效果，甚至可能引入噪声</li>
+</ul>
+</li>
 </ul>
 <h2 id="language-agents">Language Agents</h2>
 <p><span>Agent<span class="heti-spacing"> </span></span>的核心区别在于：模型不只是输出文本，还可以根据<span class="heti-skip"><span class="heti-spacing"> </span>observation<span class="heti-spacing"> </span></span>做<span><span class="heti-spacing"> </span>action</span>。</p>
 <p><img alt="rag-language-agent-components-30" src="../assets/rag-language-agent-components-30.png"/></p>
 <p>一个<span class="heti-skip"><span class="heti-spacing"> </span>language agent<span class="heti-spacing"> </span></span>通常包含：</p>
 <ul>
-<li><strong>LLM Core</strong></li>
+<li><strong>LLM Core</strong><ul>
 <li>负责理解任务、规划、生成下一步动作</li>
-<li><strong>Planning and Reasoning</strong></li>
+</ul>
+</li>
+<li><strong>Planning and Reasoning</strong><ul>
 <li>把复杂任务拆成多个<span><span class="heti-spacing"> </span>steps</span></li>
-<li><strong>Memory</strong></li>
+</ul>
+</li>
+<li><strong>Memory</strong><ul>
 <li>存储经验、知识或长期偏好</li>
-<li><strong>Tools</strong></li>
+</ul>
+</li>
+<li><strong>Tools</strong><ul>
 <li>调用<span><span class="heti-spacing"> </span>retrieval</span>、calculator、code interpreter、browser、<span>API<span class="heti-spacing"> </span></span>等</li>
-<li><strong>Environment</strong></li>
+</ul>
+</li>
+<li><strong>Environment</strong><ul>
 <li><span>agent<span class="heti-spacing"> </span></span>执行动作并获得<span class="heti-skip"><span class="heti-spacing"> </span>observation<span class="heti-spacing"> </span></span>的外部世界</li>
+</ul>
+</li>
 </ul>
 <h2 id="reasoning-memory-and-tools">Reasoning, memory, and tools</h2>
 <p>几个代表性方向：</p>
 <ul>
-<li><strong>ReAct</strong></li>
+<li><strong>ReAct</strong><ul>
 <li>interleave reasoning and acting</li>
 <li>每一步可以先思考，再调用工具，再根据<span class="heti-skip"><span class="heti-spacing"> </span>observation<span class="heti-spacing"> </span></span>更新下一步</li>
-<li><strong>Self-consistency</strong></li>
+</ul>
+</li>
+<li><strong>Self-consistency</strong><ul>
 <li>采样多条<span><span class="heti-spacing"> </span>reasoning paths</span>，再聚合答案</li>
-<li><strong>Reflexion</strong></li>
+</ul>
+</li>
+<li><strong>Reflexion</strong><ul>
 <li>把失败经验转化为<span><span class="heti-spacing"> </span>natural language feedback</span>，作为后续尝试的<span><span class="heti-spacing"> </span>memory</span></li>
-<li><strong>Tool use</strong></li>
+</ul>
+</li>
+<li><strong>Tool use</strong><ul>
 <li>让模型学习什么时候调用工具，以及如何组织<span><span class="heti-spacing"> </span>tool input / output</span></li>
+</ul>
+</li>
 </ul>
 <p><span>Memory<span class="heti-spacing"> </span></span>可以粗略分成：</p>
 <ul>
-<li><strong>Episodic memory</strong></li>
+<li><strong>Episodic memory</strong><ul>
 <li>过去发生过的<span><span class="heti-spacing"> </span>experiences</span></li>
-<li><strong>Semantic memory</strong></li>
+</ul>
+</li>
+<li><strong>Semantic memory</strong><ul>
 <li>facts / knowledge</li>
-<li><strong>Procedural memory</strong></li>
+</ul>
+</li>
+<li><strong>Procedural memory</strong><ul>
 <li>skills / procedures</li>
+</ul>
+</li>
 </ul>
 <h2 id="summary-of-rag-and-agents">Summary of RAG and Agents</h2>
 <ul>

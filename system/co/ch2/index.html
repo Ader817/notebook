@@ -761,13 +761,13 @@
 <h2 id="introduction">Introduction</h2>
 <p>Instructions can be divided into 3 categories</p>
 <ul>
-<li>memory-reference instructions<br/>
+<li>memory-reference instructions
 <strong><em>e.g.</em></strong> <code>lw, sw</code>
 需要 ALU 计算内存地址</li>
-<li>arithmetic-logical instructions<br/>
+<li>arithmetic-logical instructions
 <strong><em>e.g.</em></strong> <code>add, sub, and, or, xor, slt</code>
 需要 ALU 进行计算</li>
-<li>control flow instructions<br/>
+<li>control flow instructions
 <strong><em>e.g.</em></strong> <code>beq, bne, jal</code>
 需要 ALU 进行条件判断</li>
 </ul>
@@ -792,7 +792,7 @@
 </ul>
 <h2 id="arithmetic">Arithmetic</h2>
 <ul>
-<li>Simple ALU 
+<li>Simple ALU
 <center><img alt="" src="../images/ch2/image.png" width="width"/></center></li>
 <li>CLA(Carry Lookahead Adder)</li>
 <li>CSA(Carry Selection Adder)</li>
@@ -800,13 +800,13 @@
 <p>注<span class="heti-skip"><span class="heti-spacing"> </span>: RISC-V<span class="heti-spacing"> </span></span>不支持<span class="heti-skip"><span class="heti-spacing"> </span>nor<span class="heti-spacing"> </span></span>指令。</p>
 <h3 id="multiplication">Multiplication</h3>
 <h4 id="unsigned-multiplication">Unsigned multiplication</h4>
-<p><span>Product (<span class="heti-spacing"> </span></span>乘积<span class="heti-skip"><span class="heti-spacing"> </span>) = Multiplicand (<span class="heti-spacing"> </span></span>被乘数<span class="heti-skip"><span class="heti-spacing"> </span>) <span class="arithmatex">\(\times\)</span> Multiplier (<span class="heti-spacing"> </span></span>乘数<span><span class="heti-spacing"> </span>)</span> </p>
+<p><span>Product (<span class="heti-spacing"> </span></span>乘积<span class="heti-skip"><span class="heti-spacing"> </span>) = Multiplicand (<span class="heti-spacing"> </span></span>被乘数<span class="heti-skip"><span class="heti-spacing"> </span>) <span class="arithmatex">\(\times\)</span> Multiplier (<span class="heti-spacing"> </span></span>乘数<span><span class="heti-spacing"> </span>)</span></p>
 <p>假定被乘数和乘数都是<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>位的</p>
 <ul>
 <li>
 <p>如果乘数末位是<span class="heti-skip"><span class="heti-spacing"> </span>1,<span class="heti-spacing"> </span></span>加被乘数，否则加<span class="heti-skip"><span class="heti-spacing"> </span>0.<span class="heti-spacing"> </span></span>随后将被乘数左移<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>位。
     </p><center><img alt="" src="../images/ch2/image-1.png" width="70%"/></center>
-<p>需要<span class="heti-skip"><span class="heti-spacing"> </span>128+128+64 bit<span class="heti-spacing"> </span></span>的寄存器，和一个<span><span class="heti-spacing"> </span>128 bit ALU.</span> </p>
+<p>需要<span class="heti-skip"><span class="heti-spacing"> </span>128+128+64 bit<span class="heti-spacing"> </span></span>的寄存器，和一个<span><span class="heti-spacing"> </span>128 bit ALU.</span></p>
 </li>
 <li>
 <p>不移被乘数，而是移积<span class="heti-skip"><span class="heti-spacing"> </span>(product).<span class="heti-spacing"> </span></span>这样<span class="heti-skip"><span class="heti-spacing"> </span>ALU<span class="heti-spacing"> </span></span>只需要<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>位。
@@ -817,8 +817,8 @@
 </details>
 </li>
 <li>
-<p>在第二种优化的基础上，这里积最开始只保存在左半部分，右半部分为空。而乘数也要右移，这样我们可以把两个数拼到一起，<span>Product<span class="heti-spacing"> </span></span>的左半<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>位初始置为<span><span class="heti-spacing"> </span>0</span>，右半<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>位初始置为<span><span class="heti-spacing"> </span>Mutiplier</span>，同时右移。<br/>
-</p><center><img alt="" src="../images/ch2/image-4.png" width="70%"/></center>
+<p>在第二种优化的基础上，这里积最开始只保存在左半部分，右半部分为空。而乘数也要右移，这样我们可以把两个数拼到一起，<span>Product<span class="heti-spacing"> </span></span>的左半<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>位初始置为<span><span class="heti-spacing"> </span>0</span>，右半<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>位初始置为<span><span class="heti-spacing"> </span>Mutiplier</span>，同时右移。
+    </p><center><img alt="" src="../images/ch2/image-4.png" width="70%"/></center>
 </li>
 </ul>
 <h4 id="signed-multiplication">Signed multiplication</h4>
@@ -846,9 +846,9 @@
 <div class="admonition example">
 <p class="admonition-title">Example</p>
 <p></p><center><img alt="" src="../images/ch2/image-6.png" width="70%"/></center>
-<p>被乘数<span class="heti-skip"><span class="heti-spacing"> </span>Multiplicand<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>0010,<span class="heti-spacing"> </span></span>乘数<span class="heti-skip"><span class="heti-spacing"> </span>Multiplier<span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>1101.</span><br/>
+<p>被乘数<span class="heti-skip"><span class="heti-spacing"> </span>Multiplicand<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>0010,<span class="heti-spacing"> </span></span>乘数<span class="heti-skip"><span class="heti-spacing"> </span>Multiplier<span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>1101.</span>
 最开始将积 0000 放在高四位, 1101 作为乘数放在低四位。
-最开始 10, 即执行减操作, <span class="arithmatex">\(0000-0010=1110\)</span>. 答案依然放在高四位，随后右移，以此类推。<br/>
+最开始 10, 即执行减操作, <span class="arithmatex">\(0000-0010=1110\)</span>. 答案依然放在高四位，随后右移，以此类推。
 注意右移的时候是<strong>算术右移</strong><span>, <span class="arithmatex">\(bit_{-1}\)</span><span class="heti-spacing"> </span></span>也可能会改变。</p>
 </div>
 <div class="admonition example">
@@ -863,7 +863,7 @@
 <p>因此不同于原本的<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>位数乘法器需要做<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>次右移，进行一次乘法也就需要<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>个时钟周期；这种并行的方法只需要<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(log_2^4 = 2\)</span><span class="heti-spacing"> </span></span>个时钟周期，但是需要更多的加法器（也就是完成第一级运算需要的加法器<span class="heti-skip"><span class="heti-spacing"> </span>4/2=2<span class="heti-spacing"> </span></span>个加法器<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。相当于用硬件空间资源换时间的一种想法</p>
 <p>那么对于<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>位乘法器而言，并行后只需要<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(log_2^64=6\)</span><span class="heti-spacing"> </span></span>个时钟周期；但是也需要<span class="heti-skip"><span class="heti-spacing"> </span>64/2=32<span class="heti-spacing"> </span></span>个加法器，硬件资源开销比较大，因此实际中不太会采取这种并行的方法。</p>
 <h3 id="division">Division</h3>
-<p><span>Dividend (<span class="heti-spacing"> </span></span>被除数<span class="heti-skip"><span class="heti-spacing"> </span>) <span class="arithmatex">\(\div\)</span> Divisor (<span class="heti-spacing"> </span></span>除数<span><span class="heti-spacing"> </span>)</span> </p>
+<p><span>Dividend (<span class="heti-spacing"> </span></span>被除数<span class="heti-skip"><span class="heti-spacing"> </span>) <span class="arithmatex">\(\div\)</span> Divisor (<span class="heti-spacing"> </span></span>除数<span><span class="heti-spacing"> </span>)</span></p>
 <p>以<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>位数<span class="heti-skip"><span class="heti-spacing"> </span>/ 64<span class="heti-spacing"> </span></span>位数为例</p>
 <ul>
 <li>
@@ -875,10 +875,10 @@
 </details>
 </li>
 <li>
-<p>当然除法也存在优化方案  <br/>
+<p>当然除法也存在优化方案
     事实上，乘法器和除法器在结构上没有任何差别，除了多了一个“右移”的信号，原因是最后一次减法可能需要进行右移操作（感觉还是有点奇怪，课上存在一些说法不一的情况，不过貌似除法不太会考）</p>
 <p><span>32<span class="heti-spacing"> </span></span>位<span class="heti-skip"><span class="heti-spacing"> </span>/32<span class="heti-spacing"> </span></span>位的除法器需要<span class="heti-skip"><span class="heti-spacing"> </span>64<span class="heti-spacing"> </span></span>位的寄存器</p>
-<p>可以将商和被除数统一放置在余数寄存器中，右半部分作为商，左半部分作为余数<br/>
+<p>可以将商和被除数统一放置在余数寄存器中，右半部分作为商，左半部分作为余数
 </p><center><img alt="" src="../images/ch2/image-10.png"/></center>
 <details class="example">
 <summary>Example</summary>
@@ -895,7 +895,7 @@
 </details>
 </li>
 </ul>
-<p>带符号的除法：没有类似乘法的<span><span class="heti-spacing"> </span>Booth</span>’<span>s Algorithm<span class="heti-spacing"> </span></span>一样的方式，可以单独处理符号位，然后要求余数和被除数符号相同即可。 </p>
+<p>带符号的除法：没有类似乘法的<span><span class="heti-spacing"> </span>Booth</span>’<span>s Algorithm<span class="heti-spacing"> </span></span>一样的方式，可以单独处理符号位，然后要求余数和被除数符号相同即可。</p>
 <p>除零会产生溢出，由软件检测，不在硬件考虑范围内。</p>
 <h2 id="floating-point-number">Floating point number</h2>
 <blockquote>
@@ -909,7 +909,9 @@
 <p></p><center><img alt="" src="../images/ch2/image-12.png" width="90%"/></center>
 <p>可以看到，<span>fraction<span class="heti-spacing"> </span></span>的位数越多，浮点数的精度就越高；而<span class="heti-skip"><span class="heti-spacing"> </span>exponent<span class="heti-spacing"> </span></span>的位数越多，浮点数能保存的范围就越大。</p>
 <p>那么对于<span><span class="heti-spacing"> </span><span class="arithmatex">\((-1)^S \times F \times 2^E\)</span></span>，<span><span class="arithmatex">\(S\)</span><span class="heti-spacing"> </span></span>的二进制表示方法是显然的，仅需要一个<span class="heti-skip"><span class="heti-spacing"> </span>bit<span class="heti-spacing"> </span></span>就好了。那么<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(F\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(E\)</span><span class="heti-spacing"> </span></span>怎么表示呢？如我们之前所说，<span><span class="arithmatex">\(F\)</span><span class="heti-spacing"> </span></span>就是<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(1.\text{.xxxxx}_2\)</span><span class="heti-spacing"> </span></span>的形式，这个<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>是固定的，因此<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(F\)</span><span class="heti-spacing"> </span></span>只需要保存<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\text{.xxxxx}\)</span><span class="heti-spacing"> </span></span>的部分就可以了（但是请注意，它的权重从左到右分别是<span><span class="heti-spacing"> </span><span class="arithmatex">\(2^{-1}, 2^{-2}, ...\)</span></span><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>！那么<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(E\)</span><span class="heti-spacing"> </span></span>怎么办呢？注意到这个指数在实际使用中可能是正整数、负整数或<span><span class="heti-spacing"> </span>0</span>，因此我们使用一个偏移，对单精度浮点数偏移<span><span class="heti-spacing"> </span>127</span>，双精度浮点数偏移<span><span class="heti-spacing"> </span>1023</span>（刚好是表示范围的一半<heti-adjacent class="heti-adjacent-half">！</heti-adjacent><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，也就是说我们保存的  <code>exponent</code>  其实是<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(E + bias\)</span><span class="heti-spacing"> </span></span>的二进制。也就是说，对于这样的一个表示，其值是：</p>
-<div class="arithmatex">\[(-1)^S\cdot (1 + \text{fraction}) \cdot 2 ^ {\text{exponent} - \text{bias}}\]</div>
+<div class="arithmatex">\[
+(-1)^S\cdot (1 + \text{fraction}) \cdot 2 ^ {\text{exponent} - \text{bias}}
+\]</div>
 <p>课本给出了一个例子：</p>
 <p></p><center><img alt="" src="../images/ch2/image-13.png"/></center>
 <p>聪明的小朋友可能会问，<span>0<span class="heti-spacing"> </span></span>应该怎么保存呢？毕竟<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>没有前导<span><span class="heti-spacing"> </span>1</span>。对于这样的特殊情形，<span>IEEE 754<span class="heti-spacing"> </span></span>有特别规定，用特殊的值保存它们：</p>

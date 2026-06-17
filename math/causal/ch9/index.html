@@ -691,11 +691,13 @@
 <ul>
 <li><span class="arithmatex">\(V\)</span>：<strong>内生变量（endogenous variables）</strong>，即可观测的随机变量</li>
 <li><span class="arithmatex">\(U\)</span>：<strong>外生变量（exogenous variables）</strong>，即背景<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>噪声变量，可以不可观测</li>
-<li><span class="arithmatex">\(F\)</span>：<strong>结构方程集合（structural equations）</strong>，每个<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(V_i\)</span><span class="heti-spacing"> </span></span>对应一个方程：
-  $$
-  V_i = f_i(\text{Pa}(V_i), U_i)
-  $$
-  其中 <span class="arithmatex">\(\text{Pa}(V_i)\)</span> 是 <span class="arithmatex">\(V_i\)</span> 在 DAG 中的父节点集合</li>
+<li>
+<p><span class="arithmatex">\(F\)</span>：<strong>结构方程集合（structural equations）</strong>，每个<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(V_i\)</span><span class="heti-spacing"> </span></span>对应一个方程：</p>
+<div class="arithmatex">\[
+V_i = f_i(\text{Pa}(V_i), U_i)
+\]</div>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\text{Pa}(V_i)\)</span><span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(V_i\)</span><span class="heti-spacing"> </span></span>在<span class="heti-skip"><span class="heti-spacing"> </span>DAG<span class="heti-spacing"> </span></span>中的父节点集合</p>
+</li>
 </ul>
 <p>每个结构方程描述了<span class="heti-skip"><span class="heti-spacing"> </span>"<span class="arithmatex">\(V_i\)</span><span class="heti-spacing"> </span></span>的取值由哪些因素决定<span><span class="heti-spacing"> </span>"</span>，是<strong>因果机制（causal mechanism）</strong>的形式化表达。</p>
 <div class="admonition info">

@@ -960,7 +960,7 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>这两种算法的思路大致相同：<span class="arithmatex">\(f = \text{Kernel} \times \text{Image}\)</span>，且它们的核在尺度和旋转过程中保持不变</li>
 <li>但是它们的核<span><span class="heti-spacing"> </span>(kernel)</span>（或窗口）的计算方法不太一样：<ul>
 <li>拉普拉斯算法：<span class="arithmatex">\(L = \sigma^2(G_{xx}(x, y, \sigma) + G_{yy}(x, y, \sigma))\)</span></li>
-<li>高斯函数差<span><span class="heti-spacing"> </span>(DoG)</span>：<span class="arithmatex">\(DoG = G(x, y, k \sigma) - G(x, y, \sigma)\)</span> </li>
+<li>高斯函数差<span><span class="heti-spacing"> </span>(DoG)</span>：<span class="arithmatex">\(DoG = G(x, y, k \sigma) - G(x, y, \sigma)\)</span></li>
 <li>其中高斯函数为<span><span class="heti-spacing"> </span><span class="arithmatex">\(G(x, y, \sigma) = \dfrac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{x^2 + y^2}{2 \sigma^2}}\)</span></span></li>
 </ul>
 </li>
@@ -1029,8 +1029,8 @@ f &amp; = \dfrac{\lambda_1 \lambda_2}{\lambda_1 + \lambda_2} \notag \\
 <li>根据剩余边的方向创建一张直方图：<ul>
 <li>将<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(16 \times 16\)</span><span class="heti-spacing"> </span></span>的窗口分为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(4 \times 4\)</span><span class="heti-spacing"> </span></span>的小块</li>
 <li>对每个小块计算方向的直方图</li>
-<li><span>16<span class="heti-spacing"> </span></span>个小块<span class="heti-skip"><span class="heti-spacing"> </span>* 8<span class="heti-spacing"> </span></span>个方向<span class="heti-skip"><span class="heti-spacing"> </span>= 128<span class="heti-spacing"> </span></span>维的描述器  </li>
-<li>最后需要对图像进行归一化，以减小亮度改变对图像的影响   </li>
+<li><span>16<span class="heti-spacing"> </span></span>个小块<span class="heti-skip"><span class="heti-spacing"> </span>* 8<span class="heti-spacing"> </span></span>个方向<span class="heti-skip"><span class="heti-spacing"> </span>= 128<span class="heti-spacing"> </span></span>维的描述器</li>
+<li>最后需要对图像进行归一化，以减小亮度改变对图像的影响</li>
 </ul>
 </li>
 </ul>
@@ -1342,18 +1342,17 @@ V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
 <li>再构建<strong>拉普拉斯金字塔</strong><ul>
 <li>上采样：将高斯金字塔的下一层图像<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(G_{i+1}\)</span><span class="heti-spacing"> </span></span>上采样至与当前层<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(G_i\)</span><span class="heti-spacing"> </span></span>相同的尺寸</li>
 <li>计算差值：通过从当前层<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(G_i\)</span><span class="heti-spacing"> </span></span>减去上采样图像得到拉普拉斯金字塔的当前层<span><span class="heti-spacing"> </span><span class="arithmatex">\(L_i\)</span></span></li>
-<li>保存最低层：金字塔的最低层直接保存高斯金字塔的最低分辨率图像，用作重建基础
-​</li>
+<li>保存最低层：金字塔的最低层直接保存高斯金字塔的最低分辨率图像，用作重建基础</li>
 </ul>
 </li>
 </ul>
 <p>用公式表示上述过程为：</p>
-<p>$$
- \begin{align}
- G_{i+1}(x, y) &amp; = \text{Downsample}(\text{GaussianBlur}(G_i(x, y))) \notag \
- L_i(x, y) &amp; = G_i(x, y) - \text{Upsample}(G_{i+1}(x, y)) \notag 
- \end{align}
- $$</p>
+<div class="arithmatex">\[
+\begin{align}
+G_{i+1}(x, y) &amp; = \text{Downsample}(\text{GaussianBlur}(G_i(x, y))) \notag \\
+L_i(x, y) &amp; = G_i(x, y) - \text{Upsample}(G_{i+1}(x, y)) \notag
+\end{align}
+\]</div>
 <div style="text-align: center">
 <img src="../images/ch7/55.png" width="47.5%"/>
 <img src="../images/ch7/56.png" width="40%"/>

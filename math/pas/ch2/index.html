@@ -809,7 +809,9 @@
 <h2 id="离散型随机变量">离散型随机变量</h2>
 <p><strong>离散型随机变量<span><span class="heti-spacing"> </span>(discrete random variable)</span></strong>：如果随机变量取有限个或可列个值，则此随机变量为<strong>离散型随机变量</strong>，而若其可能取值为<span><span class="heti-spacing"> </span><span class="arithmatex">\(\{x_i\}\)</span></span>，则称<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(P\{X=x_k\}=p_k\;,\;k=1,2,...\)</span><span class="heti-spacing"> </span></span>为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(X\)</span><span class="heti-spacing"> </span></span>的<strong>概率分布律<span><span class="heti-spacing"> </span>(probability mass function)</span></strong>，也可以用列表的方式表达。</p>
 <p>因为样本空间<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(S=\{X=x_1,X=x_2,\,...\,,X=x_n\,...\,\}\)</span><span class="heti-spacing"> </span></span>中各样本点两两不相容，所以：</p>
-<div class="arithmatex">\[1=P(S)=\sum\limits_{i=1}^{+\infty}P\{X=x_i\}=\sum\limits_{i=1}^{+\infty}{p_i}\]</div>
+<div class="arithmatex">\[
+1=P(S)=\sum\limits_{i=1}^{+\infty}P\{X=x_i\}=\sum\limits_{i=1}^{+\infty}{p_i}
+\]</div>
 <hr/>
 <h3 id="两点分布">两点分布</h3>
 <p>如果随机变量<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(X\)</span><span class="heti-spacing"> </span></span>的概率分布律为：</p>
@@ -890,8 +892,10 @@ F(x) = P\{X\leq x\}=\sum\limits_{x_i\leq x}P\{X=x_i\}
 <ol>
 <li><span><span class="arithmatex">\(F(x)\)</span><span class="heti-spacing"> </span></span>单调不减；</li>
 <li><span><span class="arithmatex">\(0\leq F(x) \leq 1\)</span><span class="heti-spacing"> </span></span>且<span><span class="heti-spacing"> </span><span class="arithmatex">\(F(-\infty)=0\)</span></span>，<span class="arithmatex">\(F(+\infty)=1\)</span>；</li>
-<li><span><span class="arithmatex">\(F(x)\)</span><span class="heti-spacing"> </span></span>右连续，即<span><span class="heti-spacing"> </span><span class="arithmatex">\(F(x+0)=F(x)\)</span></span>；</li>
+<li><span><span class="arithmatex">\(F(x)\)</span><span class="heti-spacing"> </span></span>右连续，即<span><span class="heti-spacing"> </span><span class="arithmatex">\(F(x+0)=F(x)\)</span></span>；<ol>
 <li>不一定左连续，左极限得到的是<span><span class="heti-spacing"> </span><span class="arithmatex">\(P\{X&lt;x\}\)</span></span>，而不是<span><span class="heti-spacing"> </span><span class="arithmatex">\(P\{X\leq x\}\)</span></span>；</li>
+</ol>
+</li>
 <li><span class="arithmatex">\(P(a&lt;X\leq b)=F(b)-F(a)\)</span>；</li>
 </ol>
 <hr/>
@@ -1045,11 +1049,11 @@ P\{\frac{a-\mu}{\sigma}&lt; \frac{X-\mu}{\sigma} &lt; \frac{b-\mu}{\sigma} \}=\P
 <p><img alt="" src="../assets/ch2/image-3.png"/></p>
 <p>由上图可知，</p>
 <div class="arithmatex">\[
-\begin{aligned}  
+\begin{aligned}
 P\{\sin X\leq y\}&amp;=P\{0\leq X\leq \arcsin y\}+P\{\pi-\arcsin y\leq X\leq \pi\}\\
 &amp;=\frac{\arcsin y}{\pi}+\frac{\arcsin y}{\pi}\\
 &amp;=\frac{2\arcsin y}{\pi}
-\end{aligned}   
+\end{aligned}
 \]</div>
 <p>于是，在<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(y\in(0,1)\)</span><span class="heti-spacing"> </span></span>时，<span class="arithmatex">\(F_Y(y)=\frac{2\arcsin y}{\pi}\)</span>，<span><span class="arithmatex">\(y\not\in(0,1)\)</span><span class="heti-spacing"> </span></span>时，<span class="arithmatex">\(F_Y(y)=0\)</span>，则<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(Y\)</span><span class="heti-spacing"> </span></span>的密度函数为：</p>
 <div class="arithmatex">\[

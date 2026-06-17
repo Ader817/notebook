@@ -493,8 +493,36 @@
     </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#residual-connection-and-layer-normalization">
+<span class="md-ellipsis">
+      Residual connection and Layer Normalization
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transformer-encoder">
+<span class="md-ellipsis">
+      Transformer Encoder
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transformer-encoder-decoder">
+<span class="md-ellipsis">
+      Transformer Encoder-Decoder
+    </span>
+</a>
+</li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary-of-transformer-blocks">
+<span class="md-ellipsis">
+      Summary of Transformer blocks
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -535,6 +563,14 @@
 <a class="md-nav__link" href="../benchmark-evaluation/">
 <span class="md-ellipsis">
     Benchmark and Evaluation
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../reasoning/">
+<span class="md-ellipsis">
+    Reasoning
     
   </span>
 </a>
@@ -658,8 +694,36 @@
     </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#residual-connection-and-layer-normalization">
+<span class="md-ellipsis">
+      Residual connection and Layer Normalization
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transformer-encoder">
+<span class="md-ellipsis">
+      Transformer Encoder
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#transformer-encoder-decoder">
+<span class="md-ellipsis">
+      Transformer Encoder-Decoder
+    </span>
+</a>
+</li>
 </ul>
 </nav>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#summary-of-transformer-blocks">
+<span class="md-ellipsis">
+      Summary of Transformer blocks
+    </span>
+</a>
 </li>
 </ul>
 </nav>
@@ -689,10 +753,12 @@
 <li>
 <p>However: You can use attention in many <strong>architectures</strong> (not just seq2seq) and many <strong>tasks</strong> (not just MT)</p>
 </li>
-<li><mark>More general definition of attention</mark>:</li>
+<li><mark>More general definition of attention</mark>:<ul>
 <li>Given a set of vector <strong>values</strong>, and a vector <strong>query</strong>, <strong>attention</strong> is a technique to compute a weighted sum of the values, dependent on the query.</li>
 <li>We sometimes say that the <strong>query attends to the values</strong>.</li>
 <li>For example, in the seq2seq + attention model, each decoder hidden state (query) attends to all the encoder hidden states (values)</li>
+</ul>
+</li>
 </ul>
 <p>思考一下，抽象的来说，<span>Attention<span class="heti-spacing"> </span></span>是一种<span class="heti-skip"><span class="heti-spacing"> </span>general<span class="heti-spacing"> </span></span>的用于表征一整个<span class="heti-skip"><span class="heti-spacing"> </span>sequence<span class="heti-spacing"> </span></span>序列的方式，<span>RNN (<span class="heti-spacing"> </span></span>把先前<span class="heti-skip"><span class="heti-spacing"> </span>sequence<span class="heti-spacing"> </span></span>表征为<span class="heti-skip"><span class="heti-spacing"> </span>hidden state<span class="heti-spacing"> </span></span>的思想）又何尝不是如此呢？换句话说，<mark>它们本质上都是一种把序列信息传给当前位置表示的方法</mark></p>
 <p>而既然<span class="heti-skip"><span class="heti-spacing"> </span>Attention<span class="heti-spacing"> </span></span>可以更直接、更并行地传递序列信息，那我们能不能完全去掉<span><span class="heti-spacing"> </span>RNN</span>，用<span class="heti-skip"><span class="heti-spacing"> </span>Attention<span class="heti-spacing"> </span></span>来建模序列？答案是可以的！</p>
@@ -710,40 +776,40 @@
 <p><span>Self-attention: query, key, value<span class="heti-spacing"> </span></span>都来自同一个序列</p>
 </div>
 <p><img alt="transformer-self-attention-formula-42" src="../assets/transformer-self-attention-formula-42.png"/></p>
-<p>对于一个输入序列<span><span class="heti-spacing"> </span><span class="arithmatex">\(w_1,\dots,w_n\)</span></span>，先把每个<span class="heti-skip"><span class="heti-spacing"> </span>word<span class="heti-spacing"> </span></span>转成<span><span class="heti-spacing"> </span>embedding</span>：
-$$
+<p>对于一个输入序列<span><span class="heti-spacing"> </span><span class="arithmatex">\(w_1,\dots,w_n\)</span></span>，先把每个<span class="heti-skip"><span class="heti-spacing"> </span>word<span class="heti-spacing"> </span></span>转成<span><span class="heti-spacing"> </span>embedding</span>：</p>
+<div class="arithmatex">\[
 x_i = E w_i
-$$
-然后对每个位置的 embedding 分别做三个线性变换：
-$$
+\]</div>
+<p>然后对每个位置的<span class="heti-skip"><span class="heti-spacing"> </span>embedding<span class="heti-spacing"> </span></span>分别做三个线性变换：</p>
+<div class="arithmatex">\[
 q_i = W_Q x_i
-$$
-$$
+\]</div>
+<div class="arithmatex">\[
 k_i = W_K x_i
-$$
-$$
+\]</div>
+<div class="arithmatex">\[
 v_i = W_V x_i
-$$</p>
+\]</div>
 <p>其中：</p>
 <ul>
 <li><span><span class="arithmatex">\(q_i\)</span><span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>query</span>：当前位置想要找什么信息</li>
 <li><span><span class="arithmatex">\(k_i\)</span><span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>key</span>：某个位置提供的信息可以被怎样检索</li>
 <li><span><span class="arithmatex">\(v_i\)</span><span class="heti-spacing"> </span></span>是<span><span class="heti-spacing"> </span>value</span>：某个位置真正要被取走、加权平均的内容</li>
 </ul>
-<p>接着用<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>key<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>dot product<span class="heti-spacing"> </span></span>来计算位置<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(i\)</span><span class="heti-spacing"> </span></span>对位置<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(j\)</span><span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>attention score</span>：
-$$
+<p>接着用<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>key<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>dot product<span class="heti-spacing"> </span></span>来计算位置<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(i\)</span><span class="heti-spacing"> </span></span>对位置<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(j\)</span><span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>attention score</span>：</p>
+<div class="arithmatex">\[
 e_{ij} = q_i^\top k_j
-$$
-然后对所有 <span class="arithmatex">\(j\)</span> 做 softmax：
-$$
+\]</div>
+<p>然后对所有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(j\)</span><span class="heti-spacing"> </span></span>做<span><span class="heti-spacing"> </span>softmax</span>：</p>
+<div class="arithmatex">\[
 \alpha_{ij}
 =
 \frac{\exp(e_{ij})}{\sum_{j'}\exp(e_{ij'})}
-$$
-最后用 attention distribution 对所有 value 做加权平均：
-$$
+\]</div>
+<p>最后用<span class="heti-skip"><span class="heti-spacing"> </span>attention distribution<span class="heti-spacing"> </span></span>对所有<span class="heti-skip"><span class="heti-spacing"> </span>value<span class="heti-spacing"> </span></span>做加权平均：</p>
+<div class="arithmatex">\[
 o_i = \sum_j \alpha_{ij} v_j
-$$</p>
+\]</div>
 <p>也就是说，<span><span class="arithmatex">\(o_i\)</span><span class="heti-spacing"> </span></span>是第<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(i\)</span><span class="heti-spacing"> </span></span>个位置在看完整个序列后得到的新表示</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -751,26 +817,26 @@ $$</p>
 <p>因此<span class="heti-skip"><span class="heti-spacing"> </span>self-attention<span class="heti-spacing"> </span></span>的输出不是单纯的<span><span class="heti-spacing"> </span>word embedding</span>，而是一个已经融合了上下文信息的<span><span class="heti-spacing"> </span>contextual representation</span>。</p>
 </div>
 <h3 id="matrix-form-of-self-attention">Matrix form of self-attention</h3>
-<p>为了并行计算，我们通常把所有<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>的向量堆成矩阵：
-$$
+<p>为了并行计算，我们通常把所有<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>的向量堆成矩阵：</p>
+<div class="arithmatex">\[
 X =
 \begin{bmatrix}
-x_1 \
-\vdots \
+x_1 \\
+\vdots \\
 x_n
 \end{bmatrix}
 \in \mathbb{R}^{n \times d}
-$$
-那么：
-$$
+\]</div>
+<p>那么：</p>
+<div class="arithmatex">\[
 Q = XW_Q,\quad K = XW_K,\quad V = XW_V
-$$
-self-attention 可以写成：
-$$
+\]</div>
+<p><span>self-attention<span class="heti-spacing"> </span></span>可以写成：</p>
+<div class="arithmatex">\[
 \text{Attention}(Q,K,V)
 =
 \text{softmax}(QK^\top)V
-$$</p>
+\]</div>
 <p>这里<span><span class="heti-spacing"> </span><span class="arithmatex">\(QK^\top \in \mathbb{R}^{n\times n}\)</span></span>，它包含了所有<span class="heti-skip"><span class="heti-spacing"> </span>token pair<span class="heti-spacing"> </span></span>之间的<span><span class="heti-spacing"> </span>attention score</span></p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -779,22 +845,26 @@ $$</p>
 <h3 id="why-position-representation-is-needed">Why position representation is needed?</h3>
 <p><span>Self-attention<span class="heti-spacing"> </span></span>本身没有内置顺序信息。</p>
 <p>例如只看一组<span class="heti-skip"><span class="heti-spacing"> </span>unordered embeddings<span class="heti-spacing"> </span></span>时，<span>self-attention<span class="heti-spacing"> </span></span>并不知道 <code>the cat chased the dog</code> 和 <code>the dog chased the cat</code> 的位置差异，因为它只是在做<span class="heti-skip"><span class="heti-spacing"> </span>query-key matching<span class="heti-spacing"> </span></span>和<span><span class="heti-spacing"> </span>weighted average</span></p>
-<p>因此我们需要把<span class="heti-skip"><span class="heti-spacing"> </span>position information<span class="heti-spacing"> </span></span>加到<span class="heti-skip"><span class="heti-spacing"> </span>token representation<span class="heti-spacing"> </span></span>里：
-$$
+<p>因此我们需要把<span class="heti-skip"><span class="heti-spacing"> </span>position information<span class="heti-spacing"> </span></span>加到<span class="heti-skip"><span class="heti-spacing"> </span>token representation<span class="heti-spacing"> </span></span>里：</p>
+<div class="arithmatex">\[
 \tilde{x}_i = x_i + p_i
-$$</p>
+\]</div>
 <p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(p_i\)</span><span class="heti-spacing"> </span></span>是第<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(i\)</span><span class="heti-spacing"> </span></span>个位置的<span><span class="heti-spacing"> </span>position vector</span></p>
 <p><img alt="transformer-position-embedding-44" src="../assets/transformer-position-embedding-44.png"/></p>
 <p>课件里主要提到两种<span><span class="heti-spacing"> </span>position representation</span>：</p>
 <ul>
-<li><strong>Sinusoidal position representation</strong></li>
+<li><strong>Sinusoidal position representation</strong><ul>
 <li>用不同周期的<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\sin\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\cos\)</span><span class="heti-spacing"> </span></span>函数构造位置向量</li>
 <li>优点是形式固定，理论上对更长序列有一定<span class="heti-skip"><span class="heti-spacing"> </span>extrapolation<span class="heti-spacing"> </span></span>的直觉</li>
 <li>缺点是不可学习，实际<span class="heti-skip"><span class="heti-spacing"> </span>extrapolation<span class="heti-spacing"> </span></span>效果也不一定好</li>
-<li><strong>Learned absolute position representation</strong></li>
+</ul>
+</li>
+<li><strong>Learned absolute position representation</strong><ul>
 <li>把每个位置<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(p_i\)</span><span class="heti-spacing"> </span></span>当成可学习参数</li>
 <li>优点是灵活，能根据训练数据调整</li>
 <li>缺点是不能自然泛化到训练时没见过的更长位置</li>
+</ul>
+</li>
 </ul>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
@@ -803,10 +873,10 @@ $$</p>
 </div>
 <h3 id="adding-nonlinearities">Adding nonlinearities</h3>
 <p><span>Self-attention<span class="heti-spacing"> </span></span>的核心操作是<span><span class="heti-spacing"> </span>weighted average</span>，本身没有<span><span class="heti-spacing"> </span>element-wise nonlinearity</span>。</p>
-<p>如果只是堆很多层<span><span class="heti-spacing"> </span>self-attention</span>，本质上容易变成不断重新平均<span><span class="heti-spacing"> </span>value vectors</span>，因此<span class="heti-skip"><span class="heti-spacing"> </span>Transformer block<span class="heti-spacing"> </span></span>会在<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>后面接一个<span><span class="heti-spacing"> </span>feed-forward network</span>：
-$$
+<p>如果只是堆很多层<span><span class="heti-spacing"> </span>self-attention</span>，本质上容易变成不断重新平均<span><span class="heti-spacing"> </span>value vectors</span>，因此<span class="heti-skip"><span class="heti-spacing"> </span>Transformer block<span class="heti-spacing"> </span></span>会在<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>后面接一个<span><span class="heti-spacing"> </span>feed-forward network</span>：</p>
+<div class="arithmatex">\[
 m_i = W_2 \text{ReLU}(W_1 o_i + b_1) + b_2
-$$</p>
+\]</div>
 <p>这个<span class="heti-skip"><span class="heti-spacing"> </span>FFN<span class="heti-spacing"> </span></span>是 <strong>position-wise</strong> 的：</p>
 <ul>
 <li>每个位置都用同一套<span class="heti-skip"><span class="heti-spacing"> </span>FFN<span class="heti-spacing"> </span></span>参数</li>
@@ -816,15 +886,15 @@ $$</p>
 <h3 id="masking-the-future">Masking the future</h3>
 <p>如果用<span class="heti-skip"><span class="heti-spacing"> </span>self-attention<span class="heti-spacing"> </span></span>做<span class="heti-skip"><span class="heti-spacing"> </span>language modeling<span class="heti-spacing"> </span></span>或<span><span class="heti-spacing"> </span>decoder</span>，我们在预测第<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(i\)</span><span class="heti-spacing"> </span></span>个位置时不能看到未来的<span><span class="heti-spacing"> </span>token</span></p>
 <p>例如预测 <code>The chef who ...</code> 的下一个词时，模型不能偷看后面的<span><span class="heti-spacing"> </span>ground-truth word</span>，否则训练目标就泄漏了</p>
-<p>解决方法是 <strong>causal mask</strong>：
-$$
+<p>解决方法是 <strong>causal mask</strong>：</p>
+<div class="arithmatex">\[
 e_{ij}
 =
 \begin{cases}
-q_i^\top k_j, &amp; j \le i \
+q_i^\top k_j, &amp; j \le i \\
 -\infty, &amp; j &gt; i
 \end{cases}
-$$</p>
+\]</div>
 <p>这样做<span class="heti-skip"><span class="heti-spacing"> </span>softmax<span class="heti-spacing"> </span></span>时，未来位置<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(j&gt;i\)</span><span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>attention weight<span class="heti-spacing"> </span></span>会变成<span><span class="heti-spacing"> </span>0</span></p>
 <p><img alt="transformer-masked-attention-50" src="../assets/transformer-masked-attention-50.png"/></p>
 <div class="admonition important">
@@ -842,26 +912,26 @@ $$</p>
 </ul>
 <p>因此<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>使用 <strong>multi-head attention</strong>：让多个<span class="heti-skip"><span class="heti-spacing"> </span>attention heads<span class="heti-spacing"> </span></span>并行工作，每个<span class="heti-skip"><span class="heti-spacing"> </span>head<span class="heti-spacing"> </span></span>使用自己的一套<span><span class="heti-spacing"> </span><span class="arithmatex">\(W_Q,W_K,W_V\)</span></span></p>
 <p><img alt="transformer-multi-head-formula-57" src="../assets/transformer-multi-head-formula-57.png"/></p>
-<p>设一共有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(h\)</span><span class="heti-spacing"> </span></span>个<span><span class="heti-spacing"> </span>heads</span>，每个<span class="heti-skip"><span class="heti-spacing"> </span>head<span class="heti-spacing"> </span></span>的维度是：
-$$
+<p>设一共有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(h\)</span><span class="heti-spacing"> </span></span>个<span><span class="heti-spacing"> </span>heads</span>，每个<span class="heti-skip"><span class="heti-spacing"> </span>head<span class="heti-spacing"> </span></span>的维度是：</p>
+<div class="arithmatex">\[
 d_h = \frac{d}{h}
-$$
-第 <span class="arithmatex">\(\ell\)</span> 个 head 计算：
-$$
+\]</div>
+<p>第<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\ell\)</span><span class="heti-spacing"> </span></span>个<span class="heti-skip"><span class="heti-spacing"> </span>head<span class="heti-spacing"> </span></span>计算：</p>
+<div class="arithmatex">\[
 \text{head}_\ell
 =
 \text{softmax}
 \left(
-\frac{XW_Q^\ell (XW_K<sup>\ell)</sup>\top}{\sqrt{d_h}}
+\frac{XW_Q^\ell (XW_K^\ell)^\top}{\sqrt{d_h}}
 \right)
 XW_V^\ell
-$$
-然后把所有 heads 的输出 concatenate 起来，再过一个线性层：
-$$
+\]</div>
+<p>然后把所有<span class="heti-skip"><span class="heti-spacing"> </span>heads<span class="heti-spacing"> </span></span>的输出<span class="heti-skip"><span class="heti-spacing"> </span>concatenate<span class="heti-spacing"> </span></span>起来，再过一个线性层：</p>
+<div class="arithmatex">\[
 \text{MultiHead}(X)
 =
 [\text{head}_1;\dots;\text{head}_h]W_O
-$$</p>
+\]</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p><span>Multi-head attention<span class="heti-spacing"> </span></span>不是简单地把同一种<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>算很多遍，而是给模型多个“视角”。</p>
@@ -870,8 +940,8 @@ $$</p>
 <h3 id="scaled-dot-product-attention">Scaled dot-product attention</h3>
 <p>当<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(d_h\)</span><span class="heti-spacing"> </span></span>很大时，<span>query<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>key<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>dot product<span class="heti-spacing"> </span></span>容易变得很大</p>
 <p>如果<span class="heti-skip"><span class="heti-spacing"> </span>softmax<span class="heti-spacing"> </span></span>的输入过大，分布会变得过于尖锐，梯度容易变小，不利于训练</p>
-<p>所以<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>使用<span><span class="heti-spacing"> </span>scaled dot-product attention</span>：
-$$
+<p>所以<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>使用<span><span class="heti-spacing"> </span>scaled dot-product attention</span>：</p>
+<div class="arithmatex">\[
 \text{Attention}(Q,K,V)
 =
 \text{softmax}
@@ -879,12 +949,12 @@ $$
 \frac{QK^\top}{\sqrt{d_k}}
 \right)
 V
-$$</p>
+\]</div>
 <p><img alt="transformer-scaled-dot-product-59" src="../assets/transformer-scaled-dot-product-59.png"/></p>
-<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(d_k\)</span><span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>key/query<span class="heti-spacing"> </span></span>的维度。在<span class="heti-skip"><span class="heti-spacing"> </span>multi-head attention<span class="heti-spacing"> </span></span>里，一般有：
-$$
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(d_k\)</span><span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>key/query<span class="heti-spacing"> </span></span>的维度。在<span class="heti-skip"><span class="heti-spacing"> </span>multi-head attention<span class="heti-spacing"> </span></span>里，一般有：</p>
+<div class="arithmatex">\[
 d_k = d_h = \frac{d}{h}
-$$</p>
+\]</div>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
 <p>除以<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\sqrt{d_k}\)</span><span class="heti-spacing"> </span></span>不是改变<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>的思想，而是为了让<span class="heti-skip"><span class="heti-spacing"> </span>attention scores<span class="heti-spacing"> </span></span>的数值尺度更稳定，使<span class="heti-skip"><span class="heti-spacing"> </span>softmax<span class="heti-spacing"> </span></span>不至于太容易饱和。</p>
@@ -896,8 +966,8 @@ $$</p>
 </blockquote>
 <h3 id="transformer-decoder">Transformer Decoder</h3>
 <p><span>Transformer Decoder<span class="heti-spacing"> </span></span>可以用来构建<span><span class="heti-spacing"> </span>language model</span></p>
-<p>输入流程大致是：
-$$
+<p>输入流程大致是：</p>
+<div class="arithmatex">\[
 \text{token ids}
 \rightarrow
 \text{embeddings}
@@ -909,7 +979,7 @@ $$
 \text{linear + softmax}
 \rightarrow
 \text{next-token distribution}
-$$</p>
+\]</div>
 <p><img alt="transformer-decoder-structure-63" src="../assets/transformer-decoder-structure-63.png"/></p>
 <p>一个<span class="heti-skip"><span class="heti-spacing"> </span>Transformer Decoder Block<span class="heti-spacing"> </span></span>包含：</p>
 <ul>
@@ -921,12 +991,128 @@ $$</p>
 <p>其中<span class="heti-skip"><span class="heti-spacing"> </span>masked self-attention<span class="heti-spacing"> </span></span>保证<span class="heti-skip"><span class="heti-spacing"> </span>decoder<span class="heti-spacing"> </span></span>只能看过去，不能看未来</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
-<p><span>Decoder-only Transformer<span class="heti-spacing"> </span></span>本质上就是一个<span class="heti-skip"><span class="heti-spacing"> </span>conditional-on-prefix<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>language model</span>：
-$$
+<p><span>Decoder-only Transformer<span class="heti-spacing"> </span></span>本质上就是一个<span class="heti-skip"><span class="heti-spacing"> </span>conditional-on-prefix<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>language model</span>：</p>
+<div class="arithmatex">\[
 P(x_1,\dots,x_T)
 =
-\prod_{t=1}^T P(x_t \mid x_{</p>
+\prod_{t=1}^T P(x_t \mid x_{&lt; t})
+\]</div>
+<p><span>causal mask<span class="heti-spacing"> </span></span>保证模型在预测<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x_t\)</span><span class="heti-spacing"> </span></span>时只使用<span><span class="heti-spacing"> </span><span class="arithmatex">\(x_{&lt; t}\)</span></span>。</p>
 </div>
+<h3 id="residual-connection-and-layer-normalization">Residual connection and Layer Normalization</h3>
+<p>课件里把<span class="heti-skip"><span class="heti-spacing"> </span>residual connection<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>layer normalization<span class="heti-spacing"> </span></span>合在一起叫 <strong>Add &amp; Norm</strong></p>
+<p><span>Residual connection<span class="heti-spacing"> </span></span>的形式是：</p>
+<div class="arithmatex">\[
+X^{(i)}
+=
+X^{(i-1)} + \text{Layer}(X^{(i-1)})
+\]</div>
+<p>它的直觉是：模型不需要每层都从头学习一个全新的表示，而是学习相对上一层的<span><span class="heti-spacing"> </span>residual change</span></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><span>Residual connection<span class="heti-spacing"> </span></span>对梯度传播也很重要，因为它提供了一条更直接的路径，让深层网络更容易训练。</p>
+</div>
+<p><span>Layer normalization<span class="heti-spacing"> </span></span>对每个<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>hidden vector<span class="heti-spacing"> </span></span>做归一化</p>
+<p>对于<span><span class="heti-spacing"> </span><span class="arithmatex">\(x\in\mathbb{R}^d\)</span></span>：</p>
+<div class="arithmatex">\[
+\mu = \frac{1}{d}\sum_{j=1}^d x_j
+\]</div>
+<div class="arithmatex">\[
+\sigma^2 = \frac{1}{d}\sum_{j=1}^d (x_j-\mu)^2
+\]</div>
+<div class="arithmatex">\[
+\text{LayerNorm}(x)
+=
+\gamma \odot \frac{x-\mu}{\sqrt{\sigma^2+\epsilon}} + \beta
+\]</div>
+<p>其中<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\gamma,\beta\in\mathbb{R}^d\)</span><span class="heti-spacing"> </span></span>是可学习参数</p>
+<p>在<span class="heti-skip"><span class="heti-spacing"> </span>Transformer block<span class="heti-spacing"> </span></span>里，<span>Add &amp; Norm<span class="heti-spacing"> </span></span>通常可以写成：</p>
+<div class="arithmatex">\[
+\text{LayerNorm}(x+\text{Sublayer}(x))
+\]</div>
+<p>这里的<span class="heti-skip"><span class="heti-spacing"> </span>Sublayer<span class="heti-spacing"> </span></span>可以是<span><span class="heti-spacing"> </span>multi-head attention</span>，也可以是<span><span class="heti-spacing"> </span>feed-forward network</span></p>
+<h3 id="transformer-encoder">Transformer Encoder</h3>
+<p><span>Transformer Encoder<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>Decoder<span class="heti-spacing"> </span></span>最大的区别是：<span>Encoder<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>self-attention</span> <strong>不需要<span><span class="heti-spacing"> </span>causal mask</span></strong></p>
+<p>因为<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>的目标不是从左到右生成下一个词，而是为每个位置计算一个可以看完整输入序列的<span><span class="heti-spacing"> </span>contextual representation</span></p>
+<p>所以<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>中每个<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>都可以<span><span class="heti-spacing"> </span>attend to</span>：</p>
+<ul>
+<li>左边的<span><span class="heti-spacing"> </span>token</span></li>
+<li>右边的<span><span class="heti-spacing"> </span>token</span></li>
+<li>自己</li>
+</ul>
+<p>这就类似于<span class="heti-skip"><span class="heti-spacing"> </span>bidirectional RNN<span class="heti-spacing"> </span></span>的效果，只不过<span class="heti-skip"><span class="heti-spacing"> </span>Transformer<span class="heti-spacing"> </span></span>用<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>直接连接所有位置</p>
+<h3 id="transformer-encoder-decoder">Transformer Encoder-Decoder</h3>
+<p>在机器翻译这类<span class="heti-skip"><span class="heti-spacing"> </span>seq2seq<span class="heti-spacing"> </span></span>任务中，通常使用<span><span class="heti-spacing"> </span>Transformer Encoder-Decoder</span></p>
+<p><img alt="transformer-encoder-decoder-structure-65" src="../assets/transformer-encoder-decoder-structure-65.png"/></p>
+<p>整体结构是：</p>
+<ul>
+<li><span>Encoder<span class="heti-spacing"> </span></span>读取<span><span class="heti-spacing"> </span>source sentence</span>，使用<span class="heti-skip"><span class="heti-spacing"> </span>unmasked self-attention<span class="heti-spacing"> </span></span>得到<span><span class="heti-spacing"> </span>source representations</span></li>
+<li><span>Decoder<span class="heti-spacing"> </span></span>生成<span><span class="heti-spacing"> </span>target sentence</span>，使用<span class="heti-skip"><span class="heti-spacing"> </span>masked self-attention<span class="heti-spacing"> </span></span>处理已经生成的<span><span class="heti-spacing"> </span>target prefix</span></li>
+<li><span>Decoder<span class="heti-spacing"> </span></span>额外使用<span class="heti-skip"><span class="heti-spacing"> </span>cross-attention<span class="heti-spacing"> </span></span>去看<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>的输出</li>
+</ul>
+<p><span>Cross-attention<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>Q/K/V<span class="heti-spacing"> </span></span>来源不同：</p>
+<div class="arithmatex">\[
+q_i = W_Q z_i
+\]</div>
+<div class="arithmatex">\[
+k_j = W_K h_j
+\]</div>
+<div class="arithmatex">\[
+v_j = W_V h_j
+\]</div>
+<p>其中：</p>
+<ul>
+<li><span><span class="arithmatex">\(z_i\)</span><span class="heti-spacing"> </span></span>来自<span class="heti-skip"><span class="heti-spacing"> </span>decoder<span class="heti-spacing"> </span></span>当前层的<span><span class="heti-spacing"> </span>hidden states</span></li>
+<li><span><span class="arithmatex">\(h_j\)</span><span class="heti-spacing"> </span></span>来自<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>的输出<span><span class="heti-spacing"> </span>hidden states</span></li>
+<li>因此<span class="heti-skip"><span class="heti-spacing"> </span>query<span class="heti-spacing"> </span></span>来自<span><span class="heti-spacing"> </span>target side</span>，<span>key/value<span class="heti-spacing"> </span></span>来自<span><span class="heti-spacing"> </span>source side</span></li>
+</ul>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p><span>Encoder-decoder Transformer<span class="heti-spacing"> </span></span>保留了<span class="heti-skip"><span class="heti-spacing"> </span>seq2seq<span class="heti-spacing"> </span></span>的思想：</p>
+<p><span>source sentence<span class="heti-spacing"> </span></span>先被<span class="heti-skip"><span class="heti-spacing"> </span>encoder<span class="heti-spacing"> </span></span>表示出来，<span>decoder<span class="heti-spacing"> </span></span>再一边生成<span><span class="heti-spacing"> </span>target sentence</span>，一边通过<span class="heti-skip"><span class="heti-spacing"> </span>cross-attention<span class="heti-spacing"> </span></span>对齐并读取<span class="heti-skip"><span class="heti-spacing"> </span>source sentence<span class="heti-spacing"> </span></span>的信息。</p>
+</div>
+<h2 id="summary-of-transformer-blocks">Summary of Transformer blocks</h2>
+<p><span>Transformer<span class="heti-spacing"> </span></span>的几个核心组件可以这样记：</p>
+<ul>
+<li><strong>Self-attention</strong><ul>
+<li>让序列内部的<span class="heti-skip"><span class="heti-spacing"> </span>token<span class="heti-spacing"> </span></span>互相读取信息</li>
+</ul>
+</li>
+<li><strong>Position embedding</strong><ul>
+<li>给<span class="heti-skip"><span class="heti-spacing"> </span>attention<span class="heti-spacing"> </span></span>补上顺序信息</li>
+</ul>
+</li>
+<li><strong>Causal mask</strong><ul>
+<li>用在<span class="heti-skip"><span class="heti-spacing"> </span>decoder/language model<span class="heti-spacing"> </span></span>中，防止看到未来</li>
+</ul>
+</li>
+<li><strong>Multi-head attention</strong><ul>
+<li>让模型从多个不同视角关注不同关系</li>
+</ul>
+</li>
+<li><strong>Feed-forward network</strong><ul>
+<li>给每个位置加入非线性变换能力</li>
+</ul>
+</li>
+<li><strong>Residual connection</strong><ul>
+<li>帮助深层网络训练，让信息和梯度更容易传播</li>
+</ul>
+</li>
+<li><strong>Layer normalization</strong><ul>
+<li>稳定<span class="heti-skip"><span class="heti-spacing"> </span>hidden states<span class="heti-spacing"> </span></span>的数值分布，加快训练</li>
+</ul>
+</li>
+</ul>
+<p><span>Transformer<span class="heti-spacing"> </span></span>相比<span class="heti-skip"><span class="heti-spacing"> </span>RNN<span class="heti-spacing"> </span></span>的关键优势是：</p>
+<ul>
+<li>可以并行处理整个序列</li>
+<li>任意两个位置之间的路径更短，长距离依赖更容易建模</li>
+<li><span>attention distribution<span class="heti-spacing"> </span></span>有一定<span><span class="heti-spacing"> </span>interpretability</span></li>
+</ul>
+<p>但它也有一个明显代价：</p>
+<ul>
+<li><span>self-attention<span class="heti-spacing"> </span></span>需要计算所有<span class="heti-skip"><span class="heti-spacing"> </span>token pair<span class="heti-spacing"> </span></span>的关系，因此对长度为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>的序列有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(O(n^2)\)</span><span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>attention cost</span></li>
+</ul>
 <!-- 标题计数器 -->
 </article>
 </div>

@@ -476,7 +476,7 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_3">
 <span class="md-ellipsis">
-      \&lt;conditoin_variable&gt;
+      \&lt;condition_variable&gt;
     </span>
 </a>
 </li>
@@ -755,7 +755,7 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_3">
 <span class="md-ellipsis">
-      \&lt;conditoin_variable&gt;
+      \&lt;condition_variable&gt;
     </span>
 </a>
 </li>
@@ -785,7 +785,7 @@
 <h1 id="cpp-note">cpp note</h1>
 <h2 id="rvalue-reference">Rvalue Reference</h2>
 <blockquote>
-<p>C++11 </p>
+<p>C++11</p>
 </blockquote>
 <table>
 <thead>
@@ -816,17 +816,15 @@
 <li>一种新的引用类型，专门用来绑定到右值上</li>
 <li>目的：让编译器能够区分传进来的是可能需要被继续使用的左值还是可以窃取资源的右值</li>
 </ul>
-<blockquote>
-<p>只要有名字就是左值，即使一个变量的类型是右值引用 <code>T&amp;&amp;</code>，只要它在函数体内有名字，它就在表达式中表现为左值</p>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<p>只要有名字就是左值，即使一个变量的类型是右值引用 <code>T&amp;&amp;</code>，只要它在函数体内有名字，它就在表达式中表现为左值：</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="w">    </span><span class="c1">// str 的【类型】是：右值引用 (std::string&amp;&amp;)</span>
 </span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="w">    </span><span class="c1">// str 的【值类别】是：左值 (Lvalue) —— 因为它叫 "str"</span>
-</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="w">    </span>
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a>
 </span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">str</span><span class="p">;</span><span class="w">            </span><span class="c1">// 调用拷贝构造 (深拷贝)</span>
 </span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">s2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">str</span><span class="p">);</span><span class="w"> </span><span class="c1">// 调用移动构造 (窃取资源)</span>
 </span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="p">}</span>
 </span></code></pre></div>
-</blockquote>
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p>右值引用<span class="heti-skip"><span class="heti-spacing"> </span>(T&amp;&amp;)<span class="heti-spacing"> </span></span>和右值这个概念，在很大程度上就是给编译器看的一个“特殊的类型标签”，目的是为了指挥编译器走另一条路。而在底层左值引用<span class="heti-skip"><span class="heti-spacing"> </span>(T&amp;)<span class="heti-spacing"> </span></span>和右值引用<span class="heti-skip"><span class="heti-spacing"> </span>(T&amp;&amp;)<span class="heti-spacing"> </span></span>本质都是指针</p>
@@ -835,26 +833,24 @@
 <p>绑定是引用变量去和值建立联系的“动作”，在<span><span class="heti-spacing"> </span>C++</span>（特别是涉及引用的语境）中<heti-adjacent class="heti-adjacent-quarter">，</heti-adjacent>“绑定”指的就是<strong>把一个“名字”（引用变量）和一块“内存”（实际的对象）连起来的过程。</strong></p>
 <p>可以把它想象成 <strong>“系绳子”</strong>。</p>
 <h3 id="左值引用绑定">左值引用绑定</h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">      </span><span class="c1">// a 是一只名叫“a”的狗（实际对象）</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="kt">int</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span><span class="w">      </span><span class="c1">// a 是一只名叫“a”的狗（实际对象）</span>
 </span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="kt">int</span><span class="o">&amp;</span><span class="w"> </span><span class="n">ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">    </span><span class="c1">// ref 是一根绳子。</span>
 </span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="w">                 </span><span class="c1">// “绑定”就是把绳子 ref 系在了狗 a 的脖子上。</span>
 </span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="w">                 </span><span class="c1">// 以后拽 ref 这根绳子，就是在拽 a 这只狗。</span>
 </span></code></pre></div>
 <h3 id="右值引用绑定">右值引用绑定</h3>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// "hello" 是一个临时的字符串对象，它本来没有名字，是个流浪狗。</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1">// "hello" 是一个临时的字符串对象，它本来没有名字，是个流浪狗。</span>
 </span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="c1">// 如果没人理它，这一行结束它就“死”了（析构）。</span>
-</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">r_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"hello"</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">r_ref</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"hello"</span><span class="p">;</span>
 </span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a>
 </span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a><span class="c1">// 此时发生“绑定”：</span>
 </span><span id="__span-2-6"><a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1">// r_ref 这根绳子，把这个临时的流浪狗拴住了。</span>
 </span><span id="__span-2-7"><a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="c1">// 只要绳子 r_ref 还在，这条狗就不会死（生命周期延长）。</span>
 </span></code></pre></div>
-<blockquote>
-<p>非<span class="heti-skip"><span class="heti-spacing"> </span>const<span class="heti-spacing"> </span></span>左值引用不能绑定到右值，因为<span class="heti-skip"><span class="heti-spacing"> </span>C++<span class="heti-spacing"> </span></span>认为非<span class="heti-skip"><span class="heti-spacing"> </span>const<span class="heti-spacing"> </span></span>左值引用可能会修改它绑定的对象</p>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// void func(std::string&amp; s)</span>
+<p>非<span class="heti-skip"><span class="heti-spacing"> </span>const<span class="heti-spacing"> </span></span>左值引用不能绑定到右值，因为<span class="heti-skip"><span class="heti-spacing"> </span>C++<span class="heti-spacing"> </span></span>认为非<span class="heti-skip"><span class="heti-spacing"> </span>const<span class="heti-spacing"> </span></span>左值引用可能会修改它绑定的对象：</p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1">// void func(std::string&amp; s)</span>
 </span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="n">func</span><span class="p">(</span><span class="s">"hello"</span><span class="p">);</span><span class="w"> </span><span class="c1">// 报错！</span>
 </span></code></pre></div>
-</blockquote>
 <h2 id="move-semantics">Move Semantics</h2>
 <blockquote>
 <p>C++11</p>
@@ -874,10 +870,10 @@
 </span><span id="__span-4-6"><a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>
 </span><span id="__span-4-7"><a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a><span class="w">      </span><span class="c1">// 【关键】什么都不用写！</span>
 </span><span id="__span-4-8"><a href="#__codelineno-4-8" id="__codelineno-4-8" name="__codelineno-4-8"></a><span class="w">      </span><span class="c1">// 编译器会自动生成：</span>
-</span><span id="__span-4-9"><a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">      </span><span class="c1">// UserInfo(UserInfo&amp;&amp;) { </span>
-</span><span id="__span-4-10"><a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">      </span><span class="c1">//     name.move(); </span>
-</span><span id="__span-4-11"><a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">      </span><span class="c1">//     history.move(); </span>
-</span><span id="__span-4-12"><a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">      </span><span class="c1">//     age = other.age; </span>
+</span><span id="__span-4-9"><a href="#__codelineno-4-9" id="__codelineno-4-9" name="__codelineno-4-9"></a><span class="w">      </span><span class="c1">// UserInfo(UserInfo&amp;&amp;) {</span>
+</span><span id="__span-4-10"><a href="#__codelineno-4-10" id="__codelineno-4-10" name="__codelineno-4-10"></a><span class="w">      </span><span class="c1">//     name.move();</span>
+</span><span id="__span-4-11"><a href="#__codelineno-4-11" id="__codelineno-4-11" name="__codelineno-4-11"></a><span class="w">      </span><span class="c1">//     history.move();</span>
+</span><span id="__span-4-12"><a href="#__codelineno-4-12" id="__codelineno-4-12" name="__codelineno-4-12"></a><span class="w">      </span><span class="c1">//     age = other.age;</span>
 </span><span id="__span-4-13"><a href="#__codelineno-4-13" id="__codelineno-4-13" name="__codelineno-4-13"></a><span class="w">      </span><span class="c1">// }</span>
 </span><span id="__span-4-14"><a href="#__codelineno-4-14" id="__codelineno-4-14" name="__codelineno-4-14"></a><span class="w">  </span><span class="p">};</span>
 </span><span id="__span-4-15"><a href="#__codelineno-4-15" id="__codelineno-4-15" name="__codelineno-4-15"></a>
@@ -887,11 +883,11 @@
 </span><span id="__span-4-19"><a href="#__codelineno-4-19" id="__codelineno-4-19" name="__codelineno-4-19"></a>
 </span><span id="__span-4-20"><a href="#__codelineno-4-20" id="__codelineno-4-20" name="__codelineno-4-20"></a><span class="w">      </span><span class="c1">// 这一行依然会极其高效！</span>
 </span><span id="__span-4-21"><a href="#__codelineno-4-21" id="__codelineno-4-21" name="__codelineno-4-21"></a><span class="w">      </span><span class="c1">// 编译器自动生成的移动构造函数会去“偷” u1.name 和 u1.history 的资源</span>
-</span><span id="__span-4-22"><a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">      </span><span class="n">UserInfo</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">u1</span><span class="p">);</span><span class="w"> </span>
+</span><span id="__span-4-22"><a href="#__codelineno-4-22" id="__codelineno-4-22" name="__codelineno-4-22"></a><span class="w">      </span><span class="n">UserInfo</span><span class="w"> </span><span class="n">u2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">move</span><span class="p">(</span><span class="n">u1</span><span class="p">);</span>
 </span><span id="__span-4-23"><a href="#__codelineno-4-23" id="__codelineno-4-23" name="__codelineno-4-23"></a><span class="w">  </span><span class="p">}</span>
 </span></code></pre></div>
 <blockquote>
-<p><span>C++11<span class="heti-spacing"> </span></span>后，<span>C++98<span class="heti-spacing"> </span></span>的 <strong>Rule of three *<em><span>(Desctructor/Copy Constructor/Copy Assignment O,,   perator) --&gt; C++11<span class="heti-spacing"> </span></span>的<span><span class="heti-spacing"> </span>*</span></em>Rule of five</strong> (plus Move Constructor/ Move Assignment Operator) / <strong>Rule of zero</strong></p>
+<p><span>C++11<span class="heti-spacing"> </span></span>后，<span>C++98<span class="heti-spacing"> </span></span>的 <strong>Rule of three</strong> <span>(Destructor / Copy Constructor / Copy Assignment Operator) --&gt; C++11<span class="heti-spacing"> </span></span>的 <strong>Rule of five</strong> (plus Move Constructor / Move Assignment Operator) / <strong>Rule of zero</strong></p>
 <p><strong>Rule of zero:</strong> 如果你的类不需要手动管理原始资源（如 <code>new</code> 出来的指针、文件句柄<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，那么你就不要去写那<span class="heti-skip"><span class="heti-spacing"> </span>5<span class="heti-spacing"> </span></span>个特殊成员函数（析构、拷贝<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>移动构造、拷贝<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>移动赋值<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，全部交给编译器自动生成。</p>
 </blockquote>
 <div class="admonition success">
@@ -904,7 +900,7 @@
 </blockquote>
 <p><code>std::string_view</code>是一个字符串的“快照”或“窗口”，它只包含一个指针和一个长度，不拥有内存，也不进行拷贝</p>
 <p>本质上是一个极其轻量的结构体，只包含两个成员变量<span><span class="heti-spacing"> </span>:</span></p>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">// 伪代码实现</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-5-1"><a href="#__codelineno-5-1" id="__codelineno-5-1" name="__codelineno-5-1"></a><span class="c1">// 伪代码实现</span>
 </span><span id="__span-5-2"><a href="#__codelineno-5-2" id="__codelineno-5-2" name="__codelineno-5-2"></a><span class="k">class</span><span class="w"> </span><span class="nc">string_view</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-5-3"><a href="#__codelineno-5-3" id="__codelineno-5-3" name="__codelineno-5-3"></a><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">data_</span><span class="p">;</span><span class="w"> </span><span class="c1">// 指向字符串的起始位置</span>
 </span><span id="__span-5-4"><a href="#__codelineno-5-4" id="__codelineno-5-4" name="__codelineno-5-4"></a><span class="w">    </span><span class="kt">size_t</span><span class="w"> </span><span class="n">size_</span><span class="p">;</span><span class="w">      </span><span class="c1">// 字符串的长度</span>
@@ -913,25 +909,25 @@
 </span></code></pre></div>
 <p>在<span class="heti-skip"><span class="heti-spacing"> </span>C++17<span class="heti-spacing"> </span></span>之前，当我们编写一个接收字符串的函数时，通常有两种写法，但都有缺点：</p>
 <p><strong>使用<span><span class="heti-spacing"> </span>const char</span></strong><span>:(C<span class="heti-spacing"> </span></span>风格<span><span class="heti-spacing"> </span>)</span></p>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-6-1"><a href="#__codelineno-6-1" id="__codelineno-6-1" name="__codelineno-6-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
 </span></code></pre></div>
 <ul>
 <li><strong>优点</strong>：高效，无拷贝。</li>
 <li><strong>缺点</strong>：丢失了长度信息（需要<span><span class="heti-spacing"> </span>strlen</span>，O(N)<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，且无法方便地利用<span class="heti-skip"><span class="heti-spacing"> </span>std::string<span class="heti-spacing"> </span></span>的丰富<span><span class="heti-spacing"> </span>API</span>（如<span><span class="heti-spacing"> </span>find, substr)</span></li>
 </ul>
-<p>*<em>使用<span><span class="heti-spacing"> </span>const std::string&amp; *</span></em><span>(C++98/11<span class="heti-spacing"> </span></span>标准写法<span><span class="heti-spacing"> </span>):</span></p>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
+<p><strong>使用<span><span class="heti-spacing"> </span>const std::string&amp;</span></strong> <span>(C++98/11<span class="heti-spacing"> </span></span>标准写法<span><span class="heti-spacing"> </span>):</span></p>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-7-1"><a href="#__codelineno-7-1" id="__codelineno-7-1" name="__codelineno-7-1"></a><span class="kt">void</span><span class="w"> </span><span class="nf">func</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="o">&amp;</span><span class="w"> </span><span class="n">str</span><span class="p">);</span>
 </span></code></pre></div>
 <ul>
 <li><strong>优点</strong>：<span>API<span class="heti-spacing"> </span></span>丰富，对于已经存在的<span class="heti-skip"><span class="heti-spacing"> </span>std::string<span class="heti-spacing"> </span></span>对象来说很高效（引用传递<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
-<li><strong>缺点</strong>：当你传入 <strong>字符串字面量</strong>（"hello"）或 <strong>子串</strong> 时，它会发生昂贵的<strong>内存分配</strong></li>
-<li>比如 <code>func("hello world")</code>：为了让引用类型的形参能够绑定，编译器会隐式的创建一个临时对象把 <code>const char*</code> 转为 <code>std::string</code>，那么就需要<ul>
+<li><strong>缺点</strong>：当你传入 <strong>字符串字面量</strong>（"hello"）或 <strong>子串</strong> 时，它会发生昂贵的 <strong>内存分配</strong><ul>
+<li>比如 <code>func("hello world")</code>：为了让引用类型的形参能够绑定，编译器会隐式的创建一个临时对象把 <code>const char*</code> 转为 <code>std::string</code>，那么就需要</li>
 <li>在堆上分配内存</li>
 <li>把<span class="heti-skip"><span class="heti-spacing"> </span>"hello world"<span class="heti-spacing"> </span></span>拷贝进去</li>
 <li>函数结束后再释放临时对象的内存</li>
+<li>比如 <code>std::string</code> 的<span><span class="heti-spacing"> </span>API</span> <code>substr()</code>：<code>long_str.substr(0, 5)</code> 会做深拷贝返回一个新的 <code>std::string</code> 对象</li>
 </ul>
 </li>
-<li>比如<span class="heti-skip"><span class="heti-spacing"> </span>std:string<span class="heti-spacing"> </span></span>的<span class="heti-skip"><span class="heti-spacing"> </span>API substr():<span class="heti-spacing"> </span></span><code>long_str.substr(0.5)</code><span class="heti-skip"><span class="heti-spacing"> </span>, substr()<span class="heti-spacing"> </span></span>会做深拷贝返回一个新的<span class="heti-skip"><span class="heti-spacing"> </span>std:string<span class="heti-spacing"> </span></span>对象</li>
 </ul>
 <p><span>C++17<span class="heti-spacing"> </span></span>引入的 <code>std::string_view</code> 在这些场景在就会变得非常经济</p>
 <h2 id="constexpr">constexpr</h2>
@@ -983,7 +979,7 @@
 <p>Usage：</p>
 <p><code>enum class 枚举名 : 底层类型（可选） {枚举值...};</code></p>
 <p>example:</p>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Status</span><span class="o">:</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 指定底层用 char 存储 ，省内存</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-8-1"><a href="#__codelineno-8-1" id="__codelineno-8-1" name="__codelineno-8-1"></a><span class="k">enum</span><span class="w"> </span><span class="k">class</span><span class="w"> </span><span class="nc">Status</span><span class="o">:</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// 指定底层用 char 存储 ，省内存</span>
 </span><span id="__span-8-2"><a href="#__codelineno-8-2" id="__codelineno-8-2" name="__codelineno-8-2"></a><span class="w">  </span><span class="n">Ok</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
 </span><span id="__span-8-3"><a href="#__codelineno-8-3" id="__codelineno-8-3" name="__codelineno-8-3"></a><span class="w">  </span><span class="n">Error</span><span class="p">,</span>
 </span><span id="__span-8-4"><a href="#__codelineno-8-4" id="__codelineno-8-4" name="__codelineno-8-4"></a><span class="w">  </span><span class="n">Unknown</span>
@@ -1002,7 +998,7 @@
 <p class="admonition-title">Success</p>
 <p>推荐用在函数返回值上，用来表示返回值可能为空</p>
 </div>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-9-1"><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">findUser</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-9-1"><a href="#__codelineno-9-1" id="__codelineno-9-1" name="__codelineno-9-1"></a><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span><span class="w"> </span><span class="n">findUser</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-9-2"><a href="#__codelineno-9-2" id="__codelineno-9-2" name="__codelineno-9-2"></a><span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-9-3"><a href="#__codelineno-9-3" id="__codelineno-9-3" name="__codelineno-9-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="p">{}</span>
 </span><span id="__span-9-4"><a href="#__codelineno-9-4" id="__codelineno-9-4" name="__codelineno-9-4"></a><span class="w">    </span><span class="c1">// 也可以 return std::nullopt</span>
@@ -1031,7 +1027,7 @@
 <p>using Identifier = Type</p>
 <p>用于给类型起别名，可以完全替代<span class="heti-skip"><span class="heti-spacing"> </span>C<span class="heti-spacing"> </span></span>风格的 <code>typedef</code> ，它的可读性更强，且支持模板</p>
 <p>例如：</p>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-10-1"><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">// --- 使用 using 极其优雅 ---</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-10-1"><a href="#__codelineno-10-1" id="__codelineno-10-1" name="__codelineno-10-1"></a><span class="c1">// --- 使用 using 极其优雅 ---</span>
 </span><span id="__span-10-2"><a href="#__codelineno-10-2" id="__codelineno-10-2" name="__codelineno-10-2"></a><span class="k">template</span><span class="w"> </span><span class="o">&lt;</span><span class="k">typename</span><span class="w"> </span><span class="nc">Val</span><span class="o">&gt;</span>
 </span><span id="__span-10-3"><a href="#__codelineno-10-3" id="__codelineno-10-3" name="__codelineno-10-3"></a><span class="k">using</span><span class="w"> </span><span class="n">MyMap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="n">Val</span><span class="o">&gt;</span><span class="p">;</span>
 </span><span id="__span-10-4"><a href="#__codelineno-10-4" id="__codelineno-10-4" name="__codelineno-10-4"></a>
@@ -1043,7 +1039,7 @@
 <blockquote>
 <p>C++11</p>
 </blockquote>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-11-1"><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-11-1"><a href="#__codelineno-11-1" id="__codelineno-11-1" name="__codelineno-11-1"></a><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">nums</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">};</span>
 </span><span id="__span-11-2"><a href="#__codelineno-11-2" id="__codelineno-11-2" name="__codelineno-11-2"></a>
 </span><span id="__span-11-3"><a href="#__codelineno-11-3" id="__codelineno-11-3" name="__codelineno-11-3"></a><span class="c1">//     (1)    (2) (3)  (4)</span>
 </span><span id="__span-11-4"><a href="#__codelineno-11-4" id="__codelineno-11-4" name="__codelineno-11-4"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">auto</span><span class="w">     </span><span class="o">&amp;</span><span class="w">   </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nums</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1054,33 +1050,39 @@
 <p><mark>写法<span><span class="heti-spacing"> </span>A</span></mark>：for (auto x : nums) —— 【值传递<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>拷贝】</p>
 <ul>
 <li><strong>含义</strong>：把容器里的元素<strong>复制</strong>一份给<span><span class="heti-spacing"> </span>x</span>。</li>
-<li><strong>后果</strong>：</li>
+<li><strong>后果</strong>：<ol>
 <li><strong>修改无效</strong>：你在循环里修改<span><span class="heti-spacing"> </span>x</span>，改的只是副本，<strong>原容器<span class="heti-skip"><span class="heti-spacing"> </span>nums<span class="heti-spacing"> </span></span>里的数据不会变</strong>。</li>
 <li><strong>性能损耗</strong>：如果容器里存的是<span class="heti-skip"><span class="heti-spacing"> </span>std::string<span class="heti-spacing"> </span></span>或大结构体，每次循环都要进行一次<strong>深拷贝</strong>，效率很低。</li>
+</ol>
+</li>
 <li><strong>场景</strong>：只读访问基础类型（int, char, bool<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
 </ul>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-12-1"><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-12-1"><a href="#__codelineno-12-1" id="__codelineno-12-1" name="__codelineno-12-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-12-2"><a href="#__codelineno-12-2" id="__codelineno-12-2" name="__codelineno-12-2"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// nums 里的数据没变，只改了 x 这个临时工</span>
 </span><span id="__span-12-3"><a href="#__codelineno-12-3" id="__codelineno-12-3" name="__codelineno-12-3"></a><span class="p">}</span>
 </span></code></pre></div>
 <p><mark>写法<span><span class="heti-spacing"> </span>B</span></mark>：for (auto &amp;x : nums) —— 【引用传递<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>读写】</p>
 <ul>
 <li><strong>含义</strong>：<span>x<span class="heti-spacing"> </span></span>是容器里元素的<strong>别名（引用）</strong>。<span>x<span class="heti-spacing"> </span></span>就是那个元素本身。</li>
-<li><strong>后果</strong>：</li>
+<li><strong>后果</strong>：<ol>
 <li><strong>可以修改</strong>：你在循环里修改<span><span class="heti-spacing"> </span>x</span>，<strong>原容器<span class="heti-skip"><span class="heti-spacing"> </span>nums<span class="heti-spacing"> </span></span>里的数据也会跟着变</strong>。</li>
 <li><strong>高效</strong>：没有拷贝发生，只是起个绰号。</li>
+</ol>
+</li>
 <li><strong>场景</strong>：需要修改容器内的元素，或者遍历大对象（为了避免拷贝<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</li>
 </ul>
-<div class="language-C++ highlight"><pre><span></span><code><span id="__span-13-1"><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<div class="language-cpp highlight"><pre><span></span><code><span id="__span-13-1"><a href="#__codelineno-13-1" id="__codelineno-13-1" name="__codelineno-13-1"></a><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="o">&amp;</span><span class="n">x</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">nums</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-13-2"><a href="#__codelineno-13-2" id="__codelineno-13-2" name="__codelineno-13-2"></a><span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="p">;</span><span class="w"> </span><span class="c1">// nums 里的所有元素都变成了 100</span>
 </span><span id="__span-13-3"><a href="#__codelineno-13-3" id="__codelineno-13-3" name="__codelineno-13-3"></a><span class="p">}</span>
 </span></code></pre></div>
 <p><mark>写法<span><span class="heti-spacing"> </span>C</span></mark>：for (const auto &amp;x : nums) —— 【常量引用<span class="heti-skip"><span class="heti-spacing"> </span>/<span class="heti-spacing"> </span></span>只读高效】</p>
 <ul>
 <li><strong>含义</strong>：<span>x<span class="heti-spacing"> </span></span>是元素的引用，但<strong>被锁住了（const）</strong>，不能修改。</li>
-<li><strong>后果</strong>：</li>
+<li><strong>后果</strong>：<ol>
 <li><strong>不能修改</strong>：保证数据安全，防止手误改掉数据。</li>
 <li><strong>高效</strong>：没有拷贝。</li>
+</ol>
+</li>
 <li><strong>场景</strong>：<span>==<span class="heti-spacing"> </span></span>这是最常用的写法！<span>==<span class="heti-spacing"> </span></span>当你只想读取容器里的数据（比如打印、查找<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，且数据类型较大（如<span><span class="heti-spacing"> </span>string, vector</span>）时。</li>
 </ul>
 <h2 id="if-with-initializer">if with initializer</h2>
@@ -1106,7 +1108,7 @@
 </span><span id="__span-15-10"><a href="#__codelineno-15-10" id="__codelineno-15-10" name="__codelineno-15-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">m</span><span class="p">.</span><span class="n">end</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-15-11"><a href="#__codelineno-15-11" id="__codelineno-15-11" name="__codelineno-15-11"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Found: "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">it</span><span class="o">-&gt;</span><span class="n">second</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 </span><span id="__span-15-12"><a href="#__codelineno-15-12" id="__codelineno-15-12" name="__codelineno-15-12"></a><span class="w">        </span><span class="c1">// it 在这里有效</span>
-</span><span id="__span-15-13"><a href="#__codelineno-15-13" id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="w">    </span><span class="p">}</span><span class="w"> </span>
+</span><span id="__span-15-13"><a href="#__codelineno-15-13" id="__codelineno-15-13" name="__codelineno-15-13"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-15-14"><a href="#__codelineno-15-14" id="__codelineno-15-14" name="__codelineno-15-14"></a><span class="w">    </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-15-15"><a href="#__codelineno-15-15" id="__codelineno-15-15" name="__codelineno-15-15"></a><span class="w">        </span><span class="c1">// it 在 else 里也有效！</span>
 </span><span id="__span-15-16"><a href="#__codelineno-15-16" id="__codelineno-15-16" name="__codelineno-15-16"></a><span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Not found"</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
@@ -1144,9 +1146,11 @@
 <ul>
 <li>时长（duration<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：<code>std::chrono::duration</code></li>
 <li>时间点（timepoint<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：<code>std::chrono:time_point</code></li>
-<li>时钟（clock<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：<code>std::chrono::system_clock</code></li>
+<li>时钟（clock<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：<code>std::chrono::system_clock</code><ul>
 <li><code>std::chrono::system_clock</code>：系统时钟</li>
-<li><code>std::xhrono::steady_clock</code>：秒表，单调递增，在计算<span class="heti-skip"><span class="heti-spacing"> </span>benchmark<span class="heti-spacing"> </span></span>时需要用这个</li>
+</ul>
+</li>
+<li><code>std::chrono::steady_clock</code>：秒表，单调递增，在计算<span class="heti-skip"><span class="heti-spacing"> </span>benchmark<span class="heti-spacing"> </span></span>时需要用这个</li>
 </ul>
 <p><strong>Example</strong>:</p>
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-16-1"><a href="#__codelineno-16-1" id="__codelineno-16-1" name="__codelineno-16-1"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
@@ -1182,24 +1186,24 @@
 <p>传统的<span><span class="heti-spacing"> </span>C++</span>（<span>C++11<span class="heti-spacing"> </span></span>标准之前）中并没有引入线程这个概念，在<span class="heti-skip"><span class="heti-spacing"> </span>C++11<span class="heti-spacing"> </span></span>出来之前，如果我们想要在<span class="heti-skip"><span class="heti-spacing"> </span>C++<span class="heti-spacing"> </span></span>中实现多线程，需要借助操作系统平台提供的<span><span class="heti-spacing"> </span>API</span>，比如<span class="heti-skip"><span class="heti-spacing"> </span>Linux<span class="heti-spacing"> </span></span>的<pthread.h>，或者<span class="heti-skip"><span class="heti-spacing"> </span>windows<span class="heti-spacing"> </span></span>下的<windows.h> 。</windows.h></pthread.h></p>
 <p><span>C++11<span class="heti-spacing"> </span></span>提供了语言层面上的多线程，包含在头文件中。它解决了跨平台的问题，提供了管理线程、保护共享数据、线程间同步操作、原子操作等类。<span>C++11<span class="heti-spacing"> </span></span>新标准中引入了<span class="heti-skip"><span class="heti-spacing"> </span>5<span class="heti-spacing"> </span></span>个头文件来支持多线程编程</p>
 <ul>
-<li><code>&lt;thread&gt;</code></li>
-<li><strong>thread</strong><ul>
+<li><code>&lt;thread&gt;</code><ul>
+<li><strong>thread</strong></li>
 <li>constructor</li>
 <li>join</li>
 <li>detach</li>
-</ul>
-</li>
-<li><strong>this_thread</strong><ul>
+<li><strong>this_thread</strong></li>
 <li>get_id</li>
 <li>yield</li>
 <li>sleep_for</li>
 <li>sleep_until</li>
 </ul>
 </li>
-<li><code>&lt;mutex&gt;</code></li>
+<li><code>&lt;mutex&gt;</code><ul>
 <li>mutex</li>
-<li>lock_gaurd</li>
+<li>lock_guard</li>
 <li>unique_lock</li>
+</ul>
+</li>
 <li><code>&lt;atomic&gt;</code></li>
 <li><code>&lt;condition_variable&gt;</code></li>
 </ul>
@@ -1235,8 +1239,8 @@
 </span><span id="__span-17-3"><a href="#__codelineno-17-3" id="__codelineno-17-3" name="__codelineno-17-3"></a><span class="kt">void</span><span class="w"> </span><span class="nf">example</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 </span><span id="__span-17-4"><a href="#__codelineno-17-4" id="__codelineno-17-4" name="__codelineno-17-4"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">task</span><span class="p">);</span>
 </span><span id="__span-17-5"><a href="#__codelineno-17-5" id="__codelineno-17-5" name="__codelineno-17-5"></a><span class="w">    </span><span class="c1">// 这里必须二选一：</span>
-</span><span id="__span-17-6"><a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">    </span><span class="c1">// t.join(); </span>
-</span><span id="__span-17-7"><a href="#__codelineno-17-7" id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="w">    </span><span class="c1">// t.detach(); </span>
+</span><span id="__span-17-6"><a href="#__codelineno-17-6" id="__codelineno-17-6" name="__codelineno-17-6"></a><span class="w">    </span><span class="c1">// t.join();</span>
+</span><span id="__span-17-7"><a href="#__codelineno-17-7" id="__codelineno-17-7" name="__codelineno-17-7"></a><span class="w">    </span><span class="c1">// t.detach();</span>
 </span><span id="__span-17-8"><a href="#__codelineno-17-8" id="__codelineno-17-8" name="__codelineno-17-8"></a><span class="p">}</span><span class="w"> </span><span class="c1">// 若未处理，t 析构时会崩溃</span>
 </span></code></pre></div>
 <p><code>std::thread</code> 的构造函数会<strong>拷贝</strong>所有传入的参数。</p>
@@ -1251,10 +1255,10 @@
 </span><span id="__span-18-5"><a href="#__codelineno-18-5" id="__codelineno-18-5" name="__codelineno-18-5"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="w"> </span><span class="n">msg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">"Score: "</span><span class="p">;</span>
 </span><span id="__span-18-6"><a href="#__codelineno-18-6" id="__codelineno-18-6" name="__codelineno-18-6"></a>
 </span><span id="__span-18-7"><a href="#__codelineno-18-7" id="__codelineno-18-7" name="__codelineno-18-7"></a><span class="w">    </span><span class="c1">// 报错：std::thread 默认尝试拷贝所有参数，无法直接绑定到 string&amp;</span>
-</span><span id="__span-18-8"><a href="#__codelineno-18-8" id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="w">    </span><span class="c1">// std::thread t(worker, val, msg); </span>
+</span><span id="__span-18-8"><a href="#__codelineno-18-8" id="__codelineno-18-8" name="__codelineno-18-8"></a><span class="w">    </span><span class="c1">// std::thread t(worker, val, msg);</span>
 </span><span id="__span-18-9"><a href="#__codelineno-18-9" id="__codelineno-18-9" name="__codelineno-18-9"></a>
 </span><span id="__span-18-10"><a href="#__codelineno-18-10" id="__codelineno-18-10" name="__codelineno-18-10"></a><span class="w">    </span><span class="c1">// 正确：使用 std::ref 显式声明传递引用</span>
-</span><span id="__span-18-11"><a href="#__codelineno-18-11" id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span><span class="w"> </span>
+</span><span id="__span-18-11"><a href="#__codelineno-18-11" id="__codelineno-18-11" name="__codelineno-18-11"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="kr">thread</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">worker</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">ref</span><span class="p">(</span><span class="n">msg</span><span class="p">));</span>
 </span><span id="__span-18-12"><a href="#__codelineno-18-12" id="__codelineno-18-12" name="__codelineno-18-12"></a><span class="w">    </span><span class="n">t</span><span class="p">.</span><span class="n">join</span><span class="p">();</span>
 </span><span id="__span-18-13"><a href="#__codelineno-18-13" id="__codelineno-18-13" name="__codelineno-18-13"></a><span class="p">}</span>
 </span></code></pre></div>
@@ -1292,7 +1296,7 @@
 <div class="admonition success">
 <p class="admonition-title">Success</p>
 <p><strong>工业界避坑指南：</strong>
-在 <code>detach</code> 场景下，绝对不要向线程传递局部变量的<strong>指针或引用</strong>。因为主线程可能已经执行结束并销毁了局部变量，而后台线程仍在尝试访问它，这将导致典型的 <strong>Use-After-Free</strong> 崩溃。</p>
+在 <code>detach</code> 场景下，绝对不要向线程传递局部变量的 <strong>指针或引用</strong>。因为主线程可能已经执行结束并销毁了局部变量，而后台线程仍在尝试访问它，这将导致典型的 <strong>Use-After-Free</strong> 崩溃。</p>
 </div>
 <h3 id="_2">\&lt;mutex&gt;</h3>
 <p><span>mutex<span class="heti-spacing"> </span></span>头文件主要声明了与互斥量<span class="heti-skip"><span class="heti-spacing"> </span>(mutex)<span class="heti-spacing"> </span></span>相关的类。<span>mutex<span class="heti-spacing"> </span></span>提供了<span class="heti-skip"><span class="heti-spacing"> </span>4<span class="heti-spacing"> </span></span>种互斥类型，如下表所示。</p>
@@ -1313,7 +1317,7 @@
 <td>递归<span class="heti-skip"><span class="heti-spacing"> </span>Mutex<span class="heti-spacing"> </span></span>类。</td>
 </tr>
 <tr>
-<td>std::time_mutex</td>
+<td>std::timed_mutex</td>
 <td>定时<span class="heti-skip"><span class="heti-spacing"> </span>Mutex<span class="heti-spacing"> </span></span>类。</td>
 </tr>
 <tr>
@@ -1336,13 +1340,13 @@
 </span><span id="__span-20-3"><a href="#__codelineno-20-3" id="__codelineno-20-3" name="__codelineno-20-3"></a><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;mutex&gt;</span><span class="c1">  // std::mutex</span>
 </span><span id="__span-20-4"><a href="#__codelineno-20-4" id="__codelineno-20-4" name="__codelineno-20-4"></a>
 </span><span id="__span-20-5"><a href="#__codelineno-20-5" id="__codelineno-20-5" name="__codelineno-20-5"></a><span class="n">std</span><span class="o">::</span><span class="n">mutex</span><span class="w"> </span><span class="n">mtx</span><span class="p">;</span><span class="w">  </span><span class="c1">// mutex for critical section</span>
-</span><span id="__span-20-6"><a href="#__codelineno-20-6" id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="kt">void</span><span class="w"> </span><span class="nf">print_block</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-20-6"><a href="#__codelineno-20-6" id="__codelineno-20-6" name="__codelineno-20-6"></a><span class="kt">void</span><span class="w"> </span><span class="nf">print_block</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="n">c</span><span class="p">)</span>
 </span><span id="__span-20-7"><a href="#__codelineno-20-7" id="__codelineno-20-7" name="__codelineno-20-7"></a><span class="p">{</span>
 </span><span id="__span-20-8"><a href="#__codelineno-20-8" id="__codelineno-20-8" name="__codelineno-20-8"></a><span class="c1">// critical section (exclusive access to std::cout signaled by locking mtx):</span>
 </span><span id="__span-20-9"><a href="#__codelineno-20-9" id="__codelineno-20-9" name="__codelineno-20-9"></a><span class="w">    </span><span class="n">mtx</span><span class="p">.</span><span class="n">lock</span><span class="p">();</span>
-</span><span id="__span-20-10"><a href="#__codelineno-20-10" id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span>
+</span><span id="__span-20-10"><a href="#__codelineno-20-10" id="__codelineno-20-10" name="__codelineno-20-10"></a><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span>
 </span><span id="__span-20-11"><a href="#__codelineno-20-11" id="__codelineno-20-11" name="__codelineno-20-11"></a><span class="w">    </span><span class="p">{</span>
-</span><span id="__span-20-12"><a href="#__codelineno-20-12" id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="w">       </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span><span class="w"> </span>
+</span><span id="__span-20-12"><a href="#__codelineno-20-12" id="__codelineno-20-12" name="__codelineno-20-12"></a><span class="w">       </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
 </span><span id="__span-20-13"><a href="#__codelineno-20-13" id="__codelineno-20-13" name="__codelineno-20-13"></a><span class="w">    </span><span class="p">}</span>
 </span><span id="__span-20-14"><a href="#__codelineno-20-14" id="__codelineno-20-14" name="__codelineno-20-14"></a><span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">'\n'</span><span class="p">;</span>
 </span><span id="__span-20-15"><a href="#__codelineno-20-15" id="__codelineno-20-15" name="__codelineno-20-15"></a><span class="w">    </span><span class="n">mtx</span><span class="p">.</span><span class="n">unlock</span><span class="p">();</span>
@@ -1397,18 +1401,18 @@
 </span><span id="__span-22-14"><a href="#__codelineno-22-14" id="__codelineno-22-14" name="__codelineno-22-14"></a><span class="w">    </span><span class="c1">// 继续操作共享数据</span>
 </span><span id="__span-22-15"><a href="#__codelineno-22-15" id="__codelineno-22-15" name="__codelineno-22-15"></a><span class="p">}</span><span class="w"> </span><span class="c1">// 自动解锁</span>
 </span></code></pre></div>
-<h3 id="_3">\&lt;conditoin_variable&gt;</h3>
+<h3 id="_3">\&lt;condition_variable&gt;</h3>
 <p><span>condition_variable<span class="heti-spacing"> </span></span>提供了一种机制，允许线程在某些条件不满足时挂起，直到其他线程通知它们条件已经满足</p>
 <p>相比低级同步原语（例如互斥锁）更加方便和安全，也能够解决“忙等待”的问题。通常搭配<span class="heti-skip"><span class="heti-spacing"> </span>unique_lock<span class="heti-spacing"> </span></span>一起使用</p>
 <p>主要包括这几个方法：</p>
 <ul>
-<li>void wait(unique_lock<mutex>&amp; lock)</mutex></li>
+<li>void wait(unique_lock<mutex>&amp; lock)<ul>
 <li>通常在<span class="heti-skip"><span class="heti-spacing"> </span>unique_lock<span class="heti-spacing"> </span></span>创建语句和<span class="heti-skip"><span class="heti-spacing"> </span>unlock<span class="heti-spacing"> </span></span>解锁（不过<span class="heti-skip"><span class="heti-spacing"> </span>unique_lock<span class="heti-spacing"> </span></span>会在离开作用域时自动解锁）中间调用</li>
-<li><span>wait<span class="heti-spacing"> </span></span>内部的工作流程是：<ul>
+<li><span>wait<span class="heti-spacing"> </span></span>内部的工作流程是：</li>
 <li>入睡时自动解锁</li>
 <li>醒来时自动加锁</li>
 </ul>
-</li>
+</mutex></li>
 <li>void notify_one() noexcept;</li>
 <li>void notify_all() noexcept</li>
 </ul>
@@ -1476,11 +1480,13 @@
 <div class="language-cpp highlight"><pre><span></span><code><span id="__span-24-1"><a href="#__codelineno-24-1" id="__codelineno-24-1" name="__codelineno-24-1"></a><span class="p">[</span><span class="w"> </span><span class="n">捕获列表</span><span class="w"> </span><span class="p">]</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">参数列表</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">-&gt;</span><span class="w"> </span><span class="n">返回值类型</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">函数体</span><span class="w"> </span><span class="p">}</span>
 </span></code></pre></div>
 <ul>
-<li><strong><span>[] (<span class="heti-spacing"> </span></span>捕获列表<span><span class="heti-spacing"> </span>)</span></strong>：最灵魂的部分，它决定了<span class="heti-skip"><span class="heti-spacing"> </span>Lambda<span class="heti-spacing"> </span></span>内部能否使用外部的局部变量</li>
+<li><strong><span>[] (<span class="heti-spacing"> </span></span>捕获列表<span><span class="heti-spacing"> </span>)</span></strong>：最灵魂的部分，它决定了<span class="heti-skip"><span class="heti-spacing"> </span>Lambda<span class="heti-spacing"> </span></span>内部能否使用外部的局部变量<ul>
 <li><strong><span>[x] (<span class="heti-spacing"> </span></span>按值捕获<span><span class="heti-spacing"> </span>)</span></strong>：把变量<span><span class="heti-spacing"> </span>x</span> <strong>拷贝</strong>一份进<span><span class="heti-spacing"> </span>Lambda</span>，内部修改不影响外部</li>
 <li><strong><span>[&amp;x] (<span class="heti-spacing"> </span></span>按引用捕获<span><span class="heti-spacing"> </span>)</span></strong>：把<span class="heti-skip"><span class="heti-spacing"> </span>x<span class="heti-spacing"> </span></span>的<strong>引用</strong>传进去，内部修改会影响外部</li>
 <li><strong>[=]</strong>：按值捕获外部<strong>所有</strong>可见的局部变量</li>
 <li><strong>[&amp;]</strong>：按引用捕获外部<strong>所有</strong>可见的局部变量</li>
+</ul>
+</li>
 <li><strong><span>() (<span class="heti-spacing"> </span></span>参数列表<span><span class="heti-spacing"> </span>)</span></strong>：跟普通函数一样。如果没有参数，可以省略</li>
 <li><strong><span>-&gt;<span class="heti-spacing"> </span></span>返回值</strong>：指定返回类型（如<span><span class="heti-spacing"> </span>-&gt; int</span><heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。通常可以省略，编译器会自动推导。</li>
 <li><strong><span>{} (<span class="heti-spacing"> </span></span>函数体<span><span class="heti-spacing"> </span>)</span></strong>：具体的逻辑代码</li>

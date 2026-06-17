@@ -647,7 +647,7 @@
 <p>则该试验问题为<strong>等可能概型</strong>（<strong>古典概型</strong>）<br/>有如下性质：若总事件个数为<span><span class="heti-spacing"> </span><span class="arithmatex">\(N\)</span></span>，<span><span class="arithmatex">\(A\)</span><span class="heti-spacing"> </span></span>为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(n\)</span><span class="heti-spacing"> </span></span>个基本事件的和事件，则<span><span class="heti-spacing"> </span><span class="arithmatex">\(P(A)=\frac{n}{N}\)</span></span>。</p>
 <hr/>
 <h2 id="条件概率">条件概率</h2>
-<p>如果<span><span class="heti-spacing"> </span><span class="arithmatex">\(P(B)&gt;0\)</span></span>，那么<strong>定义</strong>在<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(B\)</span><span class="heti-spacing"> </span></span>发生的条件下<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(A\)</span><span class="heti-spacing"> </span></span>发生的<strong>条件概率<span><span class="heti-spacing"> </span>(contidional probability)</span></strong>为：<br/><span class="arithmatex">\(P(A|B)=\frac{P(AB)}{P(B)}\)</span></p>
+<p>如果<span><span class="heti-spacing"> </span><span class="arithmatex">\(P(B)&gt;0\)</span></span>，那么<strong>定义</strong>在<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(B\)</span><span class="heti-spacing"> </span></span>发生的条件下<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(A\)</span><span class="heti-spacing"> </span></span>发生的<strong>条件概率<span><span class="heti-spacing"> </span>(conditional probability)</span></strong>为：<br/><span class="arithmatex">\(P(A|B)=\frac{P(AB)}{P(B)}\)</span></p>
 <p>条件概率是在<strong>新的样本空间下的概率度量</strong>，它满足概率的定义和性质。</p>
 <p><strong>定义完备事件组</strong>为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(S\)</span><span class="heti-spacing"> </span></span>的一个<strong>划分</strong> <span class="arithmatex">\(B_1,B_2,...,B_n\)</span>，它满足如下性质：</p>
 <ol>
@@ -659,8 +659,10 @@
 <li>若<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(A_1,...,A_n,...\)</span><span class="heti-spacing"> </span></span>互不相容，则<span><span class="heti-spacing"> </span><span class="arithmatex">\(P(\cup_{n=1}^{\infty}A_n|B)=\sum\limits_{n=1}^{\infty}P(A_n|B)\)</span></span>；</li>
 <li><strong>乘法公式</strong>：当<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(P(A)\not=0\;\,\;P(B)\not=0\)</span><span class="heti-spacing"> </span></span>时，有<span><span class="heti-spacing"> </span><span class="arithmatex">\(P(AB)=P(A)*P(B|A)=P(B)*P(A|B)\)</span></span>；</li>
 <li><strong>全概率公式</strong>：<span class="arithmatex">\(P(A)=\sum\limits_{j=1}^nP(B_j)P(A|B_j)\)</span>；</li>
-<li><strong>贝叶斯公式</strong>：<span class="arithmatex">\(P(B_k|A)=\frac{P(B_kA)}{P(A)}=\frac{P(B_k)P(A|B_k)}{\sum\limits_{j=1}^nP(B_j)P(A|B_j)}\)</span>；</li>
+<li><strong>贝叶斯公式</strong>：<span class="arithmatex">\(P(B_k|A)=\frac{P(B_kA)}{P(A)}=\frac{P(B_k)P(A|B_k)}{\sum\limits_{j=1}^nP(B_j)P(A|B_j)}\)</span>；<ul>
 <li>其中，我们称<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(P(B_j)\)</span><span class="heti-spacing"> </span></span>这种事先知道的概率为<strong>先验概率</strong>；而<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(P(B_j|A)\)</span><span class="heti-spacing"> </span></span>这种，当事件<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(A\)</span><span class="heti-spacing"> </span></span>发生后需要修正<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(B_j\)</span><span class="heti-spacing"> </span></span>的概率成为<strong>后验概率</strong>。</li>
+</ul>
+</li>
 </ul>
 <hr/>
 <h2 id="事件独立性与独立试验">事件独立性与独立试验</h2>

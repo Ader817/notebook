@@ -570,7 +570,7 @@
 <blockquote>
 <p>Linux Kernel Virtual Network Devices</p>
 </blockquote>
-<p><span>TUN<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>TAP<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>Linux<span class="heti-spacing"> </span></span>内核提供的<strong>虚拟网络设备</strong>，它们完全由软件实现，没有物理硬件对应。它们是打通<strong>操作系统内核空间<span><span class="heti-spacing"> </span>(Kernel Space)</span></strong> 和 <strong>用户空间<span><span class="heti-spacing"> </span>(User Space)</span></strong> 的秘密通道。</p>
+<p><span>TUN<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>TAP<span class="heti-spacing"> </span></span>是<span class="heti-skip"><span class="heti-spacing"> </span>Linux<span class="heti-spacing"> </span></span>内核提供的 <strong>虚拟网络设备</strong>，它们完全由软件实现，没有物理硬件对应。它们是打通 <strong>操作系统内核空间<span><span class="heti-spacing"> </span>(Kernel Space)</span></strong> 和 <strong>用户空间<span><span class="heti-spacing"> </span>(User Space)</span></strong> 的秘密通道。</p>
 <ul>
 <li><strong>本质</strong>：对于操作系统内核来说，它们是<strong>网络接口</strong> (Interface)；对于用户程序来说，它们是<strong>文件</strong> (File)。</li>
 <li><strong>核心作用</strong>：允许用户态程序（如<span class="heti-skip"><span class="heti-spacing"> </span>VPN<span class="heti-spacing"> </span></span>客户端、虚拟机软件）直接读取和写入内核网络栈的数据包，从而实现对网络流量的拦截、封装和修改。</li>
@@ -647,9 +647,11 @@
 <li><strong>路由决策</strong>：内核查路由表，默认路由指向 <code>tun0</code>。</li>
 <li><strong>掉入陷阱</strong>：内核将 <strong><span>[<span class="heti-spacing"> </span></span>原始<span class="heti-skip"><span class="heti-spacing"> </span>IP<span class="heti-spacing"> </span></span>包<span><span class="heti-spacing"> </span>]</span></strong> <span>(Src: 10.0.0.1 -&gt; Dst: 8.8.8.8)<span class="heti-spacing"> </span></span>扔进 <code>tun0</code>。</li>
 <li><strong>用户态捕获</strong>：<span>VPN<span class="heti-spacing"> </span></span>程序从字符设备读出 <strong><span>[<span class="heti-spacing"> </span></span>原始<span class="heti-skip"><span class="heti-spacing"> </span>IP<span class="heti-spacing"> </span></span>包<span><span class="heti-spacing"> </span>]</span></strong>。</li>
-<li><strong>隧道封装</strong>：<span>VPN<span class="heti-spacing"> </span></span>程序为了传输，构建一个新的 <strong><span>[<span class="heti-spacing"> </span></span>外层<span class="heti-skip"><span class="heti-spacing"> </span>IP<span class="heti-spacing"> </span></span>包<span><span class="heti-spacing"> </span>]</span></strong>：</li>
+<li><strong>隧道封装</strong>：<span>VPN<span class="heti-spacing"> </span></span>程序为了传输，构建一个新的 <strong><span>[<span class="heti-spacing"> </span></span>外层<span class="heti-skip"><span class="heti-spacing"> </span>IP<span class="heti-spacing"> </span></span>包<span><span class="heti-spacing"> </span>]</span></strong>：<ul>
 <li>载荷：<strong>加密后的<span class="heti-skip"><span class="heti-spacing"> </span>[<span class="heti-spacing"> </span></span>原始<span class="heti-skip"><span class="heti-spacing"> </span>IP<span class="heti-spacing"> </span></span>包<span><span class="heti-spacing"> </span>]</span></strong></li>
 <li>头部：Src: 192.168.1.5 -&gt; Dst: VPN_Server_IP</li>
+</ul>
+</li>
 <li><strong>物理发送</strong>：内核将 <strong><span>[<span class="heti-spacing"> </span></span>外层<span class="heti-skip"><span class="heti-spacing"> </span>IP<span class="heti-spacing"> </span></span>包<span><span class="heti-spacing"> </span>]</span></strong> 通过物理网卡 <code>eth0</code> 发送出去。</li>
 </ol>
 <p>类似地，根据这个原理，我们可以使用<span class="heti-skip"><span class="heti-spacing"> </span>TUN/TAP<span class="heti-spacing"> </span></span>创建点对点隧道，如下图：</p>
@@ -664,10 +666,12 @@
 </blockquote>
 <ul>
 <li><strong>原理</strong>：<strong>应用层<span class="heti-skip"><span class="heti-spacing"> </span>(L7)<span class="heti-spacing"> </span></span>协议</strong>。属于“君子协定”，告诉应用程序请主动连接该代理地址。</li>
-<li><strong>特点</strong>：</li>
+<li><strong>特点</strong>：<ul>
 <li>依赖应用程序自觉读取环境变量。</li>
 <li>通常只支持<span><span class="heti-spacing"> </span>TCP (HTTP/SOCKS5)</span>。</li>
 <li><code>git</code><span>,<span class="heti-spacing"> </span></span><code>curl</code><span>,<span class="heti-spacing"> </span></span>浏览器通常支持；但<code>ping</code><span class="heti-skip"><span class="heti-spacing"> </span>,<span class="heti-spacing"> </span></span>游戏<span class="heti-skip"><span class="heti-spacing"> </span>,<span class="heti-spacing"> </span></span>许多终端工具不支持。</li>
+</ul>
+</li>
 <li><strong>数据流</strong>：<span>App -&gt; Localhost:7890 -&gt; Proxy App (<span class="heti-spacing"> </span></span>绕过<span class="heti-skip"><span class="heti-spacing"> </span>TUN<span class="heti-spacing"> </span></span>接口，走<span><span class="heti-spacing"> </span>Loopback)</span>。</li>
 </ul>
 <h3 id="tun-mode">TUN Mode</h3>
@@ -676,10 +680,12 @@
 </blockquote>
 <ul>
 <li><strong>原理</strong>：<strong>网络层<span class="heti-skip"><span class="heti-spacing"> </span>(L3)<span class="heti-spacing"> </span></span>接管</strong>。通过修改系统路由表，强制将流量引流到<span class="heti-skip"><span class="heti-spacing"> </span>TUN<span class="heti-spacing"> </span></span>接口。</li>
-<li><strong>特点</strong>：</li>
+<li><strong>特点</strong>：<ul>
 <li><strong>强制性</strong>：无论<span class="heti-skip"><span class="heti-spacing"> </span>App<span class="heti-spacing"> </span></span>是否支持代理，只要发<span class="heti-skip"><span class="heti-spacing"> </span>IP<span class="heti-spacing"> </span></span>包就会被捕获。</li>
 <li><strong>全协议</strong>：支持<span class="heti-skip"><span class="heti-spacing"> </span>TCP, UDP (<span class="heti-spacing"> </span></span>游戏<span><span class="heti-spacing"> </span>), ICMP (Ping)</span>。</li>
 <li><strong>真<span class="heti-skip"><span class="heti-spacing"> </span>·<span class="heti-spacing"> </span></span>全局代理</strong>。</li>
+</ul>
+</li>
 <li><strong>数据流</strong>：App -&gt; Kernel Routing -&gt; <strong>TUN Interface</strong> -&gt; Proxy App -&gt; Physical Interface。</li>
 </ul>
 <div class="admonition success">

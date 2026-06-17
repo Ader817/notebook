@@ -1240,19 +1240,21 @@
 <ul>
 <li>Continuous 1D convolution</li>
 <li>Properties of convolution</li>
-<li>Discrete 1D convolution </li>
+<li>Discrete 1D convolution</li>
 <li>Spatial domain filtering</li>
 </ul>
 </div>
 <h2 id="一维卷积--1d-convolution">一维卷积<span><span class="heti-spacing"> </span>| 1D Convolution</span></h2>
 <h3 id="连续卷积--continuous-1d-convolution">连续卷积<span><span class="heti-spacing"> </span>| Continuous 1D convolution</span></h3>
-<p>两个一维连续函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f(x)\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(h(x)\)</span><span class="heti-spacing"> </span></span>的卷积<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(g(x)\)</span><span class="heti-spacing"> </span></span>为  </p>
-<div class="arithmatex">\[g(x)=f(x)*h(x)=\int_{-\infty}^{\infty}f(t)h(x-t)dt\]</div>
-<p>它表示两个函数的卷积可以转化成乘积的积分来计算。通常将<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f(x)\)</span><span class="heti-spacing"> </span></span>称为输入函数，将<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(h(x)\)</span><span class="heti-spacing"> </span></span>称为卷积函数。  </p>
+<p>两个一维连续函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f(x)\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(h(x)\)</span><span class="heti-spacing"> </span></span>的卷积<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(g(x)\)</span><span class="heti-spacing"> </span></span>为</p>
+<div class="arithmatex">\[
+g(x)=f(x)*h(x)=\int_{-\infty}^{\infty}f(t)h(x-t)dt
+\]</div>
+<p>它表示两个函数的卷积可以转化成乘积的积分来计算。通常将<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f(x)\)</span><span class="heti-spacing"> </span></span>称为输入函数，将<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(h(x)\)</span><span class="heti-spacing"> </span></span>称为卷积函数。</p>
 <h4 id="computing-process">Computing process</h4>
 <p>已知两个函数，要求计算它们的卷积在任意点<span class="heti-skip"><span class="heti-spacing"> </span>x<span class="heti-spacing"> </span></span>处的值。</p>
 <ul>
-<li>将卷积函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(h(t)\)</span><span class="heti-spacing"> </span></span>反折  </li>
+<li>将卷积函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(h(t)\)</span><span class="heti-spacing"> </span></span>反折</li>
 </ul>
 <p><img alt="" src="../images/ch5/image.png" width="50%"/></p>
 <ul>
@@ -1268,19 +1270,23 @@
 <li>当<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(x\)</span><span class="heti-spacing"> </span></span>变化时，反折的函数被平移通过静止不动的输入函数<span class="heti-skip"><span class="heti-spacing"> </span>, <span class="arithmatex">\(g(x)\)</span><span class="heti-spacing"> </span></span>值取决于这两个函数的重叠部分的累积。</li>
 </ul>
 <p>记卷积的运算符号为<span><span class="heti-spacing"> </span><span class="arithmatex">\(*\)</span></span>，则卷积的定义为：</p>
-<div class="arithmatex">\[g(x)=f(x)*h(x)=\int_{-\infty}^{\infty}f(t)h(x-t)dt\]</div>
+<div class="arithmatex">\[
+g(x)=f(x)*h(x)=\int_{-\infty}^{\infty}f(t)h(x-t)dt
+\]</div>
 <h4 id="property">Property</h4>
 <ul>
-<li><strong>Exchangeable</strong>: <span class="arithmatex">\(f(x)*g(x)=g(x)*f(x)\)</span>  </li>
-<li><strong>Distributive</strong>: <span class="arithmatex">\(f*(g+h)=f*g+f*h\)</span>  </li>
-<li><strong>Associative</strong>: <span class="arithmatex">\(f*(g*h)=(f*g)*h\)</span>  </li>
+<li><strong>Exchangeable</strong>: <span class="arithmatex">\(f(x)*g(x)=g(x)*f(x)\)</span></li>
+<li><strong>Distributive</strong>: <span class="arithmatex">\(f*(g+h)=f*g+f*h\)</span></li>
+<li><strong>Associative</strong>: <span class="arithmatex">\(f*(g*h)=(f*g)*h\)</span></li>
 </ul>
 <h3 id="离散卷积--discrete-1d-convolution">离散卷积<span><span class="heti-spacing"> </span>| Discrete 1D convolution</span></h3>
 <p>对于离散序列，其卷积可用与连续函数相类似的方法求得。此时自变量变为下标，面积则由求和代替。
 对于两个长度均为 M 的序列 <span class="arithmatex">\(f(x)\)</span> 和 <span class="arithmatex">\(h(x)\)</span>，其卷积为:</p>
-<div class="arithmatex">\[g(x)=f(x)*h(x)=\dfrac{1}{M}=\sum\limits_{t=0}^{M-1}f(t)h(x-t)\]</div>
+<div class="arithmatex">\[
+g(x)=f(x)*h(x)=\dfrac{1}{M}=\sum\limits_{t=0}^{M-1}f(t)h(x-t)
+\]</div>
 <p>有效范围：覆盖了所有<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(h(t)\)</span><span class="heti-spacing"> </span></span>的点。</p>
-<p><strong><em>e.g.</em></strong> </p>
+<p><strong><em>e.g.</em></strong></p>
 <p><img alt="" src="../images/ch5/image-3.png" width="60%"/></p>
 <p>如果要对边界的点进行卷积，可以将序列进行扩展（padding<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>。</p>
 <div class="admonition note">
@@ -1312,12 +1318,18 @@ R=&amp;w(-1,-1)f(x-1,y-1)+w(-1,0)f(x-1, y)\\
 <p>这实质上是一种卷积操作<span class="heti-skip"><span class="heti-spacing"> </span>(?<span class="heti-spacing"> </span></span>存疑<span><span class="heti-spacing"> </span>)</span></p>
 <div class="admonition note">
 <p class="admonition-title">卷积<span><span class="heti-spacing"> </span>Recall</span> </p>
-<div class="arithmatex">\[h(x)=f(x)*h(x)=\dfrac{1}{M}=\sum\limits_{t=0}^{M-1}f(t)h(x-t)\]</div>
+<div class="arithmatex">\[
+h(x)=f(x)*h(x)=\dfrac{1}{M}=\sum\limits_{t=0}^{M-1}f(t)h(x-t)
+\]</div>
 </div>
 <p>通常，掩模的长宽都为奇数。假设分别为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(2a+1\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(2b+1\)</span>.<span class="heti-spacing"> </span></span>当窗口中心处于像素<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\((x,y)\)</span><span class="heti-spacing"> </span></span>处时，新的像素值为：</p>
-<div class="arithmatex">\[g(x,y)=\sum\limits_{s=-a}^a\sum\limits_{t=-b}^b w(s,t)f(x+s,y+t)\]</div>
+<div class="arithmatex">\[
+g(x,y)=\sum\limits_{s=-a}^a\sum\limits_{t=-b}^b w(s,t)f(x+s,y+t)
+\]</div>
 <p>对图像<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f\)</span><span class="heti-spacing"> </span></span>中所有像素都与掩模进行运算之后，最终产生一幅新图像<span><span class="heti-spacing"> </span><span class="arithmatex">\(g\)</span></span>，即</p>
-<div class="arithmatex">\[R=w_1z_1+w_2z_2+\cdots+w_{mn}z_{mn}=\sum\limits_{i=1}^m w_iz_i\]</div>
+<div class="arithmatex">\[
+R=w_1z_1+w_2z_2+\cdots+w_{mn}z_{mn}=\sum\limits_{i=1}^m w_iz_i
+\]</div>
 <p>图像在传输过程中，由于传输信道、采样系统质量较差，或受各种干扰的影响，而造成图像毛糙，此时，就需对图像进行平滑处理。平滑可以抑制高频成分，但也使图像变得模糊。</p>
 <h3 id="高通滤波--sharpening-spatial-filter">高通滤波<span><span class="heti-spacing"> </span>| Sharpening spatial filter</span></h3>
 <div class="admonition note">
@@ -1331,7 +1343,9 @@ R=&amp;w(-1,-1)f(x-1,y-1)+w(-1,0)f(x-1, y)\\
 </ul>
 <h4 id="差分算子--differential-operator">差分算子<span><span class="heti-spacing"> </span>| Differential operator</span></h4>
 <p>对于一个整数值函数<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(f(x)\)</span><span class="heti-spacing"> </span></span>来说，我们使用差分来表示微分算子：</p>
-<div class="arithmatex">\[\dfrac{\partial f}{\partial x}=f(x+1)-f(x)\]</div>
+<div class="arithmatex">\[
+\dfrac{\partial f}{\partial x}=f(x+1)-f(x)
+\]</div>
 <p>类似的，我们可以把二阶微分写成这样：</p>
 <div class="arithmatex">\[
 \begin{align*}
@@ -1349,14 +1363,18 @@ R=&amp;w(-1,-1)f(x-1,y-1)+w(-1,0)f(x-1, y)\\
 \nabla f = (G_x^2+G_y^2)^{\frac{1}{2}}=\left[(\dfrac{\partial f}{\partial x})^2 + (\dfrac{\partial f}{\partial y})^2\right]^{\frac{1}{2}}
 \]</div>
 <p>当对整幅图像计算梯度时，运算量会很大，因此，在实际操作中，常用绝对值代替平方与平方根运算近似求梯度的模值</p>
-<div class="arithmatex">\[\nabla f\approx |G_x|+|G_y|\]</div>
+<div class="arithmatex">\[
+\nabla f\approx |G_x|+|G_y|
+\]</div>
 <div class="admonition note">
 <p class="admonition-title"><span>Robert<span class="heti-spacing"> </span></span>交叉梯度算子</p>
 <p>另一种计算方法<span><span class="heti-spacing"> </span>:</span> <strong><span>Robert<span class="heti-spacing"> </span></span>交叉梯度算子</strong></p>
 <p>设我们有原始图像如下（<span class="arithmatex">\(z_i\)</span> is the pixel value<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>：</p>
 <p><img alt="" src="../images/ch5/image-6.png" width="25%"/></p>
 <p>则在<span class="heti-skip"><span class="heti-spacing"> </span>Robert<span class="heti-spacing"> </span></span>交叉梯度算子 中，我们记</p>
-<div class="arithmatex">\[G_x=z_9-z_5, G_y=z_8-z_6\]</div>
+<div class="arithmatex">\[
+G_x=z_9-z_5, G_y=z_8-z_6
+\]</div>
 <p>我们有</p>
 <div class="arithmatex">\[
 \begin{align*}
@@ -1375,7 +1393,7 @@ R=&amp;w(-1,-1)f(x-1,y-1)+w(-1,0)f(x-1, y)\\
 \]</div>
 <ul>
 <li>
-<p>两个变量的离散拉普拉斯函数是<span><span class="heti-spacing"> </span>:</span> </p>
+<p>两个变量的离散拉普拉斯函数是<span><span class="heti-spacing"> </span>:</span></p>
 <div class="arithmatex">\[
 \nabla^2 f(x,y)=f(x+1,y)+f(x-1,y)+f(x,y+1)+f(x,y-1)-4f(x,y)
 \]</div>
@@ -1383,7 +1401,7 @@ R=&amp;w(-1,-1)f(x-1,y-1)+w(-1,0)f(x-1, y)\\
 <p>相当于用如上的卷积核对图像做卷积（这个卷积核是各向同性，旋转不变的<span><span class="heti-spacing"> </span>(</span><em>rotation-invariant</em>)）</p>
 </li>
 <li>
-<p>对角线上的元素也可以用来设计掩膜：  </p>
+<p>对角线上的元素也可以用来设计掩膜：</p>
 <div class="arithmatex">\[
 \begin{align*}
 \nabla^2 f(x,y)  =&amp;f(x-1,y-1)+f(x,y-1)+f(x+1,y-1)+\\&amp;f(x-1,y)-8f(x,y)+
@@ -1424,12 +1442,12 @@ g(x,y)=\left\{\begin{matrix}f(x,y)-\nabla^2f(x,y), If\ the\ center\ of\ the\ mas
 <p>均值滤波主要用于细微的细节去除，即去除比遮罩窗口还小的不需要的区域。</p>
 <ul>
 <li>
-<p>简单平均，表示窗口中每一个像素对响应的贡献是一样的  </p>
+<p>简单平均，表示窗口中每一个像素对响应的贡献是一样的</p>
 <p><img alt="" src="../images/ch5/image-37.png" width="25%"/></p>
 </li>
 <li>
-<p>加权平均，表示窗口中的像素对相应的贡献有大小之分。  </p>
-<p>两个<span class="heti-skip"><span class="heti-spacing"> </span>3×3<span class="heti-spacing"> </span></span>平滑（均值）滤波器掩模，每个掩模前边的乘数等于它的系数值的和，以计算平均值  </p>
+<p>加权平均，表示窗口中的像素对相应的贡献有大小之分。</p>
+<p>两个<span class="heti-skip"><span class="heti-spacing"> </span>3×3<span class="heti-spacing"> </span></span>平滑（均值）滤波器掩模，每个掩模前边的乘数等于它的系数值的和，以计算平均值</p>
 <p><img alt="" src="../images/ch5/image-38.png" width="25%"/></p>
 <div class="admonition example">
 <p>这样中间像素能更多地被保留，类似于一个高斯函数。</p>
@@ -1439,10 +1457,12 @@ g(x,y)=\left\{\begin{matrix}f(x,y)-\nabla^2f(x,y), If\ the\ center\ of\ the\ mas
 <div class="admonition conclustion">
 <p class="admonition-title">General equation</p>
 <p>所以，我们可以将均值滤波的公式写成：</p>
-<div class="arithmatex">\[g(x,y)=\dfrac{\sum\limits_{s=-a}^a\sum\limits_{t=-b}^bw(s,t)f(x+s,y+t)}{\sum\limits_{s=-a}^a\sum\limits_{t=-b}^b w(s,t)}\]</div>
+<div class="arithmatex">\[
+g(x,y)=\dfrac{\sum\limits_{s=-a}^a\sum\limits_{t=-b}^bw(s,t)f(x+s,y+t)}{\sum\limits_{s=-a}^a\sum\limits_{t=-b}^b w(s,t)}
+\]</div>
 <p>其中，滤波器大小为<span><span class="heti-spacing"> </span><span class="arithmatex">\((2a+1) \times (2b+1)\)</span></span>，<span><span class="arithmatex">\(w\)</span><span class="heti-spacing"> </span></span>为滤波器，<span><span class="arithmatex">\(f\)</span><span class="heti-spacing"> </span></span>为输入图像，<span><span class="arithmatex">\(g\)</span><span class="heti-spacing"> </span></span>为输出图像。</p>
 </div>
-<p>遮罩窗口的大小对于最终结果非常重要。当遮罩很小时，模糊效果非常细微。当遮罩大小增加，模糊程度也随之增加。卷积核越大，图越模糊，保留的细节越少（类似照相机的光圈）  </p>
+<p>遮罩窗口的大小对于最终结果非常重要。当遮罩很小时，模糊效果非常细微。当遮罩大小增加，模糊程度也随之增加。卷积核越大，图越模糊，保留的细节越少（类似照相机的光圈）</p>
 <p>为了得到感兴趣的物体的<span><span class="heti-spacing"> </span>brief description</span>，我们常用均值滤波器来模糊它。以去除较小的对象，同时保留较大的对象。因此，遮罩的大小取决于要合并到背景中的对象。</p>
 <p><img alt="" src="../images/ch5/image-5.png"/></p>
 <h4 id="统计滤波器--statistical-sorting-filter">统计滤波器<span><span class="heti-spacing"> </span>| Statistical sorting filter</span></h4>
@@ -1479,7 +1499,9 @@ G_\sigma (||p-q||)=\dfrac{1}{2\pi\sigma^2}e^{-\dfrac{||p-q||^2}{2\sigma^2}}
 </div>
 <div class="admonition note">
 <p class="admonition-title">一维高斯分布</p>
-<div class="arithmatex">\[G(x)=\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\dfrac{x^2}{2\sigma^2} } \]</div>
+<div class="arithmatex">\[
+G(x)=\dfrac{1}{\sqrt{2\pi}\sigma}e^{-\dfrac{x^2}{2\sigma^2} }
+\]</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">总计算式</p>
@@ -1496,7 +1518,7 @@ GB[I]_p=\sum\limits_{q\in S}G_\sigma (||p-q||)I_q
 <p>而且，可以看到，双边滤波器下的细节保留的更好。</p>
 </div>
 <p>双边滤波的思想很简单，在高斯滤波的基础上加入了<strong>像素值权重</strong>项，也就是说既要考虑距离因素，也要考虑<strong>像素值差异</strong>的影响，像素值越相近，权重越大。</p>
-<p>想法<span><span class="heti-spacing"> </span>:</span> </p>
+<p>想法<span><span class="heti-spacing"> </span>:</span></p>
 <ul>
 <li>每个样本都被相邻样本的加权平均值替代</li>
 <li>权重要同时反映距离中心像素的远近，以及像素值和中心像素值的相似度</li>
@@ -1542,7 +1564,7 @@ BF[I]_p=\dfrac{1}{W_p}\sum\limits_{q\in S}G_{\sigma_s} (||p-q||)G_{\sigma_r} (|I
 </div>
 <p>也可以反复在一张图像上做双边滤波，<span class="arithmatex">\(I_{(n+1)}=BF[I_{(n)}]\)</span></p>
 <h5 id="彩色图像上的双边滤波">彩色图像上的双边滤波</h5>
-<p>若在彩色图上做双边滤波，只需要将式子改为  </p>
+<p>若在彩色图上做双边滤波，只需要将式子改为</p>
 <div class="arithmatex">\[
 BF[I]_p=\dfrac{1}{W_p}\sum\limits_{q\in S}G_{\sigma_s} (||p-q||)G_{\sigma_r} (|||C_p-C_q|||)C_q
 \]</div>
@@ -1654,26 +1676,32 @@ I_{\mathbf{p}}^{\mathrm{b}}&amp;=\frac{1}{W_{\mathbf{p}}^{\mathrm{b}}}
 <p>双边滤波只能保边，没有保梯度（即正负号<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，很有可能发生梯度逆转的现象。为了解决这个问题，我们引入了<strong>导向滤波</strong>。</p>
 <p><img alt="" src="../images/ch5/image-31.png" width="70%"/></p>
 <p>我们记输入的有噪声图像为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(p\)</span>,<span class="heti-spacing"> </span></span>输出的去噪后平滑图像为<span><span class="heti-spacing"> </span><span class="arithmatex">\(q\)</span></span>，记噪声（或者是纹路）为<span><span class="heti-spacing"> </span><span class="arithmatex">\(n_i\)</span></span> 。则有</p>
-<div class="arithmatex">\[q_i = p_i - n_i \]</div>
+<div class="arithmatex">\[
+q_i = p_i - n_i
+\]</div>
 <p>我们引入<span class="heti-skip"><span class="heti-spacing"> </span>Guided image <span class="arithmatex">\(I\)</span>,<span class="heti-spacing"> </span></span>在这里我们认为输出图像可以看成导向图<span class="heti-skip"><span class="heti-spacing"> </span>I<span class="heti-spacing"> </span></span>的一个局部线性变换。<span><span class="arithmatex">\(a\)</span><span class="heti-spacing"> </span></span>是一个标量系数</p>
-<div class="arithmatex">\[\nabla q_i=a \nabla I_i\Rightarrow q_i=aI_i+b\]</div>
+<div class="arithmatex">\[
+\nabla q_i=a \nabla I_i\Rightarrow q_i=aI_i+b
+\]</div>
 <p>接下来就是解出这样的系数，使得<span class="heti-skip"><span class="heti-spacing"> </span>p<span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span>q<span class="heti-spacing"> </span></span>的差别尽量小，而且还可以保持局部线性模型。我们要求的就是： <span>(<span class="heti-spacing"> </span></span>这里<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\epsilon a^2\)</span><span class="heti-spacing"> </span></span>是正则项，用来控制方向<span><span class="heti-spacing"> </span>)</span></p>
-<div class="arithmatex">\[\min\limits_{(a,b)}\sum\limits_i (aI_i+b-p_i)^2+\epsilon a^2\]</div>
+<div class="arithmatex">\[
+\min\limits_{(a,b)}\sum\limits_i (aI_i+b-p_i)^2+\epsilon a^2
+\]</div>
 <p>对<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(a\)</span><span class="heti-spacing"> </span></span>求偏导，令偏导数为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(0\)</span>;<span class="heti-spacing"> </span></span>对<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(b\)</span><span class="heti-spacing"> </span></span>同理<span class="heti-skip"><span class="heti-spacing"> </span>,<span class="heti-spacing"> </span></span>这样可以解一个二元一次方程组得到<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(a\)</span><span class="heti-spacing"> </span></span>和<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(b\)</span>. (<span class="heti-spacing"> </span></span>这里<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\overline p\)</span><span class="heti-spacing"> </span></span>指的是<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(I\)</span><span class="heti-spacing"> </span></span>这个邻域的平均值<span><span class="heti-spacing"> </span>)</span></p>
-<p>以上是对单个像素，我们可以扩充到整个图像：  </p>
+<p>以上是对单个像素，我们可以扩充到整个图像：</p>
 <p><img alt="" src="../images/ch5/image-32.png" width="70%"/></p>
 <ul>
 <li>
-<p>对每一个局部窗口<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(w_k\)</span><span class="heti-spacing"> </span></span>我们可以算出<span><span class="heti-spacing"> </span><span class="arithmatex">\(a_k, b_k\)</span></span><br/>
-    窗口之间可能有重叠，要算窗口内 <span class="arithmatex">\(q_k\)</span> 的平均值，即所有包含 <span class="arithmatex">\(q_i\)</span> 的窗口的均值  </p>
+<p>对每一个局部窗口<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(w_k\)</span><span class="heti-spacing"> </span></span>我们可以算出<span><span class="heti-spacing"> </span><span class="arithmatex">\(a_k, b_k\)</span></span>
+    窗口之间可能有重叠，要算窗口内 <span class="arithmatex">\(q_k\)</span> 的平均值，即所有包含 <span class="arithmatex">\(q_i\)</span> 的窗口的均值</p>
 </li>
 <li>
 <p>参数<span class="heti-skip"><span class="heti-spacing"> </span>:<span class="heti-spacing"> </span></span>窗口半径<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(r\)</span>,<span class="heti-spacing"> </span></span>正则系数<span><span class="heti-spacing"> </span><span class="arithmatex">\(\epsilon\)</span></span></p>
 </li>
 </ul>
-<p>如果窗口的<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(var(I)\ll \epsilon, Cov(I,p)\ll \epsilon\Rightarrow a\approx 0, b\approx \overline p\Rightarrow q_i\approx \overline{\overline p}\)</span> (<span class="heti-spacing"> </span></span>相当于对均值滤波的一个级联<span><span class="heti-spacing"> </span>)</span> </p>
+<p>如果窗口的<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(var(I)\ll \epsilon, Cov(I,p)\ll \epsilon\Rightarrow a\approx 0, b\approx \overline p\Rightarrow q_i\approx \overline{\overline p}\)</span> (<span class="heti-spacing"> </span></span>相当于对均值滤波的一个级联<span><span class="heti-spacing"> </span>)</span></p>
 <p><img alt="" src="../images/ch5/image-33.png" width="70%"/></p>
-<p>怎么找到<span><span class="heti-spacing"> </span>Guided image <span class="arithmatex">\(I\)</span></span> ？可以用输出图像的平均值<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\overline p\)</span><span class="heti-spacing"> </span></span>作为<span><span class="heti-spacing"> </span>Guided image.</span> </p>
+<p>怎么找到<span><span class="heti-spacing"> </span>Guided image <span class="arithmatex">\(I\)</span></span> ？可以用输出图像的平均值<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(\overline p\)</span><span class="heti-spacing"> </span></span>作为<span><span class="heti-spacing"> </span>Guided image.</span></p>
 <p><span><span class="arithmatex">\(r\)</span><span class="heti-spacing"> </span></span>决定了采样窗口的大小</p>
 <p><img alt="" src="../images/ch5/image-34.png" width="70%"/></p>
 <p>这说明它不仅可以保边，还可以保方向，即不会出现梯度逆转的情况。 <span><span class="arithmatex">\(\epsilon\)</span><span class="heti-spacing"> </span></span>决定了我们保边的程度： <span><span class="arithmatex">\(\epsilon\)</span><span class="heti-spacing"> </span></span>越小保边能力越强</p>
@@ -1706,12 +1734,16 @@ I_{\mathbf{p}}^{\mathrm{b}}&amp;=\frac{1}{W_{\mathbf{p}}^{\mathrm{b}}}
 <h4 id="稀疏范数滤波--sparse-norm-filtering">稀疏范数滤波<span><span class="heti-spacing"> </span>| Sparse Norm Filtering</span></h4>
 <h5 id="core-algorithm">Core Algorithm</h5>
 <p>我们试着从一个比较一般的情况来分析我们平滑图像的方式</p>
-<p>平滑一个图像最简单的方法是使用<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(l^2\)</span><span class="heti-spacing"> </span></span>范式并求<span><span class="heti-spacing"> </span>:</span> 
+<p>平滑一个图像最简单的方法是使用<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(l^2\)</span><span class="heti-spacing"> </span></span>范式并求<span><span class="heti-spacing"> </span>:</span>
 (其中<span class="arithmatex">\(l_i^{new}\)</span>是新生成的像素，<span class="arithmatex">\(l_j\)</span>是邻域内的像素)</p>
-<div class="arithmatex">\[\min\limits_{l_i^{new}}\sum\limits_{j\in N_i}(l_i^{new}-l_j)^2\]</div>
-<p>也就是均值滤波<heti-adjacent class="heti-adjacent-half">。</heti-adjacent>（对应概统中取期望时得到最小值记为方差） 求偏导并令其等于<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(0\)</span>,<span class="heti-spacing"> </span></span>可以得到每个点的像素值。  </p>
+<div class="arithmatex">\[
+\min\limits_{l_i^{new}}\sum\limits_{j\in N_i}(l_i^{new}-l_j)^2
+\]</div>
+<p>也就是均值滤波<heti-adjacent class="heti-adjacent-half">。</heti-adjacent>（对应概统中取期望时得到最小值记为方差） 求偏导并令其等于<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(0\)</span>,<span class="heti-spacing"> </span></span>可以得到每个点的像素值。</p>
 <p>为了让滤波能够保边，我们将其改为<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(p\)</span><span class="heti-spacing"> </span></span>范式，变为<span class="heti-skip"><span class="heti-spacing"> </span>sparser norm,<span class="heti-spacing"> </span></span>式子推广为<strong>Sparse Norm Filter</strong> ：</p>
-<div class="arithmatex">\[\min\limits_{l_i^{new}}\sum\limits_{j\in N_i}|l_i^{new}-l_j|^p,0&lt;p\leq 2\Rightarrow\]</div>
+<div class="arithmatex">\[
+\min\limits_{l_i^{new}}\sum\limits_{j\in N_i}|l_i^{new}-l_j|^p,0&lt;p\leq 2\Rightarrow
+\]</div>
 <p>我们发现<span class="heti-skip"><span class="heti-spacing"> </span>p=1<span class="heti-spacing"> </span></span>的时候即是中值滤波，<span>p=2<span class="heti-spacing"> </span></span>的时候是均值滤波。并且当<span class="heti-skip"><span class="heti-spacing"> </span>p<span class="heti-spacing"> </span></span>小于<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>时，有结论<span class="heti-skip"><span class="heti-spacing"> </span>p<span class="heti-spacing"> </span></span>越接近于<span class="heti-skip"><span class="heti-spacing"> </span>0<span class="heti-spacing"> </span></span>保边效果越强，能够达到和双边滤波和引导滤波类似的结果</p>
 <p>但事实上，当<span class="heti-skip"><span class="heti-spacing"> </span>p<span class="heti-spacing"> </span></span>小于<span class="heti-skip"><span class="heti-spacing"> </span>1<span class="heti-spacing"> </span></span>时，在数学上就不再存在解析解。</p>
 <h5 id="application">Application</h5>
@@ -1730,8 +1762,8 @@ I_{\mathbf{p}}^{\mathrm{b}}&amp;=\frac{1}{W_{\mathbf{p}}^{\mathrm{b}}}
 </div>
 </div>
 </div>
-<p>可以看到，我们通过调节<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(p\)</span><span class="heti-spacing"> </span></span>的大小，在第二张图像中梯度逆转的现象消失了！  </p>
-<p><span><span class="arithmatex">\(p&gt;1\)</span><span class="heti-spacing"> </span></span>时不能防止梯度逆转，<span><span class="arithmatex">\(p&lt;1\)</span><span class="heti-spacing"> </span></span>可以<span><span class="heti-spacing"> </span>.</span> </p>
+<p>可以看到，我们通过调节<span class="heti-skip"><span class="heti-spacing"> </span><span class="arithmatex">\(p\)</span><span class="heti-spacing"> </span></span>的大小，在第二张图像中梯度逆转的现象消失了！</p>
+<p><span><span class="arithmatex">\(p&gt;1\)</span><span class="heti-spacing"> </span></span>时不能防止梯度逆转，<span><span class="arithmatex">\(p&lt;1\)</span><span class="heti-spacing"> </span></span>可以<span><span class="heti-spacing"> </span>.</span></p>
 </div>
 <h6 id="outlier-tolerant-filtering">Outlier tolerant filtering</h6>
 <p><span>SNF<span class="heti-spacing"> </span></span>是一类通用的滤波，它包括中值滤波器（<span><span class="arithmatex">\(l^1\)</span><span class="heti-spacing"> </span></span>范式滤波器）这一特殊情况<span><span class="heti-spacing"> </span>(</span>𝑙<span>^1<span class="heti-spacing"> </span></span>范数滤波器<span><span class="heti-spacing"> </span>)</span>。</p>
@@ -1781,7 +1813,7 @@ I_{\mathbf{p}}^{\mathrm{b}}&amp;=\frac{1}{W_{\mathbf{p}}^{\mathrm{b}}}
 </div>
 </div>
 </div>
-<p>如何做运动去模糊？我们首先需要先估计出运动的轨迹（和墙对齐<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，再通过对弧（轨迹）进行去卷积。  </p>
+<p>如何做运动去模糊？我们首先需要先估计出运动的轨迹（和墙对齐<heti-adjacent class="heti-adjacent-half">）</heti-adjacent>，再通过对弧（轨迹）进行去卷积。</p>
 </div>
 <h6 id="joint-filtering">Joint filtering</h6>
 <p>我们可以利用另一个引导图像来提供滤波的引导权重，如将引导图像的色调用到另一张图像上</p>
