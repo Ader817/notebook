@@ -277,6 +277,7 @@ nav:
       - ai/cs224n/peft.md
       - ai/cs224n/rag-agents.md
       - ai/cs224n/benchmark-evaluation.md
+      - ai/cs224n/reasoning.md
     - EECS498:
       - ai/eecs498/index.md
       - ai/eecs498/ch1.md

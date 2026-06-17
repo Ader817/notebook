@@ -14,3 +14,4 @@ Stanford CS224N course notes, split by topic from the local notebook.
 | [PEFT](peft.md) | CS224N notes |
 | [RAG and Language Agents](rag-agents.md) | CS224N notes |
 | [Benchmark and Evaluation](benchmark-evaluation.md) | CS224N notes |
+| [Reasoning](reasoning.md) | CS224N notes |
