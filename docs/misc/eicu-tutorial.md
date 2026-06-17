@@ -38,14 +38,14 @@
   ├── vitalaperiodic.ipynb
   └── vitalperiodic.ipynb
   ```
-  
+
   `notebooks/` 中包含使用 eicu 数据库的示例，示例中主要是通过 **pandas**, **matplotlib**, **sqlite3**, **psycopg2** 库对数据进行简单的处理和绘图展示
-  
-  - `notebooks/demo` 中的几个 ipynb 作为简单的学习示例供使用者学习 eicu 数据库的表格及其处理，文件中还会列举出几个问题帮助思考。
-  
+
+    - `notebooks/demo` 中的几个 ipynb 作为简单的学习示例供使用者学习 eicu 数据库的表格及其处理，文件中还会列举出几个问题帮助思考。
+
     使用前需要从 https://physionet.org/content/eicu-crd-demo/2.0.1/ 中下载一个 **eICU Database demo** （完整数据库中有超过 20 万例入院患者的数据，demo 中只有 2500 余例数据，包含所有表格的 .csv 文件以及对 csv 进行整理制作的 .sqlite3 文件）放在 `demo/` 下
-  
-  - 其他部分的 ipynb 分别是对==完整数据库==中的不同表格的数据处理示例，需要获取完整的数据库（使用可以参考 https://eicu-crd.mit.edu/eicutables/vitalperiodic/）
+
+    - 其他部分的 ipynb 分别是对==完整数据库==中的不同表格的数据处理示例，需要获取完整的数据库（使用可以参考 https://eicu-crd.mit.edu/eicutables/vitalperiodic/）
 
 ## 2 Tables
 
@@ -122,7 +122,7 @@
 - 肝功能：ALT、AST、TBili
 - 肾功能：Creatinine、BUN
 - 血糖：Glucose
-- 炎症标志物：WBC 
+- 炎症标志物：WBC
 
 示例：
 
@@ -180,7 +180,7 @@ Code for "Hypergraph Convolutional Networks for Fine-grained ICU Patient Similar
 
 ### 3.2 YAIB
 
-> YAIB: https://github.com/rvandewater/YAIB#">https://github.com/rvandewater/YAIB#
+> YAIB: [https://github.com/rvandewater/YAIB](https://github.com/rvandewater/YAIB)
 
 🧪Yet Another ICU Benchmark: a holistic framework for the standardization of clinical prediction model experiments. Provide custom datasets, cohorts, prediction tasks, endpoints, preprocessing, and models. Paper: https://arxiv.org/abs/2306.05109
 

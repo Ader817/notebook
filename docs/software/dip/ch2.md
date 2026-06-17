@@ -49,23 +49,25 @@ counter: True
 ## Image binarization
 
 * 设置一个阈值 Threshold，比阈值小的置为 0, 比阈值大的置为 255.
-  
-$$\left\{\begin{matrix}I(x,y)=0\ if\ I(x,y)\leq Threshold \\ I(x,y)=255\ if\ I(x,y)\geq Threshold \end{matrix} \right.$$
 
-* 如何选取合适的 threshold?  
+$$
+\left\{\begin{matrix}I(x,y)=0\ if\ I(x,y)\leq Threshold \\ I(x,y)=255\ if\ I(x,y)\geq Threshold \end{matrix} \right.
+$$
 
-基本思想：将二值化得到的二值图像视为两部分，一部分对应前景（Foreground），另一部分对应背景（Background）。尝试找到一个合适的threshold使得到的前景和背景的内部方差最小，而它们之间的方差则最大。（事实上，这二者是等价的） 
+* 如何选取合适的 threshold?
+
+基本思想：将二值化得到的二值图像视为两部分，一部分对应前景（Foreground），另一部分对应背景（Background）。尝试找到一个合适的threshold使得到的前景和背景的内部方差最小，而它们之间的方差则最大。（事实上，这二者是等价的）
 
 这就是大津算法的思想
 
 **OTSU 大津法**
 
-> 大津法（OTSU）是一种确定图像二值化分割阈值的算法，由日本学者大津于1979年提出。从大津法的原理上来讲，该方法又称作最大类间方差法，因为按照大津法求得的阈值进行图像二值化分割后，前景与背景图像的类间方差最大。 
+> 大津法（OTSU）是一种确定图像二值化分割阈值的算法，由日本学者大津于1979年提出。从大津法的原理上来讲，该方法又称作最大类间方差法，因为按照大津法求得的阈值进行图像二值化分割后，前景与背景图像的类间方差最大。
 
 
 ??? note "原理推导"
     OTSU算法的本质思想就是**最大化类间方差**
-    
+
     从目的来看我们想设置一个阈值$\tau$将图像中的像素分为$A$(大于$\tau$)、$B$(小于$\tau$)两类。那么我们这个阈值的取值范围就是$[0,255]$。这里我们取整数，在这256个数中选取一个作为我们分割图像的阈值
 
     怎么选取这个阈值呢？我们从代码层面来说
@@ -105,7 +107,7 @@ $$\left\{\begin{matrix}I(x,y)=0\ if\ I(x,y)\leq Threshold \\ I(x,y)=255\ if\ I(x
     $$
 
     根据方差的概念，方差的表达式写成：
-    
+
     $$
     \sigma^2 = p_A(k)(m_A(k)-m_G)^2 + p_B(k)(m_B(k)-m_G)^2 \tag{3}
     $$
@@ -118,7 +120,7 @@ $$\left\{\begin{matrix}I(x,y)=0\ if\ I(x,y)\leq Threshold \\ I(x,y)=255\ if\ I(x
 
     其中：
     <div style="display: flex; justify-content: space-around; align-items: center;">
-    $p_A(k) = \Sigma_{i=0}^k p_i$ 
+    $p_A(k) = \Sigma_{i=0}^k p_i$
     $p_B(k) = \Sigma_{i=k+1}^{255} p_i$
     </div>
 
@@ -138,7 +140,7 @@ $$\left\{\begin{matrix}I(x,y)=0\ if\ I(x,y)\leq Threshold \\ I(x,y)=255\ if\ I(x
     \sigma^2 = \frac{(m_G*p_A(k)-m)^2}{p_A(k)(1-p_A(k))} \tag{5}
     $$
 
-* 过程简述  
+* 过程简述
     * Step 1: 确定原始图像中像素灰度的最大值和最小值；
     * Step 2: 最小值加 1 作为 threshold 对原始图像进行二值化操作；
     * Step 3: 根据对应关系确定前景和背景，分别计算当前 threshold 下的内部协方差和外部协方差；（算一个就可以了）
@@ -162,20 +164,20 @@ $$\left\{\begin{matrix}I(x,y)=0\ if\ I(x,y)\leq Threshold \\ I(x,y)=255\ if\ I(x
 
 ### Morphology
 
-* 形态学 Morphology  
+* 形态学 Morphology
 
     1960s 后期提出，研究动植物的结构与形态。形态学一般指生物学中研究动物和植物结构的一个分支
 
-* 数学形态学 Mathematical morphology  
+* 数学形态学 Mathematical morphology
 
     基础理论：集合论。采用一种简单的非线性代数算子，主要用于二值图像，可扩展到灰度图像。用在噪声过滤、形状简化、细化、分割、物体描述等
 
-用数学形态学（也称图像代数）表示以形态为基础对图像进行分析的数学工具  
+用数学形态学（也称图像代数）表示以形态为基础对图像进行分析的数学工具
 
-* 基本思想是用具有一定形态的**结构元素(structure element)** 去度量和提取图像中的对应形状以达到对图像分析和识别的目的。  
-* 形态学图像处理的数学基础和所用语言是**集合论**。  
+* 基本思想是用具有一定形态的**结构元素(structure element)** 去度量和提取图像中的对应形状以达到对图像分析和识别的目的。
+* 形态学图像处理的数学基础和所用语言是**集合论**。
 * 形态学图像处理的应用可以简化图像数据，保持它们基本的形状特性，并除去不相干结构。
-* 形态学图像处理的基本运算有4个：**膨胀、腐蚀、开操作和闭操作**  
+* 形态学图像处理的基本运算有4个：**膨胀、腐蚀、开操作和闭操作**
 
 ---
 
@@ -231,11 +233,13 @@ $$
 
 同理
 
-$A$: Binary image  
+$A$: Binary image
 
-$B$: binary template,  structure element  
+$B$: binary template,  structure element
 
-$$A\ominus B=\{(x,y)|(B)_{xy}\subseteq A\}$$  
+$$
+A\ominus B=\{(x,y)|(B)_{xy}\subseteq A\}
+$$
 
 Physical meaning: remove boundary, remove unwanted small objects.
 
@@ -277,12 +281,12 @@ Physical meaning: remove boundary, remove unwanted small objects.
 **接下来我们对膨胀和腐蚀做一个小的总结：**
 
 !!! Summary "Dilation and Erosion"
-    * 膨胀  
+    * 膨胀
     由B对A膨胀所产生的二值图像D是满足以下条件的点(x,y)的集合：如果B的原点平移到点(x,y)，那么它与A的交集非空。
-    * 腐蚀  
+    * 腐蚀
     由B对A腐蚀所产生的二值图像E是满足以下条件的点(x,y)的集合：如果B的原点平移到点(x,y)，那么B将完全包含于A中
-    * 膨胀与腐蚀是对偶的  
-    $(A\ominus B)^c=\{z|(B_z)\subseteq A\}^c=\{z|(B_z)\cap A=\varnothing\}^c=\{z|(B_z)\cap A^c \neq \varnothing\}=A^c\oplus B$  
+    * 膨胀与腐蚀是对偶的
+    $(A\ominus B)^c=\{z|(B_z)\subseteq A\}^c=\{z|(B_z)\cap A=\varnothing\}^c=\{z|(B_z)\cap A^c \neq \varnothing\}=A^c\oplus B$
 
 ---
 
@@ -301,7 +305,7 @@ Remove small objects, segment object at thin part, smooth boundary of large obje
 ### 闭运算 | Close
 
 先膨胀，后腐蚀
-$A \bullet B =(A\oplus B)\ominus B$  
+$A \bullet B =(A\oplus B)\ominus B$
 
 Fill small holes, connect the neighboring objects, smooth boundary while preserving the area at most.
 

@@ -26,7 +26,7 @@
 
 ## [Week1] Base
 
-显然是一串 Base 系列编码后的字符串，直接丢到 Cyberchef 中 ~~magic~~ 一下就拿到了 flag 
+显然是一串 Base 系列编码后的字符串，直接丢到 Cyberchef 中 ~~magic~~ 一下就拿到了 flag
 
 
 
@@ -126,32 +126,32 @@ flag 的前 9 个字符的大写必须是 'BASECTF{S'
 if not flag[-11].isnumeric() or int(flag[-11]) ** 5 != 1024:
 ```
 flag 的倒数第 11 个字符必须是一个数字，并且它的 5 次方为 1024，即 4。
-    
+
 11. Base64 编码检查：
 ```python
 if base64.b64encode(flag[-7:-3].encode()) != b'MG1QbA==':
 ```
 flag 的倒数第 7 到第 3 个字符（不含倒数第 3 个）Base64 编码后应为 'MG1QbA=='，即 'G1Pa'。
-    
+
 12. 逆序步长检查：
 ```python
 if flag[::-7].encode().hex() != '7d4372733173':
 ```
 逆序每 7 个字符的ASCII码十六进制表示为 '7d4372733173',即'}Crs1s'
-    
+
 
 13. 特定集合检查：
 ```python
 if set(flag[12::11]) != {'l', 'r'}:
 ```
 从索引 12 开始，每 11 个字符取一个，结果的集合应为 {'l', 'r'}。
-    
+
 14. 字节序列检查：
 ```python
 if flag[21:27].encode() != bytes([116, 51, 114, 95, 84, 104]):
 ```
 索引 21 到 26 的子字符串的字节序列应为 [116, 51, 114, 95, 84, 104]，即 't3r_Th'。
-    
+
 15. 累加校验：
 ```python
 if sum(ord(c) * 2024_08_15 ** idx for idx, c in enumerate(flag[17:20])) != 41378751114180610:
@@ -174,7 +174,7 @@ for i in range(128):
 if not all([flag[0].isalpha(), flag[8].islower(), flag[13].isdigit()]):
 ```
 索引 0 的字符应为字母，索引 8 的字符应为小写字母，索引 13 的字符应为数字。
-    
+
 17. 格式化检查：
 ```python
 if '{whats} {up}'.format(whats=flag[13], up=flag[15]).replace('3', 'bro') != 'bro 1':
@@ -278,11 +278,11 @@ print (base64.b64decode(string.translate(str.maketrans(intab,outtab))).decode())
  ```plaintexst
  hS5VZPaBjN4IU6G2VFqZqNG-tPrJm64NgMKQuEa3nNIBIFbh0MLBZEpF4LqZn
  9LpBjLoRjPqEV6Lo+
- 
+
  question        response
- 
- Base64?         X     
- Base32?         X       
+
+ Base64?         X
+ Base32?         X
  ```
 
 利用自动编解码识别工具可知这是 **xxencode** 编码，可能题目中 Base64 和 Base32 的 Response "X" 就是告诉这段编码并非传统意义上的 Base64（Base32)，还是有点难想到的
@@ -360,8 +360,8 @@ with open('data.png','wb') as f:
 4. 使用 binwalk 检查文件末尾是否叠加了多余的文件
 
 5. 使用 stegsolve 打开图片 / 或者使用 CyberChef
-  - 观察各个通道的 bit plane
-  - 使用 Extract LSB 尝试提取数据格式的 LSB（或者使用 zsteg 猜测）
+    - 观察各个通道的 bit plane
+    - 使用 Extract LSB 尝试提取数据格式的 LSB（或者使用 zsteg 猜测）
 
 6. 考虑能否查找原图，如果找到了尝试进行比较
 
@@ -405,7 +405,7 @@ Wireshark 是强大的网络数据捕获与分析工具
 
 尝试使用 Ba3eBa3e!@#成功解密压缩包
 
-可以看一下整体数据包流量： 一直到流15 攻击者爆破ftp服务密码 用户名为admin 密码为Ba3eBa3e!@# 流16 攻击者拿着爆破成功的密码去登陆ftp服务器 执行了 dir 命令 获取了ftp共享服务目录 发现flag.zip 然后 download 下载了文件 
+可以看一下整体数据包流量： 一直到流15 攻击者爆破ftp服务密码 用户名为admin 密码为Ba3eBa3e!@# 流16 攻击者拿着爆破成功的密码去登陆ftp服务器 执行了 dir 命令 获取了ftp共享服务目录 发现flag.zip 然后 download 下载了文件
 
 
 
@@ -465,19 +465,17 @@ with open('data.zip','wb') as f:
 
 - 目录结构：解压 DOCX 文件后，可以看到一个包含多个 XML 文件和资源（如图片、字体等）的文件夹结构。常见的目录结构如下：
 
-  - ```
-    word/：包含文档的主要内容和设置。
-    ```
+    - `word/`：包含文档的主要内容和设置。
 
     - `document.xml`：存储文档的主要内容（文本）。
     - `styles.xml`：定义文档中的样式信息（字体、段落样式等）。
     - `header1.xml`, `footer1.xml`：存储文档的页眉和页脚。
 
-  - `_rels/`：包含关系文件，定义各个 XML 文件和资源之间的关系。
+    - `_rels/`：包含关系文件，定义各个 XML 文件和资源之间的关系。
 
-  - `docProps/`：包含文档的属性（如标题、作者、创建时间等）。
+    - `docProps/`：包含文档的属性（如标题、作者、创建时间等）。
 
-  - `[Content_Types].xml`：描述了文档中所有文件的 MIME 类型。
+    - `[Content_Types].xml`：描述了文档中所有文件的 MIME 类型。
 
 **解析 DOCX 的 XML 文件**：
 
@@ -510,7 +508,7 @@ with open('data.zip','wb') as f:
 ```python
 import re
 
-path = './base_revenge.txt'  
+path = './base_revenge.txt'
 b64char = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'
 with open(path, 'r')as f:
 	cipher = [i.strip() for i in f.readlines()]
@@ -560,7 +558,7 @@ image_result = Image.fromarray(result_data)
 image_result.save('flag.png')
 ```
 
-## [Week3] 
+## [Week3]
 
 ## [Week4] 二维码2-阿喀琉斯之踵
 

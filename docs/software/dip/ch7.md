@@ -70,11 +70,13 @@ $$
 E(u, v) = \sum\limits_{(x, y) \in W}[I(x + u, y + v) - I(x, y)]^2
 $$
 
+
 强度$I$（像素值）的泰勒级数展开：
 
 $$
 I(x + u, y + v) = I(x, y) + \dfrac{\partial I}{\partial x}u + \dfrac{\partial I}{\partial y}v + \text{high order terms}
 $$
+
 
 如果移动量$(u, v)$很小，那么只需要一阶展开即可，后面的高阶项直接扔掉，即：
 
@@ -84,6 +86,7 @@ I(x + u, y + v) & \approx I(x, y) + \dfrac{\partial I}{\partial x}u + \dfrac{\pa
 & \approx I(x, y) + \begin{bmatrix}I_x & I_y\end{bmatrix} \begin{bmatrix}u \\ v\end{bmatrix} \notag
 \end{align}
 $$
+
 
 这里记$I_x = \dfrac{\partial I}{\partial x}, I_y = \dfrac{\partial I}{\partial y}$。
 
@@ -97,6 +100,7 @@ E(u, v) & = \sum\limits_{(x, y) \in W}[I(x + u, y + v) - I(x, y)]^2 \notag \\
 \end{align}
 $$
 
+
 最后得到的矩阵$H$相当有用：我们可以利用它的**特征值**(eigenvalue)和**特征向量**(eigenvector)来寻找某个窗口移动范围（一个圆圈）内误差的最值。
 
 ??? info "快速回顾：特征值&特征向量"
@@ -109,6 +113,7 @@ $$
     A \xi = \lambda \xi
     $$
 
+
     特征向量$\xi$对应的特征值$\lambda$是一个标量，满足：$det(A - \lambda I) = 0$，其中$det$为行列式，$I$为单位矩阵。
 
     对于一个$2 \times 2$的矩阵$A = \begin{bmatrix}h_{11} & h_{12} \\ h_{21} & h_{22}\end{bmatrix}$，可以解得：
@@ -117,11 +122,13 @@ $$
     \lambda_{\pm} = \dfrac{1}{2}[(h_{11} + h_{22}) \pm \sqrt{4h_{12}h_{21} + (h_{11} - h_{22})^2}]
     $$
 
+
     若特征向量为$\xi = \begin{bmatrix}x \\ y\end{bmatrix}$，那么可以用下面的公式算出$\xi$：
 
     $$
     \begin{bmatrix}h_{11} - \lambda & h_{12} \\ h_{21} & h_{22} - \lambda\end{bmatrix} \begin{bmatrix}x \\ y\end{bmatrix} = 0
     $$
+
 
 规定：
 
@@ -139,6 +146,7 @@ $$
 $$
 Hx_+ = \lambda_+ x_+ \quad \quad Hx_- = \lambda_- x_-
 $$
+
 
 因为$H$是一个对称矩阵，那么$H = R^{-1} \begin{bmatrix}\lambda_1 & 0 \\ 0 & \lambda_2\end{bmatrix} R$。
 
@@ -171,6 +179,7 @@ $$
         & = \dfrac{\text{determinant}(H)}{\text{trace}(H)} \notag
         \end{align}
         $$
+
 
         - **迹**(trace)是矩阵主对角线元素之和，比如对于$2 \times 2$的矩阵，$\text{trace}(H) = h_{11} + h_{22}$
         - $f$称为**哈里斯算子**(Harris operator)，其值与$\lambda_-$非常接近，但是前者的计算成本更低（没有平方根）
@@ -219,7 +228,7 @@ $$
 
     <div style="text-align: center">
         <img src="../images/ch7/14.png" width="50%">
-    </div>   
+    </div>
 
 - **加法和数乘光强**(intensity)改变具备部分的不变性
     - 光强移动：$I \rightarrow I + b$
@@ -227,7 +236,7 @@ $$
 
     <div style="text-align: center">
         <img src="../images/ch7/16.png" width="60%">
-    </div>  
+    </div>
 
 - 仿射不变性
 
@@ -235,7 +244,7 @@ $$
 
     <div style="text-align: center">
         <img src="../images/ch7/15.png" width="50%">
-    </div>   
+    </div>
 
     - 不同尺度比率下的哈里斯检测器的效果
 
@@ -248,7 +257,7 @@ $$
 
     <div style="text-align: center">
         <img src="../images/ch7/17.png" width="50%">
-    </div> 
+    </div>
 
     可以看到，虽然这两幅图的尺度比例不同，但是左图最大的区域在图像中的比例和右图区域在图像中的比例看起来是一样的。
 
@@ -291,7 +300,7 @@ $$
 <div style="text-align: center">
     <img src="../images/ch7/29.png" width="50%">
 </div>
-   
+
 假设我们比较图像$I_1$和$I_2$，且$I_2$是$I_1$变换版本。无论它们之间发生何种变换，我们希望找到这两幅图相同的特征点，这称为**变换不变性**(transformational invariance)。有很多的特征方法可以处理平移、二维旋转、尺度等变换的不变性，甚至可以处理局部的三维旋转、仿射变换、亮度/对比度改变等。
 
 ---
@@ -304,7 +313,7 @@ $$
 - 这两种算法的思路大致相同：$f = \text{Kernel} \times \text{Image}$，且它们的核在尺度和旋转过程中保持不变
 - 但是它们的核(kernel)（或窗口）的计算方法不太一样：
     - 拉普拉斯算法：$L = \sigma^2(G_{xx}(x, y, \sigma) + G_{yy}(x, y, \sigma))$
-    - 高斯函数差(DoG)：$DoG = G(x, y, k \sigma) - G(x, y, \sigma)$ 
+    - 高斯函数差(DoG)：$DoG = G(x, y, k \sigma) - G(x, y, \sigma)$
     - 其中高斯函数为$G(x, y, \sigma) = \dfrac{1}{\sqrt{2 \pi} \sigma} e^{-\frac{x^2 + y^2}{2 \sigma^2}}$
 
 
@@ -363,12 +372,12 @@ $$
         - 根据剩余边的方向创建一张直方图：
             - 将$16 \times 16$的窗口分为$4 \times 4$的小块
             - 对每个小块计算方向的直方图
-            - 16个小块 * 8个方向 = 128维的描述器  
-            - 最后需要对图像进行归一化，以减小亮度改变对图像的影响   
+            - 16个小块 * 8个方向 = 128维的描述器
+            - 最后需要对图像进行归一化，以减小亮度改变对图像的影响
 
         <div style="text-align: center">
             <img src="../images/ch7/31.png" width="80%">
-        </div>  
+        </div>
 
 ??? example "例子"
 
@@ -376,11 +385,11 @@ $$
 
     <div style="text-align: center">
         <img src="../images/ch7/32.png" width="60%">
-    </div>  
+    </div>
 
     <div style="text-align: center">
         <img src="../images/ch7/33.png" width="70%">
-    </div>   
+    </div>
 
 ???+ abstract "SIFT的优缺点"
 
@@ -406,20 +415,21 @@ $$
 
         <div style="text-align: center">
             <img src="../images/ch7/34.png" width="40%">
-        </div> 
+        </div>
 
         - 像素点$(x, y)$与原点间矩形区域的像素和：$S(x, y) = \sum \sum I(x, y)$
         - 对于图像上任意矩形区域（如上图的矩形ABDC），计算公式为（$(l, t)$和$(r, b)$分别为矩形左上角和右下角的像素点坐标值）（能在$O(1)$时间内完成计算！）：
 
         $$
         V(l, t, r, b) = S(l, t) + S(r, b) - S(l, b) - S(r, t)
-        $$   
+        $$
+
 
     - 应用**二阶导数滤波器**（可近似）对图像进行滤波操作
 
         <div style="text-align: center">
             <img src="../images/ch7/35.png" width="70%">
-        </div> 
+        </div>
 
         - 改变尺度：积分图像允许我们能提高滤波器的采样率
 
@@ -449,6 +459,7 @@ $$
         $$
         \dfrac{\partial H}{\partial x} = \begin{bmatrix}d_x \\ d_y \\ d_s\end{bmatrix} \quad \quad \dfrac{\partial^2 H}{\partial x^2} = \begin{bmatrix}d_{xx} & d_{yx} & d_{sx} \\ d_{xy} & d_{yy} & d_{sy} \\ d_{xs} & d_{ys} & d_{ss}\end{bmatrix}
         $$
+
 
 - 兴趣点**描述器**(interest point descriptor)：
     - 将窗口划分为$4 \times 4 = 16$个小窗口
@@ -625,16 +636,16 @@ RANSAC的优缺点：
     - 上采样：将高斯金字塔的下一层图像$G_{i+1}$上采样至与当前层$G_i$相同的尺寸
     - 计算差值：通过从当前层$G_i$减去上采样图像得到拉普拉斯金字塔的当前层$L_i$
     - 保存最低层：金字塔的最低层直接保存高斯金字塔的最低分辨率图像，用作重建基础
-​
 
- 用公式表示上述过程为：
+用公式表示上述过程为：
 
- $$
- \begin{align}
- G_{i+1}(x, y) & = \text{Downsample}(\text{GaussianBlur}(G_i(x, y))) \notag \\
- L_i(x, y) & = G_i(x, y) - \text{Upsample}(G_{i+1}(x, y)) \notag 
- \end{align}
- $$
+$$
+\begin{align}
+G_{i+1}(x, y) & = \text{Downsample}(\text{GaussianBlur}(G_i(x, y))) \notag \\
+L_i(x, y) & = G_i(x, y) - \text{Upsample}(G_{i+1}(x, y)) \notag
+\end{align}
+$$
+
 
 <div style="text-align: center">
     <img src="../images/ch7/55.png" width="47.5%">
