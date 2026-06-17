@@ -22,21 +22,21 @@
 ## CoT
 
 - CoT (Chain of Thought)
-  - Few-Shot-CoT
-  - Zero-Shot-CoT (simply adding "Let's think step by step")
+    - Few-Shot-CoT
+    - Zero-Shot-CoT (simply adding "Let's think step by step")
 
 - Self-Consistency
-  - one improved version of CoT
-  - Sample a diverse set of reasoning paths
-  - Marginialize out reasoning paths to aggregate final answers
+    - one improved version of CoT
+    - Sample a diverse set of reasoning paths
+    - Marginalize out reasoning paths to aggregate final answers
 - LtM (Least-to-Most Prompting)
-  - one improved version of CoT
-  - intended to address the issue of insufficient generalization ability in CoT
-  - Problem Reducing -> Sequentially Solve Subquestions
+    - one improved version of CoT
+    - intended to address the issue of insufficient generalization ability in CoT
+    - Problem Reducing -> Sequentially Solve Subquestions
 - ToT (Tree of Thoughts)
-  - ![image-20260409153952664](./assets/image-20260409153952664.png)
+    - ![image-20260409153952664](./assets/image-20260409153952664.png)
 - Step-Back Prompting
-  - Abstraction first to find the basic priciples or concepts behinid the problem -> Reasoning with the principles
+    - Abstraction first to find the basic principles or concepts behind the problem -> Reasoning with the principles
 
 ## RAG
 
@@ -54,7 +54,7 @@ No need to integrate outer knowledge, GKP generate knowledge from LLM with few-s
 
 ## APE
 
-APE (Automatic Prompt Engineer): Using LLM to automatically generate, evaluate, and optimize prompts 
+APE (Automatic Prompt Engineer): Using LLM to automatically generate, evaluate, and optimize prompts
 
 The main processes are:
 

@@ -29,11 +29,11 @@ RAG 的基本思想是：不要要求 language model 把所有知识都存在参
 RAG 的优点：
 
 - **Dynamic**
-  - 文档库可以更新，不一定要重新训练模型
+    - 文档库可以更新，不一定要重新训练模型
 - **Interpretable**
-  - retrieved documents 可以作为 evidence / citation
+    - retrieved documents 可以作为 evidence / citation
 - **Knowledge efficient**
-  - 减少模型单纯依赖 parametric memory 的压力
+    - 减少模型单纯依赖 parametric memory 的压力
 
 !!! important
 
@@ -58,12 +58,12 @@ $$
 其中：
 
 - **Retriever**
-  - 找出和 query 最相关的 passages
-  - 可以是 sparse retrieval，例如 TF-IDF / BM25
-  - 也可以是 dense retrieval，例如 DPR / embedding search
+    - 找出和 query 最相关的 passages
+    - 可以是 sparse retrieval，例如 TF-IDF / BM25
+    - 也可以是 dense retrieval，例如 DPR / embedding search
 - **Reader / Generator**
-  - 基于 retrieved passages 生成最终答案
-  - 现在常用 instruction-tuned LLM 直接完成这一步
+    - 基于 retrieved passages 生成最终答案
+    - 现在常用 instruction-tuned LLM 直接完成这一步
 
 !!! tip
 
@@ -76,13 +76,13 @@ RAG 不是简单地“接上搜索引擎就解决 hallucination”。
 几个常见问题：
 
 - **Retriever recall**
-  - relevant document 没被找回来，答案就会缺 evidence
+    - relevant document 没被找回来，答案就会缺 evidence
 - **Long-context utilization**
-  - 即使放入很多文档，模型也不一定真正使用关键信息
+    - 即使放入很多文档，模型也不一定真正使用关键信息
 - **Citation hallucination**
-  - 模型可能生成看起来合理但并不支持答案的 citation
+    - 模型可能生成看起来合理但并不支持答案的 citation
 - **Context saturation**
-  - 加更多 retrieved passages 不一定持续提升效果，甚至可能引入噪声
+    - 加更多 retrieved passages 不一定持续提升效果，甚至可能引入噪声
 
 ## Language Agents
 
@@ -93,38 +93,38 @@ Agent 的核心区别在于：模型不只是输出文本，还可以根据 obse
 一个 language agent 通常包含：
 
 - **LLM Core**
-  - 负责理解任务、规划、生成下一步动作
+    - 负责理解任务、规划、生成下一步动作
 - **Planning and Reasoning**
-  - 把复杂任务拆成多个 steps
+    - 把复杂任务拆成多个 steps
 - **Memory**
-  - 存储经验、知识或长期偏好
+    - 存储经验、知识或长期偏好
 - **Tools**
-  - 调用 retrieval、calculator、code interpreter、browser、API 等
+    - 调用 retrieval、calculator、code interpreter、browser、API 等
 - **Environment**
-  - agent 执行动作并获得 observation 的外部世界
+    - agent 执行动作并获得 observation 的外部世界
 
 ## Reasoning, memory, and tools
 
 几个代表性方向：
 
 - **ReAct**
-  - interleave reasoning and acting
-  - 每一步可以先思考，再调用工具，再根据 observation 更新下一步
+    - interleave reasoning and acting
+    - 每一步可以先思考，再调用工具，再根据 observation 更新下一步
 - **Self-consistency**
-  - 采样多条 reasoning paths，再聚合答案
+    - 采样多条 reasoning paths，再聚合答案
 - **Reflexion**
-  - 把失败经验转化为 natural language feedback，作为后续尝试的 memory
+    - 把失败经验转化为 natural language feedback，作为后续尝试的 memory
 - **Tool use**
-  - 让模型学习什么时候调用工具，以及如何组织 tool input / output
+    - 让模型学习什么时候调用工具，以及如何组织 tool input / output
 
 Memory 可以粗略分成：
 
 - **Episodic memory**
-  - 过去发生过的 experiences
+    - 过去发生过的 experiences
 - **Semantic memory**
-  - facts / knowledge
+    - facts / knowledge
 - **Procedural memory**
-  - skills / procedures
+    - skills / procedures
 
 ## Summary of RAG and Agents
 

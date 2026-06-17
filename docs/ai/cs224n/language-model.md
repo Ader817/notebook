@@ -5,9 +5,11 @@
 **Language Modeling** is the task of predicting what word comes next
 
 More formally: given a sequence of words $x^{(1)}, x^{(2)}, x^{(3)} ..., x^{(t)}$, compute the probablity distribution of the next word $x^{(t+1)}$:
+
 $$
 P(x^{(t+1)} | x^{(t)},...,x^{(1)})
 $$
+
 And a system that does this is called a **Language Model**
 
 !!! note
@@ -41,8 +43,6 @@ Definition: An **n-gram** is a chunk of n consecutive words.
 
     - 神经网络模型不是直接查 count，而是学习词向量和参数
     - 因此即使没见过例如 students opened their laptops 的完整短语，它也可能见过类似 students opened their books, students used their laptops 的表达，因为 books、laptops 这些词向量空间中可能存在一定的相似性，所以模型可以泛化
-
- 
 
 ### fixed-window neural Language Model
 
@@ -96,18 +96,25 @@ Sequence-to-sequence is useful for more than just MT, Many NLP tasks can be phra
 !!! important
 
     机器翻译中建模的是：
+
     $$
     P(y\;| \;x)
     $$
+
     例如：
+
     $$
     x = \text{“我喜欢学习自然语言处理”}
     $$
+
     那么 NMT 模型想学的是：
+
     $$
     P(\text{I like studying natural language processing} \mid \text{我喜欢学习自然语言处理})
     $$
+
     也就是：**给定中文句子，英文翻译是这句话的概率有多大**，那么有
+
     $$
     P(y\mid x)
     =
@@ -118,16 +125,21 @@ Sequence-to-sequence is useful for more than just MT, Many NLP tasks can be phra
     P(y_T\mid y_1,\dots,y_{T-1},x)
     $$
 
+
     ---
 
     而普通 language model 建模的是：
+
     $$
     P(y)
     $$
+
     比如：
+
     $$
     P(y)=P(y_1)P(y_2\mid y_1)P(y_3\mid y_1,y_2)\cdots
     $$
+
     它只关心：这个英文句子本身像不像自然语言，但是 NMT 是条件语言模型，它要求英文句子不仅要自然，而且要是源句子 $x$ 的合理翻译。
 
 ![image-20260528172013045](./assets/image-20260528172013045.png)
@@ -135,6 +147,7 @@ Sequence-to-sequence is useful for more than just MT, Many NLP tasks can be phra
 早期 encoder-decoder 模型通常把整个源句子的含义压缩到 encoder 最后的 hidden state 里，然后 decoder 靠这个状态来生成翻译。
 
 也就是：
+
 $$
 x_1,\dots,x_T
 \rightarrow
@@ -142,6 +155,7 @@ x_1,\dots,x_T
 \rightarrow
 y_1,\dots,y_T
 $$
+
 问题是：**整个源句子的信息都要挤进一个固定长度的向量里**
 
 句子短的时候还好；句子很长的时候，encoder 最后的 hidden state 很难完整保留前面所有细节。
@@ -150,4 +164,4 @@ $$
 
 后来的 attention 在这一方面是这样改进的：
 
-> decoder 在每一步生成词时，不只看 encoder 的最后状态，而是可以回头看 encoder 每个位置的 hidden state；从**只看一个最终向量** --> **每一步都可以对源句子不同位置分配注意力**
+> decoder 在每一步生成词时，不只看 encoder 的最后状态，而是可以回头看 encoder 每个位置的 hidden state；从 **只看一个最终向量** --> **每一步都可以对源句子不同位置分配注意力**

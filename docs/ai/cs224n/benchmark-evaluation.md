@@ -21,13 +21,13 @@ Benchmarks 的作用是给模型能力提供一个可比较的标准。
 ![benchmark-good-benchmarks-15](./assets/benchmark-good-benchmarks-15.png)
 
 - **Scale and diversity**
-  - 覆盖足够多的任务类型和语言现象
+    - 覆盖足够多的任务类型和语言现象
 - **Difficulty**
-  - 对人类或专家可解，但对当前 SOTA 仍有挑战
+    - 对人类或专家可解，但对当前 SOTA 仍有挑战
 - **Quality**
-  - 题目和答案本身不能有明显错误
+    - 题目和答案本身不能有明显错误
 - **No spurious bias**
-  - 模型不能靠 shortcut / annotation artifact 得高分
+    - 模型不能靠 shortcut / annotation artifact 得高分
 
 !!! important
 
@@ -57,13 +57,13 @@ $$
 ![benchmark-classical-metrics-35](./assets/benchmark-classical-metrics-35.png)
 
 - **BLEU**
-  - precision-oriented n-gram overlap
-  - 常用于 machine translation
+    - precision-oriented n-gram overlap
+    - 常用于 machine translation
 - **ROUGE**
-  - recall-oriented overlap
-  - 常用于 summarization
+    - recall-oriented overlap
+    - 常用于 summarization
 - **METEOR / CIDEr / TER / WER**
-  - 从不同角度衡量 overlap、edit distance 或错误率
+    - 从不同角度衡量 overlap、edit distance 或错误率
 
 这些指标的共同问题是：主要看 surface overlap，不一定理解语义。
 
@@ -78,11 +78,11 @@ $$
 为了弥补 classical metrics 的限制，可以使用 model-based metrics：
 
 - **BERTScore**
-  - 用 contextual embeddings 比较 candidate 和 reference
+    - 用 contextual embeddings 比较 candidate 和 reference
 - **BLEURT / COMET**
-  - 用训练过的模型预测 human judgment
+    - 用训练过的模型预测 human judgment
 - **FActScore / SelfCheckGPT / G-Eval**
-  - 更关注 factuality、consistency 或 reference-free evaluation
+    - 更关注 factuality、consistency 或 reference-free evaluation
 
 但 model-based metrics 也有问题：
 
