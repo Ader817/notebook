@@ -30,7 +30,7 @@ counter: True
     Order Property – the same
     Structure Property – binary tree, but unbalanced
 
-左偏堆(Leftlist Heap)也是一颗二叉树，不仅具有堆的性质，并且是 **「左偏」** 的，但是由于它并不再是一颗完全二叉树，所以不能像维护大小堆一样用数组来维护它
+左偏堆(Leftist Heap)也是一颗二叉树，不仅具有堆的性质，并且是 **「左偏」** 的，但是由于它并不再是一颗完全二叉树，所以不能像维护大小堆一样用数组来维护它
 
 !!! question "Why arrays?"
     这里提一嘴为什么堆会用数组存储，使用数组来存储堆的节点信息，有一种天然的优势那就是节省内存空间。因为数组占用的是连续的内存空间，相对于散列存储的结构来说，数组可以节省连续的内存空间，不会将内存打乱。
@@ -62,8 +62,8 @@ struct LeftistHeapNode {
 !!! property "properties"
     1. 结点的 $dist$ 等于 $dist_\text{right child} + 1$（假设 $dist_\text{NULL} = -1$）；或者可以说结点的 $dist$ 就是最右路径的节点数
     2. 如果 $dist_i = N$，则以 $i$ 为根的子树**至少**是一个 $N+1$ 层的完美二叉树，至少有 $2^{N+1}-1$ 个结点
-    3. 最右路径有 r 个节点的左斜堆至少有$2^r - 1$个节点 / 有 N 个节点的左斜堆的最右路径最多有 $\log_2(N+1)$ 个节点 
-    
+    3. 最右路径有 r 个节点的左斜堆至少有$2^r - 1$个节点 / 有 N 个节点的左斜堆的最右路径最多有 $\log_2(N+1)$ 个节点
+
     其中命题 2 和命题 3 事实上是等价的
 
     ??? proof "证明"
@@ -71,9 +71,9 @@ struct LeftistHeapNode {
         我们用数学归纳法加以证明：
 
         1. 若 r = 1，最右路径有1个节点，命题成立；
-   
+
         2. 假设命题对于2,3,4,5,....r均成立，考虑左斜堆最右路径具有 r+1 个节点的情况：根节点的右孩子的最右路径有 r 个节点，右孩子树至少有$2^r - 1$个节点；左孩子的最右路径也至少要有 r 个节点才能满足根节点的左倾性质，因此左孩子树也至少要有$2^r - 1$个节点；因此根节点的这棵树至少有$2*(2^r - 1) + 1 = 2^{r+1} - 1$个节点
-   
+
         所以这个定理成立，其实也就可以证明合并的操作是 $log(n)$ 级别的
     ![](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/img/22.svg){width=49%}
     ![](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/img/23.svg){width=43%}
@@ -103,15 +103,15 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
     // Recursive exit. If any is NULL, return the other as the new root of subtree.
     if (x == NULL) return y;
     if (y == NULL) return x;
-    
+
     // If `x`'s val is smaller than `y`'s, swap them, which means we always operates on `x`.
     if (x->val > y->val) {
         swap(x, y);
     }
-    
+
     // Merge `x`'s right subtree and `y`, and set `x`'s right subtree to the result.
     x->rs = merge(x->rs, y);
-    
+
     // If `x`'s left subtree's dist is smaller than `x`'s right subtree's dist, swap them.
     if (x->ls->dist == NULL || x->ls->dist < x->rs->dist) {
         swap(x->ls, x->rs);
@@ -153,9 +153,9 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
         这里也跳过了两个步骤：
 
         往回走，发现 <font color=#2ECC71>**❺**</font> 的 dist 小于 <font color=#2E86C1>**❹**</font> 的 dist，满足性质，不需要改变。
-        
+
         继续往回走，发现 <font color=#2ECC71>**❷**</font> 和 <font color=#2E86C1>**❸**</font> 的 dist 相同，满足性质，也不需要改变。
-        
+
         从这里也可以看出来，并不是看上去更大的子树一定在左侧。
 ---
 
@@ -172,12 +172,12 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
     LeftistHeapNode * res = NULL, * cur = NULL;
 
     // Begin merging.
-    whie (tx != NULL && ty != NULL) {
+    while (tx != NULL && ty != NULL) {
         // If `tx`'s val is smaller than `ty`'s, swap them, which means we always operates on `tx`.
         if (tx->val > ty->val) {
             swap(tx, ty);
         }
-        
+
         // Specially mark the root on the first merge.
         if (res == NULL) {
             res = tx;
@@ -206,7 +206,7 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
         ty = ty->rs;
     }
 
-    // Adjust the left and right subtrees of all the nodes according to the properties of `dist`. 
+    // Adjust the left and right subtrees of all the nodes according to the properties of `dist`.
     // It does the same work as the adjust part in the recursive version. I ignore it here.
     res = adjust(res);
 
@@ -263,7 +263,7 @@ LeftistHeapNode * merge(LeftistHeapNode * x, LeftistHeapNode * y) {
 
         在这张图中，我们得到的两个**有序**数组分别是 <font color=#2ECC71>[1, 5]</font> 和 <font color=#2E86C1>[2, 6]</font>，接下来我们将它们进行排序。
     === "Frame 2"
-        ![](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/img/38.svg) 
+        ![](https://note.isshikih.top/cour_note/D2CX_AdvancedDataStructure/img/38.svg)
 
         经过排序，就会发现它们刚好符合我们在上面步骤得到的结果（可以对比着上面的 Frame 4 看）。实际上，只要你回顾一下归并排序的过程，再对比着看上面的过程，就会发现一模一样。
 
@@ -304,7 +304,7 @@ LeftistHeapNode * del(LeftistHeapNode * cur, ElementType x) {
 ---
 
 ## Skew Heap
-!!! quote "link" 
+!!! quote "link"
     Wikipedia: https://en.wikipedia.org/wiki/Skew_heap
 
 ---
@@ -328,11 +328,11 @@ Skew Heap 是一种具有堆性质的二叉树，但是并没有像 Leftist Heap
 
 !!! eg "🌰 from wikipedia"
     === "Frame 0"
-        ![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/19/SkewHeapMerge1.svg/540px-SkewHeapMerge1.svg.png)
+        ![](assets/ch4/skew-heap-merge-1.svg)
 
         这是我们需要合并的两个堆。
     === "Frame 1"
-        ![](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/SkewHeapMerge7.svg/1280px-SkewHeapMerge7.svg.png){width=40%}
+        ![](assets/ch4/skew-heap-merge-7.svg){width=40%}
 
         省略了中间的步骤，可以尝试模拟一下，每一次合并操作结束之后都交换左右子树。
 
@@ -361,7 +361,7 @@ Skew Heap 是一种具有堆性质的二叉树，但是并没有像 Leftist Heap
 其中，额外需要定义 heavy node 和 light node：
 
 !!! definition "heavy node & light node"
-    对于一个子堆 $H$，如果 $size(H.\text{right.descendant}) \geq \frac{1}{2}size(H)$，则 $H$ 是 heavy node，否则是 light node。 
+    对于一个子堆 $H$，如果 $size(H.\text{right.descendant}) \geq \frac{1}{2}size(H)$，则 $H$ 是 heavy node，否则是 light node。
 
     ??? extra "\@ cy'ppt"
         A node p is heavy if the number of descendants of p’s right subtree is at least half of the number of descendants of p, and light otherwise.  Note that the number of descendants of a node includes the node itself.
@@ -406,7 +406,7 @@ $$
 
 $$
 \begin{aligned}
-\hat{c} 
+\hat{c}
     &= c + \Phi(H_{merged}) - \Phi(H_x) - \Phi(H_y) \\
     &\leq (l_x + h_x + l_y + h_y)
     + (l_x + h^0_x + l_y + h^0_y)
@@ -434,7 +434,7 @@ $$
     === "Conclusion 1"
 
         向一个空的斜堆依次插入 $1\text{~}2^{k−1}(k>4)$这几个元素后，得到的堆是一棵满二叉树
-        
+
     === "Conclustion 2"
         The right path of a skew heap can be arbitrarily long
 
