@@ -865,7 +865,7 @@
 <p>Language modeling <span class="arithmatex">\(\ne\)</span> assisting users</p>
 <p>一个<span class="heti-skip"><span class="heti-spacing"> </span>pretrained LM<span class="heti-spacing"> </span></span>只是在学习：</p>
 <div class="arithmatex">\[
-p_\theta(x_t \mid x_{&lt;t})
+p_\theta(x_t \mid x_{&lt; t})
 \]</div>
 <p>如果给它一个<span><span class="heti-spacing"> </span>prompt</span>，它最自然的行为是“继续写看起来像训练语料的文本”，而不一定是在认真完成用户指令</p>
 <p><span>Instruction finetuning<span class="heti-spacing"> </span></span>的想法是：收集大量<code>(instruction, output)</code><span><span class="heti-spacing"> </span>pair</span>，然后用<span class="heti-skip"><span class="heti-spacing"> </span>supervised learning<span class="heti-spacing"> </span></span>去<span><span class="heti-spacing"> </span>finetune language model</span></p>
@@ -886,7 +886,7 @@ J_{\text{SFT}}(\theta)
 =
 -
 \sum_t
-\log p_\theta(y_t \mid x_{\text{instruction}}, y_{&lt;t})
+\log p_\theta(y_t \mid x_{\text{instruction}}, y_{&lt; t})
 \]</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
