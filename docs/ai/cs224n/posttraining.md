@@ -27,7 +27,7 @@ Language modeling $\ne$ assisting users
 一个 pretrained LM 只是在学习：
 
 $$
-p_\theta(x_t \mid x_{<t})
+p_\theta(x_t \mid x_{< t})
 $$
 
 如果给它一个 prompt，它最自然的行为是“继续写看起来像训练语料的文本”，而不一定是在认真完成用户指令
@@ -58,7 +58,7 @@ J_{\text{SFT}}(\theta)
 =
 -
 \sum_t
-\log p_\theta(y_t \mid x_{\text{instruction}}, y_{<t})
+\log p_\theta(y_t \mid x_{\text{instruction}}, y_{< t})
 $$
 
 !!! tip

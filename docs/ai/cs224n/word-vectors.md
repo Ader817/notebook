@@ -32,7 +32,7 @@ Word2Vec 存在两种模型，分别为：
 ![image-20260427150106488](./assets/image-20260427150106488.png)
 
 - 其中 $u_w$ 是 w 作为 context word 的词向量，$v_w$ 是 w 作为 center word 的词向量
-- $\theta$ 代表了所有模型参数，若 vector 为 d 维，词表共有 V 个 word，则 $\theta \in \R^{2dV}$
+- $\theta$ 代表了所有模型参数，若 vector 为 d 维，词表共有 V 个 word，则 $\theta \in \mathbb{R}^{2dV}$
 
 由于当词表很大时，使用 softmax 时，每一次计算概率的分母项（即 softmax 的归一化项）都要非常大的代价，因此标准的 word2vec 通常实现 skip-gram model with **negative sampling** 代替 softmax
 
@@ -46,7 +46,7 @@ Word2Vec 存在两种模型，分别为：
 
 !!! tip
 
-    $U(w)$ 是词 $w$ 的 unigram distribution，也就是这个词在语料中的原始出现概率但是把它变成：$U(w)^{3/4}$ 之后，所有词的值加起来通常不再等于 1，所以需要除以一个 $Z$，这个 $Z$ 定义为：$ Z = \sum_{w \in V} U(w)^{3/4} $也就是把词表里所有词的 $U(w)^{3/4}$ 加起来
+    $U(w)$ 是词 $w$ 的 unigram distribution，也就是这个词在语料中的原始出现概率但是把它变成：$U(w)^{3/4}$ 之后，所有词的值加起来通常不再等于 1，所以需要除以一个 $Z$，这个 $Z$ 定义为：$Z = \sum_{w \in V} U(w)^{3/4}$，也就是把词表里所有词的 $U(w)^{3/4}$ 加起来
 
 此外可以发现，在 Negative Sampling 中使用诸如 SGD 的梯度更新方法来更新 Word2Vec 的两个 embedding 矩阵时
 

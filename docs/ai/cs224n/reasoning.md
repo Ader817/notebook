@@ -9,7 +9,7 @@ Reasoning 两讲的主线可以概括成：
 Autoregressive LM 在每一步都会给出下一个 token 的分布：
 
 $$
-p_\theta(y_t \mid y_{<t}, x)
+p_\theta(y_t \mid y_{< t}, x)
 $$
 
 Decoding algorithm 决定如何从这个分布中选择下一个 token。
