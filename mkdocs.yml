@@ -200,6 +200,22 @@ nav:
       - system/co/ch6.md
     - 计算机体系结构:
       - system/ca/index.md
+    - 编译原理:
+      - system/cp/index.md
+      - system/cp/introduction.md
+      - system/cp/lexical-analysis.md
+      - system/cp/parsing.md
+      - system/cp/abstract-syntax.md
+      - system/cp/semantic-analysis.md
+      - system/cp/activation-records.md
+      - system/cp/intermediate-code.md
+      - system/cp/blocks-traces.md
+      - system/cp/instruction-selection.md
+      - system/cp/liveness-analysis.md
+      - system/cp/register-allocation.md
+      - system/cp/garbage-collection.md
+      - system/cp/object-oriented-languages.md
+      - system/cp/loop-optimizations.md
 
   - Web:
     - web/index.md
