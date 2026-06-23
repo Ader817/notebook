@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Word2Vec
 
 ## 它解决什么问题？

@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # re
 
 > https://docs.python.org/3/library/re.html

@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Ch 8：差分中差分（Difference-in-Differences, DiD）
 
 ## 基本思想

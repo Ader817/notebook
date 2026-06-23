@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Lec 7: Convolutional Networks
 
 ## Overview

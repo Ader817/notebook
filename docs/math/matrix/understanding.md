@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Matrix-Understanding
 
 ### 向量点积

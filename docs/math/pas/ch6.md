@@ -1,5 +1,5 @@
 ---
-counter: true
+counter: True
 ---
 
 # 第6章 统计量与抽样分布

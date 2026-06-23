@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Posttraining
 
 Pretraining 让 language model 学会了大量语言统计规律和世界知识，但它的训练目标本质上仍然是：

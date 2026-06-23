@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Prompt Engineering
 
 > https://www.aneasystone.com/archives/2024/01/prompt-engineering-notes.html

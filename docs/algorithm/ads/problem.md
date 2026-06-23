@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # ADS problem sheet
 !!! Quote "Useful resources"
     Homework Review: https://zhoutimemachine.github.io/note/courses/ads-hw-review/

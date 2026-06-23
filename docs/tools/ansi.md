@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # ANSI Sequence
 
 ## ANSI sequence

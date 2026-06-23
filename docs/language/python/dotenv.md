@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # dotenv
 
 Python-dotenv 是 python 用于处理和加载环境变量的第三方库

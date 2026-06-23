@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Attention
 
 > 推荐阅读：https://jalammar.github.io/illustrated-transformer/

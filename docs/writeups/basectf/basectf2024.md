@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 ## [Week1] 根本进不去啊
 
 最开始通过 `nslookup txt flag.basectf.fun`试图查询DNS记录，发现域名对应的主机地址不存在

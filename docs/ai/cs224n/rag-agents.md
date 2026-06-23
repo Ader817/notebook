@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # RAG and Language Agents
 
 这一章的核心问题是：

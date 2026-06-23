@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Lec 1: Introduction to Deep Learning for Computer Vision
 
 ## Overview

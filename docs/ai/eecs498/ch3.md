@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Lec 3: Linear Classifiers
 
 ## Overview

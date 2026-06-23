@@ -1,5 +1,5 @@
 ---
-counter: true
+counter: True
 ---
 
 # Chapter 8 | 深度学习

@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Ch 4：因果图（Causal Graphs / DAGs）
 
 ## 有向无环图

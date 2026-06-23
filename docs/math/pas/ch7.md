@@ -1,5 +1,5 @@
 ---
-counter: true
+counter: True
 ---
 
 # 第7章 参数估计

@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # 网络排查
 
 > 源自我与 Claude 的对话

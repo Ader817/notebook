@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Ch 2：潜在结果框架（Potential Outcomes Framework）
 
 ## 潜在结果

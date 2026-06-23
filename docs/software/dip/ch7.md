@@ -1,5 +1,5 @@
 ---
-counter: true
+counter: True
 ---
 
 # Chapter 7 | 图像特征

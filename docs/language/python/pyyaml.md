@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # PyYAML
 
 > [Official Documentation](https://wiki.python.org/python/YAML.html)

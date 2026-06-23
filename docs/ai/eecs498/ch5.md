@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Lec 5: Neural Networks
 
 ## Overview

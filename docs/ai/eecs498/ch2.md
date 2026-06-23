@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Lec 2: Image Classification
 
 ## Sementic Gap

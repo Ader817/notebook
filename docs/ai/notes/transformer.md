@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Transformer
 
 > 图解 Transformer: https://jalammar.github.io/illustrated-transformer/

@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Reasoning
 
 Reasoning 两讲的主线可以概括成：

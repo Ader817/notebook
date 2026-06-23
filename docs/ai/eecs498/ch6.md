@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Lec 6: Backpropagation
 
 ## Overview

@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Lec 9: Hardware and Software
 
 ## Overview

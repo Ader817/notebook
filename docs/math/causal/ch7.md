@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Ch 7：断点回归（Regression Discontinuity, RD）
 
 ## 基本思想

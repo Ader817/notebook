@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Pretraining
 
 Pretraining 的核心思想是：先在大规模、通常不需要人工标注的文本上训练模型，让模型学到比较通用的语言知识；然后再把这个模型拿到具体任务上 finetune

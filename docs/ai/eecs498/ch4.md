@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Lec 4: Optimization
 
 ## Overview

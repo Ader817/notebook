@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # keyboard shortcuts
 
 ## VsCode

@@ -1,5 +1,5 @@
 ---
-counter: true
+counter: True
 ---
 
 # 第5章 大数定律及中心极限定理

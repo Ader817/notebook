@@ -1,3 +1,7 @@
+---
+counter: True
+---
+
 # Ch 9：结构因果模型（Structural Causal Model, SCM）
 
 ## 什么是 SCM？

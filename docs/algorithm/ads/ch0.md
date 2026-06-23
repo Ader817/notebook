@@ -1,5 +1,5 @@
 ---
-counter: true
+counter: True
 ---
 
 # Chapter 0 | Amortized Analysis

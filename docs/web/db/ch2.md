@@ -1,5 +1,5 @@
 ---
-counter: true
+counter: True
 ---
 
 # Chap 2: Relational Model

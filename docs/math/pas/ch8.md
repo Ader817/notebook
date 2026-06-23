@@ -1,5 +1,5 @@
 ---
-counter: true
+counter: True
 ---
 
 # 第8章 假设检验

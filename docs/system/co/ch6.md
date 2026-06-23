@@ -1,5 +1,5 @@
 ---
-counter: true
+counter: True
 ---
 
 # Chap 6: Appendix: Storage, Networks and Other Peripherals
