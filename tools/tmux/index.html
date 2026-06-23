@@ -1492,55 +1492,59 @@
 <h3 id="63-reloading-configuration">6.3 Reloading Configuration</h3>
 <ul>
 <li><code>prefix :</code> <span>-<span class="heti-spacing"> </span></span>进入命令模式
-  <div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># 在命令模式下</span>
-</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>source-file<span class="w"> </span>~/.tmux.conf
-</span></code></pre></div></li>
+  ```shell
+  # 在命令模式下</li>
 </ul>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约<span class="heti-skip"><span class="heti-spacing"> </span>1380<span class="heti-spacing"> </span></span>个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"></path></svg></span> <span>47<span class="heti-spacing"> </span></span>行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间<span class="heti-skip"><span class="heti-spacing"> </span>14<span class="heti-spacing"> </span></span>分钟</p>
+</div>
+<p>source-file ~/.tmux.conf
+  ```</p>
 <h2 id="7-common-command-examples">7. Common Command Examples</h2>
 <h3 id="71-batch-operations">7.1 Batch Operations</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># 查看所有会话</span>
-</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a>tmux<span class="w"> </span>ls
-</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a>
-</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="c1"># 创建新会话并指定名称</span>
-</span><span id="__span-1-5"><a href="#__codelineno-1-5" id="__codelineno-1-5" name="__codelineno-1-5"></a>tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>work
-</span><span id="__span-1-6"><a href="#__codelineno-1-6" id="__codelineno-1-6" name="__codelineno-1-6"></a>
-</span><span id="__span-1-7"><a href="#__codelineno-1-7" id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="c1"># 连接到指定会话</span>
-</span><span id="__span-1-8"><a href="#__codelineno-1-8" id="__codelineno-1-8" name="__codelineno-1-8"></a>tmux<span class="w"> </span>attach<span class="w"> </span>-t<span class="w"> </span>work
-</span><span id="__span-1-9"><a href="#__codelineno-1-9" id="__codelineno-1-9" name="__codelineno-1-9"></a>
-</span><span id="__span-1-10"><a href="#__codelineno-1-10" id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="c1"># 在后台创建会话</span>
-</span><span id="__span-1-11"><a href="#__codelineno-1-11" id="__codelineno-1-11" name="__codelineno-1-11"></a>tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>work<span class="w"> </span>-d
-</span><span id="__span-1-12"><a href="#__codelineno-1-12" id="__codelineno-1-12" name="__codelineno-1-12"></a>
-</span><span id="__span-1-13"><a href="#__codelineno-1-13" id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="c1"># 杀死指定会话</span>
-</span><span id="__span-1-14"><a href="#__codelineno-1-14" id="__codelineno-1-14" name="__codelineno-1-14"></a>tmux<span class="w"> </span>kill-session<span class="w"> </span>-t<span class="w"> </span>work
-</span><span id="__span-1-15"><a href="#__codelineno-1-15" id="__codelineno-1-15" name="__codelineno-1-15"></a>
-</span><span id="__span-1-16"><a href="#__codelineno-1-16" id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="c1"># 杀死所有 tmux 会话</span>
-</span><span id="__span-1-17"><a href="#__codelineno-1-17" id="__codelineno-1-17" name="__codelineno-1-17"></a>tmux<span class="w"> </span>kill-server
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-0-1"><a href="#__codelineno-0-1" id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="c1"># 查看所有会话</span>
+</span><span id="__span-0-2"><a href="#__codelineno-0-2" id="__codelineno-0-2" name="__codelineno-0-2"></a>tmux<span class="w"> </span>ls
+</span><span id="__span-0-3"><a href="#__codelineno-0-3" id="__codelineno-0-3" name="__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a href="#__codelineno-0-4" id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="c1"># 创建新会话并指定名称</span>
+</span><span id="__span-0-5"><a href="#__codelineno-0-5" id="__codelineno-0-5" name="__codelineno-0-5"></a>tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>work
+</span><span id="__span-0-6"><a href="#__codelineno-0-6" id="__codelineno-0-6" name="__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a href="#__codelineno-0-7" id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="c1"># 连接到指定会话</span>
+</span><span id="__span-0-8"><a href="#__codelineno-0-8" id="__codelineno-0-8" name="__codelineno-0-8"></a>tmux<span class="w"> </span>attach<span class="w"> </span>-t<span class="w"> </span>work
+</span><span id="__span-0-9"><a href="#__codelineno-0-9" id="__codelineno-0-9" name="__codelineno-0-9"></a>
+</span><span id="__span-0-10"><a href="#__codelineno-0-10" id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="c1"># 在后台创建会话</span>
+</span><span id="__span-0-11"><a href="#__codelineno-0-11" id="__codelineno-0-11" name="__codelineno-0-11"></a>tmux<span class="w"> </span>new<span class="w"> </span>-s<span class="w"> </span>work<span class="w"> </span>-d
+</span><span id="__span-0-12"><a href="#__codelineno-0-12" id="__codelineno-0-12" name="__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a href="#__codelineno-0-13" id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="c1"># 杀死指定会话</span>
+</span><span id="__span-0-14"><a href="#__codelineno-0-14" id="__codelineno-0-14" name="__codelineno-0-14"></a>tmux<span class="w"> </span>kill-session<span class="w"> </span>-t<span class="w"> </span>work
+</span><span id="__span-0-15"><a href="#__codelineno-0-15" id="__codelineno-0-15" name="__codelineno-0-15"></a>
+</span><span id="__span-0-16"><a href="#__codelineno-0-16" id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="c1"># 杀死所有 tmux 会话</span>
+</span><span id="__span-0-17"><a href="#__codelineno-0-17" id="__codelineno-0-17" name="__codelineno-0-17"></a>tmux<span class="w"> </span>kill-server
 </span></code></pre></div>
 <h3 id="72-command-line-shortcuts">7.2 Command Line Shortcuts</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># 为常用操作创建别名</span>
-</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">tml</span><span class="o">=</span><span class="s2">"tmux list-sessions"</span>
-</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">tma</span><span class="o">=</span><span class="s2">"tmux attach-session -t"</span>
-</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">tmn</span><span class="o">=</span><span class="s2">"tmux new-session -s"</span>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-1-1"><a href="#__codelineno-1-1" id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="c1"># 为常用操作创建别名</span>
+</span><span id="__span-1-2"><a href="#__codelineno-1-2" id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">tml</span><span class="o">=</span><span class="s2">"tmux list-sessions"</span>
+</span><span id="__span-1-3"><a href="#__codelineno-1-3" id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">tma</span><span class="o">=</span><span class="s2">"tmux attach-session -t"</span>
+</span><span id="__span-1-4"><a href="#__codelineno-1-4" id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="nb">alias</span><span class="w"> </span><span class="nv">tmn</span><span class="o">=</span><span class="s2">"tmux new-session -s"</span>
 </span></code></pre></div>
 <h2 id="8-configuration-suggestions">8. Configuration Suggestions</h2>
 <h3 id="81-basic-configuration-file-tmuxconf">8.1 Basic Configuration File (<code>~/.tmux.conf</code>)</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="c1"># 修改前缀键为 Ctrl+a</span>
-</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>prefix<span class="w"> </span>C-a
-</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>unbind<span class="w"> </span>C-b
-</span><span id="__span-3-4"><a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a><span class="nb">bind</span><span class="w"> </span>C-a<span class="w"> </span>send-prefix
-</span><span id="__span-3-5"><a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>
-</span><span id="__span-3-6"><a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a><span class="c1"># 启用鼠标支持</span>
-</span><span id="__span-3-7"><a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>mouse<span class="w"> </span>on
-</span><span id="__span-3-8"><a href="#__codelineno-3-8" id="__codelineno-3-8" name="__codelineno-3-8"></a>
-</span><span id="__span-3-9"><a href="#__codelineno-3-9" id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="c1"># 设置默认终端模式为 256 色</span>
-</span><span id="__span-3-10"><a href="#__codelineno-3-10" id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>default-terminal<span class="w"> </span><span class="s2">"screen-256color"</span>
-</span><span id="__span-3-11"><a href="#__codelineno-3-11" id="__codelineno-3-11" name="__codelineno-3-11"></a>
-</span><span id="__span-3-12"><a href="#__codelineno-3-12" id="__codelineno-3-12" name="__codelineno-3-12"></a><span class="c1"># 设置窗口和面板索引从 1 开始</span>
-</span><span id="__span-3-13"><a href="#__codelineno-3-13" id="__codelineno-3-13" name="__codelineno-3-13"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>base-index<span class="w"> </span><span class="m">1</span>
-</span><span id="__span-3-14"><a href="#__codelineno-3-14" id="__codelineno-3-14" name="__codelineno-3-14"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>pane-base-index<span class="w"> </span><span class="m">1</span>
-</span><span id="__span-3-15"><a href="#__codelineno-3-15" id="__codelineno-3-15" name="__codelineno-3-15"></a>
-</span><span id="__span-3-16"><a href="#__codelineno-3-16" id="__codelineno-3-16" name="__codelineno-3-16"></a><span class="c1"># 设置状态栏</span>
-</span><span id="__span-3-17"><a href="#__codelineno-3-17" id="__codelineno-3-17" name="__codelineno-3-17"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>status-right<span class="w"> </span><span class="s2">"%H:%M %d-%b-%y"</span>
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-2-1"><a href="#__codelineno-2-1" id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="c1"># 修改前缀键为 Ctrl+a</span>
+</span><span id="__span-2-2"><a href="#__codelineno-2-2" id="__codelineno-2-2" name="__codelineno-2-2"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>prefix<span class="w"> </span>C-a
+</span><span id="__span-2-3"><a href="#__codelineno-2-3" id="__codelineno-2-3" name="__codelineno-2-3"></a>unbind<span class="w"> </span>C-b
+</span><span id="__span-2-4"><a href="#__codelineno-2-4" id="__codelineno-2-4" name="__codelineno-2-4"></a><span class="nb">bind</span><span class="w"> </span>C-a<span class="w"> </span>send-prefix
+</span><span id="__span-2-5"><a href="#__codelineno-2-5" id="__codelineno-2-5" name="__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a href="#__codelineno-2-6" id="__codelineno-2-6" name="__codelineno-2-6"></a><span class="c1"># 启用鼠标支持</span>
+</span><span id="__span-2-7"><a href="#__codelineno-2-7" id="__codelineno-2-7" name="__codelineno-2-7"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>mouse<span class="w"> </span>on
+</span><span id="__span-2-8"><a href="#__codelineno-2-8" id="__codelineno-2-8" name="__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a href="#__codelineno-2-9" id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="c1"># 设置默认终端模式为 256 色</span>
+</span><span id="__span-2-10"><a href="#__codelineno-2-10" id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>default-terminal<span class="w"> </span><span class="s2">"screen-256color"</span>
+</span><span id="__span-2-11"><a href="#__codelineno-2-11" id="__codelineno-2-11" name="__codelineno-2-11"></a>
+</span><span id="__span-2-12"><a href="#__codelineno-2-12" id="__codelineno-2-12" name="__codelineno-2-12"></a><span class="c1"># 设置窗口和面板索引从 1 开始</span>
+</span><span id="__span-2-13"><a href="#__codelineno-2-13" id="__codelineno-2-13" name="__codelineno-2-13"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>base-index<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-2-14"><a href="#__codelineno-2-14" id="__codelineno-2-14" name="__codelineno-2-14"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>pane-base-index<span class="w"> </span><span class="m">1</span>
+</span><span id="__span-2-15"><a href="#__codelineno-2-15" id="__codelineno-2-15" name="__codelineno-2-15"></a>
+</span><span id="__span-2-16"><a href="#__codelineno-2-16" id="__codelineno-2-16" name="__codelineno-2-16"></a><span class="c1"># 设置状态栏</span>
+</span><span id="__span-2-17"><a href="#__codelineno-2-17" id="__codelineno-2-17" name="__codelineno-2-17"></a><span class="nb">set</span><span class="w"> </span>-g<span class="w"> </span>status-right<span class="w"> </span><span class="s2">"%H:%M %d-%b-%y"</span>
 </span></code></pre></div>
 <blockquote>
 <p>重新加载配置：在<span class="heti-skip"><span class="heti-spacing"> </span>tmux<span class="heti-spacing"> </span></span>中按 <code>prefix :</code> 然后输入 <code>source-file ~/.tmux.conf</code></p>
@@ -1571,15 +1575,16 @@
 <li>使用 <code>tmux attach</code> 可以恢复之前的会话状态</li>
 </ul>
 <h3 id="103-automation-scripts">10.3 Automation Scripts</h3>
-<div class="language-shell highlight"><pre><span></span><code><span id="__span-4-1"><a href="#__codelineno-4-1" id="__codelineno-4-1" name="__codelineno-4-1"></a><span class="ch">#!/bin/bash</span>
-</span><span id="__span-4-2"><a href="#__codelineno-4-2" id="__codelineno-4-2" name="__codelineno-4-2"></a><span class="c1"># 创建开发环境会话</span>
-</span><span id="__span-4-3"><a href="#__codelineno-4-3" id="__codelineno-4-3" name="__codelineno-4-3"></a>tmux<span class="w"> </span>new-session<span class="w"> </span>-d<span class="w"> </span>-s<span class="w"> </span>dev
-</span><span id="__span-4-4"><a href="#__codelineno-4-4" id="__codelineno-4-4" name="__codelineno-4-4"></a>tmux<span class="w"> </span>send-keys<span class="w"> </span>-t<span class="w"> </span>dev<span class="w"> </span><span class="s1">'vim'</span><span class="w"> </span>C-m
-</span><span id="__span-4-5"><a href="#__codelineno-4-5" id="__codelineno-4-5" name="__codelineno-4-5"></a>tmux<span class="w"> </span>split-window<span class="w"> </span>-h<span class="w"> </span>-t<span class="w"> </span>dev
-</span><span id="__span-4-6"><a href="#__codelineno-4-6" id="__codelineno-4-6" name="__codelineno-4-6"></a>tmux<span class="w"> </span>send-keys<span class="w"> </span>-t<span class="w"> </span>dev<span class="w"> </span><span class="s1">'git status'</span><span class="w"> </span>C-m
-</span><span id="__span-4-7"><a href="#__codelineno-4-7" id="__codelineno-4-7" name="__codelineno-4-7"></a>tmux<span class="w"> </span>attach-session<span class="w"> </span>-t<span class="w"> </span>dev
+<div class="language-shell highlight"><pre><span></span><code><span id="__span-3-1"><a href="#__codelineno-3-1" id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="ch">#!/bin/bash</span>
+</span><span id="__span-3-2"><a href="#__codelineno-3-2" id="__codelineno-3-2" name="__codelineno-3-2"></a><span class="c1"># 创建开发环境会话</span>
+</span><span id="__span-3-3"><a href="#__codelineno-3-3" id="__codelineno-3-3" name="__codelineno-3-3"></a>tmux<span class="w"> </span>new-session<span class="w"> </span>-d<span class="w"> </span>-s<span class="w"> </span>dev
+</span><span id="__span-3-4"><a href="#__codelineno-3-4" id="__codelineno-3-4" name="__codelineno-3-4"></a>tmux<span class="w"> </span>send-keys<span class="w"> </span>-t<span class="w"> </span>dev<span class="w"> </span><span class="s1">'vim'</span><span class="w"> </span>C-m
+</span><span id="__span-3-5"><a href="#__codelineno-3-5" id="__codelineno-3-5" name="__codelineno-3-5"></a>tmux<span class="w"> </span>split-window<span class="w"> </span>-h<span class="w"> </span>-t<span class="w"> </span>dev
+</span><span id="__span-3-6"><a href="#__codelineno-3-6" id="__codelineno-3-6" name="__codelineno-3-6"></a>tmux<span class="w"> </span>send-keys<span class="w"> </span>-t<span class="w"> </span>dev<span class="w"> </span><span class="s1">'git status'</span><span class="w"> </span>C-m
+</span><span id="__span-3-7"><a href="#__codelineno-3-7" id="__codelineno-3-7" name="__codelineno-3-7"></a>tmux<span class="w"> </span>attach-session<span class="w"> </span>-t<span class="w"> </span>dev
 </span></code></pre></div>
 <!-- 标题计数器 -->
+<link href="../../assets/stylesheets/counter.css" rel="stylesheet"/>
 </article>
 </div>
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
