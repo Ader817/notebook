@@ -87,7 +87,7 @@ A string is in L(G) iff is possible to derive that string from the start symbol 
 The above example is a **left-most derivation**
 
 - at each step, replace the left-most non-terminal
-- There is also an equivalent notion of a **right-most derivation **(也就是总是从最右边的非终结符往下推导)
+- There is also an equivalent notion of a **right-most derivation** (也就是总是从最右边的非终结符往下推导)
 
 
 !!! important
@@ -124,9 +124,9 @@ The above example is a **left-most derivation**
     比如日常使用的口头语言，就是有二义性的，我们无法用一个没有二义性的grammar 来表示它们
 
 
-最后，我们的文法规则还应该具备告诉语法分析器输入在什么时候终止，为此需要引入一个特殊的 \$ 标记
+最后，我们的文法规则还应该告诉语法分析器输入在什么时候终止，为此需要引入一个特殊的 `$` 标记
 
-当我们规定 S -> E \$ 后，意思是一个合法输入必须是一个完整的表达式 + 输入结束符
+当我们规定 `S -> E $` 后，意思是一个合法输入必须是一个完整的表达式 + 输入结束符
 
 ![image-20260406154118287](assets/image-20260406154118287.png)
 
@@ -203,7 +203,7 @@ The above example is a **left-most derivation**
 !!! important
 
 
-    Consider non-terminal $X$, production $X$->$\gamma$, possible first terminal symbol $t$ can be:
+    Consider non-terminal $X$, production $X \rightarrow \gamma$, possible first terminal symbol $t$ can be:
 
     - any token in FIRST($\gamma$)
     - any token in FOLLOW($X$) if $\gamma \rightarrow^*\epsilon$
@@ -213,7 +213,7 @@ The above example is a **left-most derivation**
     答案是：可以选择 $X \rightarrow \gamma$ 这条产生式，当
 
     - 情况 1：$\text{token} \in \text{FIRST}(\gamma)$ （注意：情况 1 的本质是 $\gamma$ 可以正常第一个地产生当前 token）
-    - 情况 2：$\gamma \rightarrow^* \epsilon$ 且 $\text{token} \in \text{FOLLOW}(X)$ （注意：情况 2 的本质是如果 $\gamma$ 可以为空，就看当前 token 是否属于 X 后面可以出现的东西
+    - 情况 2：$\gamma \rightarrow^* \epsilon$ 且 $\text{token} \in \text{FOLLOW}(X)$ （注意：情况 2 的本质是如果 $\gamma$ 可以为空，就看当前 token 是否属于 X 后面可以出现的东西）
 
 
 **First** 和 **Follow** 的计算方式如下：
@@ -344,7 +344,7 @@ The above example is a **left-most derivation**
 
 大致存在两种常用方式
 
-- inserting：文法分析器插入一个合适的 token，假设匹配对了；但假想的 token 串可能会无法 terminiate，不常用
+- inserting：文法分析器插入一个合适的 token，假设匹配对了；但假想的 token 串可能会无法 terminate，不常用
 - deleting：跳过一些 tokens 直到遇到 FOLLOW set 中的 token，更安全
 
 
@@ -357,7 +357,7 @@ The above example is a **left-most derivation**
 
 - LR(k) parsing: The most prevalent type
     - Shift-Reduce Parsing
-    - More powerful than LL(k) parsing: able to postpone the decision (rather than only predict using top-k tokens) until it has seen input tokens corresponding to the **entire right-hand sid**e of the production in question
+    - More powerful than LL(k) parsing: able to postpone the decision (rather than only predict using top-k tokens) until it has seen input tokens corresponding to the **entire right-hand side** of the production in question
     - LR(k): **L**eft-to-right parse; **R**ightmost derivation; **k**-token lookahead
 - Variant: LALR (Look-Ahead LR) parsing:
     - basis for parsers of most modern programming languages (implemented in tools such as Yacc)
@@ -446,7 +446,7 @@ LR(0) grammars are those can be parsed looking only at the stack, making shift/r
 当然 SLR Parsing 解析文法的能力还不够强，为此又引入了 LR(1) Parsing
 
 - Idea: add more information into the state of DFA so that we can resolve the conflicts!
-- An LR(1) item consits of a production, a right-hand-side position (represented by the dot), and a **lookahead symbol**
+- An LR(1) item consists of a production, a right-hand-side position (represented by the dot), and a **lookahead symbol**
 
 与 LR(0) 不同的是，Closure/Goto/Reduce 变化如下：
 

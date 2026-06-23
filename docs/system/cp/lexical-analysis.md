@@ -17,7 +17,7 @@ counter: True
 
     ==x== : = ==a== * 2  + b ==*== (x * 3)
 
-    ==id\<x\>== assign ==id\<a\>== times int\<2\> plus id\<b\> ==times== lparen id\<x\> times int\<3> rparen
+    ==id&lt;x&gt;== assign ==id&lt;a&gt;== times int&lt;2&gt; plus id&lt;b&gt; ==times== lparen id&lt;x&gt; times int&lt;3&gt; rparen
 
 - 删除字符串中不必要的部分（如空格、换行）
 - 通常使用**正则表达式**匹配
@@ -57,7 +57,7 @@ Some **abbreviations** for Regular Expression:
 - [abcd] means (a | b | c | d)
 - [b-g] means [bcdefg]
 - [b-gM-Qkr] means [bcdefgMNOPQkr]
-- $M?$ Means ($M \; | \; \epsilon$), and $M^+$ means($ M \cdot M^*$)
+- $M?$ means $M \mid \epsilon$, and $M^+$ means $M \cdot M^*$.
 
 
 在 Lexer 中主要用到的几个 Regular Expression，以 Tiger 语言为例：
