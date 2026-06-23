@@ -17,7 +17,7 @@ counter: True
 The parser is constructed based on the grammar, and extracts abstract syntax from a stream of tokens
 
 
-非常重要!!：**语法分析**要干==两件事==：
+非常重要!!：**语法分析**要干 ==两件事==：
 
 1. 能够根据给定的语法规则正确判断给定的词法分析器给出的 token 序列是否合法
 2. 能根据 token stream 构造出一个 parse tree
